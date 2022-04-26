@@ -1,0 +1,106 @@
+@import "variable.scss";
+@import "arguments.scss";
+@import "radiobutton.scss";
+@import "checkbox.scss";
+
+
+/*========= login screen ==========*/
+.login-form{
+	background-color:rgba($offwhite, 0.9);
+	max-width: 450px;
+	@include round-borders(10px);	
+	.form-control{
+		background-color:transparent;	
+		@include box-shadow(2px, 2px, 3px, rgba(0, 0, 0, 0.25));
+		border: 1px solid $dark-blue;
+		padding: .75rem 1.5rem;
+		padding-right:3rem;
+	} 
+	.input-group {
+		.form-control{
+			&:not(:first-child){@include round-borders(10rem);}
+			&:focus{border-color:$brand-primary;@include box-shadow(0, 0, 0.1rem, rgba($brand-primary, 0.2));}
+		}
+	}
+	
+}
+
+
+label{@include fontSize(17px);}
+
+.form-control{background-color:$light-gray;@include fontSize(17px);border:1px solid $light-gray;padding: .8rem 1.25rem; @include round-borders(0);color:$dark-blue; @include transition(all, 0.3s, ease-in-out, 0s);
+	&:focus{background-color:$light-gray; border-color: $gray;@include box-shadow(0, 0, 0.1rem, rgba($gray, 0.2));color:$dark-blue;}
+}
+textarea{height:100px !important;}
+.input-group{
+	.input-group-btn{
+		position: absolute;
+		right: 1px;
+		top:1px;
+		bottom:1px;
+		margin:auto;
+		z-index: 99;
+	}
+	.input-group-addon{
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color:transparent;
+		border:0;
+		padding: .75rem 1.5rem;
+		z-index: 5;
+	}
+	&.date {
+		.input-group-addon {@include fontSize(28px); color:$dark-gray;}
+	}
+	&.left-addon { 
+		.form-control{ padding-left:3rem;}
+		.input-group-addon {right:auto; left:0; padding:.75rem 1rem;}
+	}
+}
+
+/*========= custom select ==========*/
+.table{
+	.custom-select {padding: 0 1rem 0 0.5rem; color: $dark-blue; background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h0zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right center; background-size: 10px 15px; border: 0; @include round-borders(0); font-family:$heading-font; @include fontSize(20px);  min-width: 140px;
+	}
+}
+.custom-select{ background: $light-gray url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 1 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h0zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 15px center; background-size: 12px 18px; }
+
+
+// .filter-projects {
+	// select{
+	 // &.form-control{height:auto !important;	}
+	// }
+	// .select-arrow{position:relative;
+		// &:after {border-color: #b0b6bd rgba(0, 0, 0, 0) rgba(0, 0, 0, 0); border-image: none; border-style: solid; border-width: 7px; content: " "; right: 15px; pointer-events: none; height: 0; width: 0; position: absolute; z-index: 100; top: 45%;}
+		// .form-control{-moz-appearance: none; -webkit-appearance: none;}
+	// }
+// }
+
+select{
+	&.form-control{
+		&:not([size]){
+			&:not([multiple]){height:auto !important;}
+		}
+	}
+}
+
+// .select-arrow{position:relative;
+		// &:after {border-color: #b0b6bd rgba(0, 0, 0, 0) rgba(0, 0, 0, 0); border-image: none; border-style: solid; border-width: 7px; content: " "; right: 15px; pointer-events: none; height: 0; width: 0; position: absolute; z-index: 100; top: 45%;}
+		// .form-control{-moz-appearance: none; -webkit-appearance: none;appearance: none;
+		// } 
+	// }
+	
+fieldset{border:1px solid $disabled; @include round-borders(5px);margin:0;
+	legend{margin-bottom:0;@include fontSize(18px); width: auto;padding: 0 0.25rem;}
+	&[disabled]{
+		button, .custom-control, select, .form-control, .btn{
+			    pointer-events: none;cursor: default;@include opacity(0.6);
+		}
+	}
+}
+
+.form-control-plaintext {
+	padding-top: .575rem ; 
+}

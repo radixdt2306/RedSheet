@@ -1,0 +1,102 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">
+                <i class="{{templateModule.iconClass}}"></i> {{templateModule.templateModuleName}}<i
+                    [class]="getSymbol(templateModule.templateModuleId)"></i>
+            </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" (click)="hidePopup()">×</span>
+            </button>
+        </div>
+        <form class="section-form">
+            <div class="modal-body">
+                <div class="row section-form-row">
+                    <div class="col-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 text-lg-right">
+                                <h4>Collaborators</h4>
+                            </div>
+                            <div class="col-12 col-sm-8">
+                                <div class="row font-md">
+                                    <div class="col-12 form-group">
+                                        <div class="input-group">
+                                            <rx-tag rxFocus="true" placeholder="Select User"
+                                                class="form-control p-2 rx-multi-section"
+                                                [tagDisabled]="!isAllowCustomization"
+                                                (added)="itemAddedCollabrators($event)"
+                                                (removed)="itemRemovedCollabrators($event)"
+                                                [(source)]="collabratorUsers"
+                                                [keyValueProps]="['#forename# #surname#','uniqueId']"
+                                                [(ngModel)]="selectCollabrators" [ngModelOptions]="{standalone: true}">
+                                            </rx-tag>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mt-1 mb-1"
+                                        *ngFor="let collabrator of templateModule.assignedUsers">
+                                        <label class="custom-control custom-checkbox">
+                                            <input [ngModelOptions]="{standalone: true}" [value]="collabrator.isChecked"
+                                                type="checkbox" [(ngModel)]="collabrator.isChecked"
+                                                [checked]="collabrator.isChecked" class="custom-control-input"
+                                                [disabled]="!isAllowCustomization">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">{{collabrator.userName}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="row mt-4 mt-lg-0">
+                            <div class="col-12 col-sm-4 text-lg-right">
+                                <h4>Reviewers</h4>
+                            </div>
+                            <div class="col-12 col-sm-8">
+                                <div class="row font-md">
+                                    <div class="col-12 form-group">
+                                        <div class="input-group">
+                                            <rx-tag placeholder="phAddName" class="form-control p-2 rx-multi-section"
+                                                placeholder="Select User" [tagDisabled]="!isAllowCustomization"
+                                                (added)="itemAddedReviewers($event)"
+                                                (removed)="itemRemovedReviewers($event)" [(source)]="reviewerUsers"
+                                                [keyValueProps]="['#forename# #surname#','uniqueId']"
+                                                [(ngModel)]="selectReviewers" [ngModelOptions]="{standalone: true}">
+                                            </rx-tag>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mt-1 mb-1" *ngFor="let reviewers of templateModule.reviewers">
+                                        <label class="custom-control custom-checkbox">
+                                            <input [ngModelOptions]="{standalone: true}" [value]="reviewers.isChecked"
+                                                [disabled]="!isAllowCustomization" type="checkbox"
+                                                class="custom-control-input" [(ngModel)]="reviewers.isChecked"
+                                                [checked]="reviewers.isChecked">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">{{reviewers.userName}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row section-form-row">
+                    <div class="col-12">
+                        <h4>Note</h4>
+                        <p class="font-md">{{projectNote}}</p>
+                        <div class="form-group pt-2 mb-2">
+                            <label for="owner-note" class="">Owner's Note </label>
+                            <textarea rows="3" [(ngModel)]="templateModule.ownerNote" name="owner-note"
+                                class="form-control" placeholder="Some notes here"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" name="save" class="btn btn-primary btn-md" (click)="saveModule()">Save</button>
+                <button type="button" name="cancel" class="btn btn-primary btn-md" (click)="hidePopup()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

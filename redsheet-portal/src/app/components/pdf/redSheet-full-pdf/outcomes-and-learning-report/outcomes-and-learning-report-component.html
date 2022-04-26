@@ -1,0 +1,33 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Outcomes and learning</h2>
+    <div class="row">
+        <div class="col-12 col-sm-5 mb-3 pl-sm-5">
+            <h3>What did we achieve?</h3>
+            <div *ngIf="outcomesAndLearningReportData.whatDidWeAchieve == null">None.</div>
+            <ul class="pl-3" *ngFor="let data of outcomesAndLearningReportData.whatDidWeAchieve">
+                <li>{{data.projectOutcomeAndLearningValue}}</li>
+            </ul>
+        </div>
+        <div class="col-12 col-sm-5 offset-sm-2 mb-3 pr-sm-5">
+            <h3>What went well?</h3>
+            <div *ngIf="outcomesAndLearningReportData.whatWentWell == null">None.</div>
+            <ul class="pl-3" *ngFor="let data of outcomesAndLearningReportData.whatWentWell">
+                    <li>{{data.projectOutcomeAndLearningValue}}</li>
+            </ul>
+        </div>
+        <div class="col-12 col-sm-5 mb-3 pl-sm-5">
+            <h3>Even more effective if?</h3>
+            <div *ngIf="outcomesAndLearningReportData.evenMoreEffectiveIf == null">None.</div>
+            <ul class="pl-3" *ngFor="let data of outcomesAndLearningReportData.evenMoreEffectiveIf">
+                    <li>{{data.projectOutcomeAndLearningValue}}</li>
+            </ul>
+        </div>
+        <div class="col-12 col-sm-5 offset-sm-2 mb-3 pr-sm-5">
+            <h3>Key learnings?</h3>
+            <div *ngIf="outcomesAndLearningReportData.keyLearnings == null">None.</div>
+            <ul class="pl-3" *ngFor="let data of outcomesAndLearningReportData.keyLearnings">
+                    <li>{{data.projectOutcomeAndLearningValue}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

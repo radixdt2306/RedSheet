@@ -1,0 +1,170 @@
+<div class="row section-form-row mt-0" *ngIf="showComponent">
+    <div class="col-12">
+    <div class="section-box">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Team Members</h2>
+            <button class="btn btn-info pull-right" data-toggle="modal" (click)="showOurTeamMemberAddComponent({})" [disabled]="((projectNegotionalityId == 0) || (!addDisable))" title="Add"><i class="fa fa-plus"></i></button>
+        </div>
+         <div class="section-body">
+          <!-- <div class="table-section"> -->
+            <rx-template [dataSource]="ourTeamMembers" pageSize="5" isHideRowClass="true" >
+              <ng-template rxCellTemplate let-ourTeamMember="dataItem">
+                <div class="table-section">
+                <div class="row align-items-center ">
+                  <div class="col-12 col-sm-6 col-big-3 mr-auto">                      
+                    
+                    <div class="member-name">
+                      <h2 class="mb-0">{{ourTeamMember.ourTeamMemberName}}</h2>
+                        <h4 class="sub-heading-font">{{ourTeamMember.teamRoleName}}</h4>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-auto order-big-3 align-self-start ml-auto text-right">
+                      <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                        <li class="list-inline-item"><a (click)="showOurTeamMemberEditComponent(ourTeamMember)" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                        <li class="list-inline-item"><a  (click)="deleteOurTeamMember(ourTeamMember)" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="col-12 col-xl-12 col-big-8 d-none d-xl-block">
+                      <table class="table table-bordered thick-bordered">
+                        <thead>
+                          <tr>
+                            <th class="first-child"></th>
+                            <th>C</th>
+                            <th>O</th>
+                            <th>W</th>
+                            <th>S</th>
+                            <th>O</th>
+                            <th>A</th>
+                            <th>P</th>
+                            <th>A</th>
+                            <th>C</th>
+                            <th>E</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="first-child">Behaviour</th>
+                            <td>{{ourTeamMember.consciousnessBehaviour}}</td>
+                            <td>{{ourTeamMember.outingBehaviour}}</td>
+                            <td>{{ourTeamMember.wIllToWinBehaviour}}</td>
+                            <td>{{ourTeamMember.solutionFocusedBehaviour}}</td>
+                            <td>{{ourTeamMember.openMindedBehaviour}}</td>
+                            <td>{{ourTeamMember.agreeableBehaviour}}</td>
+                            <td>{{ourTeamMember.personalCalmBehaviour}}</td>
+                            <td>{{ourTeamMember.assertivenessBehaviour}}</td>
+                            <td>{{ourTeamMember.conflictStyleBehaviour}}</td>
+                            <td>{{ourTeamMember.emotionalCompetenceBehaviour}}</td>
+                          </tr>
+                          <tr>
+                            <th class="first-child">Require</th>
+                            <td>{{ourTeamMember.consciousnessRequire}}</td>
+                            <td>{{ourTeamMember.outingRequire}}</td>
+                            <td>{{ourTeamMember.willToWinRequire}}</td>
+                            <td>{{ourTeamMember.solutionFocusedRequire}}</td>
+                            <td>{{ourTeamMember.openMindedRequire}}</td>
+                            <td>{{ourTeamMember.agreeableRequire}}</td>
+                            <td>{{ourTeamMember.personalCalmRequire}}</td>
+                            <td>{{ourTeamMember.assertivenessRequire}}</td>
+                            <td>{{ourTeamMember.conflictStyleRequire}}</td>
+                            <td>{{ourTeamMember.emotionalCompetenceRequire}}</td>
+                          </tr>
+                          <tr>
+                            <th class="first-child">Change</th>
+                            <td><i *ngIf="ourTeamMember.changeConsciousness == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeConsciousness == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeConsciousness == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changeOuting == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeOuting == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeOuting == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changeWIllToWin == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeWIllToWin == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeWIllToWin == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changeSolutionFocused == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeSolutionFocused == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeSolutionFocused == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changeOpenMindedId == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeOpenMindedId == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeOpenMindedId == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changeAgreeable == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeAgreeable == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeAgreeable == 0">=</span></td>
+                            <td><i *ngIf="ourTeamMember.changePersonalCalm == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changePersonalCalm == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changePersonalCalm == 0">=</span></td>
+                            <td>{{ourTeamMember.assertivenessChange}}</td>
+                            <td>{{ourTeamMember.conflictStyleChange}}</td>
+                            <td>{{ourTeamMember.emotionalCompetenceChange}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- mobile view code -->
+                    <div class="col-12 col-xl-12 col-big-7 d-xl-none">
+                        <table class="table table-bordered thick-bordered mobile-table">
+                          <thead>
+                            <tr>
+                              <th class="first-child"></th>
+                              <th class="first-child">Behaviour</th>
+                              <th class="first-child">Require</th>
+                              <th class="first-child">Change</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>C</th>
+                              <td>{{ourTeamMember.consciousnessBehaviour}}</td> 
+                              <td>{{ourTeamMember.consciousnessRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeConsciousness == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeConsciousness == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeConsciousness == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>O</th>
+                              <td>{{ourTeamMember.outingBehaviour}}</td> 
+                              <td>{{ourTeamMember.outingRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeOuting == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeOuting == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeOuting == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>W</th>
+                              <td>{{ourTeamMember.wIllToWinBehaviour}}</td>
+                              <td>{{ourTeamMember.willToWinRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeWIllToWin == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeWIllToWin == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeWIllToWin == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>S</th>
+                              <td>{{ourTeamMember.solutionFocusedBehaviour}}</td> 
+                              <td>{{ourTeamMember.solutionFocusedRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeSolutionFocused == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeSolutionFocused == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeSolutionFocused == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>O</th>
+                              <td>{{ourTeamMember.openMindedBehaviour}}</td>
+                              <td>{{ourTeamMember.openMindedRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeOpenMindedId == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeOpenMindedId == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeOpenMindedId == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>A</th>
+                              <td>{{ourTeamMember.agreeableBehaviour}}</td> 
+                              <td>{{ourTeamMember.agreeableRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changeAgreeable == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changeAgreeable == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changeAgreeable == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>P</th>
+                              <td>{{ourTeamMember.personalCalmBehaviour}}</td>
+                              <td>{{ourTeamMember.personalCalmRequire}}</td>
+                              <td><i *ngIf="ourTeamMember.changePersonalCalm == 2" class="fa fa-arrow-up color-green"></i><i *ngIf="ourTeamMember.changePersonalCalm == 1" class="fa fa-arrow-down color-primary"></i><span *ngIf="ourTeamMember.changePersonalCalm == 0">=</span></td>
+                            </tr>
+                            <tr>
+                              <th>A</th>
+                              <td>{{ourTeamMember.assertivenessBehaviour}}</td>
+                              <td>{{ourTeamMember.assertivenessRequire}}</td>
+                              <td>{{ourTeamMember.assertivenessChange}}</td>
+                            </tr>
+                            <tr>
+                              <th>C</th>
+                              <td>{{ourTeamMember.conflictStyleBehaviour}}</td> 
+                              <td>{{ourTeamMember.conflictStyleRequire}}</td>
+                              <td>{{ourTeamMember.conflictStyleChange}}</td>
+                            </tr>
+                            <tr>
+                              <th>E</th>
+                              <td>{{ourTeamMember.emotionalCompetenceBehaviour}}</td>
+                              <td>{{ourTeamMember.emotionalCompetenceRequire}}</td>
+                              <td>{{ourTeamMember.emotionalCompetenceChange}}</td>
+                            </tr>
+                          </tbody>
+                        </table>									
+                      </div>
+                    </div>
+                  </div>
+              </ng-template>
+            </rx-template>
+          <!-- </div> -->
+        </div>
+    </div>
+</div> 
+</div>   

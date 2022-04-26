@@ -1,0 +1,64 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Add Their Team Member</h2>
+            <button type="button" class="close" data-dismiss="modal" (click)="hideTheirTeamMember()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="liteTheirTeamMemberFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="name" class="">Name *</label>
+                        <input rxFocus="true" type="text" placeholder="Add Name" class="form-control" name="name"
+                            formControlName="liteTheirTeamMemberName" [class.error-message]="validMessageLiteTheirTeamMemberName.isError
+                            || liteTheirTeamMemberFormGroup.controls.liteTheirTeamMemberName.invalid 
+                            && (liteTheirTeamMemberFormGroup.controls.liteTheirTeamMemberName.dirty 
+                                || liteTheirTeamMemberFormGroup.controls.liteTheirTeamMemberName.touched)"
+                            (input)="onSearchChangeLiteTheirTeamMemberName($event.target.value)" />
+                        <small> <i *ngIf="validMessageLiteTheirTeamMemberName.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageLiteTheirTeamMemberName.maximumCharacter}}
+                            <span [style.color]="validMessageLiteTheirTeamMemberName.isError ? '#ef3340' : ''">
+                                {{validMessageLiteTheirTeamMemberName.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="position" class="">Position *</label>
+                        <input type="text" placeholder="Position or Job Role" class="form-control" name="position"
+                            formControlName="position" [class.error-message]="validMessagePosition.isError
+                            || liteTheirTeamMemberFormGroup.controls.position.invalid 
+                            && (liteTheirTeamMemberFormGroup.controls.position.dirty 
+                                || liteTheirTeamMemberFormGroup.controls.position.touched)"
+                            (input)="onSearchChangePosition($event.target.value)" />
+                        <small> <i *ngIf="validMessagePosition.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessagePosition.maximumCharacter}}
+                            <span [style.color]="validMessagePosition.isError ? '#ef3340' : ''">
+                                {{validMessagePosition.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12 mt-2">
+                        <label class="custom-control custom-radio character-radio"
+                            *ngFor="let personality of liteTheirTeamMemberLookupGroup.personalities;">
+                            <input name="team" type="radio" class="custom-control-input" value="1"
+                                (click)="checkPersonality(personality.personalityId)"
+                                [checked]="liteTheirTeamMemberFormGroup.controls.personalityId.value == personality.personalityId" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{personality.personalityKeyText}}</span>
+                        </label>
+                        <label class="col-12 col-form-label p-0 pt-3">{{personalityKey}}</label>
+                        <div [innerHtml]="description"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md"
+                [disabled]="!liteTheirTeamMemberFormGroup.valid" (click)="addLiteTheirTeamMember()">Save</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md" (click)="hideTheirTeamMember()"
+                data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

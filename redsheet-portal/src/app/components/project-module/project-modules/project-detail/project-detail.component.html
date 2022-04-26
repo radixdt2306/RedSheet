@@ -1,0 +1,22 @@
+<div class="page-heading" *ngIf="showComponent" [formGroup]="projectModuleFormGroup">
+    <h1 rxLabel="title"><i class="{{projectModuleFormGroup.className}} text-muted"></i></h1>
+    <div class="sub-heading">
+        <div *ngIf="isVisibleReadOnlyText" class="read-only-message">READ ONLY VIEW</div>
+        <div class="action-links">
+            <!-- <button class="btn btn-primary btn-sm" title="Lock" (click)="lockProjectNegotionality(projectModuleFormGroup.controls['status'].value)" [disabled]="!projectModuleFormGroup.controls['status'].value"><i class="fa fa-lock"></i> Lock</button>
+            <button class="btn btn-primary btn-sm"  (click)="lockProjectNegotionality(projectModuleFormGroup.controls['status'].value)" [disabled]="projectModuleFormGroup.controls['status'].value"><i class="fa fa-unlock-alt"></i> Unlock</button> -->
+
+            <!-- <button class="btn btn-primary btn-sm" title="Lock"  [disabled]="!projectModuleFormGroup.controls['status'].value"><i class="fa fa-lock"></i> Lock</button>
+            <button class="btn btn-primary btn-sm"  [disabled]="projectModuleFormGroup.controls['status'].value"><i class="fa fa-unlock-alt"></i> Unlock</button> -->
+            <a [class.btn_disabled]="projectModuleFormGroup.controls['status'].value" class="btn btn-primary btn-sm" title="Lock"><i class="fa fa-lock"></i> LOCK FOR REVIEW</a>
+            <span class="status badge badge-light"><i class="fa fa-unlock-alt"></i> UNLOCK TO EDIT</span>
+            <a  data-toggle="modal" data-target="projectModuleFormGroup.controls['htmlHelp'].value"
+                title="{{projectModuleFormGroup.controls['htmlHelp'].value}}"
+                (click)="showProjectModuleHelpComponent()"><i class="fa fa-info-circle fa-2x"></i></a>
+        </div>
+        <h2>Negotiation title : <span class="text-muted">
+                {{projectModuleFormGroup.controls['projectName'].value}}</span></h2>
+        <p class="discription">Project Owner : <span
+                class="text-muted">{{projectModuleFormGroup.controls['ownerName'].value}}</span></p>
+    </div>
+</div>

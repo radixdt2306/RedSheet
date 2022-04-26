@@ -1,0 +1,46 @@
+<div class="page-break p-3"  *ngIf="showComponent">
+    <h2>Event management and timeline</h2>
+    <div class="row mb-3">
+        <div class="col-12 col-sm-6">
+            <h3>Opening statement</h3>
+            <p>{{eventManagementAndTimelineData.openingStatementReport.openingStatement}}</p>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Arrival and opening tactics</h3>
+            <div *ngIf="eventManagementAndTimelineData.arrivalAndOpeningTactic == null || eventManagementAndTimelineData.arrivalAndOpeningTactic == ''">None.</div>
+            <ul class="pl-3">
+                <li *ngFor="let data of eventManagementAndTimelineData.arrivalAndOpeningTactic">{{data.arrivalAndOpeningTacticValue}}</li>
+            </ul>
+        </div>
+    </div>
+    <h3>Event agenda and sequence of discussions/tactics</h3>
+    <div class="table-responsive mb-0">
+        <table class="table table-bordered table-striped mb-0">
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">phase</th>
+              <th scope="col">purpose</th>
+              <th scope="col">process</th>
+              <th scope="col">Pay-off</th>
+              <th scope="col">tactic</th>
+              <th scope="col">trigger</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngIf="eventManagementAndTimelineData.eventAgendaAndSequenceOfDiscussionsTactics == null || eventManagementAndTimelineData.eventAgendaAndSequenceOfDiscussionsTactics ==''">
+                    <td colspan="7">No Record Found.</td>
+              </tr>
+            <tr *ngFor="let data of eventManagementAndTimelineData.eventAgendaAndSequenceOfDiscussionsTactics">
+                <td>{{data.time}}</td>
+                <td>{{data.negotiationPhaseName}}</td>
+                <td>{{data.purpose}}</td>
+                <td>{{data.process}}</td>
+                <td>{{data.payOff}}</td>
+                <td>{{data.tacticName}}</td>
+                <td>{{data.trigger}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div> 

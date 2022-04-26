@@ -1,0 +1,28 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <!-- Implementation Plans -->
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-implementation-plan-list [projectModuleId]="projectModuleId" [isLocked]="isLocked">
+            </app-project-implementation-plan-list>
+        </div>
+        <!-- Post Event Action -->
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-post-event-action-list [projectModuleId]="projectModuleId" [isLocked]="isLocked">
+            </app-project-post-event-action-list>
+        </div>
+        <!-- carry Forward -->
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-carry-forward-list [projectModuleId]="projectModuleId" [isLocked]="isLocked">
+            </app-project-carry-forward-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

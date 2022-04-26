@@ -1,0 +1,42 @@
+<div class="page-heading" *ngIf="showComponent">
+    <h1><i [class]="getIconClass(projectModuleRecord.templateModuleId)"></i>{{projectModuleRecord.templateModuleName}}<i
+            [class]="getSymbol(projectModuleRecord.templateModuleId)"></i></h1>
+
+    <fieldset class="justify-content-center border-0" [(disabled)]="isProjectCompleted">
+        <div class="sub-heading">
+            <div *ngIf="isVisibleReadOnlyText" class="read-only-message">READ ONLY VIEW</div>
+            <div class="action-links">
+
+                <!-- (click)="editProjectModule(!projectModuleRecord.status)" [disabled]="projectModuleRecord.status" -->
+                <button *ngIf="projectModuleRecord.ownerId==userId" class="btn btn-primary btn-sm" title="Lock"
+                    (click)="editProjectModule(!projectModuleRecord.status)"
+                    [(disabled)]="projectModuleRecord.status || projectModuleRecord.isClosed"><i class="fa fa-lock"></i> LOCK FOR REVIEW</button>
+                <button *ngIf="projectModuleRecord.ownerId==userId" class="btn btn-primary btn-sm" title="Unlock"
+                    (click)="editProjectModule(!projectModuleRecord.status)"
+                    [(disabled)]="!projectModuleRecord.status || projectModuleRecord.isClosed"><i class="fa fa-unlock-alt"></i> UNLOCK TO EDIT</button>
+                <!-- <span class="status badge badge-light"><i class="fa fa-unlock-alt"></i> UNLOCK</span> -->
+                <!-- <a  data-toggle="modal" data-target="projectModuleRecord.htmlHelp" title="{{projectModuleRecord.htmlHelp}}"><i class="fa fa-info-circle fa-2x"></i></a> -->
+                <a *ngIf="projectModuleRecord.ownerId==userId" data-toggle="modal" data-target="Help" title="Help"
+                    (click)="showProjectModuleHelpDetailComponent()"><i class="fa fa-info-circle fa-2x"></i></a>
+            </div>
+            <div class="action-links">
+                <span class="status badge badge-light"
+                    *ngIf="projectModuleRecord.status && projectModuleRecord.ownerId!=userId"><i
+                        class="fa fa-lock-alt"></i> LOCK FOR REVIEW</span>
+                <span class="status badge badge-light"
+                    *ngIf="!projectModuleRecord.status && projectModuleRecord.ownerId!=userId"><i
+                        class="fa fa-unlock-alt"></i> UNLOCK TO EDIT</span>
+                <a *ngIf="projectModuleRecord.ownerId!=userId" data-toggle="modal" data-target="Help" title="Help"
+                    (click)="showProjectModuleHelpDetailComponent()"><i class="fa fa-info-circle fa-2x"></i></a>
+            </div>
+            <h2>Negotiation title : <span class="text-muted">{{projectModuleRecord.projectName}}</span> </h2>
+            <p class="discription">Project Owner : <span class="text-muted"> {{projectModuleRecord.ownerName}}</span>
+            </p>
+        </div>
+
+    </fieldset>
+    <!--   -->
+    <app-project-module-review-edit *ngIf="projectModuleRecord.status" [isOwner]="isOwner" [isReviewer]="isReviewer"
+        [projectModuleId]="projectModuleId" [projectId]="projectId" [isProjectCompleted]="isProjectCompleted">
+    </app-project-module-review-edit>
+</div>

@@ -1,0 +1,101 @@
+<div class="modal-dialog modal-xl modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Edit Stakeholder</h2>
+            <button type="button" class="close" aria-label="Close" (click)="hideProjectStackHolderEditComponent()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="projectStakeholderFormGroup" class="section-form">
+            <div class="modal-body">
+                <div class="row section-form-row align-items-center justify-content-center mb-4">
+                    <div class="col-12 text-left mt-4 mt-lg-0">
+                        <div class="row align-items-center">
+                            <label for="Who" class="col-2 col-md-1 col-form-label">Who *</label>
+                            <div class="col-10 col-md-11">
+                                <input rxFocus="true" type="text" class="form-control" name="who"
+                                    placeholder="Be Specific" formControlName="stakeholderName"
+                                    [class.error-message]="validMessageStakeholderName.isError
+                                    || projectStakeholderFormGroup.controls.stakeholderName.invalid 
+                                    && (projectStakeholderFormGroup.controls.stakeholderName.dirty 
+                                        || projectStakeholderFormGroup.controls.stakeholderName.touched)"
+                                    (input)="onSearchChangeStackholderName($event.target.value)">
+                                <small> <i *ngIf="validMessageStakeholderName.isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                    {{validMessageStakeholderName.maximumCharacter}}
+                                    <span [style.color]="validMessageStakeholderName.isError ? '#ef3340' : ''">
+                                        {{validMessageStakeholderName.remainedOrExceededCharacters}}</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center radio-button-icon">
+                    <div class="col-12 col-sm-6 col-lg-3"
+                        *ngFor="let stakeholderType of projectStakeholderLookupGroup.stakeholderTypes;">
+                        <label class="custom-control custom-radio"
+                            [class.active]="projectStakeholderFormGroup.controls.stakeholderTypeId.value == stakeholderType.stakeholderTypeId">
+                            <input name="radio" type="radio" class="custom-control-input"
+                                (click)="checkStakeholderType(stakeholderType.stakeholderTypeId)"
+                                [checked]="projectStakeholderFormGroup.controls.stakeholderTypeId.value == stakeholderType.stakeholderTypeId" />
+                            <!-- <input name="radio" type="radio" class="custom-control-input" (click)="projectStakeholderFormGroup.controls.stakeholderTypeId.setValue(stakeholderType.stakeholderTypeId)" [checked]="projectStakeholderFormGroup.controls.stakeholderTypeId.value == stakeholderType.stakeholderTypeId" /> -->
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">
+                                <i class="{{stakeholderType.className}} fa-5x align-self-center"></i>
+                                <span class="h3">{{stakeholderType.stakeholderTypeName}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <h2 class="sub-heading-font mb-3">Action Required : <span class="text-muted">{{actionRequired}} </span>
+                </h2>
+                <div class="row section-form-row align-items-center justify-content-center mt-0 mb-4">
+                    <div class="col-12 text-left">
+                        <label for="" class="">Key messages and specific actions *</label>
+                        <input type="text" class="form-control" name="" placeholder="Be Specific"
+                            formControlName="frequancy" [class.error-message]="validMessageFrequancy.isError
+                            || projectStakeholderFormGroup.controls.frequancy.invalid 
+                            && (projectStakeholderFormGroup.controls.frequancy.dirty 
+                                || projectStakeholderFormGroup.controls.frequancy.touched)"
+                            (input)="onSearchChangeFrequency($event.target.value)">
+                        <small> <i *ngIf="validMessageFrequancy.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageFrequancy.maximumCharacter}}
+                            <span [style.color]="validMessageFrequancy.isError ? '#ef3340' : ''">
+                                {{validMessageFrequancy.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+                <fieldset class="p-3 mb-3">
+                    <legend>
+                        <h2 class="color-primary d-inline-block mb-0">Mode of Communication *</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-lg-4 my-2"
+                            *ngFor="let communicationMode of projectStakeholderLookupGroup.communicationModes;let i=index">
+                            <label class="custom-control custom-checkbox checkbox-icon"
+                                [class.active]="communicationMode.isActive">
+                                <input type="checkbox" class="custom-control-input"
+                                    [checked]="communicationMode.isActive"
+                                    (click)="editCommunicationMode(communicationMode)" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="{{communicationMode.className}} fa-5x align-self-center"></i>
+                                    <span class="align-self-center">{{communicationMode.communicationModeName}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" name="save" class="btn btn-primary btn-md"
+                    [disabled]="!(projectStakeholderFormGroup.valid && projectStakeholderFormGroup.controls.stakeholderCommunicationModes.controls.length > 0)"
+                    (click)="editProjectStakeholder()">Update</button>
+                <button type="button" name="cancel" class="btn btn-primary btn-md"
+                    (click)="hideProjectStackHolderEditComponent()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div *ngIf="this.requirementCategoryId == ourCatId">
+<div class="section-box" *ngIf="showComponent">
+    <div class="section-header">
+        <h2 class="section-title d-inline-block">Our Negotiables<i class="sup fa fa-registered color-primary"></i></h2>
+        <button class="btn btn-info pull-right" data-toggle="modal" (click)="showOurRequirementDetailAddComponent({})" title="Add">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+    <div class="section-body">
+        <div>
+            <!-- <div class="col-12"> -->
+                <rx-template [dataSource]="ourRequirementDetails" pageSize="2" masterClass="col-12 col-lg-12">
+                    <ng-template rxCellTemplate let-ourRequirementDetail="dataItem">
+                        <div class="media section-media without-icon without-title">
+                            <div class="media-body">
+                                <div class="media-title">
+                                    <ul  *ngIf="!isLocked"  class="action-links float-right list-inline">
+                                        <li class="list-inline-item">
+                                            <a (click)="showOurRequirementDetailEditComponent(ourRequirementDetail)" title="Edit">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a (click)="showOurRequirementDetailDeleteComponent(ourRequirementDetail)" title="Delete">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-xl-10 order-xl-first project-summery font-md">
+                                    <p>Our Negotiable<i class="sup color-blue-gray fa fa-registered"></i> or Requirements :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.requirement}}</span>
+                                    </p>
+                                    <p>Pain Factor :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.applicationObjectName}}</span>
+                                    </p>
+                                    <p>Most Desirable Outcome :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.mdo}}</span>
+                                    </p>
+                                    <p>Concession step 1 :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.secondStep}}</span>
+                                    </p>
+                                    <p>Concession step 2 :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.thirdStep}}</span>
+                                    </p>
+                                    <p>Concession step 3 :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.fourStep}} </span>
+                                    </p>
+                                    <p>Least Desirable Outcome :
+                                        <span class="color-dark-gray">{{ourRequirementDetail.ldo}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ng-template>
+                </rx-template>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div *ngIf="showComponent">
+        <div *ngIf="this.requirementCategoryId == 68">
+    <rx-template [dataSource]="ourRequirementDetails" pageSize="2" masterClass="col-12 col-lg-6">
+        <ng-template rxCellTemplate let-ourRequirementDetail="dataItem">
+        <div class="col-12 col-xl-5 col-big-55 border-bottom">
+            <h2>Our Negotiable</h2>
+            <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h4>Negotiable or Requirements</h4>
+                        <p>{{ourRequirementDetail.requirement}}</p>
+                    </div>
+                    <div class="col-12 col-sm-3 middle-grid">
+                        <h4>M.D.O.</h4>
+                        <p>{{ourRequirementDetail.mdo}}</p>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <h4>L.D.O.</h4>
+                        <p>{{ourRequirementDetail.ldo}}</p>
+                    </div>
+            </div>
+        </div> 
+        </ng-template>
+    </rx-template>
+    </div>
+</div>

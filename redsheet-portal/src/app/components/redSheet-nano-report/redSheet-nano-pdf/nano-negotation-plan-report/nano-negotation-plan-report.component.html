@@ -1,0 +1,35 @@
+<div class="page-break d-flex w-100">
+    <div class="m-auto w-75" *ngIf="showComponent">
+        <form>
+            <div class="row align-items-center">
+                <div class="form-group pb-3 col-auto">
+                    <h3 class="mb-0">Negotation Plan for</h3>
+                </div>
+                <div class="form-group pb-3 col">
+                    <label class="sr-only" for="what-negotiating">Who are we negotiating with?</label>
+                    <div class="form-control rounded backgroundFont">
+                        {{nanoNegotationPlanReportData.opponentName}}
+                    </div>
+                </div>
+                <div class="form-group pb-3 col-auto">
+                    <label class="sr-only" for="Date">Date</label>
+                    <div class="form-control rounded backgroundFont">
+                        {{nanoNegotationPlanReportData.date | date:'dd/MM/yyyy'}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pb-3">
+                <label class="sr-only" for="what-negotiating">What are we buying?</label>
+                <div class="form-control rounded py-4 backgroundFont">
+                    {{nanoNegotationPlanReportData.buy}}
+                </div>
+            </div>
+            <div class="form-group pb-3">
+                <label class="sr-only" for="why-negotiating">Why are we negotiating ?</label>
+                <div class="form-control rounded py-4 backgroundFont">
+                    {{nanoNegotationPlanReportData.reason}}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

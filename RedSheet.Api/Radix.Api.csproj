@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>Stigler.Api</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Stigler.Api</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Api\UsersController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <!-- RxReference Start -->
+    <ProjectReference Include="..\..\..\Copied\SVN Projects\Stigler Architecture\StiglerCore\Rx.Core.Cache\Rx.Core.Cache.csproj" />
+    <ProjectReference Include="..\..\..\Copied\SVN Projects\Stigler Architecture\StiglerCore\Rx.Core.Data\Rx.Core.Data.csproj" />
+    <ProjectReference Include="..\..\..\Copied\SVN Projects\Stigler Architecture\StiglerCore\Rx.Core.Security\Rx.Core.Security.csproj" />
+    <ProjectReference Include="..\..\..\Copied\SVN Projects\Stigler Architecture\StiglerCore\Rx.Core\Rx.Core.csproj" />
+	<!-- RxReference End -->
+    <ProjectReference Include="..\Stigler.BoundedContext\Stigler.BoundedContext.csproj" />
+    <ProjectReference Include="..\Stigler.DbEntities\Stigler.DbEntities.csproj" />
+    <ProjectReference Include="..\Stigler.Domain\Stigler.Domain.csproj" />
+    <ProjectReference Include="..\Stigler.Infrastructure\Stigler.Infrastructure.csproj" />
+    <ProjectReference Include="..\Stigler.UnitOfWork\Stigler.UnitOfWork.csproj" />
+    <ProjectReference Include="..\Stigler.Models\Stigler.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.0.2" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="nodatime" Version="2.0.3" />
+    <PackageReference Include="rx-tool" Version="1.0.0-beta1" />
+    <PackageReference Include="RxTemp" Version="1.1.1" />
+    <PackageReference Include="StackExchange.Redis" Version="1.2.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.3.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

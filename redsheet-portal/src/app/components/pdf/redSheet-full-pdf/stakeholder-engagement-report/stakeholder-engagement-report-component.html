@@ -1,0 +1,73 @@
+<div class="page-break p-3" *ngIf="showComponent">
+        <h2>Stakeholder engagement</h2>
+        <div class="table-responsive mb-0">
+                <table class="table table-bordered table-striped text-center mb-0">
+                        <thead>
+                                <tr>
+                                        <th scope="col" style="width:15%">stakeholder</th>
+                                        <th scope="col" style="width:15%">RACI classificaiton</th>
+                                        <th scope="col" style="width:15%">Action</th>
+                                        <th scope="col" style="width:25%">How we will engage</th>
+                                        <th scope="col" style="width:45%">Key messages and specific actions</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr class="text-left" *ngIf="stakeholderReportData.stakeholderReportData == null || stakeholderReportData.stakeholderReportData == ''">
+                                        <td colspan="5">No Record Found.</td>
+                                </tr>
+                                <tr  *ngFor="let data of stakeholderReportData.stakeholderReportData">
+                                        <td class="align-middle">{{data.stakeholderName}}</td>
+                                        <td class="align-middle">
+                                                <i class="{{data.stakeholderTypeClassName}} fa-3x"></i>
+                                                <br>
+                                                <span class="sub-heading-font">
+                                                        {{data.stakeholderTypeName}}
+                                                </span>
+                                        </td>
+                                        <td class="align-middle">{{data.actionRequried}}</td>
+                                        <td class="align-middle">
+                                                <span class="px-1" *ngFor="let communicationMode of data.modeName; let num=index">
+                                                        <i class="{{data.iconClass[num]}} fa-2x"></i>
+                                                        <!-- <span class="sub-heading-font">{{data.modeName[num]}}</span> -->
+                                                </span>
+                                        </td>
+                                        <td class="align-middle"> {{data.frequancy}}</td>
+                                </tr>
+                        </tbody>
+                </table>
+        </div>
+        <div class="row pt-3">
+                <div class="col-12 col-sm-6 mb-0" *ngFor="let data of stakeholderReportData.preparationPanReportData">
+                        <h3>Internal elevator speech</h3>
+                        {{data.elevatorSpeech}}
+                </div>
+                <div class="col-12 col-sm-6 mb-0" *ngFor="let data of stakeholderReportData.preparationPanReportData">
+                        <h3>Pre-conditioning message for the other party</h3>
+                        {{data.preConditioningMessage}}
+                </div>
+        </div>
+</div>
+<div class="page-break p-3">
+        <h3>Communication plan</h3>
+        <div class="table-responsive mb-0">
+                <table class="table table-bordered table-striped mb-0">
+                        <thead>
+                                <tr>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">To</th>
+                                        <th scope="col">Media/means</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngIf="stakeholderReportData.communicationPlanReportData == null || stakeholderReportData.communicationPlanReportData == ''">
+                                        <td colspan="3">No Record Found.</td>
+                                </tr>
+                                <tr *ngFor="let data of stakeholderReportData.communicationPlanReportData">
+                                        <td> {{data.message}}</td>
+                                        <td> {{data.to}}</td>
+                                        <td> {{data.mediaMeans}}</td>
+                                </tr>
+                        </tbody>
+                </table>
+        </div>
+</div>

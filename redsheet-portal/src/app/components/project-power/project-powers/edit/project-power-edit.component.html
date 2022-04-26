@@ -1,0 +1,129 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form [formGroup]="projectPowerFormGroup" class="section-form">
+                <div class="section-box" [formGroup]="projectPowerFormGroup.controls.powerTypeDetails.controls[num]"
+                    *ngFor="let powerType of projectPowerLookupGroup.powerTypes;let num = index">
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-12 col-xl-4">
+                                <h2 class="color-primary sub-heading-font">{{powerType.powerTypeName}}</h2>
+                                <div class="power-action">
+                                    <h4>Actual *</h4>
+                                    <div class="btn-group justify-btn justify-content-between">
+                                        <label class="custom-control custom-radio custom-radio-circle"
+                                            *ngFor="let power_projection of power_projections;let row= index">
+                                            <input id="radio1"
+                                                [checked]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.actualId.value == power_projection.powerProjectionId"
+                                                type="radio" class="custom-control-input"
+                                                (click)="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.actualId.setValue(power_projection.powerProjectionId)" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description d-block"
+                                                [style.visibility]="row != 1 && row != 3 ? 'block' : 'hidden'">{{power_projection.powerProjectionName}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="power-action">
+                                    <h4>Projected *</h4>
+                                    <div class="btn-group justify-btn justify-content-between">
+                                        <label class="custom-control custom-radio custom-radio-circle"
+                                            *ngFor="let power_projection of power_projections;let row= index">
+                                            <input id="radio2"
+                                                [checked]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.projectedId.value == power_projection.powerProjectionId"
+                                                type="radio" class="custom-control-input"
+                                                (click)="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.projectedId.setValue(power_projection.powerProjectionId)" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description d-block"
+                                                [style.visibility]="row != 1 && row != 3 ? 'block' : 'hidden'">{{power_projection.powerProjectionName}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-12 col-big-6 mb-3">
+                                        <label class="custom-control custom-checkbox checkbox-icon"
+                                            [class.active]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isOurKnowledge.value">
+                                            <input type="checkbox" class="custom-control-input"
+                                                [checked]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isOurKnowledge.value"
+                                                (click)="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isOurKnowledge.setValue(!projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isOurKnowledge.value)" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">
+                                                <i class="redsheet redsheet-our-knowledge align-self-center"></i>
+                                                <span class="align-self-center">We know our position</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-12 col-big-6 mb-3">
+                                        <label class="custom-control custom-checkbox checkbox-icon"
+                                            [class.active]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isTheirKnowledge.value">
+                                            <input type="checkbox" class="custom-control-input"
+                                                [checked]="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isTheirKnowledge.value"
+                                                (click)="projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isTheirKnowledge.setValue(!projectPowerFormGroup.controls.powerTypeDetails.controls[num].controls.isTheirKnowledge.value)" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">
+                                                <i class="redsheet redsheet-their-knowledge align-self-center"></i>
+                                                <span class="align-self-center">We think they know their position</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-12 mb-0">
+                                        <label>Rationale *</label>
+                                        <textarea class="form-control" name="" rows="3" formControlName="rationale"
+                                            (change)="placeholderChange(num)"
+                                            [class.error-message]="validMessageRationale[num].isError || checkReqValidation(num)"
+                                            (input)="onSearchChangeRationale($event.target.value,num)"
+                                            placeholder="{{placeholderPowerType[num]}}"></textarea>
+                                        <small> <i *ngIf="validMessageRationale[num].isError"
+                                                class="fa fa-exclamation-circle"
+                                                style="font-size:16px;color:#ef3340"></i>
+                                            {{validMessageRationale[num].maximumCharacter}}
+                                            <span [style.color]="validMessageRationale[num].isError ? '#ef3340' : ''">
+                                                {{validMessageRationale[num].remainedOrExceededCharacters}}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3">
+                    <div class="form-group">
+                        <label>Power strategy – How we will utilize or improve our power position? *</label>
+                        <textarea class="form-control" name=""
+                            placeholder="Add to summarize your position and strategy to project power – plan for ‘our style’ and demeanour to project power and how you will build trust and rapport."
+                            formControlName="powerDetail" [class.error-message]="validMessagePowerDetail.isError
+                            || projectPowerFormGroup.controls.powerDetail.invalid 
+                            && (projectPowerFormGroup.controls.powerDetail.dirty 
+                                || projectPowerFormGroup.controls.powerDetail.touched)"
+                            (input)="onSearchChangePowerDetail($event.target.value)"></textarea>
+                        <small> <i *ngIf="validMessagePowerDetail.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessagePowerDetail.maximumCharacter}}
+                            <span [style.color]="validMessagePowerDetail.isError ? '#ef3340' : ''">
+                                {{validMessagePowerDetail.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="text-right pt-3">
+                    <button class="btn btn-primary btn-md" (click)="editProjectPower()"
+                        [disabled]="!(projectPowerFormGroup.valid && checkValidation())">Save</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <!----------- Knowledge gathering plan ------------------>
+            <app-knowledge-gathering-plan-list [projectPowerId]="projectPowerId" [projectModuleId]="projectModuleId"
+                [isLocked]="isLocked"></app-knowledge-gathering-plan-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

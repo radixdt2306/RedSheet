@@ -1,0 +1,68 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit [projectModuleId]="projectModuleId" (lockEvent)="contentDisable($event)"></app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <h2 class="color-primary mt-2">Reflect on the culture plan accept, reject and add your own</h2>
+            <div class="row">
+                <div class="col-12 col-lg-6" *ngFor="let culture_plan_category of culture_plan_categories;let num = index">
+                    <div class="section-box">
+                        <div class="section-header">
+                            <h2 class="section-title">{{culture_plan_category.culturePlanCategoryName}}</h2>
+                        </div>
+                        <div class="section-body">
+                            <ul class="custom-list checkbox-list" *ngFor="let culturePlan of culturePlans; let rowIndex=index;">
+                                <li *ngIf="culture_plan_category.culturePlanCategoryId == culturePlan.culturePlanCategoryId"  [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" [checked]="culturePlan.isActive" (click)="deleteProjectCulturePlan(culturePlan,rowIndex)"
+                                        />
+                                        <span class="custom-control-description">{{culturePlan.projectCulturePlanValue}}</span>
+                                        <span class="custom-control-indicator"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <ul class="custom-list checkbox-list" *ngIf="isAdd && addProjectCulturePlanEntity.culturePlanCategoryId == culture_plan_category.culturePlanCategoryId">
+                                <li class="active">
+                                    <input rxFocus="true" placeholder="Be Specific" class="form-control" type="text" [(ngModel)]="addProjectCulturePlanEntity.projectCulturePlanValue" 
+                                    [class.error-message]="validMessageProjectCulture[num].isError" (input)="onSearchChangeProjectCulture($event.target.value,num)"/>
+                                    <small> <i *ngIf="validMessageProjectCulture[num].isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                      {{validMessageProjectCulture[num].maximumCharacter}}
+                                      <span [style.color]="validMessageProjectCulture[num].isError ? '#ef3340' : ''">
+                                        {{validMessageProjectCulture[num].remainedOrExceededCharacters}}</span>
+                                    </small>
+                                    
+                                    <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                        <li class="list-inline-item">
+                                            <a [class.btn_disabled]="validMessageProjectCulture[num].isError" title="Save">
+                                                <i class="fa fa-floppy-o" (click)="addProjectCulturePlan(addProjectCulturePlanEntity)"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row justify-content-end align-items-center ">
+                            <div class="col-9 invisible">
+                                <div class="form-group mb-0">
+                                    <input rxFocus="true" placeholder="Be Specific" type="text" class="form-control font-md" id="project-name">
+                                </div>
+                            </div>
+                            <div class="col-auto pl-0">
+                                <button class="btn btn-info" title="Add" (click)="addCulturePlan(culture_plan_category.culturePlanCategoryId)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

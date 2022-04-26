@@ -1,0 +1,58 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Add Our Team Member</h2>
+            <button type="button" class="close" data-dismiss="modal" (click)="hideOurTeamMember()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="liteOurTeamMemberFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="name" class="">Name *</label>
+                        <rx-tag rxFocus="true" placeholder="phAddName" mainClass="form-control"
+                            [(source)]="liteOurTeamMemberName" [keyValueProps]="['userName','userName']"
+                            maxSelection="1" formControlName="liteOurTeamMemberName" [manualEntered]="manualEntered">
+                        </rx-tag>
+                        <!-- <input type="text" class="form-control" name="name" placeholder="Text here.." formControlName="liteOurTeamMemberName" /> -->
+                        <!-- <rx-tag rxFocus="true"  mainClass="form-control" [(source)]="liteOurTeamMemberLookupGroup.userLookups" [keyValueProps]="['#userName#','userId']" maxSelection="1"  formControlName="userId" placeholder="phAddName"></rx-tag> -->
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="position" class="">Position *</label>
+                        <input type="text" class="form-control" name="position" placeholder="Position or Job Role"
+                            formControlName="position" [class.error-message]="validMessagePosition.isError
+							|| liteOurTeamMemberFormGroup.controls.position.invalid 
+							&& (liteOurTeamMemberFormGroup.controls.position.dirty 
+								|| liteOurTeamMemberFormGroup.controls.position.touched)"
+                            (input)="onSearchChangePosition($event.target.value)" />
+                        <small> <i *ngIf="validMessagePosition.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessagePosition.maximumCharacter}}
+                            <span [style.color]="validMessagePosition.isError ? '#ef3340' : ''">
+                                {{validMessagePosition.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12 mt-2">
+                        <label class="custom-control custom-radio character-radio"
+                            *ngFor="let personality of liteOurTeamMemberLookupGroup.personalities;">
+                            <input name="team" type="radio" class="custom-control-input" value="1"
+                                (click)="checkPersonality(personality.personalityId)"
+                                [checked]="liteOurTeamMemberFormGroup.controls.personalityId.value == personality.personalityId" />
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{personality.personalityKeyText}}</span>
+                        </label>
+                        <label class="col-12 col-form-label p-0 pt-3">{{personalityKey}}</label>
+                        <div [innerHtml]="description"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md"
+                [disabled]="!liteOurTeamMemberFormGroup.valid" (click)="addLiteOurTeamMember()">Save</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md" (click)="hideOurTeamMember()"
+                data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

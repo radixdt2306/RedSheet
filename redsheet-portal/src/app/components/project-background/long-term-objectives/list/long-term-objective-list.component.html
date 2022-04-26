@@ -1,0 +1,59 @@
+<div class="section-box" *ngIf="showComponent">
+  <div class="section-header">
+    <h2 class="section-title d-inline-block">Long term ambitions for this relationship</h2>
+    <button class="btn btn-info pull-right" title="Add" [disabled]="projectBackgroundId == 0"
+      (click)="addLongTermObjective(rowIndex)">
+      <i class="fa fa-plus">
+      </i>
+    </button>
+  </div>
+  <div class="section-body">
+    <ul class="custom-list">
+      <li *ngIf="isAdd" class="active">
+        <input rxFocus="true" class="form-control" type="text"
+          [(ngModel)]="addLongTermObjectiveEntity.longTermObjectiveValue" placeholder="Be Specific"
+          [class.error-message]="validMessagelongTermObjectiveValue.isError"
+          (input)="onSearchChangelongTermObjectiveValue($event.target.value)" />
+        <small> <i *ngIf="validMessagelongTermObjectiveValue.isError" class="fa fa-exclamation-circle"
+            style="font-size:16px;color:#ef3340"></i>
+          {{validMessagelongTermObjectiveValue.maximumCharacter}}
+          <span [style.color]="validMessagelongTermObjectiveValue.isError ? '#ef3340' : ''">
+            {{validMessagelongTermObjectiveValue.remainedOrExceededCharacters}}</span>
+        </small>
+        <ul class="action-links float-right list-inline">
+          <li class="list-inline-item" *ngIf="!isLocked">
+            <a title="Save" [class.btn_disabled]="validMessagelongTermObjectiveValue.isError">
+              <i class="fa fa-floppy-o" (click)="updateLongTermObjective(addLongTermObjectiveEntity,rowIndex)"></i></a>
+          </li>
+        </ul>
+      </li>
+      <li *ngFor="let longTermObjective of longTermObjectives; let rowIndex=index;"
+        [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+        <span *ngIf="!(editRowIndex == rowIndex)">{{longTermObjective.longTermObjectiveValue}}</span>
+        <input class="form-control" type="text" [(ngModel)]="editLongTermObjective.longTermObjectiveValue"
+          rxFocus="true" *ngIf="(editRowIndex == rowIndex)" placeholder="Be Specific" [class.error-message]="validMessageTermObjectiveValue.isError" (input)="onSearchChangeEditlongTermObjectiveValue($event.target.value)" />
+          <small *ngIf="(editRowIndex == rowIndex)">
+            <i *ngIf="validMessageTermObjectiveValue.isError" class="fa fa-exclamation-circle"
+              style="font-size:16px;color:#ef3340"></i>
+            {{validMessageTermObjectiveValue.maximumCharacter}}
+            <span [style.color]="validMessageTermObjectiveValue.isError ? '#ef3340' : ''">
+              {{validMessageTermObjectiveValue.remainedOrExceededCharacters}}</span>
+          </small>
+        <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+          <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+            <a title="Edit">
+              <i class="fa fa-pencil-square-o" (click)="showEditRecord(longTermObjective,rowIndex)"></i>
+            </a>
+          </li>
+          <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))"><a title="Save" [class.btn_disabled]="validMessageTermObjectiveValue.isError">
+              <i class="fa fa-floppy-o" (click)="updateLongTermObjective(editLongTermObjective,rowIndex)"></i></a>
+          </li>
+          <li class="list-inline-item"><a title="Delete">
+              <i class="fa fa-trash-o" (click)="showLongTermObjectiveDeleteComponent(longTermObjective,rowIndex)"
+                aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

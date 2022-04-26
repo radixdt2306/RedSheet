@@ -1,0 +1,109 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>About this negotiation event</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+
+            <div class="form-group row no-gutters align-items-center mb-1">
+                <label class="col-auto sub-heading-font mb-0 pr-2">Negotiation plan to buy</label>
+                <div class="form-control-plaintext col">
+                    {{aboutThisNegotiationEventdata.negotiationEventData.buy}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label class="col-auto sub-heading-font mb-0 pr-2">Date</label>
+                        <div class="form-control-plaintext col-auto">
+                            {{aboutThisNegotiationEventdata.negotiationEventData.date | date:'dd/MM/yyyy'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col form-group row no-gutters mb-0">
+                    <label class="col-auto sub-heading-font mb-0 pr-2 pt-1">What are we negotiating?</label>
+                    <div class="form-control-plaintext col pt-1">
+                        {{aboutThisNegotiationEventdata.negotiationEventData.focus}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row no-gutters align-items-center mb-1">
+                <label for="" class="col-auto sub-heading-font mb-0 pr-2">Why?</label>
+                <div class="form-control-plaintext col">
+                    {{aboutThisNegotiationEventdata.negotiationEventData.reason}}
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-items-center">
+                <h3 class="mb-0">Our value objective</h3>
+                <div class="text-center px-3">
+                    <img class="fa-3x" src="assets/images/new claim2.svg" alt="claim" width="40" *ngIf="aboutThisNegotiationEventdata.negotiationEventData.valueObjectiveId == 1">
+                    <img class="fa-3x" src="assets/images/create-report.svg" alt="create" width="40" *ngIf="aboutThisNegotiationEventdata.negotiationEventData.valueObjectiveId == 2">
+                    <span class="d-block">{{aboutThisNegotiationEventdata.negotiationEventData.valueObjectiveName}}</span>
+                </div>
+            </div>
+            <h3>How will we do this negotation</h3>
+            <div class="d-flex flex-wrap my-3">
+                <div class="text-center pr-3" *ngFor="let data of  aboutThisNegotiationEventdata.negotiationEventData.modeName; let num=index">
+                    <i class="{{aboutThisNegotiationEventdata.negotiationEventData.iconClass[num]}} fa-3x"></i>
+                    <span class="d-block">{{aboutThisNegotiationEventdata.negotiationEventData.modeName[num]}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Our opponent</h3>
+            <div class="row align-items-center">
+                <div class="col-12 col">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label for="" class="col-auto sub-heading-font mb-0 pr-2">With</label>
+                        <div class="form-control-plaintext col">
+                            {{aboutThisNegotiationEventdata.negotiationEventData.opponentName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-auto">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label class="col-auto sub-heading-font mb-0 pr-3">Relationship required?</label>
+                        <div class="text-center pr-3 col-auto">
+                            <i class="{{aboutThisNegotiationEventdata.negotiationEventData.nanoRelationshipRequireClassName}} fa-3x"></i>
+                            <span class="d-block">{{aboutThisNegotiationEventdata.negotiationEventData.nanoRelationshipRequireName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label class="sub-heading-font mb-0">What do we know about them?</label>
+            <p>{{aboutThisNegotiationEventdata.negotiationEventData.knowAboutThem}}</p>
+            <h3>our objectives</h3>
+            <ul class="pl-3" *ngIf="aboutThisNegotiationEventdata.nanoOurObjectiveData == null || aboutThisNegotiationEventdata.nanoOurObjectiveData == ''">
+                None.
+            </ul>
+            <ul class="pl-3" *ngFor="let data of aboutThisNegotiationEventdata.nanoOurObjectiveData">
+                <li>{{data.nanoOurObjectiveValue}}</li>
+            </ul>
+        </div>
+    </div>
+    <h3>Knowledge gathering plan</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Knowledge required</th>
+                    <th scope="col">source</th>
+                    <th scope="col">who</th>
+                    <th scope="col">when</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="aboutThisNegotiationEventdata.knowledgeGatheringPlanData == null || aboutThisNegotiationEventdata.knowledgeGatheringPlanData == ''">
+                    <td colspan="4">No Record Found.</td>
+                </tr>
+                <tr *ngFor="let data of aboutThisNegotiationEventdata.knowledgeGatheringPlanData">
+                    <td>{{data.knowledgeRequired}}</td>
+                    <td>{{data.source}}</td>
+                    <td>{{data.knowledgeGivenBy}}</td>
+                    <td>{{data.knowledgeGivenOn | date:'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

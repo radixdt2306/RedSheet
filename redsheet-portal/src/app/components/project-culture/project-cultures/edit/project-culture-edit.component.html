@@ -1,0 +1,197 @@
+<div class="container-fluid" *ngIf="showComponent">
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-lg-12 col-xl-10">
+      <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+      </app-project-module-edit>
+    </div>
+  </div>
+  <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+    <div class="col-12 col-lg-12 col-xl-10">
+      <form [formGroup]="projectCultureFormGroup" class="section-form">
+        <div class="row section-form-row">
+          <div class="col-12 col-lg-6" [formGroup]="cultureGroup"
+            *ngFor="let cultureGroup of projectCultureFormGroup.controls.cultures.controls; let num = index">
+            <div class="section-box px-3 pb-2">
+              <div class="section-header">
+                <h2 class="section-title d-inline-block" *ngIf="cultureGroup.value.cultureCategoryId == 85">Our Culture
+                </h2>
+                <h2 class="section-title d-inline-block" *ngIf="cultureGroup.value.cultureCategoryId == 86">Their
+                  Culture</h2>
+              </div>
+              <div class="form-group">
+                <label for="Country">Country *</label>
+                <select *ngIf="num==0" rxFocus="true" class="form-control" rows="3" name="Country"
+                  formControlName="countryId" (change)="bindPrePopulateCulture(cultureGroup)">
+                  <option disabled value="-1">Select a country name</option>
+                  <option *ngFor="let country of projectCultureLookupGroup.countries;" [value]="country.countryId">
+                    {{country.countryName}}</option>
+                </select>
+
+                <!--Start Extra Code => this is for rxFocus when num=0 -->
+                <select *ngIf="num!=0" class="form-control" rows="3" name="Country" formControlName="countryId"
+                  (change)="bindPrePopulateCulture(cultureGroup)">
+                  <option disabled value="-1">Select a country name</option>
+                  <option *ngFor="let country of projectCultureLookupGroup.countries;" [value]="country.countryId">
+                    {{country.countryName}}</option>
+                </select>
+                <!--End Extra Code => this is for rxFocus when num=0 -->
+
+              </div>
+              <label style="color: #ef3340">Please review and change as appropriate</label>
+              <fieldset class="mb-2 p-3">
+                <legend>Predominant cultural indicator</legend>
+                <div class="row culture-radio">
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pr-big-2">
+                    <label class="custom-control custom-radio radio-icon "
+                      [class.active]="cultureGroup.value.isMonochronic">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isMonochronic.setValue(true)"
+                        [checked]="cultureGroup.value.isMonochronic" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-monochronic align-self-center"></i>
+                        <span class="align-self-center">Monochronic</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pl-big-2">
+                    <label class="custom-control custom-radio radio-icon"
+                      [class.active]="cultureGroup.value.isMonochronic != null && cultureGroup.value.isMonochronic == false">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isMonochronic.setValue(false)"
+                        [checked]="cultureGroup.value.isMonochronic != null && !cultureGroup.value.isMonochronic" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-polychronic align-self-center"></i>
+                        <span class="align-self-center">Polychronic</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="mb-2 p-3">
+                <legend>Predominant cultural indicator</legend>
+                <div class="row culture-radio">
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pr-big-2">
+                    <label class="custom-control custom-radio radio-icon"
+                      [class.active]="cultureGroup.value.isIndividualistic">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isIndividualistic.setValue(true)"
+                        [checked]="cultureGroup.value.isIndividualistic" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-individualistic align-self-center"></i>
+                        <span class="align-self-center">Individualistic</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pl-big-2">
+                    <label class="custom-control custom-radio radio-icon "
+                      [class.active]="cultureGroup.value.isIndividualistic != null && cultureGroup.value.isIndividualistic == false">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isIndividualistic.setValue(false)"
+                        [checked]="cultureGroup.value.isIndividualistic != null && !cultureGroup.value.isIndividualistic" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-collective align-self-center"></i>
+                        <span class="align-self-center">Collective</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="mb-2 p-3">
+                <legend>Predominant cultural indicator</legend>
+                <div class="row culture-radio">
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pr-big-2">
+                    <label class="custom-control custom-radio radio-icon "
+                      [class.active]="cultureGroup.value.isShortTerm">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isShortTerm.setValue(true)"
+                        [checked]="cultureGroup.value.isShortTerm" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-short-term align-self-center"></i>
+                        <span class="align-self-center">Short Term</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pl-big-2">
+                    <label class="custom-control custom-radio radio-icon"
+                      [class.active]="cultureGroup.value.isShortTerm != null && cultureGroup.value.isShortTerm == false">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isShortTerm.setValue(false)"
+                        [checked]="cultureGroup.value.isShortTerm != null && !cultureGroup.value.isShortTerm" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-long-term align-self-center"></i>
+                        <span class="align-self-center">Long Term</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="mb-2 p-3">
+                <legend>Predominant cultural indicator</legend>
+                <div class="row culture-radio">
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pr-big-2">
+                    <label class="custom-control custom-radio radio-icon "
+                      [class.active]="cultureGroup.value.isEgalitarian">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isEgalitarian.setValue(true)"
+                        [checked]="cultureGroup.value.isEgalitarian" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-egalitarian align-self-center"></i>
+                        <span class="align-self-center">Egalitarian</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-12 col-big-6 my-2 pl-big-2">
+                    <label class="custom-control custom-radio radio-icon"
+                      [class.active]="cultureGroup.value.isEgalitarian != null && cultureGroup.value.isEgalitarian == false">
+                      <input class="custom-control-input" type="radio"
+                        (click)="cultureGroup.controls.isEgalitarian.setValue(false)"
+                        [checked]="cultureGroup.value.isEgalitarian != null && !cultureGroup.value.isEgalitarian">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">
+                        <i class="redsheet redsheet-authorative align-self-center"></i>
+                        <span class="align-self-center">Authoritative</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+        </div>
+        <div class="row justify-content-center section-form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" formControlName="note" rows="3" name="notes"
+                placeholder="General assessment of their culture and note any exceptions"
+                [class.error-message]="validMessageNote.isError"
+                (input)="onSearchChangeNote($event.target.value)"></textarea>
+              <small> <i *ngIf="validMessageNote.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageNote.maximumCharacter}}
+                <span [style.color]="validMessageNote.isError ? '#ef3340' : ''">
+                  {{validMessageNote.remainedOrExceededCharacters}}</span>
+              </small>
+            </div>
+            <div class="text-sm-right mt-4">
+              <button type="submit" class="btn btn-primary btn-md" (click)="editProjectCulture()"
+                [disabled]="!projectCultureFormGroup.valid">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </fieldset>
+  <div>
+    <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+  </div>
+</div>

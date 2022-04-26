@@ -1,0 +1,92 @@
+﻿<div *ngIf="showComponent" class="modal fade in" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     style="display: block;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true" (click)="hideExceptionLogDetail()">
+          <i class="zmdi zmdi-close"></i>
+          <div class="ripple-container">
+            <div class="ripple ripple-on ripple-out" style="left: 13.5px; top: 18.8594px; background-color: rgb(255, 255, 255); transform: scale(3.75);"></div>
+          </div>
+        </button>
+        <h4 class="modal-title" id="iconModalLabel" rxLabel="subHeading">Exception Detail</h4>
+      </div>
+      <div class="modal-body" style="max-height:750px;overflow:auto">
+        <div class="row">
+          <div class="col-xs-12 col-lg-12 col-sm-12">
+            <div class="card p-b-20">
+              <div class="card-body table-responsive">
+                <table class="table table-hover">
+                  <tr *ngIf="applicationExceptionLog.fullName">
+                    <td style="width:30%" rxLabel="fullName">
+                      Full Name
+                    </td>
+                    <td style="width:70%">
+                      {{applicationExceptionLog.fullName}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.exceptionDate">
+                    <td style="width:30%" rxLabel="exceptionDate">
+                      Exception Date
+                    </td>
+                    <td style="width:70%">
+                      {{applicationExceptionLog.exceptionDate}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.url">
+                    <td style="width:30%" rxLabel="url">
+                      Url
+                    </td>
+                    <td style="width:70%">
+                      {{applicationExceptionLog.url}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.message">
+                    <td rxLabel="message">
+                      Message
+                    </td>
+                    <td>
+                      {{applicationExceptionLog.message}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.exceptionType">
+                    <td rxLabel="exceptionType">
+                      Exception Type
+                    </td>
+                    <td>
+                      {{applicationExceptionLog.exceptionType}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.exceptionType">
+                    <td rxLabel="exceptionSource">
+                      Exception Source
+                    </td>
+                    <td>
+                      {{applicationExceptionLog.exceptionSource}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.stackTrace">
+                    <td rxLabel="stackTrace">
+                      Stack Trace
+                    </td>
+                    <td>
+                      {{applicationExceptionLog.stackTrace}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="applicationExceptionLog.innerException">
+                    <td rxLabel="innerException">
+                      Inner Exception
+                    </td>
+                    <td>
+                      {{applicationExceptionLog.innerException}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

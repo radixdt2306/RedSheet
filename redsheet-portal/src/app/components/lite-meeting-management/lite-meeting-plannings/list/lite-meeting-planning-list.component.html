@@ -1,0 +1,36 @@
+<div class="section-box" *ngIf="showComponent">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Meeting Planning</h2>
+            <button class="btn btn-info pull-right" title="Add" [disabled]="liteMeetingManagementId == 0" (click)="addLiteMeetingPlanning(rowIndex)"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="section-body">
+            <ul class="custom-list">
+                    <li *ngIf="isAdd">
+                            <input placeholder="Meeting Planning - Be Specific" rxFocus="true"  class="form-control" type="text" [(ngModel)]="addLiteMeetingPlanningEntity.liteMeetingPlanningValue" />
+                            <ul class="action-links float-right list-inline">
+                              <li class="list-inline-item" *ngIf="!isLocked"><a title="Save">
+                                <i class="fa fa-floppy-o" (click)="updateLiteMeetingPlanning(addLiteMeetingPlanningEntity,rowIndex)"></i></a>
+                              </li>
+                            </ul>
+                          </li>
+                      <li *ngFor="let liteMeetingPlanning of liteMeetingPlannings; let rowIndex=index;">
+                        <span *ngIf="!(editRowIndex == rowIndex)">{{liteMeetingPlanning.liteMeetingPlanningValue}}</span>
+                        <input class="form-control" type="text" [(ngModel)]="editLiteMeetingPlanning.liteMeetingPlanningValue"
+                        rxFocus="true"  placeholder="Meeting Planning - Be Specific" *ngIf="(editRowIndex == rowIndex)" />
+                        <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+                          <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+                            <a  title="Edit">
+                              <i class="fa fa-pencil-square-o" (click)="showEditRecord(liteMeetingPlanning,rowIndex)" ></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))" ><a title="Save">
+                            <i class="fa fa-floppy-o" (click)="updateLiteMeetingPlanning(editLiteMeetingPlanning,rowIndex)"></i></a>
+                          </li>
+                          <li class="list-inline-item"><a title="Delete">
+                            <i class="fa fa-trash-o" (click)="showLiteMeetingPlanningDeleteComponent(liteMeetingPlanning,rowIndex)" aria-hidden="true"></i></a>
+                          </li>
+                        </ul>
+                      </li>
+            </ul>
+        </div>
+    </div>

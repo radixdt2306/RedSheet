@@ -1,0 +1,241 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form [formGroup]="nanoScopeToNegotiateObjectiveFormGroup" class="section-form">
+                <div class="row section-form-row">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">Date of Negotiation *</label>
+                            <rx-date rxFocus="true" pickerClass="form-control" formControlName="date"
+                                placeholder='dd/mm/yyyy'></rx-date>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">What are we Buying? *</label>
+                            <input type="text" class="form-control" name="" formControlName="buy"
+                                placeholder="What are we Buying?" [class.error-message]="validMessageBuy.isError
+                                || nanoScopeToNegotiateObjectiveFormGroup.controls.buy.invalid 
+                                && (nanoScopeToNegotiateObjectiveFormGroup.controls.buy.dirty 
+                                    || nanoScopeToNegotiateObjectiveFormGroup.controls.buy.touched)"
+                                (input)="onSearchChangeBuy($event.target.value)">
+                            <small> <i *ngIf="validMessageBuy.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageBuy.maximumCharacter}}
+                                <span [style.color]="validMessageBuy.isError ? '#ef3340' : ''">
+                                    {{validMessageBuy.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">Determine what scope there is to
+                            negotiate *</h2>
+                    </legend>
+                    <div class="row  justify-content-center">
+                        <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2"
+                            *ngFor="let nanoScopeToNegotiate of nanoScopeToNegotiateObjectiveLookupGroup.nanoScopeToNegotiates;let num = index">
+                            <label class="custom-control custom-radio radio-icon active"
+                                [class.active]="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoScopeToNegotiateId.value == nanoScopeToNegotiate.nanoScopeToNegotiateId">
+                                <input (click)="displayMessageBox(num)" id="radio7" name="scope"
+                                    class="custom-control-input" type="radio"
+                                    (click)="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoScopeToNegotiateId.setValue(nanoScopeToNegotiate.nanoScopeToNegotiateId)"
+                                    [checked]="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoScopeToNegotiateId.value == nanoScopeToNegotiate.nanoScopeToNegotiateId" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="{{nanoScopeToNegotiate.className}}"></i>
+                                    <span class="align-self-center pr-4"
+                                        [innerHtml]="nanoScopeToNegotiate.nanoScopeToNegotiateName"></span>
+                                    <!-- <br><small>(e.g. no ZoMA/supplier’s terms only)</small> -->
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">How we will negotiate *</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-lg-4 my-2"
+                            *ngFor="let communicationMode of nanoScopeToNegotiateObjectiveLookupGroup.communicationModes;let i=index">
+                            <label class="custom-control custom-checkbox checkbox-icon"
+                                [class.active]="communicationMode.isActive">
+                                <input type="checkbox" class="custom-control-input"
+                                    [checked]="communicationMode.isActive"
+                                    (click)="nanoScopeToNegotiateCommunicationMode(communicationMode)" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="{{communicationMode.className}} align-self-center"></i>
+                                    <span class="align-self-center">{{communicationMode.communicationModeName}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">Value objective *</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 my-2"
+                            *ngFor="let valueObjective of nanoScopeToNegotiateObjectiveLookupGroup.valueObjectives;">
+                            <label class="custom-control custom-radio radio-icon active"
+                                [class.active]="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value == valueObjective.valueObjectiveId">
+                                <input id="radio1" name="objective" class="custom-control-input" type="radio"
+                                    (click)="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.setValue(valueObjective.valueObjectiveId)"
+                                    [checked]="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value == valueObjective.valueObjectiveId" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="align-self-center" *ngIf="valueObjective.valueObjectiveId == 1">
+                                        <img src="assets/images/new claim -gray.svg" alt="claim" width="40"
+                                            *ngIf="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value  != 1">
+                                        <img src="assets/images/new claim -blue.svg" alt="claim" width="40"
+                                            *ngIf="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value  == 1">
+                                    </i>
+                                    <i class="align-self-center" *ngIf="valueObjective.valueObjectiveId == 2">
+                                        <img src="assets/images/create -gray.svg" alt="create" width="40"
+                                            *ngIf="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value  != 2">
+                                        <img src="assets/images/create -blue.svg" alt="create" width="40"
+                                            *ngIf="nanoScopeToNegotiateObjectiveFormGroup.controls.valueObjectiveId.value  == 2">
+                                    </i>
+                                    <span class="align-self-center">{{valueObjective.valueObjectiveName}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="p-3 mb-4 relation-req">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">Relationship required *</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-12 col-lg-4 my-2"
+                            *ngFor="let nanoRelationshipRequire of nanoScopeToNegotiateObjectiveLookupGroup.nanoRelationshipRequires;">
+                            <label class="custom-control custom-radio radio-icon"
+                                [class.active]="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoRelationshipRequireId.value == nanoRelationshipRequire.nanoRelationshipRequireId">
+                                <input id="radio1" name="NegotiationType" class="custom-control-input" type="radio"
+                                    (click)="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoRelationshipRequireId.setValue(nanoRelationshipRequire.nanoRelationshipRequireId)"
+                                    [checked]="nanoScopeToNegotiateObjectiveFormGroup.controls.nanoRelationshipRequireId.value == nanoRelationshipRequire.nanoRelationshipRequireId" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="{{nanoRelationshipRequire.className}}"></i>
+                                    <span
+                                        class="align-self-center">{{nanoRelationshipRequire.nanoRelationshipRequireName}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">General Aims</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-lg-6 my-2">
+                            <div class="form-group mb-0">
+                                <label class="">What are we negotiating? *</label>
+                                <textarea class="form-control" rows="4" name="" formControlName="focus"
+                                    placeholder="Service or product" [class.error-message]="validMessageFocus.isError
+                                    || nanoScopeToNegotiateObjectiveFormGroup.controls.focus.invalid 
+                                    && (nanoScopeToNegotiateObjectiveFormGroup.controls.focus.dirty 
+                                        || nanoScopeToNegotiateObjectiveFormGroup.controls.focus.touched)"
+                                    (input)="onSearchChangeFocus($event.target.value)"></textarea>
+                                <small> <i *ngIf="validMessageFocus.isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                    {{validMessageFocus.maximumCharacter}}
+                                    <span [style.color]="validMessageFocus.isError ? '#ef3340' : ''">
+                                        {{validMessageFocus.remainedOrExceededCharacters}}</span>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 my-2">
+                            <div class="form-group mb-0">
+                                <label class="">Why are we negotiating? *</label>
+                                <textarea class="form-control" rows="4" name="" formControlName="reason"
+                                    placeholder="Main reason for the negotiation"
+                                    [class.error-message]="validMessageReason.isError
+                                    || nanoScopeToNegotiateObjectiveFormGroup.controls.reason.invalid 
+                                    && (nanoScopeToNegotiateObjectiveFormGroup.controls.reason.dirty 
+                                        || nanoScopeToNegotiateObjectiveFormGroup.controls.reason.touched)"
+                                    (input)="onSearchChangeReason($event.target.value)"></textarea>
+                                <small> <i *ngIf="validMessageReason.isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                    {{validMessageReason.maximumCharacter}}
+                                    <span [style.color]="validMessageReason.isError ? '#ef3340' : ''">
+                                        {{validMessageReason.remainedOrExceededCharacters}}</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary bg-white d-inline-block mb-0">Opponent</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-lg-6 my-2">
+                            <div class="form-group mb-0">
+                                <label class="">Who are we negotiating with? *</label>
+                                <textarea class="form-control" rows="4" name="" formControlName="opponentName"
+                                    placeholder="Company name, organization or person"
+                                    [class.error-message]="validMessageOpponentName.isError
+                                    || nanoScopeToNegotiateObjectiveFormGroup.controls.opponentName.invalid 
+                                    && (nanoScopeToNegotiateObjectiveFormGroup.controls.opponentName.dirty 
+                                        || nanoScopeToNegotiateObjectiveFormGroup.controls.opponentName.touched)"
+                                    (input)="onSearchChangeOpponentName($event.target.value)"></textarea>
+                                <small> <i *ngIf="validMessageOpponentName.isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                    {{validMessageOpponentName.maximumCharacter}}
+                                    <span [style.color]="validMessageOpponentName.isError ? '#ef3340' : ''">
+                                        {{validMessageOpponentName.remainedOrExceededCharacters}}</span>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 my-2">
+                            <div class="form-group mb-0">
+                                <label class="">What do we know about them? *</label>
+                                <textarea class="form-control" rows="4" name="" formControlName="knowAboutThem"
+                                    placeholder="Both professional and personal motivations"
+                                    [class.error-message]="validMessageKnowAboutThem.isError
+                                    || nanoScopeToNegotiateObjectiveFormGroup.controls.knowAboutThem.invalid 
+                                    && (nanoScopeToNegotiateObjectiveFormGroup.controls.knowAboutThem.dirty 
+                                        || nanoScopeToNegotiateObjectiveFormGroup.controls.knowAboutThem.touched)"
+                                    (input)="onSearchChangeKnowAboutThem($event.target.value)"></textarea>
+                                <small> <i *ngIf="validMessageKnowAboutThem.isError" class="fa fa-exclamation-circle"
+                                        style="font-size:16px;color:#ef3340"></i>
+                                    {{validMessageKnowAboutThem.maximumCharacter}}
+                                    <span [style.color]="validMessageKnowAboutThem.isError ? '#ef3340' : ''">
+                                        {{validMessageKnowAboutThem.remainedOrExceededCharacters}}</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row section-form-row">
+                    <div class="col-12">
+                        <div class="col-12 text-sm-right">
+                            <button type="submit" class="btn btn-primary btn-md"
+                                (click)="editNanoScopeToNegotiateObjective()"
+                                [disabled]="!(nanoScopeToNegotiateObjectiveFormGroup.valid && nanoScopeToNegotiateObjectiveFormGroup.controls.nanoScopeToNegotiateCommunicationModes.controls.length > 0)">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-nano-our-objective-list [nanoScopeToNegotiateObjectiveId]="nanoScopeToNegotiateObjectiveId"
+                [isLocked]="isLocked"></app-nano-our-objective-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

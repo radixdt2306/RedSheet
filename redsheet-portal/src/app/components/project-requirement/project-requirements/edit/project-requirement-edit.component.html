@@ -1,0 +1,228 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <!-- Our Requirenment Start -->
+
+        <div class="col-12 col-lg-12 col-xl-10" *ngIf="requirementCategoryId == ourCatId">
+            <app-our-requirement-detail-list [theirProjectModuleId]="projectModuleId"
+                (dataLoaded)="requirementDataloaded($event)" [projectRequirementId]="projectRequirementId"
+                [projectModuleId]="projectModuleId" [requirementCategoryId]="requirementCategoryId"
+                [isLocked]="isLocked"></app-our-requirement-detail-list>
+            <form class="section-form" [formGroup]="projectRequirementFormGroup">
+                <div class="row section-form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="">Our Strategy for Concessions and Trading *</label>
+                            
+                            <!-- required -->
+                            <textarea class="form-control" rows="4" name=""
+                                placeholder="Clearly define the overall and individual strategic elements for trading"
+                                formControlName="ourStrategy" [class.error-message]="validMessageOurStrategy.isError
+                                || projectRequirementFormGroup.controls.ourStrategy.invalid 
+                                && (projectRequirementFormGroup.controls.ourStrategy.dirty 
+                                    || projectRequirementFormGroup.controls.ourStrategy.touched)"
+                                (input)="onSearchChangeOurStrategy($event.target.value)"></textarea>
+                            <small> <i *ngIf="validMessageOurStrategy.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageOurStrategy.maximumCharacter}}
+                                <span [style.color]="validMessageOurStrategy.isError ? '#ef3340' : ''">
+                                    {{validMessageOurStrategy.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 text-sm-right">
+                        <button type="submit" class="btn btn-primary btn-md" (click)="editProjectRequirement()"
+                            [disabled]="checkValidation()">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- start Our Requirenment => OurBatna -->
+        <div class="col-12 col-lg-12 col-xl-10" *ngIf="requirementCategoryId == ourCatId">
+            <app-ourbatna-list [projectRequirementId]="projectRequirementId" [isLocked]="isLocked"></app-ourbatna-list>
+        </div>
+        <!-- End Our Requirenment => OurBatna -->
+        <!-- End Our Requirenment -->
+        <!-- <div class="col-12 col-lg-12 col-xl-10" *ngIf = "requirementCategotyId == theirCatId"> -->
+        <div class="col-12 col-lg-12 col-xl-10" *ngIf="requirementCategoryId == theirCatId">
+            <div class="section-box comparision">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row align-items-stretch"
+                            *ngFor="let projectRequirement of projectRequirements;let num = index">
+                            <div class="col-12 col-xl-5 col-big-55 border-bottom">
+                                <h2 [ngClass]="num > 0 ? 'd-xl-none' : ''">Our Negotiable<i
+                                        class="sup fa fa-registered"></i></h2>
+                                <div class="clearfix" *ngIf="num == 0"></div>
+                                <div class="row justify-content-end invisible" *ngIf="num == 0">
+                                    <div class="col-auto pr-0">
+                                        <button type="button" name="" class="form-control btn-info py-2 mt-2"
+                                            value=""><i class="fa-lg fa fa-long-arrow-up"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" name="" class="form-control btn-info py-2 mt-2"
+                                            value=""><i class="fa-lg fa fa-long-arrow-down"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="section-media-primary mb-0 py-2"
+                                    *ngIf="!(projectRequirement.ourRequirementDetail == null)">
+                                    <span *ngIf="!isLocked">
+                                        <ul class="action-links invisible">
+                                            <li class="list-inline-item"><a href="#" title="edit"><i
+                                                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                                            <li class="list-inline-item"><a href="#" title="delete"><i
+                                                        class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <h4>Our Negotiable<i class="sup fa fa-registered"></i> or Requirements</h4>
+                                            <p>{{projectRequirement.ourRequirementDetail.requirement}}</p>
+                                        </div>
+                                        <div class="col-12 col-sm-3 middle-grid"
+                                            *ngIf="!(projectRequirement.ourRequirementDetail == null)">
+                                            <h4>M.D.O.</h4>
+                                            <p class="text-truncate">{{projectRequirement.ourRequirementDetail.mdo}}</p>
+                                        </div>
+                                        <div class="col-12 col-sm-3"
+                                            *ngIf="!(projectRequirement.ourRequirementDetail == null)">
+                                            <h4>L.D.O.</h4>
+                                            <p class="text-truncate">{{projectRequirement.ourRequirementDetail.ldo}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="col-12 col-xl-2 col-big-1 text-center zoma d-flex flex-column align-items-center">
+                                <h2 [ngClass]="num > 0 ? 'd-xl-none' : ''">Zoma?</h2>
+                                <label class="custom-control custom-checkbox big-box my-auto"
+                                    *ngIf="!(projectRequirement.ourRequirementDetail == null || projectRequirement.theirRequirementDetail == null)">
+                                    <input type="checkbox" class="custom-control-input"
+                                        [checked]="projectRequirement.isZoma"
+                                        (click)="isZomaUpdate(projectRequirement,projectRequirement.ourRequirementDetail.ourRequirementDetailId,projectRequirement.theirRequirementDetail.theirRequirementDetailId)">
+                                    <span class="custom-control-indicator"></span>
+                                </label>
+                            </div>
+                            <div class="col-12 col-xl-5 col-big-55 border-bottom"
+                                [class.border-bottom]="!(projectRequirement.theirRequirementDetail == null)">
+                                <h2 class="pull-left" [ngClass]="num > 0 ? 'd-xl-none' : ''">Their Position</h2>
+                                <button class="btn btn-info pull-right" *ngIf="num==0" data-toggle="modal"
+                                    [disabled]="ourRequirementId==0"
+                                    (click)="showTheirRequirementDetailAddComponent({})" title="Add"><i
+                                        class="fa fa-plus"></i></button>
+                                <div class="clearfix" *ngIf="num == 0"></div>
+                                <div class="row justify-content-end" *ngIf="num == 0">
+                                    <div class="col-auto pr-0">
+                                        <button type="button" *ngIf="num==0" name=""
+                                            class="form-control btn-info py-2 mt-2" value=""
+                                            [disabled]="projectRequirement.theirRequirementDetail == null || projectRequirements.length==1 || currentIndex== -1 || currentIndex == 0 || !previousPosition"
+                                            (click)="sortUp()"><i class="fa-lg fa fa-long-arrow-up"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                    <br />
+                                    <div class="col-auto">
+                                        <button type="button" *ngIf="num==0" name=""
+                                            class="form-control btn-info py-2 mt-2" value=""
+                                            [disabled]="projectRequirement.theirRequirementDetail == null || projectRequirements.length==1 || countTheirPostition-1 == currentIndex || currentIndex== -1 || !nextPosition"
+                                            (click)="sortDown()"><i class="fa-lg fa fa-long-arrow-down"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="section-media mb-0 py-2 active"
+                                    *ngIf="!(projectRequirement.theirRequirementDetail == null)"
+                                    (click)="selectNegotiables(num,projectRequirement.isZoma)"
+                                    [class.active]="!(projectRequirement.isZoma) && currentIndex == num">
+                                    <span *ngIf="!isLocked">
+                                        <ul class="action-links"
+                                            *ngIf="!(projectRequirement.theirRequirementDetail == null)">
+                                            <li class="list-inline-item"><a
+                                                    (click)="showTheirRequirementDetailEditComponent(projectRequirement.theirRequirementDetail)"
+                                                    title="Edit"><i class="fa fa-pencil-square-o"
+                                                        aria-hidden="true"></i></a></li>
+                                            <li class="list-inline-item"><a
+                                                    (click)="showTheirRequirementDetailDeleteComponent(projectRequirement.theirRequirementDetail,num)"
+                                                    title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <h4>Their Negotiable<i class="sup fa fa-registered"></i> or Requirements
+                                            </h4>
+                                            {{projectRequirement.theirRequirementDetail.rowIndex}}
+                                            <!-- {{projectRequirement.theirRequirementDetail.sortOrder}} -->
+                                            <p>{{projectRequirement.theirRequirementDetail.requirement}}</p>
+                                        </div>
+                                        <div class="col-12 col-sm-3 middle-grid">
+                                            <h4>M.D.O.</h4>
+                                            <p class="text-truncate">{{projectRequirement.theirRequirementDetail.mdo}}
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-sm-3">
+                                            <h4>L.D.O.</h4>
+                                            <p class="text-truncate">{{projectRequirement.theirRequirementDetail.ldo}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-12 col-big-88">
+                        <button class="btn btn-info pull-right" *ngIf="num>0" data-toggle="modal"
+                            (click)="showTheirRequirementDetailAddComponent({})" title="Add"><i
+                                class="fa fa-plus"></i></button>
+                        <!-- <button class="btn btn-info pull-right" data-toggle="modal" (click)="showTheirRequirementDetailAddComponent({})" title="Add"><i class="fa fa-plus"></i></button>         -->
+                        <!-- <a class="btn btn-info pull-right" href="#" data-toggle="modal" data-target="#AddNegotionable" title="Add"><i class="fa fa-plus"></i></a> -->
+                    </div>
+
+                    <!-- <div class="col-12">
+                                        <div class="row">
+                                            <div class="xol-12 col-xl-5 col-big-55">
+                                                <h2 class="d-xl-none">Our Negotiable</h2>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <h4>Negotiable or Requirements</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisci elit conguemagna, vel ellentesque ante imperdiet ac...</p>
+                                                    </div>
+                                                    <div class="col-12 col-sm-3 middle-grid">
+                                                        <h4>M.D.O.</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consecv tetur adipisci elit</p>
+                                                    </div>
+                                                    <div class="col-12 col-sm-3">
+                                                        <h4>L.D.O.</h4>
+                                                        <p>Lorem ipsum dolor sit amet, consecv tetur adipisci elit</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="xol-12 col-xl-2 col-big-1 text-center zoma">
+
+                                            </div>
+                                            <div class="col-12 col-xl-5 col-big-55">
+                                                <a class="btn btn-info pull-right" href="#" data-toggle="modal" data-target="#AddNegotionable" title="Add"><i class="fa fa-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10" *ngIf="requirementCategoryId == theirCatId">
+            <app-their-batna-list [projectRequirementId]="projectRequirementId" [isLocked]="isLocked">
+            </app-their-batna-list>
+        </div>
+
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

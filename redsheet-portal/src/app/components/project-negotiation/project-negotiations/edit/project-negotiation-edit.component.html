@@ -1,0 +1,96 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form class="section-form" [formGroup]="projectNegotiationFormGroup">
+                <div class="row section-form-row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="event-date" class="">Event Date *</label>
+                            <rx-date rxFocus="true" placeholder="dd/mm/yyyy" pickerClass="form-control"
+                                formControlName="eventDate"></rx-date>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="location" class="">Location / Venue *</label>
+                            <input type="text" class="form-control" name="location" rxPlaceholder="phLocation"
+                                formControlName="location" [class.error-message]="validMessageLocation.isError
+                                || projectNegotiationFormGroup.controls.location.invalid 
+                                && (projectNegotiationFormGroup.controls.location.dirty 
+                                    || projectNegotiationFormGroup.controls.location.touched)"
+                                (input)="onSearchChangeLocation($event.target.value)" />
+                            <small> <i *ngIf="validMessageLocation.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageLocation.maximumCharacter}}
+                                <span [style.color]="validMessageLocation.isError ? '#ef3340' : ''">
+                                    {{validMessageLocation.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="p-3 mb-4">
+                    <legend>
+                        <h2 class="color-primary d-inline-block mb-0">Modes Of Negotiation *</h2>
+                    </legend>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-lg-4 my-2"
+                            *ngFor="let communicationMode of projectNegotiationLookupGroup.communicationModes;let i=index">
+                            <label class="custom-control custom-checkbox checkbox-icon"
+                                [class.active]="communicationMode.isActive">
+                                <input type="checkbox" class="custom-control-input"
+                                    [checked]="communicationMode.isActive"
+                                    (click)="projectNegotiationCommunicationMode(communicationMode)" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">
+                                    <i class="{{communicationMode.className}} align-self-center"></i>
+                                    <span class="align-self-center">{{communicationMode.communicationModeName}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row section-form-row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label class="">Known risks or issues?</label>
+                            <textarea class="form-control" rows="4" name="" rxPlaceholder="phKnownIssues"
+                                formControlName="knownIssues"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label class="">What do we know about them?</label>
+                            <textarea class="form-control" rows="4" name="" rxPlaceholder="phElseKnow"
+                                formControlName="knowAboutThem"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <label>Intangible power plan *</label>
+                        <textarea class="form-control" formControlName="intangiblePowerPlan" rows="4" name=""
+                            placeholder="Our style and demeanour to project power and how we will build rapport."></textarea>
+                    </div>
+                    <div class="col-12 mt-3 text-sm-right">
+                        <button type="submit" class="btn btn-primary btn-md" (click)="editProjectNegotiation()"
+                            [disabled]="!(projectNegotiationFormGroup.valid && projectNegotiationFormGroup.controls.theirTeamCommunicationModes.controls.length > 0)">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-their-team-member-list [projectNegotiationId]="projectNegotiationId" [isLocked]="isLocked">
+            </app-their-team-member-list>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-target-list [projectNegotiationId]="projectNegotiationId" [isLocked]="isLocked"></app-target-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

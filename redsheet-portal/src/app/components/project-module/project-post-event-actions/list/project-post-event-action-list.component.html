@@ -1,0 +1,35 @@
+<div class="section-box" *ngIf="showComponent">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Post-event actions and implementation</h2>
+            <button class="btn btn-info pull-right" data-toggle="modal" (click)="showProjectPostEventActionAddComponent({})" title="Add"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                        <rx-template [dataSource]="projectPostEventActions" pageSize="2" masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+                                <ng-template rxCellTemplate let-projectPostEventAction="dataItem">
+                    <div class="media section-media without-icon without-title">
+                          <div class="media-body">
+                            <div class="media-title">
+                                 <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                        <li class="list-inline-item"><a title="Edit" (click)="showProjectPostEventActionEditComponent(projectPostEventAction)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                                        <li class="list-inline-item">
+                                                <a title="Delete" (click)="showProjectPostEventActionDeleteComponent(projectPostEventAction)" >
+                                                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                </a>
+                                              </li>
+                                </ul>
+                            </div>
+                            <div class="project-summery font-md">									
+                                <p>What : <span class="color-dark-gray">{{projectPostEventAction.postEventActionDetail}}</span></p>
+                                <p>Who : <span class="color-dark-gray">{{projectPostEventAction.postEventActionBy}}</span></p>
+                                <p>When : <span class="color-dark-gray">{{projectPostEventAction.postEventActionOn | date:'dd/MM/yyyy'}}</span></p>
+                            </div>
+                          </div>
+                    </div>
+                    </ng-template>
+                    </rx-template>
+                </div>                
+            </div>
+        </div>        
+    </div>

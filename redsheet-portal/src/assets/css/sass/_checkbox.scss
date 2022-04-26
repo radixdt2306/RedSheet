@@ -1,0 +1,63 @@
+@import "variable.scss";
+@import "arguments.scss";
+
+	.custom-control{margin-right:0; margin-bottom: 0;cursor: pointer;}
+	.custom-checkbox{
+		.custom-control-indicator{width:1.05rem; height: 1.05rem; background-size: 0.75rem;}
+		.custom-control-input{
+			&:checked~.custom-control-indicator{ background-color:$sky-blue;box-shadow: none;}
+			&:focus~.custom-control-indicator{box-shadow: none;}
+		}
+		.custom-control-description{margin-left:0.5rem;}
+	}
+
+	 /*========= checkbox icon ==========*/
+.checkbox-icon { border:1px solid $gray; width:100%; display:block; padding:0; @include round-borders(5px);
+	.custom-control-indicator {top:10px; left:auto; right:10px;}
+	.custom-control-description {@include fontSize(20px); display:flex; height:90px; margin-left: 0; line-height:1;
+		i {padding:0 1rem; color:$gray; float:left; @include fontSize(40px);
+			&.fa{@include fontSize(34px);}
+		}
+		span {float:left; }
+	}
+	&.active { border-color:$sky-blue;
+		.custom-control-description { 
+			i {color:$sky-blue;}
+		}
+	}
+}
+
+ /*=========  The switch =============*/
+.switch-label {@include fontSize(20px); padding-right:1rem;}
+.switch {  position: relative; display: inline-block; width: 66px; height: 28px;
+	.switch-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: $gray;  @include transition(all, 0.4s, ease-in-out, 0s); @include round-borders(3px);
+		&:before { position: absolute; content: ""; height: 24px; width: 30px; left: 2px; bottom: 2px; background-color: #fff; @include transition(all, 0.4s, ease-in-out, 0s); @include round-borders(3px); @include transform (translateX(32px))}
+		.fa { position:relative; padding: 0.35rem 0.45rem; @include transition(all, 0.4s, ease-in-out, 0s);
+			&.fa-check {color:$disabled;}
+			&.fa-times {color:$brand-primary; padding-right:0.6rem;}
+		}
+	}
+	.form-control {display:none;
+		&:checked + .switch-slider {
+			&:before {@include transform (translateX(0px))}
+			.fa-check {color:$green;}
+			.fa-times {color:$disabled; }
+		}
+	}
+}
+/*=========  big checkbox =============*/
+.big-box { min-height:2.5rem; min-width:2.5rem;
+	.custom-control-indicator{width:2.5rem; height: 2.5rem;}
+	.custom-control-input{
+		&:checked~.custom-control-indicator{ background-color:$green;}
+	}
+}
+
+/*=========  checkbox list =============*/
+.checkbox-list{
+	.custom-checkbox{width:100%; padding-left: 0; padding-right: 1.5rem;
+		.custom-control-description{margin-left:0;}
+		.custom-control-indicator{left:auto;right:0;}
+	}
+}
+

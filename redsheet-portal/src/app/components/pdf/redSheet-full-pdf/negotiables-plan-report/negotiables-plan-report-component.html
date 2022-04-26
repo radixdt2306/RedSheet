@@ -1,0 +1,87 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Negotiables<i class="sup fa fa-registered"></i> plan</h2>
+    <div class="table-responsive mb-0">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col" width="200" class="align-middle">our <br/>Negotiables<i class="sup fa fa-registered"></i></th>
+                    <th scope="col" width="100" class="align-middle">Pain factor</th>
+                    <th scope="col" width="100" class="align-middle">Our MDO</th>
+                    <th scope="col" width="100" class="align-middle">2nd Step</th>
+                    <th scope="col" width="100" class="align-middle">3rd Step</th>
+                    <th scope="col" width="100" class="align-middle">4th Step</th>
+                    <th scope="col" width="100" class="align-middle">Our LDO</th>
+                    <th scope="col" width="100" class="align-middle">Zoma</th>
+                    <th scope="col" width="100" class="align-middle">Their LDO</th>
+                    <th scope="col" width="100" class="align-middle">THEIR MDO</th>
+                    <th scope="col" width="200" class="align-middle">Their <br/>Negotiables<i class="sup fa fa-registered"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="requirementReport == null">
+                    <td colspan="11">No Record Found.</td>
+                </tr>
+                <tr *ngFor="let data of requirementReport">
+                    <td>
+                        {{data.ourRequirement}}
+                    </td>
+                    <td>
+                        {{data.painFactorName}}
+                    </td>
+                    <td>
+                        {{data.ourMdo}}
+                    </td>
+                    <td>
+                        {{data.secondStep}}
+                    </td>
+                    <td>
+                        {{data.thirdStep}}
+                    </td>
+                    <td>
+                        {{data.fourStep}}
+                    </td>
+                    <td>
+                        {{data.ourLdo}}
+                    </td>
+                    <td>
+                        <!-- {{data.isZoma}} -->
+                        <i *ngIf="data.isZoma != 0" class="fa fa-check" aria-hidden="true"></i>
+                    </td>
+                    <td>
+                        {{data.thierLdo}}
+                    </td>
+                    <td>
+                        {{data.thierMdo}}
+                    </td>
+                    <td>
+                        {{data.theirRequirement}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="showComponent" style="page-break-inside : avoid;display:block">
+        <h2>Negotiables<i class="sup fa fa-registered"></i> plan</h2>
+        <div class="row mt-3">
+            <div class="col-12 col-sm-4">
+                <h3 class="text-center">Our batna</h3>
+                <div *ngIf="negotiablePlanData.ourbatnaList == null || negotiablePlanData.ourbatnaList == ''">None.</div>
+                <ul class="pl-3" *ngFor="let data of negotiablePlanData.ourbatnaList">
+                    <li>{{data.ourbatnaValue}}</li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-4">
+                <h3 class="text-center">Our strategy for concession and trading</h3>
+                <label *ngIf="negotiablePlanData.ourStrategyList != null">{{negotiablePlanData.ourStrategyList.ourStrategy}}</label>
+                <label *ngIf="negotiablePlanData.ourStrategyList == null || negotiablePlanData.ourStrategyList == ''">None.</label>
+            </div>
+            <div class="col-12 col-sm-4">
+                <h3 class="text-center">their batna</h3>
+                <div *ngIf="negotiablePlanData.theirBatanList == null || negotiablePlanData.theirBatanList == ''">None.</div>
+                <ul class="pl-3" *ngFor="let data of negotiablePlanData.theirBatanList">
+                    <li>{{data.theirBatanValue}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

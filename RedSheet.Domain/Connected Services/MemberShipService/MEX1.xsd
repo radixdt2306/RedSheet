@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MembershipInterface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MembershipInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://positivedev.co.uk:9876/membershipservice/MEX?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="UserMembershipModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserMembershipModel" nillable="true" type="tns:UserMembershipModel" />
+  <xs:complexType name="MembershipModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MembershipModel" nillable="true" type="tns:MembershipModel" />
+  <xs:complexType name="LoginResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountLocked" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Authenticated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DisplayMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordResetRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TermsConditionsRequired" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserDataSynchronizationRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserUniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
+  <xs:complexType name="UserProfileModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountUnlockToken" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountUnlockTokenExpires" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AddedById" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddedByName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Archived" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ArchivedById" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailConfirmationSentDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EmailToken" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailTokenExpires" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastLoggedIn" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastLoginFailure" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastModified" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LockedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LockedReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginFailureCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Middlename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordLastChangedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Postcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreferredCulture" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueIdentity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserTypeId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserProfileModel" nillable="true" type="tns:UserProfileModel" />
+  <xs:complexType name="ResetPasswordRequestModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailToken" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnUrl" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResetPasswordRequestModel" nillable="true" type="tns:ResetPasswordRequestModel" />
+  <xs:complexType name="ResetPasswordModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailToken" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NewPassword" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResetPasswordModel" nillable="true" type="tns:ResetPasswordModel" />
+  <xs:complexType name="ChangePasswordModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangePasswordModel" nillable="true" type="tns:ChangePasswordModel" />
+  <xs:complexType name="UserListModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUserModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserListModel" nillable="true" type="tns:UserListModel" />
+  <xs:complexType name="ArrayOfUserModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserModel" nillable="true" type="tns:UserModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserModel" nillable="true" type="tns:ArrayOfUserModel" />
+  <xs:complexType name="UserModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Middlename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserModel" nillable="true" type="tns:UserModel" />
+  <xs:complexType name="CompanyGlobalsModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxAllowedLoginFailures" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordForcedExpiryDays" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordLength_Min" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordLowerCaseCharacters_Min" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordNumericCharacters_Min" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordSpecialCharacters_Min" type="xs:int" />
+      <xs:element minOccurs="0" name="PasswordUpperCaseCharacters_Min" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGlobalsModel" nillable="true" type="tns:CompanyGlobalsModel" />
+  <xs:complexType name="UserUnlockAccountRequestModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TokenExpires" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserUnlockAccountRequestModel" nillable="true" type="tns:UserUnlockAccountRequestModel" />
+  <xs:complexType name="UserApplicationTermsConditionsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationUniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateAgreed" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateNextToBeAgreed" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TermsNotRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserUniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserApplicationTermsConditionsResult" nillable="true" type="tns:UserApplicationTermsConditionsResult" />
+  <xs:complexType name="UserApplicationRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Roles" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserApplicationRoles" nillable="true" type="tns:UserApplicationRoles" />
+  <xs:complexType name="ApplicationProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationUniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharacterCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUniqueID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationProduct" nillable="true" type="tns:ApplicationProduct" />
+  <xs:complexType name="ArrayOfWorkflowTemplate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkflowTemplate" nillable="true" type="tns:WorkflowTemplate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflowTemplate" nillable="true" type="tns:ArrayOfWorkflowTemplate" />
+  <xs:complexType name="WorkflowTemplate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowCustomization" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Modules" nillable="true" type="tns:ArrayOfWorkflowTemplateModule" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="tns:ArrayOfWorkflowTemplate_Note" />
+      <xs:element minOccurs="0" name="ProjectInitiationModule" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Reportees" nillable="true" type="tns:ArrayOfWorkflow_Reportee" />
+      <xs:element minOccurs="0" name="Reviewers" nillable="true" type="tns:ArrayOfWorkflow_Reviewer" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowTemplate" nillable="true" type="tns:WorkflowTemplate" />
+  <xs:complexType name="ArrayOfWorkflowTemplateModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkflowTemplateModule" nillable="true" type="tns:WorkflowTemplateModule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflowTemplateModule" nillable="true" type="tns:ArrayOfWorkflowTemplateModule" />
+  <xs:complexType name="WorkflowTemplateModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedUsers" nillable="true" type="tns:ArrayOfWorkflow_User" />
+      <xs:element minOccurs="0" name="AssignedUsers_AllMustAuthoriseClose" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AssignedUsers_AllMustContribute" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BaseId" type="xs:int" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ControllerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Dependecies" nillable="true" type="tns:Workflow_ProductModuleDependencies" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlHelp" nillable="true" type="tns:Workflow_ModuleHelp" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="tns:ArrayOfWorkflowTemplate_ModuleNote" />
+      <xs:element minOccurs="0" name="Order" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductModuleId" type="xs:int" />
+      <xs:element minOccurs="0" name="ReviewPoint_Mandatory" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReviewPoint_Recommended" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Reviewers" nillable="true" type="tns:ArrayOfWorkflow_Reviewer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowTemplateModule" nillable="true" type="tns:WorkflowTemplateModule" />
+  <xs:complexType name="ArrayOfWorkflow_User">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Workflow_User" nillable="true" type="tns:Workflow_User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflow_User" nillable="true" type="tns:ArrayOfWorkflow_User" />
+  <xs:complexType name="Workflow_User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Archived" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Middlename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_User" nillable="true" type="tns:Workflow_User" />
+  <xs:complexType name="Workflow_ProductModuleDependencies">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DependsOnAll" type="xs:boolean" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ProductModuleId" nillable="true" type="q2:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_ProductModuleDependencies" nillable="true" type="tns:Workflow_ProductModuleDependencies" />
+  <xs:complexType name="Workflow_ModuleHelp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HelpItems" nillable="true" type="tns:ArrayOfWorkflow_ModuleHelpItem" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_ModuleHelp" nillable="true" type="tns:Workflow_ModuleHelp" />
+  <xs:complexType name="ArrayOfWorkflow_ModuleHelpItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Workflow_ModuleHelpItem" nillable="true" type="tns:Workflow_ModuleHelpItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflow_ModuleHelpItem" nillable="true" type="tns:ArrayOfWorkflow_ModuleHelpItem" />
+  <xs:complexType name="Workflow_ModuleHelpItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_ModuleHelpItem" nillable="true" type="tns:Workflow_ModuleHelpItem" />
+  <xs:complexType name="ArrayOfWorkflowTemplate_ModuleNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkflowTemplate_ModuleNote" nillable="true" type="tns:WorkflowTemplate_ModuleNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflowTemplate_ModuleNote" nillable="true" type="tns:ArrayOfWorkflowTemplate_ModuleNote" />
+  <xs:complexType name="WorkflowTemplate_ModuleNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IncludeInOutput" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowTemplate_ModuleNote" nillable="true" type="tns:WorkflowTemplate_ModuleNote" />
+  <xs:complexType name="ArrayOfWorkflow_Reviewer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Workflow_Reviewer" nillable="true" type="tns:Workflow_Reviewer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflow_Reviewer" nillable="true" type="tns:ArrayOfWorkflow_Reviewer" />
+  <xs:complexType name="Workflow_Reviewer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddedBySystemAdminUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="ApplicationProductTemplateModuleId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateAdded" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Middlename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MustReview" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserUniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_Reviewer" nillable="true" type="tns:Workflow_Reviewer" />
+  <xs:complexType name="ArrayOfWorkflowTemplate_Note">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkflowTemplate_Note" nillable="true" type="tns:WorkflowTemplate_Note" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflowTemplate_Note" nillable="true" type="tns:ArrayOfWorkflowTemplate_Note" />
+  <xs:complexType name="WorkflowTemplate_Note">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IncludeInOutput" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowTemplate_Note" nillable="true" type="tns:WorkflowTemplate_Note" />
+  <xs:complexType name="ArrayOfWorkflow_Reportee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Workflow_Reportee" nillable="true" type="tns:Workflow_Reportee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflow_Reportee" nillable="true" type="tns:ArrayOfWorkflow_Reportee" />
+  <xs:complexType name="Workflow_Reportee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FrequencyInDays" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsApplicationUser" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Middlename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportClosed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReportWhenArchived" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReportWhenCompleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Workflow_Reportee" nillable="true" type="tns:Workflow_Reportee" />
+  <xs:complexType name="SSORequestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LoginUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequestingAppID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SSOKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetAppID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSORequestResult" nillable="true" type="tns:SSORequestResult" />
+  <xs:complexType name="SSOAuthenticationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAuthenticated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RequestApplicationReturnUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Successful" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TargetAppID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TermsConditionsRequired" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SSOAuthenticationResult" nillable="true" type="tns:SSOAuthenticationResult" />
+  <xs:complexType name="CompanyLoginProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyLoginProviderId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedByAdminUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DisplayText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="LastModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfLoginProviderProperty" />
+      <xs:element minOccurs="0" name="STSUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyLoginProvider" nillable="true" type="tns:CompanyLoginProvider" />
+  <xs:complexType name="ArrayOfLoginProviderProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoginProviderProperty" nillable="true" type="tns:LoginProviderProperty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoginProviderProperty" nillable="true" type="tns:ArrayOfLoginProviderProperty" />
+  <xs:complexType name="LoginProviderProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedByAdminUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateCreatead" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastModifiedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="LastModifiedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LoginProviderPropertyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginProviderProperty" nillable="true" type="tns:LoginProviderProperty" />
+</xs:schema>

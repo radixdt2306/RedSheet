@@ -1,0 +1,71 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+    <div class="modal-header border-0">
+      <h2 class="modal-title">Add Their Negotiable<i class="sup color-primary fa fa-registered"></i></h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="hideTheirRequirementDetail()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="section-form" [formGroup]="theirRequirementDetailFormGroup">
+        <div class="row section-form-row mt-0 mb-0">
+          <div class="form-group col-12">
+            <label class="">Their Negotiable<i class="sup color-blue-gray fa fa-registered"></i>or Requirements
+              *</label>
+            <textarea rxFocus="true" class="form-control" name="" placeholder="Be specific"
+              formControlName="requirement" [class.error-message]="validMessageRequirement.isError
+              || theirRequirementDetailFormGroup.controls.requirement.invalid 
+              && (theirRequirementDetailFormGroup.controls.requirement.dirty 
+                  || theirRequirementDetailFormGroup.controls.requirement.touched)"
+              (input)="onSearchChangeRequirement($event.target.value)"></textarea>
+            <small> <i *ngIf="validMessageRequirement.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageRequirement.maximumCharacter}}
+              <span [style.color]="validMessageRequirement.isError ? '#ef3340' : ''">
+                {{validMessageRequirement.remainedOrExceededCharacters}}</span>
+            </small>
+          </div>
+          <div class="form-group col-12">
+            <label for="m-d-o" class="">Most Desirable Outcome *</label>
+            
+              <input type="text" name="m-d-o" class="form-control" placeholder="Be specific" formControlName="mdo"
+                [class.error-message]="validMessageMdo.isError
+                || theirRequirementDetailFormGroup.controls.mdo.invalid 
+                && (theirRequirementDetailFormGroup.controls.mdo.dirty 
+                    || theirRequirementDetailFormGroup.controls.mdo.touched)" (input)="onSearchChangeMdo($event.target.value)">
+              <small> <i *ngIf="validMessageMdo.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageMdo.maximumCharacter}}
+                <span [style.color]="validMessageMdo.isError ? '#ef3340' : ''">
+                  {{validMessageMdo.remainedOrExceededCharacters}}</span>
+              </small>
+            
+          </div>
+          <div class="form-group col-12">
+            <label for="l-d-o" class="">Least Desirable Outcome *</label>
+            
+              <input type="text" name="l-d-o" class="form-control" placeholder="Be specific" formControlName="ldo"
+                [class.error-message]="validMessageLdo.isError
+                || theirRequirementDetailFormGroup.controls.ldo.invalid 
+                && (theirRequirementDetailFormGroup.controls.ldo.dirty 
+                    || theirRequirementDetailFormGroup.controls.ldo.touched)" (input)="onSearchChangeLdo($event.target.value)">
+              <small> <i *ngIf="validMessageLdo.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageLdo.maximumCharacter}}
+                <span [style.color]="validMessageLdo.isError ? '#ef3340' : ''">
+                  {{validMessageLdo.remainedOrExceededCharacters}}</span>
+              </small>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="save" class="btn btn-primary btn-md"
+        [disabled]="!theirRequirementDetailFormGroup.valid" (click)="addTheirRequirementDetail()">Save</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+        (click)="hideTheirRequirementDetail()">Cancel</button>
+    </div>
+  </div>
+</div>

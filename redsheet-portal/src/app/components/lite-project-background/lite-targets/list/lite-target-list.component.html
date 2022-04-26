@@ -1,0 +1,36 @@
+<div class="section-box" *ngIf="showComponent">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Objectives and target outcomes</h2>
+            <button class="btn btn-info pull-right" [disabled]="liteProjectBackgroundId == 0" (click)="addLiteTarget(rowIndex)" title="Add"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="section-body">
+            <ul class="custom-list">
+                    <li *ngIf="isAdd" class="active">
+                            <input rxFocus="true" placeholder='Be Specific' class="form-control" type="text" [(ngModel)]="addLiteTargetEntity.liteTargetDetail" />
+                            <ul class="action-links float-right list-inline">
+                              <li class="list-inline-item" *ngIf="!isLocked"><a title="Save">
+                                <i class="fa fa-floppy-o" (click)="updateLiteTarget(addLiteTargetEntity,rowIndex)"></i></a>
+                              </li>
+                            </ul>
+                          </li>
+                      <li *ngFor="let liteTarget of liteTargets; let rowIndex=index;" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+                        <span *ngIf="!(editRowIndex == rowIndex)">{{liteTarget.liteTargetDetail}}</span>
+                        <input rxFocus="true" class="form-control" type="text" [(ngModel)]="editLiteTarget.liteTargetDetail"
+                        placeholder='Be Specific' *ngIf="(editRowIndex == rowIndex)" />
+                        <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                          <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+                            <a  title="Edit">
+                              <i class="fa fa-pencil-square-o" (click)="showEditRecord(liteTarget,rowIndex)" ></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))" ><a title="Save">
+                            <i class="fa fa-floppy-o" (click)="updateLiteTarget(editLiteTarget,rowIndex)"></i></a>
+                          </li>
+                          <li class="list-inline-item"><a title="Delete">
+                            <i class="fa fa-trash-o" (click)="showLiteTargetDeleteComponent(liteTarget,rowIndex)" aria-hidden="true"></i></a>
+                          </li>
+                        </ul>
+                      </li>
+            </ul>
+        </div>
+    </div>

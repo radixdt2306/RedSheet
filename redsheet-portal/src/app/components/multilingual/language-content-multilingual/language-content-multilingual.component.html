@@ -1,0 +1,54 @@
+﻿<div class="row" *ngIf="showComponent">
+  <div class="col-xs-12">
+    <div class="card">
+      <header class="card-heading">
+        <div class="row">
+          <h2 class="card-title col-lg-6" rxLabel="heading">Language Content Multilingual</h2>
+          <div class="col-lg-6">
+            <label for="name" class="col-md-6 control-label"></label>
+            <div class="col-md-6">
+              <select class="form-control" (change)="languageChanged($event.target.value)" [(ngModel)]="languageId">
+                <option *ngFor="let language of languages" value="{{language.languageId}}">{{language.languageName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="card-body">
+        <div class="table-responsive">
+          <div id="productsTable_wrapper" class="dataTables_wrapper dt-material no-footer">
+            <div class="dt-table">
+              <div class="mdl-cell mdl-cell--12-col">
+                <table class="mdl-data-table product-table m-t-30 dataTable no-footer table table-striped grid-4">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let languageHeader of languageHeaders">{{languageHeader}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let languageContent of languagesContents;let idx = index">
+                      <td>
+                        <a href="javascript:void(0)" class="icon" (click)="deleteLanguageContent(languageContent)"><i class="zmdi zmdi-delete zmdi-hc-fw delete-operation font-size-24"></i></a>
+                      </td>
+                      <td>{{languageContent.languageContentName}}</td>
+                      <td>
+                        <div>
+                          <input type="text" [(ngModel)]="languageContent.english" class="form-control" placeholder="English" (focus)="focused(languageContent)" (blur)="updateLanguageContent(languageContent)" />
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <input type="text" [(ngModel)]="languageContent.multilingual" class="form-control" placeholder="Language" (focus)="focused(languageContent)" (blur)="updateLanguageContent(languageContent)">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

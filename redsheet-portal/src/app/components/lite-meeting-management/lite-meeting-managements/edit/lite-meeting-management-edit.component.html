@@ -1,0 +1,88 @@
+<div class="container-fluid" *ngIf="showComponent">
+	<div class="row justify-content-center">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+			</app-project-module-edit>
+		</div>
+	</div>
+	<fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<form class="section-form" [formGroup]="liteMeetingManagementFormGroup">
+				<div class="row section-form-row">
+					<div class="col-12 col-lg-6">
+						<div class="form-group">
+							<label class="">Pre-meeting conditioning *</label>
+							<textarea class="form-control" formControlName="preMeetingConditioning"
+								rows="4" name=""
+								placeholder="This is the process of setting boundaries and limiting expectations in the mind of another party so that they respond in a particular way"
+								[class.error-message]="validMessagePreMeetingConditioning.isError
+								|| liteMeetingManagementFormGroup.controls.preMeetingConditioning.invalid 
+								&& (liteMeetingManagementFormGroup.controls.preMeetingConditioning.dirty 
+									|| liteMeetingManagementFormGroup.controls.preMeetingConditioning.touched)"
+								(input)="onSearchChangePreMeetingConditioning($event.target.value)"></textarea>
+							<small> <i *ngIf="validMessagePreMeetingConditioning.isError" class="fa fa-exclamation-circle"
+									style="font-size:16px;color:#ef3340"></i>
+								{{validMessagePreMeetingConditioning.maximumCharacter}}
+								<span [style.color]="validMessagePreMeetingConditioning.isError ? '#ef3340' : ''">
+									{{validMessagePreMeetingConditioning.remainedOrExceededCharacters}}</span>
+							</small>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6">
+						<div class="form-group">
+							<label class="">Opening Statement *</label>
+							<textarea class="form-control" formControlName="openingStatement" rows="4" name=""
+								placeholder="Create a powerful message that sets the tone of the meeting."
+								[class.error-message]="validMessageOpeningStatement.isError
+								|| liteMeetingManagementFormGroup.controls.openingStatement.invalid 
+								&& (liteMeetingManagementFormGroup.controls.openingStatement.dirty 
+									|| liteMeetingManagementFormGroup.controls.openingStatement.touched)"
+								(input)="onSearchChangeOpeningStatement($event.target.value)"></textarea>
+							<small> <i *ngIf="validMessageOpeningStatement.isError" class="fa fa-exclamation-circle"
+									style="font-size:16px;color:#ef3340"></i>
+								{{validMessageOpeningStatement.maximumCharacter}}
+								<span [style.color]="validMessageOpeningStatement.isError ? '#ef3340' : ''">
+									{{validMessageOpeningStatement.remainedOrExceededCharacters}}</span>
+							</small>
+						</div>
+					</div>
+					<div class="col-12 col-lg-12">
+						<label>Intangible power plan *</label>
+						<textarea class="form-control" formControlName="intangiblePowerPlan" rows="4" name=""
+							placeholder="Our style and demeanour to project power and how we will build rapport."
+							[class.error-message]="validMessageIntangiblePowerPlan.isError
+							|| liteMeetingManagementFormGroup.controls.intangiblePowerPlan.invalid 
+							&& (liteMeetingManagementFormGroup.controls.intangiblePowerPlan.dirty 
+								|| liteMeetingManagementFormGroup.controls.intangiblePowerPlan.touched)"
+							(input)="onSearchChangeIntangiblePowerPlan($event.target.value)"></textarea>
+						<small> <i *ngIf="validMessageIntangiblePowerPlan.isError" class="fa fa-exclamation-circle"
+								style="font-size:16px;color:#ef3340"></i>
+							{{validMessageIntangiblePowerPlan.maximumCharacter}}
+							<span [style.color]="validMessageIntangiblePowerPlan.isError ? '#ef3340' : ''">
+								{{validMessageIntangiblePowerPlan.remainedOrExceededCharacters}}</span>
+						</small>
+					</div>
+					<div class="col-12 text-sm-right mt-2">
+						<button type="submit" class="btn btn-primary btn-md" (click)="editLiteMeetingManagement()"
+							[disabled]="!(liteMeetingManagementFormGroup.valid)">Save</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- <div class="col-12 col-lg-12 col-xl-10">
+                <app-lite-meeting-planning-list [liteMeetingManagementId]="liteMeetingManagementId" [isLocked]="isLocked" ></app-lite-meeting-planning-list>
+			</div> -->
+		<div class="col-12 col-lg-12 col-xl-10">
+			<app-lite-event-planning-action-list [projectModuleId]="projectModuleId"
+				[liteMeetingManagementId]="liteMeetingManagementId" [isLocked]="isLocked">
+			</app-lite-event-planning-action-list>
+		</div>
+		<div class="col-12 col-lg-12 col-xl-10">
+			<app-lite-meeting-management-timing-list [liteMeetingManagementId]="liteMeetingManagementId"
+				[isLocked]="isLocked"></app-lite-meeting-management-timing-list>
+		</div>
+	</fieldset>
+	<div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

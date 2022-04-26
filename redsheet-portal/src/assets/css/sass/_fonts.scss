@@ -1,0 +1,68 @@
+@import "variable.scss";
+@import "arguments.scss";
+
+@mixin font-face($style-name, $file, $category:"") {
+    $filepath: "../fonts/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        } 
+    }
+}
+ 
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+
+@include font-face('rift_softdemi', 'riftsoft-demi-webfont', 'sans-serif');
+@include font-face('rift_softmedium', 'riftsoft-medium-webfont', 'sans-serif');
+@include font-face('Omnes', 'Omnes-Regular', 'sans-serif');
+@include font-face('omnesmedium', 'omnes-medium-webfont', 'sans-serif');
+
+$heading-font: 'rift_softdemi', sans-serif;
+$sub-heading-font: 'rift_softmedium', sans-serif;
+$body-font: 'Omnes', sans-serif;
+$med-font:'omnesmedium', sans-serif;
+
+h1, .h1 {@include fontSize(50px); font-family:$heading-font;}
+h2, .h2 {@include fontSize(30px); font-family:$heading-font;}
+h3, .h3 {@include fontSize(26px); font-family:$sub-heading-font;}
+h4, .h4 {@include fontSize(22px); font-family:$heading-font;}
+h5, .h5 {@include fontSize(20px); font-family:$heading-font;}
+
+
+.font-lg {@include fontSize(20px !important);}
+.font-md {@include fontSize(17px);}
+.font-sm {}
+.body-font{font-family:$body-font !important;}
+.sub-heading-font{font-family:$sub-heading-font;}
+hr {border-color:#ccc;}
+.btn {font-family:$sub-heading-font; cursor:pointer;}
+.badge {font-family:$sub-heading-font;}
+
+.fa-lg{ line-height: 1.2em;}
+.sup {
+    vertical-align: super;
+	font-size:50%;
+} 
+.large {
+    font-size: 130%;
+    line-height: 1;
+}
+.fa{line-height: 1.07;}

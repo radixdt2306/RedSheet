@@ -1,0 +1,31 @@
+<div class="section-box" *ngIf="showComponent">
+    <div class="section-header">
+                <h2 class="section-title d-inline-block">Their Team (anticipated) </h2>
+                <button class="btn btn-info pull-right" data-toggle="modal" (click)="showLiteTheirTeamMemberAddComponent({})" [disabled]="liteProjectBackgroundId == 0" title="Add"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="section-body">
+            <div class="row">
+                <rx-template [dataSource]="liteTheirTeamMembers" pageSize="6" masterClass="col-12 col-lg-6">
+                    <ng-template rxCellTemplate let-liteTheirTeamMember="dataItem">
+                        <div class="media section-media">
+                            <div class="align-self-center section-media-icon text-center">
+                                <span class="redsheet-round ">{{liteTheirTeamMember.personalityKeyText}}</span>
+                            </div>
+                            <div class="media-body border-0 pl-0">
+                                <div class="media-title">
+                                    <h4 class="d-inline-block">{{liteTheirTeamMember.liteTheirTeamMemberName}}</h4>
+                                    <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                        <li class="list-inline-item"><a title="Edit" (click)="showLiteTheirTeamMemberEditComponent(liteTheirTeamMember)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                                        <li class="list-inline-item"><a title="Delete" (click)="showLiteTheirTeamMemberDeleteComponent(liteTheirTeamMember)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="project-summery font-md">
+                                    <p>Position : <span class="color-dark-gray">{{liteTheirTeamMember.position}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </rx-template>
+            </div>
+    </div>
+</div>

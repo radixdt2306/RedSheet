@@ -1,0 +1,56 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Negotiation power plan</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="d-flex flex-wrap align-items-center mb-3">
+                <h3 class="mb-0">Our value objective</h3>
+                <div class="text-center px-3">
+                    <img class="fa-3x pt-3" src="assets/images/new claim2.svg" alt="claim" width="40" *ngIf="valueObjectiveData.valueObjectiveId == 1">
+                    <img class="fa-3x pt-3" src="assets/images/create-report.svg" alt="create" width="40" *ngIf="valueObjectiveData.valueObjectiveId == 2">
+                    <span class="d-block">{{valueObjectiveData.valueObjectiveName}}</span>
+                </div>
+            </div>
+            <h3>Objectives and ideal outcomes for this negotiation</h3>
+            <div *ngIf="targetData == null || targetData == ''">None.</div>
+            <ul class="pl-3">
+                <li *ngFor="let target of targetData;">{{target.targetDetail}}</li>
+            </ul>
+            <h3>Long term ambitions for this relationship</h3>
+            <div *ngIf="longTermObjectiveData == null || longTermObjectiveData == ''">None.</div>
+            <ul class="pl-3">
+                <li *ngFor="let longTermObjective of longTermObjectiveData;">{{longTermObjective.longTermObjectiveValue}}</li>
+            </ul>
+            <h3>Power strategy – How we will utilize or improve our power position?</h3>
+            {{projectPowerData.powerDetail}}
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Portfolio analysis for what we are negotiating</h3>
+            <div class="p-2">
+                    <img *ngIf="negotiatingData.negotionalityCategoryId == 98" src="assets/images/critical.png" height="315">
+                    <img *ngIf="negotiatingData.negotionalityCategoryId == 99"  src="assets/images/strategic.png" height="315">
+                    <img *ngIf="negotiatingData.negotionalityCategoryId == 100"  src="assets/images/acquisition.png" height="315">
+                    <img *ngIf="negotiatingData.negotionalityCategoryId == 101"  src="assets/images/Leverage.png" height="315">
+            </div>
+            <!-- <div class="row justify-content-center square-chart my-3">
+                <div class="offset-1 col-10 offset-sm-0 col-sm-9 top-arrow">
+                    <div class="top-arrow-text">Buyer : Degree of Market difficulty Supplier : Strength in market</div>
+                    <div class="row justify-content-center no-gutters squares">
+                        <div [ngClass]="negotiatingData.negotionalityCategoryId == 98 ? 'col-12 col-sm-6 square active' : 'col-12 col-sm-6 square'">Critical</div>
+                        <div [ngClass]="negotiatingData.negotionalityCategoryId == 99 ? 'col-12 col-sm-6 square active' : 'col-12 col-sm-6 square'">Strategic</div>
+                        <div [ngClass]="negotiatingData.negotionalityCategoryId == 100 ? 'col-12 col-sm-6 square active' : 'col-12 col-sm-6 square'">Acquisition</div>
+                        <div [ngClass]="negotiatingData.negotionalityCategoryId == 101 ? 'col-12 col-sm-6 square active' : 'col-12 col-sm-6 square'">Leverange</div>
+                    </div>
+                </div>
+                <div class="offset-1 col-10 offset-sm-0 col-sm-9 down-arrow">
+                    <div class="down-arrow-text">Spend/potential to impact our or the buyer's profit</div>
+                </div>
+            </div> -->
+            <span>Based upon {{negotiatingData.negotiationRoleDescription}} this negotiation sits in the
+                {{negotiatingData.negotionalityCategoryName}} quadrant.
+                Our power position, based upon what we are negotiating and how we should structure our negotiation as
+                follows:
+                <br />
+                {{negotiatingData.negotionalityCategoryDescription}}</span>
+        </div>
+    </div>
+</div>

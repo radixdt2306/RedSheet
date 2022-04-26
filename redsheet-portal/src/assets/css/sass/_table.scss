@@ -1,0 +1,65 @@
+@import "variable.scss";
+@import "arguments.scss";
+
+/*========= thick border table ==========*/
+
+.thick-bordered { margin-bottom:0;
+	th {border:2px solid $light-gray; background:$dark-blue;  font-family:$heading-font; color:#fff; @include fontSize(35px); font-weight:normal; text-align:center; line-height:1;
+		&.first-child {background:$light-gray; font-family:$body-font; @include fontSize(17px); text-align:center; color:$dark-blue; padding: 1rem 0.5rem; vertical-align:middle;border-color: $disabled;}
+	}
+	td {border:2px solid $light-gray; padding:.01rem 0.5rem; font-family:$heading-font; text-align:center; @include fontSize(20px);vertical-align:middle; 
+		.fa {@include fontSize(18px);}
+	}	
+}
+
+/*========= outer border table ==========*/
+
+.outer-bordered { border:1px solid $light-gray;
+	th { font-family:$heading-font; @include fontSize(35px); font-weight:normal; text-align:center; line-height:1;
+		&.first-child {background:$light-gray; vertical-align:middle; border:2px solid #fff;}
+	}
+	td {vertical-align:middle;
+		&.td-dropdown {padding:.01rem 0.6rem 0.01rem 0.4rem; border:1px solid $light-gray;text-align:center;}	
+		&.th-dropdown {background:$light-gray; padding:0 0.3rem; text-align:center; border-left:1px solid $light-gray;}
+	}
+}
+
+/*========= comparision table ==========*/
+
+.comparision {
+	 h2 {color:$brand-primary; }	
+	.requirements { margin-bottom:0;
+		 p {margin-bottom:0;}		
+	}	
+	.action-links {text-align:right;margin-bottom:0;
+		li.list-inline-item { margin:0; 
+			a { padding:0 0.5rem; color:$dark-blue; @include fontSize(20px); border-right:1px solid $disabled;}
+			&:last-child {
+				a {border:0; padding-right:0;}
+			}
+			&:hover {
+				a {color:$brand-primary;}
+			}
+		}
+	}
+	.middle-grid{
+	    border-left: 1px solid $disabled;
+		border-right: 1px solid $disabled;
+	}
+	.zoma{  border-bottom: 1px solid #d7dadd;  padding-bottom: 1.5rem;  margin-bottom: 1.5rem;	}
+	.border-bottom{  border-bottom: 1px solid $disabled; padding-bottom: 1.5rem;margin-bottom: 1.5rem;}
+}
+
+.table-section{
+	.action-links {margin:0; padding-top: 15px; padding-right: 10px;padding-bottom: 10px;
+		li.list-inline-item { margin:0; 
+			a { padding:0 0.8rem; color:$dark-blue; @include fontSize(22px); border-right:1px solid $disabled;}
+			&:last-child {
+				a {border:0;}
+			}
+			&:hover {
+				a {color:$brand-primary;}
+			}
+		}
+	}
+}

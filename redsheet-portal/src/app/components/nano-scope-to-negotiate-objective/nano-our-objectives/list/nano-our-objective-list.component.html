@@ -1,0 +1,49 @@
+    <div class="section-box mb-0" *ngIf="showComponent">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Our Objectives</h2>
+            <button class="btn btn-info pull-right" title="Add" [disabled]="nanoScopeToNegotiateObjectiveId == 0" (click)="addNanoOurObjective(rowIndex)"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="section-body">
+            <ul class="custom-list">
+                <li *ngIf="isAdd" class="active">
+                    <input rxFocus="true" [class.error-message]="validMessageAddObjectiveDetails.isError" placeholder="Be Specific" class="form-control" type="text" 
+                    [(ngModel)]="addNanoOurObjectiveEntity.nanoOurObjectiveValue" (input)="onSearchChangeAddObjectiveDetails($event.target.value)"/>
+                    <small> <i *ngIf="validMessageAddObjectiveDetails.isError" class="fa fa-exclamation-circle"
+                      style="font-size:16px;color:#ef3340"></i>
+                    {{validMessageAddObjectiveDetails.maximumCharacter}}
+                    <span [style.color]="validMessageAddObjectiveDetails.isError ? '#ef3340' : ''">
+                      {{validMessageAddObjectiveDetails.remainedOrExceededCharacters}}</span>
+                  </small>
+                    <ul class="action-links float-right list-inline">
+                      <li class="list-inline-item" *ngIf="!isLocked"><a [class.btn_disabled]="validMessageAddObjectiveDetails.isError" title="Save">
+                        <i class="fa fa-floppy-o" (click)="updateNanoOurObjective(addNanoOurObjectiveEntity,rowIndex)"></i></a>
+                      </li>
+                    </ul>
+                  </li>
+              <li *ngFor="let nanoOurObjective of nanoOurObjectives; let rowIndex=index;" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+                <span *ngIf="!(editRowIndex == rowIndex)">{{nanoOurObjective.nanoOurObjectiveValue}}</span>
+                <input rxFocus="true"  class="form-control" type="text" [(ngModel)]="editNanoOurObjective.nanoOurObjectiveValue"
+                      placeholder="Be Specific" *ngIf="(editRowIndex == rowIndex)" [class.error-message]="validMessageObjectiveDetails.isError" (input)="onSearchChangeObjectiveDetails($event.target.value)"/>
+                      <small *ngIf="(editRowIndex == rowIndex)"> <i *ngIf="validMessageObjectiveDetails.isError" class="fa fa-exclamation-circle"
+                        style="font-size:16px;color:#ef3340"></i>
+                      {{validMessageObjectiveDetails.maximumCharacter}}
+                      <span [style.color]="validMessageObjectiveDetails.isError ? '#ef3340' : ''">
+                        {{validMessageObjectiveDetails.remainedOrExceededCharacters}}</span>
+                    </small>
+                <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+                  <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+                    <a  title="Edit">
+                      <i class="fa fa-pencil-square-o" (click)="showEditRecord(nanoOurObjective,rowIndex)" ></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))" ><a [class.btn_disabled]="validMessageObjectiveDetails.isError" title="Save">
+                    <i class="fa fa-floppy-o" (click)="updateNanoOurObjective(editNanoOurObjective,rowIndex)"></i></a>
+                  </li>
+                  <li class="list-inline-item"><a title="Delete">
+                    <i class="fa fa-trash-o" (click)="showNanoOurObjectiveDeleteComponent(nanoOurObjective,rowIndex)" aria-hidden="true"></i></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+        </div>
+    </div>

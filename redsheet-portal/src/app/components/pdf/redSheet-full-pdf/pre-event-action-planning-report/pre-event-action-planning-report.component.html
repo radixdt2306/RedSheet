@@ -1,0 +1,57 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Pre-event action planning</h2>
+    <h3>Knowledge Actions</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Knowledge or data required</th>
+                    <th scope="col">source</th>
+                    <th scope="col">who</th>
+                    <th scope="col">By when</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="knowledgeGatheringPlanTableData == null || knowledgeGatheringPlanTableData ==''">
+                    <td colspan="4">No Record Found.</td>
+                </tr>
+                <tr *ngFor="let knowledgeGatheringPlan of knowledgeGatheringPlanTableData;">
+                    <td>{{knowledgeGatheringPlan.knowledgeRequired}}</td>
+                    <td>{{knowledgeGatheringPlan.source}}</td>
+                    <td>{{knowledgeGatheringPlan.knowledgeGivenBy}}</td>
+                    <td>{{knowledgeGatheringPlan.knowledgeGivenOn | date:'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>Event action plan</h3>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="table-responsive mb-0">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">what</th>
+                            <th scope="col">who</th>
+                            <th scope="col">when</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="eventActionPlanningTableData == null || eventActionPlanningTableData ==''">
+                            <td colspan="3">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let eventActionPlanning of eventActionPlanningTableData;">
+                            <td>{{eventActionPlanning.eventPlanningActionDetail}}</td>
+                            <td>{{eventActionPlanning.eventPlanningActionBy}}</td>
+                            <td>{{eventActionPlanning.eventPlanningActionOn | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Notes for room layout/seating plan</h3>
+           {{roomLayoutDetails.roomLayout}}
+        </div>
+    </div>
+</div>

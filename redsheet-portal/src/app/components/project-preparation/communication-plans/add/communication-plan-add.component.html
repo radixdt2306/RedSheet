@@ -1,0 +1,70 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Add Communication Plans</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="hideCommunicationPlan()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="communicationPlanFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="message" class="">Message *</label>
+                        <textarea rxFocus="true" class="form-control" name="message"
+                            placeholder="What is the message to be delivered" formControlName="message"
+                            [class.error-message]="validMessageMessage.isError
+                            || communicationPlanFormGroup.controls.message.invalid 
+                            && (communicationPlanFormGroup.controls.message.dirty 
+                                || communicationPlanFormGroup.controls.message.touched)"
+                            (input)="onSearchChangeMessage($event.target.value)"></textarea>
+                        <small> <i *ngIf="validMessageMessage.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageMessage.maximumCharacter}}
+                            <span [style.color]="validMessageMessage.isError ? '#ef3340' : ''">
+                                {{validMessageMessage.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="to" class="">To *</label>
+                        <input type="text" class="form-control" name="to" placeholder="Who will receive this message"
+                            formControlName="to" [class.error-message]="validMessageTo.isError
+                            || communicationPlanFormGroup.controls.to.invalid 
+                            && (communicationPlanFormGroup.controls.to.dirty 
+                                || communicationPlanFormGroup.controls.to.touched)"
+                            (input)="onSearchChangeTo($event.target.value)" />
+                        <small> <i *ngIf="validMessageTo.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageTo.maximumCharacter}}
+                            <span [style.color]="validMessageTo.isError ? '#ef3340' : ''">
+                                {{validMessageTo.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="media/means" class="">Media/Means *</label>
+                        <input type="text" name="media/means" class="form-control"
+                            placeholder="The form of communication you will use email, telephone etc"
+                            formControlName="mediaMeans" [class.error-message]="validMessageMediaMeans.isError
+                            || communicationPlanFormGroup.controls.mediaMeans.invalid 
+                            && (communicationPlanFormGroup.controls.mediaMeans.dirty 
+                                || communicationPlanFormGroup.controls.mediaMeans.touched)"
+                            (input)="onSearchChangeMediaMeans($event.target.value)" />
+                        <small> <i *ngIf="validMessageMediaMeans.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageMediaMeans.maximumCharacter}}
+                            <span [style.color]="validMessageMediaMeans.isError ? '#ef3340' : ''">
+                                {{validMessageMediaMeans.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md"
+                [disabled]="!communicationPlanFormGroup.valid" (click)="addCommunicationPlan()">Save</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+                (click)="hideCommunicationPlan()">Cancel</button>
+        </div>
+    </div>
+</div>

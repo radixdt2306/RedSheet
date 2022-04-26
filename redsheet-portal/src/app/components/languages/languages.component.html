@@ -1,0 +1,47 @@
+﻿<section id="content_outer_wrapper" *ngIf="showComponent">
+    <div id="content_wrapper">
+        <div id="header_wrapper" class="header-sm">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <header id="header">
+                            <h1 rxLabel="pageTitle">Languages</h1>
+                        </header>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="container-fluid">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card card-data-tables product-table-wrapper">
+                            <div class="card-body p-0">
+                                <div>
+                                    <div id="productsTable_wrapper" class="dataTables_wrapper form-inline dt-material no-footer">
+                                        <div class="dt-table">
+                                            <div class="mdl-cell mdl-cell--12-col">
+                                                <rx-table #tableEvent="grid" [dataSource]="languages">
+                                                    <rx-column field="languageName" width="212"></rx-column>
+                                                    <rx-column [actionable]="true" field="active" width="139">
+                                                        <ng-template rxCellTemplate let-languages>
+                                                            <div class="togglebutton">
+                                                                <label>
+                                                                    <input (change)="updateLanguage(languages)" [checked]="languages.active" type="checkbox" class="toggle-info" checked="languages.active"><span class="toggle"></span>    
+                                                                </label>
+                                                            </div>
+                                                        </ng-template>
+                                                    </rx-column>
+                                                </rx-table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

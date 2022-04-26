@@ -1,0 +1,58 @@
+
+        <!-- <h2 *ngIf="showComponent">Their Position</h2>
+        <ul class="action-links">
+                <li class="list-inline-item"><a href="#" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                <li class="list-inline-item"><a href="#" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+            </ul>
+        <div class="row border-bottom">
+            <div class="col-12 col-sm-6">
+                <h4>Negotiable or Requirements</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisci elit conguemagna, vel ellentesque ante imperdiet ac...</p>
+            </div>
+            <div class="col-12 col-sm-3 middle-grid">
+                <h4>M.D.O.</h4>
+                <p>Lorem ipsum dolor sit amet, consecv tetur adipisci elit</p>
+            </div>
+            <div class="col-12 col-sm-3">
+                <h4>L.D.O.</h4>
+                <p>Lorem ipsum dolor sit amet, consecv tetur adipisci elit</p>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-12">
+            <a class="btn btn-info pull-right" (click)="showTheirRequirementDetailAddComponent({})" data-toggle="modal" title="Add"><i class="fa fa-plus"></i></a>
+        </div> -->
+    
+    <!-- </div> -->
+
+    <rx-template [dataSource]="theirRequirementDetails" masterClass="col-12 col-lg-6">
+        <ng-template rxCellTemplate let-theirRequirementDetail="dataItem">
+    <div class="col-12 col-xl-5 col-big-55 border-bottom">
+        <h2>Their Position</h2>
+        <ul class="action-links" *ngIf="!isLocked">
+                <li class="list-inline-item"><a (click)="showTheirRequirementDetailEditComponent(theirRequirementDetail)" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+                <li class="list-inline-item"><a (click)="showTheirRequirementDetailDeleteComponent(theirRequirementDetail)" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+        </ul>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h4>Their Negotiable<i class="sup color-blue-gray fa fa-registered"></i> or Requirements</h4>
+                <p>{{theirRequirementDetail.requirement}}</p>
+            </div>
+            <div class="col-12 col-sm-3 middle-grid">
+                <h4>M.D.O.</h4>
+                <p>{{theirRequirementDetail.mdo}}</p>
+            </div>
+            <div class="col-12 col-sm-3">
+                <h4>L.D.O.</h4>
+                <p>{{theirRequirementDetail.ldo}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template>
+</rx-template>
+
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-info pull-right" (click)="showTheirRequirementDetailAddComponent({})" data-toggle="modal" title="Add"><i class="fa fa-plus"></i></a>
+    </div> 
+    </div>

@@ -1,0 +1,21 @@
+
+	<div class="container-fluid">
+    	<div class="row justify-content-center">
+        	<div class="col-12 col-lg-12 col-xl-10">
+				<h1 class="page-heading mt-3">Activity History</h1>
+            	<div class="section-box">
+                    <div class="section-body">
+                            <rx-template #templateEvent="rxtemplate" [(dataSource)]="recentActivityAndNotifications" pageSize="10" masterClass="col-12 col-lg-12 col-xl-12">
+                                    <ng-template rxCellTemplate let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    	<ul class="custom-list dashboard-list" >
+                                <!-- class="border-bottom" -->
+                            <!-- <li>{{dataItem.RecentActivityName}}</li> -->
+                            <li [appHtml]="dataItem.RecentActivityName"></li>
+                        </ul>
+                        </ng-template>
+                        </rx-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit [projectModuleId]="projectModuleId" (lockEvent)="contentDisable($event)">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10" *ngIf="showComponent">
+            <form class="section-form" [formGroup]="projectEventTimelineFormGroup">
+                <div class="row section-form-row">
+                    <div class="col-12">
+                        <div class="section-box pb-0">
+                            <div class="row">
+                                <div class="col-12 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="start-time" class="">Start Time *</label>
+                                        <rx-time rxFocus="true" placeholder="phTime" controlClass="form-control"
+                                            formControlName="startTime"></rx-time>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="" class="">Anticipated Duration *</label>
+                                        <input type="text" class="form-control" name="" formControlName="eventDuration"
+                                            placeholder="Anticipated Duration">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="end-time" class="">End Time *</label>
+                                        <rx-time placeholder="phTime" controlClass="form-control"
+                                            formControlName="endTime"></rx-time>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group float-right">
+                                        <span class="switch-label float-left d-block">Is the end time fixed?</span>
+                                        <label class="switch">
+                                            <input class="form-control" type="checkbox" checked=""
+                                                formControlName="isEndTimeFixed">
+                                            <span class="switch-slider">
+                                                <i class="fa fa-check"></i> <i class="fa fa-times"></i>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row section-form-row">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">Room Layout / Seating Plan *</label>
+                            <textarea class="form-control" formControlName="roomLayout" rows="4" name=""
+                                rxPlaceholder="phRoomLayout" [class.error-message]="validMessageRoomLayout.isError
+                                || projectEventTimelineFormGroup.controls.roomLayout.invalid 
+                                && (projectEventTimelineFormGroup.controls.roomLayout.dirty 
+                                    || projectEventTimelineFormGroup.controls.roomLayout.touched)"
+                                (input)="onSearchChangeRoomLayout($event.target.value)"></textarea>
+                            <small> <i *ngIf="validMessageRoomLayout.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageRoomLayout.maximumCharacter}}
+                                <span [style.color]="validMessageRoomLayout.isError ? '#ef3340' : ''">
+                                    {{validMessageRoomLayout.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">Opening Statement *</label>
+                            <textarea class="form-control" rows="4" name="" formControlName="openingStatement"
+                                rxPlaceholder="phOpeningStatement" [class.error-message]="validMessageOpeningStatement.isError
+                                || projectEventTimelineFormGroup.controls.openingStatement.invalid 
+                                && (projectEventTimelineFormGroup.controls.openingStatement.dirty 
+                                    || projectEventTimelineFormGroup.controls.openingStatement.touched)"
+                                (input)="onSearchChangeOpeningStatement($event.target.value)"></textarea>
+                            <small> <i *ngIf="validMessageOpeningStatement.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageOpeningStatement.maximumCharacter}}
+                                <span [style.color]="validMessageOpeningStatement.isError ? '#ef3340' : ''">
+                                    {{validMessageOpeningStatement.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12 text-sm-right mt-3">
+                        <button type="submit" class="btn btn-primary btn-md" (click)="editProjectEventTimeline()"
+                            [disabled]="!projectEventTimelineFormGroup.valid">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-arrival-and-opening-tactic-list [projectEventTimelineId]="projectEventTimelineId"
+                [isLocked]="isLocked"></app-arrival-and-opening-tactic-list>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-event-agenda-timing-list [projectEventTimelineId]="projectEventTimelineId" [isLocked]="isLocked">
+            </app-event-agenda-timing-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

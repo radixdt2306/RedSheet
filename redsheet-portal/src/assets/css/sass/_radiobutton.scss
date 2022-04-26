@@ -1,0 +1,78 @@
+@import "variable.scss";
+@import "arguments.scss";
+
+ /*========= radio icon ==========*/
+.radio-icon { border:1px solid $gray; width:100%; display:block; padding:0; @include round-borders(5px);
+	.custom-control-indicator {top:10px; left:auto; right:10px;}
+	.custom-control-description {@include fontSize(20px); display:flex; height:90px; 
+		i {padding:0 1.25rem; color:$gray; float:left; @include fontSize(40px);}
+		span {float:left; line-height:1;}
+	}
+	&.active { border-color:$sky-blue;
+		.custom-control-description { 
+			i {color:$sky-blue;}
+		}
+	}
+}
+
+/*========= radio button icon ==========*/
+.radio-button-icon{
+	.custom-radio {border:1px solid $disabled; @include round-borders(5px); padding:2.47rem 1rem; background-color:#fff; @include transition(all, 0.3s, ease-in-out, 0s); margin: 0 0 2em; cursor: pointer; position:relative; width: 100%;
+		i {margin-bottom: 20px;  display: inline-block;color:$gray; @include fontSize(120px); @include transition(all, 0.3s, ease-in-out, 0s);  }
+		.custom-control-description{display:block;width:100%;
+			span{display:block;width:100%;}
+		}
+		.custom-control-indicator{top:10px; right:10px; left:auto;}
+		&.active{border-color:$sky-blue;}
+	}
+}
+
+/*========= custom radio ==========*/
+.custom-radio{
+	.custom-control-indicator{ width: 1.25rem; height: 1.25rem; border: 6px solid $light-gray; background-color:#fff;}
+	.custom-control-input{
+		&:checked~.custom-control-indicator{ border-color:$sky-blue; background-color:#fff; box-shadow: none;}
+		&:focus~.custom-control-indicator{box-shadow: none;}
+	}
+}
+
+/*========= custom radio circle ==========*/
+.custom-radio-circle { padding:1.5rem 0 0 0; @include fontSize(14px);
+	.custom-control-indicator{ width: 1.2rem; height: 1.2rem; border: 6px solid $dark-gray; background-color:$dark-gray; right:0; margin:auto;}
+	.custom-control-input{
+		&:checked~.custom-control-indicator{ border-color:$brand-primary; background:$brand-primary;}
+		&:active~.custom-control-indicator{ border-color:$brand-primary; background:$brand-primary;}
+	}
+	
+}
+/*========= character radio button ==========*/
+
+.character-radio{
+	.custom-control-indicator{display:none;}
+	.custom-control-description{ height: 42px; width: 42px; text-align: center; @include round-borders(100px); font-family: $heading-font; @include fontSize(20px); line-height: 25px; color: #fff; background-color: $gray; border: 8px solid $gray; @include transition(all, 0.3s, ease-in-out, 0s); }
+	&:hover{
+		.custom-control-description{background-color:#fff;color:$brand-primary; border-color:$brand-primary;}
+	}
+ 	.custom-control-input{
+		&:checked~.custom-control-description{background-color:#fff;color:$brand-primary; border-color:$brand-primary;}
+	}
+	&.custom-control{padding-left:1.15rem;}
+	// &.color-yellow{
+		// .custom-control-description{background-color:$yellow;border-color:$yellow;}
+		// .custom-control-input{
+			// &:checked~.custom-control-description{color:$yellow;}
+		// }
+	// }
+	// &.color-blue{
+		// .custom-control-description{background-color:$blue;border-color:$blue;}
+		// .custom-control-input{
+			// &:checked~.custom-control-description{color:$blue;}
+		// }
+	// }
+	// &.color-green{
+		// .custom-control-description{background-color:$green;border-color:$green;}
+		// .custom-control-input{
+			// &:checked~.custom-control-description{color:$green;}
+		// }
+	// }
+}

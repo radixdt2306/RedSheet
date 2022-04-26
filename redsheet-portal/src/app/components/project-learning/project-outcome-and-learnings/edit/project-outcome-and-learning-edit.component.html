@@ -1,0 +1,91 @@
+<div class="container-fluid" *ngIf="showComponent">
+	<div class="row justify-content-center">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<app-project-module-edit (lockEvent) = "contentDisable($event)" [projectModuleId]="projectModuleId"></app-project-module-edit>
+		</div>
+	</div>
+	<fieldset class="row justify-content-center border-0"  [(disabled)]="isLocked">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<div class="row">
+				<div class="col-12 col-lg-6" *ngFor="let outcome_and_learning_category of outcome_and_learning_categories;let rowIndex_category=index;">
+					<div class="section-box">
+						<div class="section-header">
+							<h2 class="section-title">{{outcome_and_learning_category.outcomeAndLearningCategoryName}}</h2>
+						</div>
+						<div class="section-body">
+							<ul class="custom-list" *ngFor="let outcomeAndLearningPlan of projectOutcomeAndLearningPlan;let rowIndex=index;">
+								<li *ngIf="outcome_and_learning_category.outcomeAndLearningCategoryId == outcomeAndLearningPlan.outcomeAndLearningCategoryId" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+									
+									<span *ngIf="!(editRowIndex == rowIndex)">{{outcomeAndLearningPlan.projectOutcomeAndLearningValue}}</span>
+									<input rxFocus="true" class="form-control" type="text" [(ngModel)]="addProjectOutcomeAndLearningEntity.projectOutcomeAndLearningValue" *ngIf="(editRowIndex == rowIndex)"
+									placeholder="{{placeholderType[rowIndex_category]}}"
+									[class.error-message]="validMessage_OLC[rowIndex].isError"
+                                    (input)="onSearchChange_OLC($event.target.value, rowIndex)"/>
+									<small *ngIf="(editRowIndex == rowIndex)"> <i *ngIf="validMessage_OLC[rowIndex].isError" class="fa fa-exclamation-circle"
+										style="font-size:16px;color:#ef3340"></i>
+									  {{validMessage_OLC[rowIndex].maximumCharacter}}
+									  <span [style.color]="validMessage_OLC[rowIndex].isError ? '#ef3340' : ''">
+										{{validMessage_OLC[rowIndex].remainedOrExceededCharacters}}</span>
+									</small>									
+									<ul class="action-links float-right list-inline" *ngIf="!isLocked">
+										<li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+											<a title="Edit">												
+												<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditRecord(outcomeAndLearningPlan,rowIndex)"></i>
+											</a>
+										</li>
+										<li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))">
+											<a [class.btn_disabled]="validMessage_OLC[rowIndex].isError" title="Save">
+												<i class="fa fa-floppy-o" (click)="editProjectOutcomeAndLearning(addProjectOutcomeAndLearningEntity)"></i>
+											</a>
+										</li>
+										<li class="list-inline-item">
+											<a title="Delete">
+												<i class="fa fa-trash-o" aria-hidden="true" (click)="deleteProjectOutcomeAndLearningPlan(outcomeAndLearningPlan,rowIndex)"></i>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="custom-list" *ngIf="isAdd && addProjectOutcomeAndLearningEntity.outcomeAndLearningCategoryId == outcome_and_learning_category.outcomeAndLearningCategoryId">
+								<li class="active">
+									<input rxFocus="true" class="form-control" id="addProjectOutcomeAndLearningEntity.outcomeAndLearningCategoryId" type="text" [(ngModel)]="addProjectOutcomeAndLearningEntity.projectOutcomeAndLearningValue"
+									placeholder="{{placeholderType[rowIndex_category]}}"
+									[class.error-message]="validMessageAdd_OLC[rowIndex_category].isError"
+                                    (input)="onSearchChangeAdd_OLC($event.target.value, rowIndex_category, rowIndex)"/>
+									<small> <i *ngIf="validMessageAdd_OLC[rowIndex_category].isError" class="fa fa-exclamation-circle"
+										style="font-size:16px;color:#ef3340"></i>
+									  {{validMessageAdd_OLC[rowIndex_category].maximumCharacter}}
+									  <span [style.color]="validMessageAdd_OLC[rowIndex_category].isError ? '#ef3340' : ''">
+										{{validMessageAdd_OLC[rowIndex_category].remainedOrExceededCharacters}}</span>
+									</small>
+									<ul class="action-links float-right list-inline" *ngIf="!isLocked">
+										<li class="list-inline-item">
+											<a [class.btn_disabled]="validMessageAdd_OLC[rowIndex_category].isError" title="Save">
+												<i class="fa fa-floppy-o" (click)="addProjectOutcomeAndLearningPlan(addProjectOutcomeAndLearningEntity)"></i>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="row justify-content-end align-items-center ">
+							<div class="col-9 invisible">
+								<div class="form-group mb-0">
+									<input type="text" class="form-control font-md" id="project-name" >
+								</div>
+							</div>
+							<div class="col-auto pl-0">
+								<button class="btn btn-info" title="Add" (click)="addOutcomeAndLearningPlan(outcome_and_learning_category.outcomeAndLearningCategoryId)">
+									<i class="fa fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

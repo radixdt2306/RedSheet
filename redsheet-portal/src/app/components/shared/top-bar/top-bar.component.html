@@ -1,0 +1,101 @@
+<header class="fixed-top">
+  <ng-container *ngIf="showAcademyLink">
+    <style>
+      .back-to-academy {
+        background: linear-gradient(
+90deg, white, white);
+    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 20%);
+    padding: 10px;
+      }
+    </style>
+    <div class="back-to-academy">
+      <a class="btn btn-info" href="{{academyLink}}"><span class="fa fa-angle-double-left mr-2"></span>Back To Academy</a>
+  </div>
+</ng-container> 
+  <div class="container-fluid">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-12 col-md-3 col-xl-2 navbar-brand pt-3 text-center">
+        <a routerLink="/dashboard" title="Redsheet">
+          <img src="assets/images/redsheet.png" alt="Redsheet" title="Redsheet">
+        </a>
+      </div>
+      <div class="col-12 col-md-6 top-nav">
+        <ul class="list-inline float-md-right mb-0 text-center">
+          <li class="list-inline-item pointer">
+            <a routerLink="/dashboard" title="Home">
+              <i class="fa fa-home"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a routerLink="/user-profile" title="My Account">
+              <i class="fa fa-user"></i>
+            </a>
+          </li>
+          <!-- <li class="list-inline-item"><a  title="Notification" class="notification"><i class="fa fa-bell"></i></a></li> -->
+
+          <li class="list-inline-item dropdown position-static" [ngClass]="isNotification == true ? 'show' : ''">
+            <a (click)="checkNotification(isNotification)" title="Notification" class="notification dropdown-toggle"
+              role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i id="bell" class="fa fa-bell"></i>
+              <span id="notificationCount" class="badge badge-pill badge-primary"
+                *ngIf="notificationCount>0">{{notificationCount}}</span></a>
+            <div id="notificationMenu" *ngIf="notificationCount > 0"
+              [ngClass]="isNotification == true ? 'dropdown-menu pt-0 pb-2 show' : 'dropdown-menu pt-0 pb-2'"
+              aria-labelledby="dropdownMenuLink" x-placement="bottom-start">
+              <h4 class="px-4 py-2 badge-light color-dark-blue mb-0">Notification</h4>
+              <ul class="custom-list">
+                <li class="dropdown-item media align-items-center" *ngFor="let notification of notifications">
+                  <i class="{{getIconClass(notification.TemplateModuleId)}}"></i>
+                  <a (click)="notificationSeen(notification)">
+                    <!-- href="{{notification.URL}}" -->
+                    <div class="media-body">
+                      <h5 class="mt-0 mb-1">{{notification.TemplateModuleName}}<i
+                          [class]="getSymbol(notification.TemplateModuleId)"></i></h5>
+                      <!-- <span>{{notification.RecentActivityAndNotificationName}}</span> -->
+                      <span [appHtml]="notification.RecentActivityAndNotificationName"></span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="list-inline-item">
+            <a class="notification dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+              (click)="dropdownForHD_OV_UG(isDropdownOpened)" aria-haspopup="true" aria-expanded="false">
+              <i id="bell" class="fa fa-question-circle-o"></i>
+              <div id="notificationMenu"
+                [ngClass]="isDropdownOpened ? 'dropdown-menu pt-0 pb-0 show' : 'dropdown-menu pt-0 pb-0'"
+                aria-labelledby="dropdownMenuLink"
+                x-placement="bottom-start" class="header-info-dropdownwrapper">
+                <ul class="custom-list header-info-dropdown">
+                  <li class="dropdown-item media align-items-center" (click)="onUserGuide()">
+                    User Guide <i class="fa fa-download ml-2"></i>
+                    <!-- href="{{notification.URL}}" -->
+                  </li>
+                  <li class="dropdown-item media align-items-center" (click)="onOrientationVideo()">
+                    Orientation Video
+                    <!-- href="{{notification.URL}}" -->
+                  </li>
+                  <li class="dropdown-item media align-items-center">
+                    <a href="http://helpdesk.positivepurchasing.com/open.php" target="_blank" title="Help">Help Desk
+                      <i class="redsheet redsheet-help-raise-a-ticket ml-1"></i>
+                    </a>
+                    <!-- href="{{notification.URL}}" -->
+                  </li>
+                </ul>
+              </div>
+            </a>
+            <!-- <a href="http://helpdesk.positivepurchasing.com/open.php" target="_blank" title="Help">
+              <i class="redsheet redsheet-help-raise-a-ticket"></i>
+            </a> -->
+          </li>
+          <li class="list-inline-item  pointer">
+            <a (click)="logOut()" title="Logout">
+              <i class="fa fa-sign-in"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

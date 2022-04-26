@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <rx-toast></rx-toast>
+    <rx-dialog></rx-dialog>
+    <rx-popup></rx-popup>
+    <rx-spinner></rx-spinner>
+  </div>
+  <div *ngIf="!isShowDashboard">
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="isShowDashboard">
+    <app-top-bar *ngIf="showElement"></app-top-bar>
+    <div class="main-content" [class.active-sidebar]="isSideBarActiveClass" [class.sidebar]="isShowSideBarButton">
+      <app-side-bar *ngIf="isSideBarActive"></app-side-bar>
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer-bar *ngIf="showElement"></app-footer-bar>
+  </div>
+</div>

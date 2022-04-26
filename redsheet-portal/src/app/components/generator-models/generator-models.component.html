@@ -1,0 +1,65 @@
+﻿<div class="card card-data-tables customer-table-wrapper" *ngIf="showComponent">
+    <header class="card-heading">
+        <h2 class="card-title">Models</h2>
+    </header>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div id="orderTable_wrapper" class="dataTables_wrapper form-inline dt-material no-footer">
+                <div class="mdl-grid1 dt-table">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="table-responsive">
+                            <rx-table #tableEvent="grid" [dataSource]="generatorModels">
+                                <rx-column field="generatorModelName" title="Table / View Name" width="212"></rx-column>
+                                <rx-column [actionable]="true" title="Is Data Auditable" width="139">
+                                    <ng-template rxCellTemplate let-generatorModels>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" [disabled]="generatorModels.generatorModelType == 'view' || generatorModels.generatorModelType == 'View'" (change)="updateGeneratorModels(generatorModels)" [checked]="generatorModels.isDataAuditable" [(ngModel)]="generatorModels.isDataAuditable"><span class="checkbox-material"><span class="check"></span></span>
+                                            </label>  
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                                 <rx-column [actionable]="true" title="Is Record Auditable" width="139">
+                                    <ng-template rxCellTemplate let-generatorModels>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" [disabled]="generatorModels.generatorModelType == 'view' || generatorModels.generatorModelType == 'View'" (change)="updateGeneratorModels(generatorModels)" [checked]="generatorModels.isRecordAuditable" [(ngModel)]="generatorModels.isRecordAuditable"><span class="checkbox-material"><span class="check"></span></span>
+                                            </label>  
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column [actionable]="true" title="Is Soft Delete" width="139">
+                                    <ng-template rxCellTemplate let-generatorModels>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" [disabled]="generatorModels.generatorModelType == 'view' || generatorModels.generatorModelType == 'View'" (change)="updateGeneratorModels(generatorModels)" [checked]="generatorModels.isSoftDelete" [(ngModel)]="generatorModels.isSoftDelete"><span class="checkbox-material"><span class="check"></span></span>
+                                            </label>  
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                                 <rx-column [actionable]="true" title="Is Additional Validation" width="139">
+                                    <ng-template rxCellTemplate let-generatorModels>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" [disabled]="generatorModels.generatorModelType == 'view' || generatorModels.generatorModelType == 'View'" (change)="updateGeneratorModels(generatorModels)" [checked]="generatorModels.isAdditionalValidation" [(ngModel)]="generatorModels.isAdditionalValidation"><span class="checkbox-material"><span class="check"></span></span>
+                                            </label>  
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column [actionable]="true" title="Is Date Conversion" width="139">
+                                    <ng-template rxCellTemplate let-generatorModels>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" [disabled]="generatorModels.generatorModelType == 'view' || generatorModels.generatorModelType == 'View'" (change)="updateGeneratorModels(generatorModels)" [checked]="generatorModels.isDateConversion" [(ngModel)]="generatorModels.isDateConversion"><span class="checkbox-material"><span class="check"></span></span>
+                                            </label>  
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                            </rx-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

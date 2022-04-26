@@ -1,0 +1,178 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form class="section-form" [formGroup]="projectGameDetailFormGroup">
+                <div class="section-box pb-2">
+                    <fieldset class="p-3 mb-4">
+                        <legend>
+                            <h2 class="color-primary d-inline-block mb-0">Current game being played or previously played
+                                *</h2>
+                        </legend>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-big-4 my-2"
+                                *ngFor="let gameTypes of game_types">
+                                <label class="custom-control custom-radio radio-icon"
+                                    [class.active]="projectGameDetailFormGroup.controls.currentGameId.value ==gameTypes.gameTypeId ">
+                                    <input name="radio1"
+                                        [checked]="projectGameDetailFormGroup.controls.currentGameId.value == gameTypes.gameTypeId"
+                                        class="custom-control-input" type="radio"
+                                        (click)="projectGameDetailFormGroup.controls.currentGameId.setValue(gameTypes.gameTypeId)" />
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        <i class="{{gameTypes.className}} align-self-center"></i>
+                                        <span class="align-self-center">{{gameTypes.gameTypeName}}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="p-3 mb-4">
+                        <legend>
+                            <h2 class="color-primary d-inline-block mb-0">Their current game being played or previously
+                                played *</h2>
+                        </legend>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-big-4 my-2"
+                                *ngFor="let gameTypes of game_types">
+                                <label class="custom-control custom-radio radio-icon"
+                                    [class.active]="projectGameDetailFormGroup.controls.theirCurrentGameId.value ==gameTypes.gameTypeId ">
+                                    <input name="radio2"
+                                        [checked]="projectGameDetailFormGroup.controls.theirCurrentGameId.value == gameTypes.gameTypeId"
+                                        class="custom-control-input" type="radio"
+                                        (click)="projectGameDetailFormGroup.controls.theirCurrentGameId.setValue(gameTypes.gameTypeId)" />
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        <!-- <i class="redsheet redsheet-chicken align-self-center"></i> -->
+                                        <i class="{{gameTypes.className}} align-self-center"></i>
+                                        <span class="align-self-center">{{gameTypes.gameTypeName}}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="p-3 mb-4">
+                        <legend>
+                            <h2 class="color-primary d-inline-block mb-0">Their anticipated event game *</h2>
+                        </legend>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-big-4 my-2"
+                                *ngFor="let gameTypes of game_types">
+                                <label class="custom-control custom-radio radio-icon"
+                                    [class.active]="projectGameDetailFormGroup.controls.theirEventGameId.value ==gameTypes.gameTypeId ">
+                                    <input name="radio3"
+                                        [checked]="projectGameDetailFormGroup.controls.theirEventGameId.value == gameTypes.gameTypeId"
+                                        class="custom-control-input" type="radio"
+                                        (click)="getRationalePlaceholder(gameTypes.gameTypeId)" />
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        <i class="{{gameTypes.className}} align-self-center"></i>
+                                        <span class="align-self-center">{{gameTypes.gameTypeName}}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <label for="notes">Rationale for our assumptions *</label>
+                        <!-- (change)="getRationalePlaceholder(projectGameDetailFormGroup.controls.theirEventGameId.value)" -->
+                        <textarea class="form-control" rows="3" name="" placeholder="{{placeholderText}}"
+                            (change)="getRationalePlaceholder(projectGameDetailFormGroup.controls.theirEventGameId.value)"
+                            formControlName="notes" [class.error-message]="validMessageNotes.isError
+                            || projectGameDetailFormGroup.controls.notes.invalid 
+                            && (projectGameDetailFormGroup.controls.notes.dirty 
+                                || projectGameDetailFormGroup.controls.notes.touched)"
+                            (input)="onSearchChangeNotes($event.target.value)"></textarea>
+                        <small> <i *ngIf="validMessageNotes.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageNotes.maximumCharacter}}
+                            <span [style.color]="validMessageNotes.isError ? '#ef3340' : ''">
+                                {{validMessageNotes.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="section-box pb-2" [(formGroup)]="projectGameDetailFormGroup.controls.games.controls[num]"
+                    *ngFor="let games of projectGameDetailFormGroup.controls.games.controls;let num = index">
+                    <div class="section-header">
+                        <button class="btn btn-info pull-right" *ngIf="num < 1" title="Add" (click)="addGames()"><i
+                                class="fa fa-plus"></i></button>
+                        <button class="btn btn-info pull-right"
+                            *ngIf="num + 1 == projectGameDetailFormGroup.controls.games.controls.length && !(num+1 == 1)"
+                            title="Delete"
+                            (click)="showGameDeleteComponent(projectGameDetailFormGroup.controls.games.controls.length,games.controls.projectGameDetailId.value,games.controls.gameId.value)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <fieldset class="w-100 p-3 mb-4">
+                        <legend>
+                            <h2 class="color-primary d-inline-block mb-0">Game {{num + 1}} *</h2>
+                        </legend>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-big-4 my-2"
+                                *ngFor="let gameTypes of game_types">
+                                <label class="custom-control custom-radio radio-icon"
+                                    [class.active]="projectGameDetailFormGroup.controls.games.controls[num].controls.gameTypeId.value ==gameTypes.gameTypeId ">
+                                    <input
+                                        [checked]="projectGameDetailFormGroup.controls.games.controls[num].controls.gameTypeId.value == gameTypes.gameTypeId"
+                                        class="custom-control-input" type="radio"
+                                        (click)="projectGameDetailFormGroup.controls.games.controls[num].controls.gameTypeId.setValue(gameTypes.gameTypeId)"
+                                        (change)="getGamePlaceholder(gameTypes.gameTypeId,num)" />
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">
+                                        <i class="{{gameTypes.className}} align-self-center"></i>
+                                        <span class="align-self-center">{{gameTypes.gameTypeName}}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <label for="game-1-play">Game {{num + 1}} How we will play *</label>
+                        <textarea class="form-control" rows="3" name="game-{{num + 1}}-play"
+                            placeholder="{{playPlaceholderText[num]}}"
+                            (change)="getGamePlaceholder(projectGameDetailFormGroup.controls.games.controls[num].controls.gameTypeId.value,num)"
+                            [class.error-message]="validMessageGamePlay[num].isError || chkPReqvalidation(num,true)"
+                            (input)="onSearchChangeGamePlay($event.target.value,num)"
+                            formControlName="play"></textarea>
+                        <small> <i *ngIf="validMessageGamePlay[num].isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageGamePlay[num].maximumCharacter}}
+                            <span [style.color]="validMessageGamePlay[num].isError ? '#ef3340' : ''">
+                                {{validMessageGamePlay[num].remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="game-1-trigger">Game {{num + 1}} Trigger to switch game *</label>
+                        <textarea class="form-control" rows="3" name="game-1-trigger"
+                            placeholder="{{triggerPlaceholderText[num]}}"
+                            (change)="getGamePlaceholder(projectGameDetailFormGroup.controls.games.controls[num].controls.gameTypeId.value,num)"
+                            [class.error-message]="validMessageGameTrigger[num].isError || chkTReqvalidation(num,false)"
+                            (input)="onSearchChangeGameTrigger($event.target.value,num)"
+                            formControlName="trigger"></textarea>
+                            <small> <i *ngIf="validMessageGameTrigger[num].isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageGameTrigger[num].maximumCharacter}}
+                            <span [style.color]="validMessageGameTrigger[num].isError ? '#ef3340' : ''">
+                                {{validMessageGameTrigger[num].remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="row section-form-row">
+                    <div class="col-12 text-sm-right mt-3">
+                        <button type="submit" class="btn btn-primary btn-md"
+                            [disabled]="!(projectGameDetailFormGroup.valid && checkValidation())"
+                            (click)="editProjectGameDetail()">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Edit Our Negotiable<i class="sup color-primary fa fa-registered"></i></h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="hideOurRequirementDetailEditComponent()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="ourRequirementDetailFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="requirement" class="">Our Negotiable<i
+                                class="sup color-blue-gray fa fa-registered"></i> or Requirements *</label>
+                        <textarea rxFocus="true" class="form-control" name="requirement" placeholder="Be specific"
+                            formControlName="requirement" [class.error-message]="validMessageRequirement.isError
+                            || ourRequirementDetailFormGroup.controls.requirement.invalid 
+                            && (ourRequirementDetailFormGroup.controls.requirement.dirty 
+                                || ourRequirementDetailFormGroup.controls.requirement.touched)"
+                            (input)="onSearchChangeRequirement($event.target.value)"></textarea>
+                        <small> <i *ngIf="validMessageRequirement.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageRequirement.maximumCharacter}}
+                            <span [style.color]="validMessageRequirement.isError ? '#ef3340' : ''">
+                                {{validMessageRequirement.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="select-pain-factor" class="">Select Pain Factor *</label>
+                        <select class="form-control" rows="4" name="" formControlName="painFactorId">
+                            <option value="" disabled>Select pain factor</option>
+                            <option *ngFor="let painFactor of pain_factors" [value]="painFactor.painFactorId">
+                                <h5>{{painFactor.painFactorName}}</h5>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="m-d-o" class="">Most Desirable Outcome *</label>
+                        <input type="text" class="form-control" name="m-d-o" placeholder="Be specific"
+                            formControlName="mdo" [class.error-message]="validMessageMdo.isError
+                            || ourRequirementDetailFormGroup.controls.mdo.invalid 
+                            && (ourRequirementDetailFormGroup.controls.mdo.dirty 
+                                || ourRequirementDetailFormGroup.controls.mdo.touched)"
+                            (input)="onSearchChangeMdo($event.target.value)" />
+                        <small> <i *ngIf="validMessageMdo.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageMdo.maximumCharacter}}
+                            <span [style.color]="validMessageMdo.isError ? '#ef3340' : ''">
+                                {{validMessageMdo.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="concession-1" class="">Concession step 1</label>
+                        <input type="text" class="form-control" name="concession-1" placeholder="Be specific"
+                            formControlName="secondStep" [class.error-message]="validMessageSecondStep.isError"
+                            (input)="onSearchChangeSecondStep($event.target.value)" />
+                        <small> <i *ngIf="validMessageSecondStep.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageSecondStep.maximumCharacter}}
+                            <span [style.color]="validMessageSecondStep.isError ? '#ef3340' : ''">
+                                {{validMessageSecondStep.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="concession-2" class="">Concession step 2</label>
+                        <input type="text" class="form-control" name="concession-2" placeholder="Be specific"
+                            formControlName="thirdStep" [class.error-message]="validMessageThirdStep.isError"
+                            (input)="onSearchChangeThirdStep($event.target.value)" />
+                        <small> <i *ngIf="validMessageThirdStep.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageThirdStep.maximumCharacter}}
+                            <span [style.color]="validMessageThirdStep.isError ? '#ef3340' : ''">
+                                {{validMessageThirdStep.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="concession-3" class="">Concession step 3</label>
+                        <input type="text" class="form-control" name="concession-3" placeholder="Be specific"
+                            formControlName="fourStep" [class.error-message]="validMessageFourStep.isError"
+                            (input)="onSearchChangeFourStep($event.target.value)" />
+                        <small> <i *ngIf="validMessageFourStep.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageFourStep.maximumCharacter}}
+                            <span [style.color]="validMessageFourStep.isError ? '#ef3340' : ''">
+                                {{validMessageFourStep.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="l-d-o" class="">Least Desirable Outcome *</label>
+                        <input type="text" class="form-control" name="l-d-o" placeholder="Be specific"
+                            formControlName="ldo" [class.error-message]="validMessageLdo.isError
+                            || ourRequirementDetailFormGroup.controls.ldo.invalid 
+                            && (ourRequirementDetailFormGroup.controls.ldo.dirty 
+                                || ourRequirementDetailFormGroup.controls.ldo.touched)"
+                            (input)="onSearchChangeLdo($event.target.value)" />
+                        <small> <i *ngIf="validMessageLdo.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageLdo.maximumCharacter}}
+                            <span [style.color]="validMessageLdo.isError ? '#ef3340' : ''">
+                                {{validMessageLdo.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md"
+                [disabled]="!ourRequirementDetailFormGroup.valid" (click)="editOurRequirementDetail()">Update</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+                (click)="hideOurRequirementDetailEditComponent()">Cancel</button>
+        </div>
+    </div>
+</div>

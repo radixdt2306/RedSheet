@@ -1,0 +1,104 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+    <div class="modal-header border-0">
+      <h2 class="modal-title">Edit an event or milestone with desired outcome</h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="hideBackgroundEventEditComponent()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="backgroundEventFormGroup" class="section-form">
+        <div class="row section-form-row mt-0 mb-0">
+          <div class="col-12 form-group text-left mt-4 mt-lg-0">
+            <div class="row">
+              <label class="col-12 col-md-3 col-form-label">I am adding</label>
+              <div class="col-12 col-md-9">
+                <div class="row">
+                  <div class="col-12 mt-1 mb-1">
+                    <label class="custom-control custom-radio active">
+                      <input name="isEvent" class="custom-control-input" type="radio"
+                        (click)="backgroundEventFormGroup.controls.isEvent.setValue(true)"
+                        [checked]="backgroundEventFormGroup.controls.isEvent.value" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description pl-2 mb-2">An Event</span>
+                    </label>
+                  </div>
+                  <div class="col-12 mt-1 mb-1">
+                    <label class="custom-control custom-radio">
+                      <input name="isEvent" class="custom-control-input" type="radio"
+                        (click)="backgroundEventFormGroup.controls.isEvent.setValue(false)"
+                        [checked]="!backgroundEventFormGroup.controls.isEvent.value" />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description pl-2 mb-2">Milestone with Desired outcome</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 form-group text-left mt-4 mt-lg-0">
+            <div class="row align-items-center">
+              <label class="col-12 col-md-3 col-form-label">Name *</label>
+              <div class="col-12 col-md-9">
+                <input type="text" rxFocus="true" class="form-control" placeholder="Add the name"
+                  formControlName="title" [class.error-message]="validMessageTitle.isError
+                  || nanoScopeToNegotiateObjectiveFormGroup.controls.title.invalid 
+                  && (nanoScopeToNegotiateObjectiveFormGroup.controls.title.dirty 
+                      || nanoScopeToNegotiateObjectiveFormGroup.controls.title.touched)"
+                  (input)="onSearchChangeTitle($event.target.value)">
+                <small> <i *ngIf="validMessageTitle.isError" class="fa fa-exclamation-circle"
+                    style="font-size:16px;color:#ef3340"></i>
+                  {{validMessageTitle.maximumCharacter}}
+                  <span [style.color]="validMessageTitle.isError ? '#ef3340' : ''">
+                    {{validMessageTitle.remainedOrExceededCharacters}}</span>
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 form-group text-left mt-4 mt-lg-0">
+            <div class="row align-items-center">
+              <label class="col-12 col-md-3 col-form-label">Description</label>
+              <div class="col-12 col-md-9">
+                <textarea class="form-control" name="" placeholder="Add the detail" formControlName="description"
+                  [class.error-message]="validMessageDescription.isError"
+                  (input)="onSearchChangeDescription($event.target.value)"></textarea>
+                <small> <i *ngIf="validMessageDescription.isError" class="fa fa-exclamation-circle"
+                    style="font-size:16px;color:#ef3340"></i>
+                  {{validMessageDescription.maximumCharacter}}
+                  <span [style.color]="validMessageDescription.isError ? '#ef3340' : ''">
+                    {{validMessageDescription.remainedOrExceededCharacters}}</span>
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 form-group text-left mt-4 mt-lg-0">
+            <div class="row align-items-center">
+              <label *ngIf="backgroundEventFormGroup.controls.isEvent.value"
+                class="col-12 col-md-3 col-form-label">Start Date *</label>
+              <label *ngIf="!backgroundEventFormGroup.controls.isEvent.value"
+                class="col-12 col-md-3 col-form-label">Date *</label>
+              <div class="col-12 col-md-9">
+                <rx-date placeholder="dd/mm/yyyy" pickerClass="form-control" formControlName="startDate"></rx-date>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="backgroundEventFormGroup.controls.isEvent.value" class="col-12 text-left mt-4 mt-lg-0">
+            <div class="row align-items-center">
+              <label class="col-12 col-md-3 col-form-label">End Date *</label>
+              <div class="col-12 col-md-9">
+                <rx-date placeholder="dd/mm/yyyy" pickerClass="form-control" formControlName="endDate"></rx-date>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="update" class="btn btn-primary btn-md" [disabled]="!backgroundEventFormGroup.valid"
+        (click)="editBackgroundEvent()">Update</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md"
+        (click)="hideBackgroundEventEditComponent()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://PPCorporate/Services/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MembershipServiceImplementation" targetNamespace="http://PPCorporate/Services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://PPCorporate/Services/Imports">
+      <xsd:import schemaLocation="http://positivedev.co.uk:9876/membershipservice/MEX?xsd=xsd0" namespace="http://PPCorporate/Services/" />
+      <xsd:import schemaLocation="http://positivedev.co.uk:9876/membershipservice/MEX?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://positivedev.co.uk:9876/membershipservice/MEX?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MembershipInterface" />
+      <xsd:import schemaLocation="http://positivedev.co.uk:9876/membershipservice/MEX?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMembership_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLogin" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserApplicationRolesFromUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRolesFromUserId" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserApplicationRolesFromUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRolesFromUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserApplicationRolesFromUserUniqueId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRolesFromUserUniqueId" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserApplicationRolesFromUserUniqueId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserApplicationRolesFromUserUniqueIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_RequestPasswordReset_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestPasswordReset" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_RequestPasswordReset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestPasswordResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetPasswordGenerateNewToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasswordGenerateNewToken" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetPasswordGenerateNewToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPasswordGenerateNewTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllUsers_Paged_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers_Paged" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllUsers_Paged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers_PagedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllCompanies_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompanies" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetAllCompanies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompaniesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetCompanyGlobalsForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyGlobalsForUser" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetCompanyGlobalsForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyGlobalsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UpdateUserProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UpdateUserProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ClientApplication_UpdateUserProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientApplication_UpdateUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ClientApplication_UpdateUserProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientApplication_UpdateUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserUnlockAccountRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserUnlockAccountRequest" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserUnlockAccountRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserUnlockAccountRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserUnlockAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserUnlockAccount" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserUnlockAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserUnlockAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetCompanyApplicationSettings_DataConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyApplicationSettings_DataConnection" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetCompanyApplicationSettings_DataConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyApplicationSettings_DataConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserRequiredToAgreeTermsConditions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequiredToAgreeTermsConditions" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserRequiredToAgreeTermsConditions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequiredToAgreeTermsConditionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAgreedTermsConditions_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAgreedTermsConditions" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAgreedTermsConditions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAgreedTermsConditionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserAllowedApplication_GetAssignedRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserAllowedApplication_GetAssignedRoles" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_UserAllowedApplication_GetAssignedRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserAllowedApplication_GetAssignedRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ServiceApplication_UpdateDataSynchronizedDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceApplication_UpdateDataSynchronizedDate" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_ServiceApplication_UpdateDataSynchronizedDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServiceApplication_UpdateDataSynchronizedDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetApplicationProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetApplicationProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetApplicationProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetApplicationProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetTemplates_InputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetTemplates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetApplicationUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetApplicationUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_Workflow_GetApplicationUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Workflow_GetApplicationUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserProfileFromUniqueId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfileFromUniqueId" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetUserProfileFromUniqueId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfileFromUniqueIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_RequestSSO_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestSSO" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_RequestSSO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestSSOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_AuthenticateSSORequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateSSORequest" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_AuthenticateSSORequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateSSORequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetLoginProvider_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginProvider" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_GetLoginProvider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAllowedApplication_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAllowedApplication" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAllowedApplication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAllowedApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAllowedApplicationUsingApplicationUniqueId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAllowedApplicationUsingApplicationUniqueId" />
+  </wsdl:message>
+  <wsdl:message name="IMembership_SetUserAllowedApplicationUsingApplicationUniqueId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserAllowedApplicationUsingApplicationUniqueIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMembership">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/Login" message="tns:IMembership_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/LoginResponse" message="tns:IMembership_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/UserLogin" message="tns:IMembership_UserLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/UserLoginResponse" message="tns:IMembership_UserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRolesFromUserId">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserId" message="tns:IMembership_GetUserApplicationRolesFromUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserIdResponse" message="tns:IMembership_GetUserApplicationRolesFromUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRolesFromUserUniqueId">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserUniqueId" message="tns:IMembership_GetUserApplicationRolesFromUserUniqueId_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserUniqueIdResponse" message="tns:IMembership_GetUserApplicationRolesFromUserUniqueId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetUserProfile" message="tns:IMembership_GetUserProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetUserProfileResponse" message="tns:IMembership_GetUserProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestPasswordReset">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/RequestPasswordReset" message="tns:IMembership_RequestPasswordReset_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/RequestPasswordResetResponse" message="tns:IMembership_RequestPasswordReset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPasswordGenerateNewToken">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/SetPasswordGenerateNewToken" message="tns:IMembership_SetPasswordGenerateNewToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/SetPasswordGenerateNewTokenResponse" message="tns:IMembership_SetPasswordGenerateNewToken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/ResetPassword" message="tns:IMembership_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/ResetPasswordResponse" message="tns:IMembership_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/ChangePassword" message="tns:IMembership_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/ChangePasswordResponse" message="tns:IMembership_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetAllUsers" message="tns:IMembership_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetAllUsersResponse" message="tns:IMembership_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers_Paged">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetAllUsers_Paged" message="tns:IMembership_GetAllUsers_Paged_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetAllUsers_PagedResponse" message="tns:IMembership_GetAllUsers_Paged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanies">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetAllCompanies" message="tns:IMembership_GetAllCompanies_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetAllCompaniesResponse" message="tns:IMembership_GetAllCompanies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyGlobalsForUser">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetCompanyGlobalsForUser" message="tns:IMembership_GetCompanyGlobalsForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetCompanyGlobalsForUserResponse" message="tns:IMembership_GetCompanyGlobalsForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserProfile">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/UpdateUserProfile" message="tns:IMembership_UpdateUserProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/UpdateUserProfileResponse" message="tns:IMembership_UpdateUserProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientApplication_UpdateUserProfile">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/ClientApplication_UpdateUserProfile" message="tns:IMembership_ClientApplication_UpdateUserProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/ClientApplication_UpdateUserProfileResponse" message="tns:IMembership_ClientApplication_UpdateUserProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUnlockAccountRequest">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/UserUnlockAccountRequest" message="tns:IMembership_UserUnlockAccountRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/UserUnlockAccountRequestResponse" message="tns:IMembership_UserUnlockAccountRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserUnlockAccount">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/UserUnlockAccount" message="tns:IMembership_UserUnlockAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/UserUnlockAccountResponse" message="tns:IMembership_UserUnlockAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyApplicationSettings_DataConnection">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetCompanyApplicationSettings_DataConnection" message="tns:IMembership_GetCompanyApplicationSettings_DataConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetCompanyApplicationSettings_DataConnectionResponse" message="tns:IMembership_GetCompanyApplicationSettings_DataConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequiredToAgreeTermsConditions">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetUserRequiredToAgreeTermsConditions" message="tns:IMembership_GetUserRequiredToAgreeTermsConditions_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetUserRequiredToAgreeTermsConditionsResponse" message="tns:IMembership_GetUserRequiredToAgreeTermsConditions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAgreedTermsConditions">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAgreedTermsConditions" message="tns:IMembership_SetUserAgreedTermsConditions_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAgreedTermsConditionsResponse" message="tns:IMembership_SetUserAgreedTermsConditions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserAllowedApplication_GetAssignedRoles">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/UserAllowedApplication_GetAssignedRoles" message="tns:IMembership_UserAllowedApplication_GetAssignedRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/UserAllowedApplication_GetAssignedRolesResponse" message="tns:IMembership_UserAllowedApplication_GetAssignedRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceApplication_UpdateDataSynchronizedDate">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/ServiceApplication_UpdateDataSynchronizedDate" message="tns:IMembership_ServiceApplication_UpdateDataSynchronizedDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/ServiceApplication_UpdateDataSynchronizedDateResponse" message="tns:IMembership_ServiceApplication_UpdateDataSynchronizedDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetApplicationProduct">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetApplicationProduct" message="tns:IMembership_Workflow_GetApplicationProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetApplicationProductResponse" message="tns:IMembership_Workflow_GetApplicationProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetTemplates">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetTemplates" message="tns:IMembership_Workflow_GetTemplates_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetTemplatesResponse" message="tns:IMembership_Workflow_GetTemplates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetApplicationUsers">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetApplicationUsers" message="tns:IMembership_Workflow_GetApplicationUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/Workflow_GetApplicationUsersResponse" message="tns:IMembership_Workflow_GetApplicationUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfileFromUniqueId">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetUserProfileFromUniqueId" message="tns:IMembership_GetUserProfileFromUniqueId_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetUserProfileFromUniqueIdResponse" message="tns:IMembership_GetUserProfileFromUniqueId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestSSO">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/RequestSSO" message="tns:IMembership_RequestSSO_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/RequestSSOResponse" message="tns:IMembership_RequestSSO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateSSORequest">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/AuthenticateSSORequest" message="tns:IMembership_AuthenticateSSORequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/AuthenticateSSORequestResponse" message="tns:IMembership_AuthenticateSSORequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/CreateUser" message="tns:IMembership_CreateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/CreateUserResponse" message="tns:IMembership_CreateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginProvider">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/GetLoginProvider" message="tns:IMembership_GetLoginProvider_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/GetLoginProviderResponse" message="tns:IMembership_GetLoginProvider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAllowedApplication">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAllowedApplication" message="tns:IMembership_SetUserAllowedApplication_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAllowedApplicationResponse" message="tns:IMembership_SetUserAllowedApplication_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAllowedApplicationUsingApplicationUniqueId">
+      <wsdl:input wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAllowedApplicationUsingApplicationUniqueId" message="tns:IMembership_SetUserAllowedApplicationUsingApplicationUniqueId_InputMessage" />
+      <wsdl:output wsaw:Action="http://PPCorporate/Services/IMembership/SetUserAllowedApplicationUsingApplicationUniqueIdResponse" message="tns:IMembership_SetUserAllowedApplicationUsingApplicationUniqueId_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="memService" type="tns:IMembership">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/UserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRolesFromUserId">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserApplicationRolesFromUserUniqueId">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetUserApplicationRolesFromUserUniqueId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetUserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestPasswordReset">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/RequestPasswordReset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPasswordGenerateNewToken">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/SetPasswordGenerateNewToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers_Paged">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetAllUsers_Paged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompanies">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetAllCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyGlobalsForUser">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetCompanyGlobalsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserProfile">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/UpdateUserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientApplication_UpdateUserProfile">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/ClientApplication_UpdateUserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUnlockAccountRequest">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/UserUnlockAccountRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserUnlockAccount">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/UserUnlockAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyApplicationSettings_DataConnection">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetCompanyApplicationSettings_DataConnection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequiredToAgreeTermsConditions">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetUserRequiredToAgreeTermsConditions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAgreedTermsConditions">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/SetUserAgreedTermsConditions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserAllowedApplication_GetAssignedRoles">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/UserAllowedApplication_GetAssignedRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceApplication_UpdateDataSynchronizedDate">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/ServiceApplication_UpdateDataSynchronizedDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetApplicationProduct">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/Workflow_GetApplicationProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetTemplates">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/Workflow_GetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Workflow_GetApplicationUsers">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/Workflow_GetApplicationUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfileFromUniqueId">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetUserProfileFromUniqueId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestSSO">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/RequestSSO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateSSORequest">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/AuthenticateSSORequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginProvider">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/GetLoginProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAllowedApplication">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/SetUserAllowedApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserAllowedApplicationUsingApplicationUniqueId">
+      <soap:operation soapAction="http://PPCorporate/Services/IMembership/SetUserAllowedApplicationUsingApplicationUniqueId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MembershipServiceImplementation">
+    <wsdl:port name="memService" binding="tns:memService">
+      <soap:address location="http://positivedev.co.uk:9876/membershipservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

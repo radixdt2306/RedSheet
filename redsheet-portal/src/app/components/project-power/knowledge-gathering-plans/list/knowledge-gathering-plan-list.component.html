@@ -1,0 +1,50 @@
+<div class="section-box" *ngIf="showComponent">
+    <div class="section-header">
+        <h2 class="section-title d-inline-block">Knowledge Actions</h2>
+        <button class="btn btn-info pull-right" data-toggle="modal" (click)="showKnowledgeGatheringPlanAddComponent({})"
+            [disabled]="projectPowerId == 0" title="Add"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="section-body">
+        <div>
+            <rx-template [dataSource]="knowledgeGatheringPlans" pageSize="2" masterClass="col-12 col-lg-6">
+                <ng-template rxCellTemplate let-knowledgeGatheringPlan="dataItem">
+                    <div class="media section-media without-icon without-title">
+                        <div class="media-body">
+                            <div class="media-title">
+                                <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                    <li class="list-inline-item">
+                                        <a title="Edit"
+                                            (click)="showKnowledgeGatheringPlanEditComponent(knowledgeGatheringPlan)">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a title="Delete"
+                                            (click)="showKnowledgeGatheringPlanDeleteComponent(knowledgeGatheringPlan)">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
+                                </ul>
+                            </div>
+                            <div class="project-summery font-md">
+                                <p>Knowledge Required :
+                                    <span class="color-dark-gray">{{knowledgeGatheringPlan.knowledgeRequired}}</span>
+                                </p>
+                                <p>Source :
+                                    <span class="color-dark-gray">{{knowledgeGatheringPlan.source}}</span>
+                                </p>
+                                <p>Who :
+                                    <span class="color-dark-gray">{{knowledgeGatheringPlan.knowledgeGivenBy}} </span>
+                                    <span class="pl-2">When :
+                                        <span class="color-dark-gray">{{knowledgeGatheringPlan.knowledgeGivenOn |
+                                            date:'dd/MM/yyyy'}}</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </rx-template>
+
+        </div>
+    </div>
+</div>
