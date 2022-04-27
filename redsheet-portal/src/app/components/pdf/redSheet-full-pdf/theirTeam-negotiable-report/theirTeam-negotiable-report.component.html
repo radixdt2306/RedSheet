@@ -1,0 +1,74 @@
+<div  class="page-break p-3" *ngIf="showComponent">
+    <h2>Their team</h2>
+    <p>Based upon the main personality types you identified for each of your opponents, adopt the following responses with
+        each individual to maximize how you build rapport with them.</p>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Personality Type
+                    </th>
+                    <th scope="col" *ngFor="let theirTeamNegotiableData of theirTeamNegotiableReportTableData;">
+                        {{theirTeamNegotiableData.personalityKey}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sub-heading-font font-md">Their Team</td>
+                    <td *ngFor="let theirTeamNegotiableData of theirTeamNegotiableReportTableData;">{{theirTeamNegotiableData.teamMemberName}}</td>
+                </tr>
+                <tr>
+                    <td class="sub-heading-font font-md">Totals</td>
+                    <td *ngFor="let theirTeamNegotiableData of theirTeamNegotiableReportTableData;">{{theirTeamNegotiableData.countTeamMember}}</td>
+                </tr>
+                <tr>
+                    <td class="sub-heading-font font-md">Approaches to <br/>buiild rapport <br/>with these <br/>individuals
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Smile and make them feel loved</li>
+                            <li>Create moments of fun</li>
+                            <li>Give them the stage</li>
+                            <li>Involve them</li>
+                            <li>Use humour to challenge them or tackle difficult messages</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Let them lead and feel in control</li>
+                            <li>Demonstrate progress</li>
+                            <li>Praise them</li>
+                            <li>Show loyalty towards them</li>
+                            <li>Use humour with praise to challenge them</li>
+                            <li>Avoid taking control</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Show you are listening carefully and show concern</li>
+                            <li>Be visibly organised</li>
+                            <li>Use facts and figures</li>
+                            <li>Give them space for perfection</li>
+                            <li>Be careful not to offend them</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Be agreeable towards them</li>
+                            <li>Show you appreciate their efforts</li>
+                            <li>Avoid conflict or anything that might make them feel threatened or under pressure</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>What do we know about them?</h3>
+    <div *ngIf = "theirTeamknownData.knowAboutThem == null || theirTeamknownData.knowAboutThem == ''">None.</div>
+    {{theirTeamknownData.knowAboutThem}}
+    <h3 class="pt-1">Intangible power plan - Plan For Our Style and Demeanour To Project Power And Build Trust</h3>
+    <div *ngIf = "theirTeamknownData.intangiblePowerPlan == null || theirTeamknownData.intangiblePowerPlan == ''">None.</div>
+    {{theirTeamknownData.intangiblePowerPlan}}
+</div>

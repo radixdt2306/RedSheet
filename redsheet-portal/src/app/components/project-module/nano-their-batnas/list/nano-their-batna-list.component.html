@@ -1,0 +1,52 @@
+<div class="section-box" *ngIf="showComponent">
+        <div class="section-header">
+            <h2 class="section-title d-inline-block">Their BATNA(S): </h2>
+            <button class="btn btn-info pull-right" (click)="addNanoTheirBatna()" title="Add"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="section-body">
+            <ul class="custom-list">
+                <li *ngIf="isAdd" class="active">
+                    <input rxFocus="true"  placeholder="Best guess their BATNA." class="form-control" type="text" [(ngModel)]="addNanoTheirBatnaEntity.nanoTheirBatnaValue"
+                    [class.error-message]="validMessageAddBatana.isError"
+                    (input)="onSearchChangeAddBatana($event.target.value)"/>
+                    <small> <i *ngIf="validMessageAddBatana.isError" class="fa fa-exclamation-circle"
+                      style="font-size:16px;color:#ef3340"></i>
+                    {{validMessageAddBatana.maximumCharacter}}
+                    <span [style.color]="validMessageAddBatana.isError ? '#ef3340' : ''">
+                      {{validMessageAddBatana.remainedOrExceededCharacters}}</span>
+                  </small>
+                    <ul class="action-links float-right list-inline">
+                      <li class="list-inline-item" *ngIf="!isLocked" ><a [class.btn_disabled]="validMessageAddBatana.isError" title="Save">
+                        <i class="fa fa-floppy-o" (click)="updateNanoTheirBatna(addNanoTheirBatnaEntity,rowIndex)"></i></a>
+                      </li>
+                    </ul>
+                  </li>
+              <li *ngFor="let nanoTheirBatna of nanoTheirBatnas; let rowIndex=index;" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+                <span *ngIf="!(editRowIndex == rowIndex)">{{nanoTheirBatna.nanoTheirBatnaValue}}</span>
+                <input class="form-control" type="text" [(ngModel)]="editNanoTheirBatna.nanoTheirBatnaValue"
+                rxFocus="true"  placeholder="Best guess their BATNA." *ngIf="(editRowIndex == rowIndex)"
+                [class.error-message]="validMessageBatana.isError" (input)="onSearchChangeBatana($event.target.value)"/>
+                <small *ngIf="(editRowIndex == rowIndex)">
+                  <i *ngIf="validMessageBatana.isError" class="fa fa-exclamation-circle"
+                    style="font-size:16px;color:#ef3340"></i>
+                  {{validMessageBatana.maximumCharacter}}
+                  <span [style.color]="validMessageBatana.isError ? '#ef3340' : ''">
+                    {{validMessageBatana.remainedOrExceededCharacters}}</span>
+                </small>
+                <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+                  <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+                    <a  title="Edit">
+                      <i class="fa fa-pencil-square-o" (click)="showEditRecord(nanoTheirBatna,rowIndex)" ></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))" ><a [class.btn_disabled]="validMessageBatana.isError" title="Save">
+                    <i class="fa fa-floppy-o" (click)="updateNanoTheirBatna(editNanoTheirBatna,rowIndex)"></i></a>
+                  </li>
+                  <li class="list-inline-item"><a title="Delete">
+                    <i class="fa fa-trash-o" (click)="showNanoTheirBatnaDeleteComponent(nanoTheirBatna,rowIndex)" aria-hidden="true"></i></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+        </div>
+    </div>

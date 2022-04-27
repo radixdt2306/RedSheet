@@ -1,0 +1,69 @@
+<div class="container-fluid" *ngIf="showComponent">
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+			</app-project-module-edit>
+		</div>
+	</div>
+	<fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+		<div class="col-12 col-lg-12 col-xl-10">
+			<div class="section-box">
+				<div class="section-header">
+					<h2 class="section-title d-inline-block">Recently added Stakeholders</h2>
+					<button class="btn btn-info pull-right" data-toggle="modal" title="Add"
+						(click)="showProjectStakeholderAddComponent({})"><i class="fa fa-plus"></i></button>
+				</div>
+				<div class="section-body">
+					<div>
+						<rx-template [dataSource]="projectStakeholders" pageSize="4"
+							masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+							<ng-template rxCellTemplate let-projectStakeholder="dataItem">
+								<div class="media section-media align-items-center">
+									<div class="align-self-center section-media-icon text-center">
+										<i class="{{projectStakeholder.className}} fa-4x"></i>
+									</div>
+									<div class="media-body">
+										<div class="media-title">
+											<h4 class="d-inline-block">{{projectStakeholder.stakeholderName}}</h4>
+											<ul class="action-links float-right list-inline" *ngIf="!isLocked">
+												<li class="list-inline-item"><a
+														(click)="showProjectStakeholderEditComponent(projectStakeholder)"
+														title="Edit"><i class="fa fa-pencil-square-o"
+															aria-hidden="true"></i></a></li>
+												<li class="list-inline-item"><a
+														(click)="showStakeholderDeleteComponent(projectStakeholder)"
+														title="Delete"><i class="fa fa-trash-o"
+															aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
+										<div class="project-summery font-md">
+											<p>Action Required : <span
+													class="color-dark-gray">{{projectStakeholder.actionRequried}}</span>
+											</p>
+											<p>Key messages and specific actions : <span
+													class="color-dark-gray">{{projectStakeholder.frequancy}}</span></p>
+											<!-- *ngFor="let iconName of projectStakeholder.iconClassName" -->
+											<p>Mode of Communication : <span class="color-dark-gray">
+													<label
+														*ngFor="let communicationModeClass of  projectStakeholder.communicationModeWithClass; let num=index">
+														<i class="{{projectStakeholder.iconClass[num]}}"></i>
+														{{projectStakeholder.communicationModeWithClass[num]}} &nbsp;
+													</label>
+												</span></p>
+											<!-- <p>Mode of Communication : <span class="color-dark-gray"><i class="fa fa-phone"></i> {{projectStakeholder.communicationModeName}}</span></p> -->
+										</div>
+									</div>
+								</div>
+								<!-- </div> -->
+							</ng-template>
+						</rx-template>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

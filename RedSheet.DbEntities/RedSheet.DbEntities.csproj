@@ -1,0 +1,781 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2613C77E-846C-45B7-A55D-D86119329FC5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RedSheet.DbEntities</RootNamespace>
+    <AssemblyName>RedSheet.DbEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Antiforgery, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Antiforgery.1.1.0\lib\net451\Microsoft.AspNetCore.Antiforgery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authorization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.1.1.0\lib\net451\Microsoft.AspNetCore.Authorization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cors.1.1.0\lib\net451\Microsoft.AspNetCore.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.1.1.0\lib\net451\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.1.1.0\lib\net451\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.DataProtection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Diagnostics.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Diagnostics.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.AspNetCore.Diagnostics.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Html.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Html.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.AspNetCore.Html.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.1.1.0\lib\net451\Microsoft.AspNetCore.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.1.1.0\lib\net451\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.1.1.0\lib\net451\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.JsonPatch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.JsonPatch.1.1.0\lib\net451\Microsoft.AspNetCore.JsonPatch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Localization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Localization.1.1.0\lib\net451\Microsoft.AspNetCore.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Abstractions.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.ApiExplorer, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.ApiExplorer.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.ApiExplorer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Core.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Cors, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Cors.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.DataAnnotations, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.DataAnnotations.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.DataAnnotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Formatters.Json, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Formatters.Json.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Formatters.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Localization, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Localization.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Razor.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor.Host, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.Razor.Host.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.Razor.Host.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.TagHelpers, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.TagHelpers.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.TagHelpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Mvc.ViewFeatures.1.1.1\lib\net451\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.1.1.0\lib\net451\Microsoft.AspNetCore.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor.Runtime, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.Runtime.1.1.0\lib\net451\Microsoft.AspNetCore.Razor.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.ResponseCaching.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.ResponseCaching.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.1.1.0\lib\net451\Microsoft.AspNetCore.Routing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Routing.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Routing.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Routing.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.1.1.0\lib\net451\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.3.0\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.3.0\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.1.1.0\lib\net451\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.1.0\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.1.1.0\lib\net451\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.1.1.0\lib\net451\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.1.0\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.1.1.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Composite, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Composite.1.1.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Composite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.1.0\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.1.0\lib\net45\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Globalization.CultureInfoCache, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Globalization.CultureInfoCache.1.1.0\lib\netstandard1.1\Microsoft.Extensions.Globalization.CultureInfoCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Localization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Localization.1.1.0\lib\net451\Microsoft.Extensions.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Localization.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Localization.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Localization.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.0\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.1.1.0\lib\net451\Microsoft.Extensions.ObjectPool.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.PlatformAbstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.PlatformAbstractions.1.1.0\lib\net451\Microsoft.Extensions.PlatformAbstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.WebEncoders, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.WebEncoders.1.1.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.1.1.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rx.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx.Core.1.0.0-beta3\lib\net46\Rx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rx.Core.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx.Core.Data.2.0.0-beta2\lib\net46\Rx.Core.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Rx.Core.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx.Core.Security.2.0.0-beta3\lib\net46\Rx.Core.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.FileVersionInfo.4.0.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.0.1\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.3.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.4.0.1\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.3.0\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.0.0\lib\net46\System.Threading.Thread.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.0.1\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.4.0.1\lib\net46\System.Xml.XPath.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XDocument.4.0.1\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\ApplicationConstants.cs" />
+    <Compile Include="Constants\RegexConstants.cs" />
+    <Compile Include="Constants\ValidationMessages.cs" />
+    <Compile Include="Enums\AssertivenessBehaviour.cs" />
+    <Compile Include="Enums\AssertivenessRequireBehaviour.cs" />
+    <Compile Include="Enums\Behaviour.cs" />
+    <Compile Include="Enums\Change.cs" />
+    <Compile Include="Enums\ChargeType.cs" />
+    <Compile Include="Enums\ConflictStyleBehviour.cs" />
+    <Compile Include="Enums\CultureCategory.cs" />
+    <Compile Include="Enums\CulturePlanCategory.cs" />
+    <Compile Include="Enums\CultureSummary.cs" />
+    <Compile Include="Enums\DatabaseOperation.cs" />
+    <Compile Include="Enums\EmotionalBehaviour.cs" />
+    <Compile Include="Enums\EmotionalRequireBehaviour.cs" />
+    <Compile Include="Enums\GameType.cs" />
+    <Compile Include="Enums\LanguageContentType.cs" />
+    <Compile Include="Enums\ModuleName.cs" />
+    <Compile Include="Enums\NegotiationPhase.cs" />
+    <Compile Include="Enums\NegotiationRole.cs" />
+    <Compile Include="Enums\NegotionalityCategory.cs" />
+    <Compile Include="Enums\NotificationCategory.cs" />
+    <Compile Include="Enums\OutcomeAndLearningCategory.cs" />
+    <Compile Include="Enums\PainFactor.cs" />
+    <Compile Include="Enums\PowerProjection.cs" />
+    <Compile Include="Enums\RequirementCategory.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="ExtendedModels\EventAgendaTiming.cs" />
+    <Compile Include="ExtendedModels\LiteMeetingManagementTiming.cs" />
+    <Compile Include="ExtendedModels\NanoDiscussionSequence.cs" />
+    <Compile Include="ExtendedModels\ProjectModuleAssignee.cs" />
+    <Compile Include="ExtendedModels\ProjectModuleReviewer.cs" />
+    <Compile Include="ExtendedModels\StakeholderCommunicationMode.cs" />
+    <Compile Include="ExtendedModels\EmailTemplateDetail.cs" />
+    <Compile Include="ExtendedModels\OurRequirementDetail.cs" />
+    <Compile Include="ExtendedModels\TheirRequirementDetail.cs" />
+    <Compile Include="ExtendedModels\User.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorConfiguration.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorContext.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorContextLookup.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorContextView.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorController.cs" />
+    <Compile Include="GeneratorDbModels\GeneratorModel.cs" />
+    <Compile Include="ExtendedModels\LiteBackgroundCommunicationMode.cs" />
+    <Compile Include="ModelDefaultData\EmailTemplate.cs" />
+    <Compile Include="ModelDefaultData\Role.cs" />
+    <Compile Include="ModelDefaultData\User.cs" />
+    <Compile Include="Models\ApplicationExceptionLog.cs" />
+    <Compile Include="Models\ApplicationModule.cs" />
+    <Compile Include="Models\ApplicationObject.cs" />
+    <Compile Include="Models\ApplicationObjectType.cs" />
+    <Compile Include="Models\ApplicationTable.cs" />
+    <Compile Include="Models\ApplicationTimeZone.cs" />
+    <Compile Include="Models\ArrivalAndOpeningTactic.cs" />
+    <Compile Include="Models\AuditRecord.cs" />
+    <Compile Include="Models\AuditRecordDetail.cs" />
+    <Compile Include="Models\AuditRequest.cs" />
+    <Compile Include="Models\AvoidGesture.cs" />
+    <Compile Include="Models\AvoidSayingOpinion.cs" />
+    <Compile Include="Models\BackgroundEvent.cs" />
+    <Compile Include="Models\BatnaDetail.cs" />
+    <Compile Include="Models\CommunicationMode.cs" />
+    <Compile Include="Models\CommunicationPlan.cs" />
+    <Compile Include="Models\ConfigurationContent.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Culture.cs" />
+    <Compile Include="Models\CultureContry.cs" />
+    <Compile Include="Models\CultureCountry.cs" />
+    <Compile Include="Models\CulturePlan.cs" />
+    <Compile Include="Models\CultureReportInformation.cs" />
+    <Compile Include="Models\CultureSummary.cs" />
+    <Compile Include="Models\DefaultSetting.cs" />
+    <Compile Include="Models\EmailConfiguration.cs" />
+    <Compile Include="Models\EmailTemplate.cs" />
+    <Compile Include="Models\EmailTemplateDetail.cs" />
+    <Compile Include="Models\EventAgendaTiming.cs" />
+    <Compile Include="Models\EventPlanningAction.cs" />
+    <Compile Include="Models\ExportReportPDF.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GlobalSetting.cs" />
+    <Compile Include="Models\KnowledgeGatheringPlan.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\LanguageContent.cs" />
+    <Compile Include="Models\LiteBackgroundCommunicationMode.cs" />
+    <Compile Include="Models\LiteEventPlanningAction.cs" />
+    <Compile Include="Models\LiteMeetingManagement.cs" />
+    <Compile Include="Models\LiteMeetingManagementTiming.cs" />
+    <Compile Include="Models\LiteMeetingPlanning.cs" />
+    <Compile Include="Models\LiteOurTeamMember.cs" />
+    <Compile Include="Models\LiteProjectBackground.cs" />
+    <Compile Include="Models\LiteRelationshipRequire.cs" />
+    <Compile Include="Models\LiteTarget.cs" />
+    <Compile Include="Models\LiteTheirTeamMember.cs" />
+    <Compile Include="Models\LockRecord.cs" />
+    <Compile Include="Models\LongTermObjective.cs" />
+    <Compile Include="Models\MeetingRequirement.cs" />
+    <Compile Include="Models\ModuleContent.cs" />
+    <Compile Include="Models\ModuleMaster.cs" />
+    <Compile Include="Models\NanoDiscussionSequence.cs" />
+    <Compile Include="Models\NanoOurBatna.cs" />
+    <Compile Include="Models\NanoOurObjective.cs" />
+    <Compile Include="Models\NanoProjectNegotiable.cs" />
+    <Compile Include="Models\NanoRelationshipRequire.cs" />
+    <Compile Include="Models\NanoScopeToNegotiate.cs" />
+    <Compile Include="Models\NanoScopeToNegotiateCommunicationMode.cs" />
+    <Compile Include="Models\NanoScopeToNegotiateObjective.cs" />
+    <Compile Include="Models\NanoTheirBatna.cs" />
+    <Compile Include="Models\NegotiationType.cs" />
+    <Compile Include="Models\Ourbatna.cs" />
+    <Compile Include="Models\OurRequirementDetail.cs" />
+    <Compile Include="Models\OurTeamMember.cs" />
+    <Compile Include="Models\OurTeamMemberBehaviour.cs" />
+    <Compile Include="Models\OurTeamMemberRequire.cs" />
+    <Compile Include="Models\PasswordPolicy.cs" />
+    <Compile Include="Models\Personality.cs" />
+    <Compile Include="Models\PowerReportInformation.cs" />
+    <Compile Include="Models\PowerType.cs" />
+    <Compile Include="Models\PowerTypeDetail.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectBackground.cs" />
+    <Compile Include="Models\ProjectCarryForward.cs" />
+    <Compile Include="Models\ProjectCulture.cs" />
+    <Compile Include="Models\ProjectCulturePlan.cs" />
+    <Compile Include="Models\ProjectEventTimeline.cs" />
+    <Compile Include="Models\ProjectGameDetail.cs" />
+    <Compile Include="Models\ProjectImplementationPlan.cs" />
+    <Compile Include="Models\ProjectModule.cs" />
+    <Compile Include="Models\ProjectModuleAssignee.cs" />
+    <Compile Include="Models\ProjectModuleAssigneesOrReviewer.cs" />
+    <Compile Include="Models\ProjectModuleReview.cs" />
+    <Compile Include="Models\ProjectModuleReviewer.cs" />
+    <Compile Include="Models\ProjectNegotiation.cs" />
+    <Compile Include="Models\ProjectNegotionality.cs" />
+    <Compile Include="Models\ProjectOutcomeAndLearning.cs" />
+    <Compile Include="Models\ProjectPostEventAction.cs" />
+    <Compile Include="Models\ProjectPower.cs" />
+    <Compile Include="Models\ProjectPreparation.cs" />
+    <Compile Include="Models\ProjectRequirement.cs" />
+    <Compile Include="Models\ProjectStakeholder.cs" />
+    <Compile Include="Models\ProjectSuggestedCulturePlan.cs" />
+    <Compile Include="Models\ProjectZoma.cs" />
+    <Compile Include="Models\RapportPlan.cs" />
+    <Compile Include="Models\RecentActivityAndNotification.cs" />
+    <Compile Include="Models\RelationshipRequire.cs" />
+    <Compile Include="Models\RequestLog.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RolePermission.cs" />
+    <Compile Include="Models\SayingOpinion.cs" />
+    <Compile Include="Models\ScheduleEmail.cs" />
+    <Compile Include="Models\SecurityQuestion.cs" />
+    <Compile Include="Models\ServerMessage.cs" />
+    <Compile Include="Models\SMTPSetting.cs" />
+    <Compile Include="Models\StakeholderCommunicationMode.cs" />
+    <Compile Include="Models\StakeholderType.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\SuggestedAction.cs" />
+    <Compile Include="Models\Tactic.cs" />
+    <Compile Include="Models\Target.cs" />
+    <Compile Include="Models\TeamRole.cs" />
+    <Compile Include="Models\TemplateGroup.cs" />
+    <Compile Include="Models\TheirBatna.cs" />
+    <Compile Include="Models\TheirRequirementDetail.cs" />
+    <Compile Include="Models\TheirTeamCommunicationMode.cs" />
+    <Compile Include="Models\TheirTeamMember.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserHobby.cs" />
+    <Compile Include="Models\UserMessage.cs" />
+    <Compile Include="Models\vActiveLanguage.cs" />
+    <Compile Include="Models\ValueObjective.cs" />
+    <Compile Include="Models\vApplicationExceptionLog.cs" />
+    <Compile Include="Models\vApplicationModule.cs" />
+    <Compile Include="Models\vApplicationModuleMaster.cs" />
+    <Compile Include="Models\vApplicationTimeZone.cs" />
+    <Compile Include="Models\vArrivalAndOpeningTactic.cs" />
+    <Compile Include="Models\vArrivalAndOpeningTacticsRecord.cs" />
+    <Compile Include="Models\vAuditRecord.cs" />
+    <Compile Include="Models\vAvoidGesture.cs" />
+    <Compile Include="Models\vAvoidSayingOpinion.cs" />
+    <Compile Include="Models\vBackgroundEvent.cs" />
+    <Compile Include="Models\vBackgroundEventRecord.cs" />
+    <Compile Include="Models\vBackGroundRecord.cs" />
+    <Compile Include="Models\vBatnaDetail.cs" />
+    <Compile Include="Models\vCommunicationMode.cs" />
+    <Compile Include="Models\vCommunicationPlan.cs" />
+    <Compile Include="Models\vCommunicationPlanRecord.cs" />
+    <Compile Include="Models\vCountry.cs" />
+    <Compile Include="Models\vCultureCategory.cs" />
+    <Compile Include="Models\vCultureCountry.cs" />
+    <Compile Include="Models\vCulturePlan.cs" />
+    <Compile Include="Models\vDbOperationType.cs" />
+    <Compile Include="Models\vDefaultSetting.cs" />
+    <Compile Include="Models\vEmailTemplate.cs" />
+    <Compile Include="Models\vEventAgendaTiming.cs" />
+    <Compile Include="Models\vEventAgendaTimingRecord.cs" />
+    <Compile Include="Models\vEventPlanningAction.cs" />
+    <Compile Include="Models\vEventPlanningActionRecord.cs" />
+    <Compile Include="Models\vGameRecord.cs" />
+    <Compile Include="Models\vGeneratorContextModule.cs" />
+    <Compile Include="Models\vKnowledgeGatheringPlan.cs" />
+    <Compile Include="Models\vKnowledgeGatheringPlanRecord.cs" />
+    <Compile Include="Models\vLanguage.cs" />
+    <Compile Include="Models\vLanguageContentName.cs" />
+    <Compile Include="Models\vLanguageContentType.cs" />
+    <Compile Include="Models\vLiteBackgroundCommunicationMode.cs" />
+    <Compile Include="Models\vLiteEventPlanningAction.cs" />
+    <Compile Include="Models\vLiteEventPlanningActionRecord.cs" />
+    <Compile Include="Models\vLiteMeetingManagementRecord.cs" />
+    <Compile Include="Models\vLiteMeetingManagementTiming.cs" />
+    <Compile Include="Models\vLiteMeetingManagementTimingRecord.cs" />
+    <Compile Include="Models\vLiteMeetingPlanning.cs" />
+    <Compile Include="Models\vLiteMeetingPlanningRecord.cs" />
+    <Compile Include="Models\vLiteOurTeamMember.cs" />
+    <Compile Include="Models\vLiteOurTeamMemberRecord.cs" />
+    <Compile Include="Models\vLiteProjectBackgroundRecord.cs" />
+    <Compile Include="Models\vLiteRelationshipRequire.cs" />
+    <Compile Include="Models\vLiteTarget.cs" />
+    <Compile Include="Models\vLiteTargetRecord.cs" />
+    <Compile Include="Models\vLiteTheirTeamMember.cs" />
+    <Compile Include="Models\vLiteTheirTeamMemberRecord.cs" />
+    <Compile Include="Models\vLockRecord.cs" />
+    <Compile Include="Models\vLongTermObjective.cs" />
+    <Compile Include="Models\vLongTermObjectiveRecord.cs" />
+    <Compile Include="Models\vMainModuleMaster.cs" />
+    <Compile Include="Models\vMeetingRequirement.cs" />
+    <Compile Include="Models\vModuleMaster.cs" />
+    <Compile Include="Models\vModulewiseContent.cs" />
+    <Compile Include="Models\vNanoDiscussionSequence.cs" />
+    <Compile Include="Models\vNanoDiscussionSequenceRecord.cs" />
+    <Compile Include="Models\vNanoOurBatna.cs" />
+    <Compile Include="Models\vNanoOurBatnaRecord.cs" />
+    <Compile Include="Models\vNanoOurObjective.cs" />
+    <Compile Include="Models\vNanoOurObjectiveRecord.cs" />
+    <Compile Include="Models\vNanoProjectNegotiable.cs" />
+    <Compile Include="Models\vNanoProjectNegotiableRecord.cs" />
+    <Compile Include="Models\vNanoRelationshipRequire.cs" />
+    <Compile Include="Models\vNanoScopeToNegotiate.cs" />
+    <Compile Include="Models\vNanoScopeToNegotiateObjectiveRecord.cs" />
+    <Compile Include="Models\vNanoTheirBatna.cs" />
+    <Compile Include="Models\vNanoTheirBatnaRecord.cs" />
+    <Compile Include="Models\vNegotiationType.cs" />
+    <Compile Include="Models\vNegotionalityMember.cs" />
+    <Compile Include="Models\vNegotionalityMemberRecord.cs" />
+    <Compile Include="Models\vOurbatna.cs" />
+    <Compile Include="Models\vOurRequirementDetail.cs" />
+    <Compile Include="Models\vOurRequirementDetailRecord.cs" />
+    <Compile Include="Models\vOurTeamMember.cs" />
+    <Compile Include="Models\vOurTeamMemberRecord.cs" />
+    <Compile Include="Models\vOurTheirRequirenmentDetail.cs" />
+    <Compile Include="Models\vPersonality.cs" />
+    <Compile Include="Models\vPowerType.cs" />
+    <Compile Include="Models\vPowerTypeDetail.cs" />
+    <Compile Include="Models\vPowerTypeDetailRecord.cs" />
+    <Compile Include="Models\vProjectBackGroundRecord.cs" />
+    <Compile Include="Models\vProjectCarryForward.cs" />
+    <Compile Include="Models\vProjectCarryForwardRecord.cs" />
+    <Compile Include="Models\vProjectCulturePlan.cs" />
+    <Compile Include="Models\vProjectCulturePlanRecord.cs" />
+    <Compile Include="Models\vProjectCultureRecord.cs" />
+    <Compile Include="Models\vProjectEventTimelineRecord.cs" />
+    <Compile Include="Models\vProjectGameDetailRecord.cs" />
+    <Compile Include="Models\vProjectImplementationPlan.cs" />
+    <Compile Include="Models\vProjectImplementationPlanRecord.cs" />
+    <Compile Include="Models\vProjectModuleAssignee.cs" />
+    <Compile Include="Models\vProjectModuleRecord.cs" />
+    <Compile Include="Models\vProjectModuleReviewer.cs" />
+    <Compile Include="Models\vProjectModuleReviewRecord.cs" />
+    <Compile Include="Models\vProjectNegotiationRecord.cs" />
+    <Compile Include="Models\vProjectNegotionalityRecord.cs" />
+    <Compile Include="Models\vProjectOutcomeAndLearning.cs" />
+    <Compile Include="Models\vProjectOutcomeAndLearningRecord.cs" />
+    <Compile Include="Models\vProjectPostEventAction.cs" />
+    <Compile Include="Models\vProjectPostEventActionRecord.cs" />
+    <Compile Include="Models\vProjectPowerRecord.cs" />
+    <Compile Include="Models\vProjectPreparationRecord.cs" />
+    <Compile Include="Models\vProjectRecord.cs" />
+    <Compile Include="Models\vProjectStakeholder.cs" />
+    <Compile Include="Models\vProjectStakeholderRecord.cs" />
+    <Compile Include="Models\vRapportPlan.cs" />
+    <Compile Include="Models\vRecordStatus.cs" />
+    <Compile Include="Models\vRelationshipRequire.cs" />
+    <Compile Include="Models\vRequestLog.cs" />
+    <Compile Include="Models\vRole.cs" />
+    <Compile Include="Models\vRolePermission.cs" />
+    <Compile Include="Models\vSayingOpinion.cs" />
+    <Compile Include="Models\vSecurityAnswer.cs" />
+    <Compile Include="Models\vSMTPSetting.cs" />
+    <Compile Include="Models\vSMTPSettingRecord.cs" />
+    <Compile Include="Models\vStakeholderCommunicationMode.cs" />
+    <Compile Include="Models\vStakeholderType.cs" />
+    <Compile Include="Models\vSuggestedAction.cs" />
+    <Compile Include="Models\vTactic.cs" />
+    <Compile Include="Models\vTarget.cs" />
+    <Compile Include="Models\vTargetRecord.cs" />
+    <Compile Include="Models\vTeamMember.cs" />
+    <Compile Include="Models\vTeamRole.cs" />
+    <Compile Include="Models\vTemplateGroup.cs" />
+    <Compile Include="Models\vTemplateGroupRecord.cs" />
+    <Compile Include="Models\vTemplateModule.cs" />
+    <Compile Include="Models\vTheirBatna.cs" />
+    <Compile Include="Models\vTheirProjectRequirementRecord.cs" />
+    <Compile Include="Models\vTheirRequirementDetail.cs" />
+    <Compile Include="Models\vTheirRequirementDetailRecord.cs" />
+    <Compile Include="Models\vTheirTeamCommunicationMode.cs" />
+    <Compile Include="Models\vTheirTeamCommunicationModeRecord.cs" />
+    <Compile Include="Models\vTheirTeamMember.cs" />
+    <Compile Include="Models\vTheirTeamMemberRecord.cs" />
+    <Compile Include="Models\vUser.cs" />
+    <Compile Include="Models\vUserLookup.cs" />
+    <Compile Include="Models\vUserMessage.cs" />
+    <Compile Include="Models\vUserRecord.cs" />
+    <Compile Include="Models\vValueObjective.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CollabaratorsOrReviewersInAllModules.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,56 @@
+<div class="section-box" *ngIf="showComponent">
+  <div class="section-header">
+    <h2 class="section-title d-inline-block">Implementation Plan</h2>
+    <button class="btn btn-info pull-right" data-toggle="modal" (click)="showProjectImplementationPlanAddComponent({})"
+      title="Add">
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+  <div class="section-body">
+    <div class="row">
+      <div class="col-12 col-lg-12">
+        <rx-template [dataSource]="projectImplementationPlans" pageSize="2"
+          masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+          <ng-template rxCellTemplate let-projectImplementationPlan="dataItem">
+            <div class="media section-media without-icon without-title">
+              <div class="media-body">
+                <div class="media-title">
+                  <h4 class="d-inline-block col-11">{{projectImplementationPlan.name}}</h4>
+                  <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+                    <li class="list-inline-item">
+                      <a title="Edit" (click)="showProjectImplementationPlanEditComponent(projectImplementationPlan)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                    </li>
+
+                    <li class="list-inline-item">
+                      <a title="Delete"
+                        (click)="showProjectImplementationPlanDeleteComponent(projectImplementationPlan)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="project-summery font-md">
+                  <p>Description :
+                    <span class="color-dark-gray">{{projectImplementationPlan.activity}}</span>
+                  </p>
+                  <span class="pr-2">
+                    <label class="mb-0" *ngIf="projectImplementationPlan.isEvent">Start Date : </label>
+                    <label class="mb-0" *ngIf="!projectImplementationPlan.isEvent">Date : </label>
+                    <span class="color-dark-gray">{{projectImplementationPlan.startDate | date:'dd/MM/yyyy'}} </span>
+                  </span>
+                  <span class="d-inline-block" *ngIf="projectImplementationPlan.isEvent">End Date :
+                    <span class="color-dark-gray">{{projectImplementationPlan.endDate | date:'dd/MM/yyyy'}} </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </rx-template>
+      </div>
+    </div>
+  </div>
+
+</div>

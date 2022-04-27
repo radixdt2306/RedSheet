@@ -1,0 +1,40 @@
+<div class="section-box" *ngIf="showComponent">
+    <div class="section-header">
+        <h2 class="section-title d-inline-block">Event Planning Action</h2>
+        <button class="btn btn-info pull-right" data-toggle="modal" (click)="showEventPlanningActionAddComponent({})"
+            [disabled]="projectPreparationId == 0" title="Add"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="section-body">
+        <div>
+            <rx-template [dataSource]="eventPlanningActions" pageSize="4"
+                masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+                <ng-template rxCellTemplate let-eventPlanningAction="dataItem">
+                    <div class="media section-media without-icon without-title">
+                        <div class="media-body">
+                            <div class="media-title">
+                                <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                    <li class="list-inline-item"><a
+                                            (click)="showEventPlanningActionEditComponent(eventPlanningAction)"
+                                            title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="list-inline-item"><a
+                                            (click)="showEventPlanningActionDeleteComponent(eventPlanningAction)"
+                                            title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="project-summery font-md">
+                                <p>What : <span
+                                        class="color-dark-gray">{{eventPlanningAction.eventPlanningActionDetail}}</span>
+                                </p>
+                                <p>Who : <span
+                                        class="color-dark-gray">{{eventPlanningAction.eventPlanningActionBy}}</span></p>
+                                <p>When : <span class="color-dark-gray">{{eventPlanningAction.eventPlanningActionOn |
+                                        date:'dd/MM/yyyy'}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </rx-template>
+        </div>
+    </div>
+</div>

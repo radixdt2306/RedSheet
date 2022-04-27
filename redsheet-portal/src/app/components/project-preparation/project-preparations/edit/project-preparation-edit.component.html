@@ -1,0 +1,69 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit [projectModuleId]="projectModuleId" (lockEvent)="contentDisable($event)">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form class="section-form" [formGroup]="projectPreparationFormGroup">
+                <div class="row section-form-row">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">Internal elevator speech *</label>
+                            <textarea class="form-control" rows="4" name=""
+                                rxPlaceholder="phInternalElevatorSpeech" formControlName="elevatorSpeech"
+                                placeholder="Create a simple message that relays exactly what you want others to know (and therefore repeat) about the negotiation."
+                                [class.error-message]="validMessageElevatorSpeech.isError
+                                || projectPreparationFormGroup.controls.elevatorSpeech.invalid 
+                                && (projectPreparationFormGroup.controls.elevatorSpeech.dirty 
+                                    || projectPreparationFormGroup.controls.elevatorSpeech.touched)"
+                                (input)="onSearchChangeElevatorSpeech($event.target.value)"></textarea>
+                            <small> <i *ngIf="validMessageElevatorSpeech.isError" class="fa fa-exclamation-circle"
+                                    style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageElevatorSpeech.maximumCharacter}}
+                                <span [style.color]="validMessageElevatorSpeech.isError ? '#ef3340' : ''">
+                                    {{validMessageElevatorSpeech.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="">Pre-conditioning message for the other party *</label>
+                            <textarea class="form-control" rows="4" name="" rxPlaceholder="phConditioningMessage"
+                                formControlName="preConditioningMessage"
+                                placeholder="This is the process of setting boundaries and limiting expectations in the mind of another party so that they respond in a particular way, and signalling that you are expecting a particular outcome."
+                                [class.error-message]="validMessagePreConditioningMessage.isError
+                                || projectPreparationFormGroup.controls.preConditioningMessage.invalid 
+                                && (projectPreparationFormGroup.controls.preConditioningMessage.dirty 
+                                    || projectPreparationFormGroup.controls.preConditioningMessage.touched)"
+                                (input)="onSearchChangePreConditioningMessage($event.target.value)"></textarea>
+                            <small> <i *ngIf="validMessagePreConditioningMessage.isError"
+                                    class="fa fa-exclamation-circle" style="font-size:16px;color:#ef3340"></i>
+                                {{validMessagePreConditioningMessage.maximumCharacter}}
+                                <span [style.color]="validMessagePreConditioningMessage.isError ? '#ef3340' : ''">
+                                    {{validMessagePreConditioningMessage.remainedOrExceededCharacters}}</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 text-sm-right">
+                        <button type="submit" class="btn btn-primary btn-md" (click)="editProjectPreparation()"
+                            [disabled]="!(projectPreparationFormGroup.valid)">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-event-planning-action-list [projectPreparationId]="projectPreparationId"
+                [projectModuleId]="projectModuleId" [isLocked]="isLocked"></app-event-planning-action-list>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-communication-plan-list [projectPreparationId]="projectPreparationId" [isLocked]="isLocked">
+            </app-communication-plan-list>
+        </div>
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

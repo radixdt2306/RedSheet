@@ -1,0 +1,143 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <form class="section-form" [formGroup]="projectFormGroup">
+        <div class="row section-form-row justify-content-center">
+            <div class="col-12 col-lg-12 col-xl-10">
+                <p class="float-right mt-4">Note : All * fields are required.</p>
+                <h1 class="page-heading" rxLabel="title"></h1>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="project-name" rxLabel="projectName" class=""></label><span> *</span>
+                            <input rxFocus rxRequired type="text" name="projectname" required
+                                formControlName="projectName" class="form-control font-md"
+                                rxPlaceholder="phProjectName">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-4 ">
+                        <div class="form-group">
+                            <label for="project-name" class="">Negotiation Project Type</label><span> *</span>
+                            <select formControlName="templateGroupId" class="form-control font-md" required
+                                (change)="selectTemplateGroup($event.target.value)">
+                                <option value="" [selected]="true" disabled>Select Negotiation Project Type</option>
+                                <option *ngFor="let templateGroup of projectLookupGroup.templateGroups;"
+                                    [value]="templateGroup.templateGroupId">{{templateGroup.templateGroupName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-4 ">
+                        <div class="form-group">
+                            <label for="project-name" class="" rxLabel="template"></label><span> *</span>
+                            <select formControlName="templateId" class="form-control font-md" required
+                                (change)="selectTemplate(true)">
+                                <option value="" [selected]="true" disabled>Select Template</option>
+                                <option *ngFor="let template of templates" [value]="template.id">{{template.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-4 ">
+                        <div class="form-group">
+                            <label for="project-name">Negotiation Roles</label><span> *</span>
+                            <select formControlName="negotiationRoleId" required class="form-control font-md">
+                                <option value="" disabled [selected]="true">Select Negotiation Role</option>
+                                <option *ngFor="let negotiationRole of negotiation_roles;let row= index" required
+                                    [value]="negotiationRole.negotiationRoleId">{{negotiationRole.negotiationRoleName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="project-name" class="" rxLabel="projectSponsor"></label><span> *</span>
+                            <input type="text" name="projectname" required formControlName="reporteeName"
+                                class="form-control font-md" placeholder="Be Specific">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="inactivity-no-of-days" class="" rxLabel="numberOfDays "></label><span> *</span>
+                            <input type="number" min="0" step="1" oninput="validity.valid||(value='');" required
+                                class="form-control font-md" name="inactivity-no-of-days" formControlName="noOfDays"
+                                rxPlaceholder="phNumberOfDays">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-12 col-xl-10">
+                <h2 class="color-primary body-font" rxLabel="headingOne"></h2>
+                <div class="section-box">
+                    <div class="section-header">
+                        <h2 class="section-title d-inline-block" rxLabel="headingTwo"></h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 d-lg-flex align-items-stretch"
+                                *ngFor="let templateModule of templateModules">
+                                <div class="media section-media without-title align-items-center">
+
+                                    <div class="align-self-center section-media-icon text-center icontitle">
+                                        <i class="{{templateModule.iconClass}} fa fa-4x"></i>
+                                        <h4>{{templateModule.name}}<i
+                                                [class]="getSymbol(templateModule.productModuleId)"></i></h4>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="media-title text-right">
+                                            <ul class="action-links float-sm-right list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="pointer" (click)="showEdit(templateModule)" title="Edit">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-summery pt-2">
+                                            <p>
+                                                <span rxLabel="ownerNote"></span> :
+                                                <span class="color-dark-gray"
+                                                    *ngIf="templateModule.ownerNote?.length > 0"
+                                                    rxPlaceholder="phOwnersNote">{{templateModule.ownerNote}}</span>
+                                                <span class="color-dark-gray" *ngIf="templateModule.ownerNote == null"
+                                                    rxPlaceholder="phOwnersNote">not found.</span>
+                                            </p>
+                                            <p>
+                                                <span rxLabel="collaborators"></span> :
+                                                <span class="color-dark-gray">{{templateModule.collabrators}}</span>
+                                            </p>
+                                            <p>
+                                                <span rxLabel="reviewers"></span> :
+                                                <span class="color-dark-gray">{{templateModule.assignee}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- <div class="section-footer text-right">
+                       <a class="btn btn-info" href="#" title="Read More"><i class="fa fa-angle-double-right fa-lg"></i></a>
+                   </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center section-form-row ">
+            <div class="col-12 col-lg-12 col-xl-10">
+                <h2 rxLabel="headingThree"></h2>
+                <p class="font-md">{{projectNote}}</p>
+                <div class="text-sm-right pt-2">
+                    <button type="submit" class="btn btn-primary btn-md" [disabled]="!projectFormGroup.valid"
+                        (click)="addProject()" rxLabel="saveButton"></button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

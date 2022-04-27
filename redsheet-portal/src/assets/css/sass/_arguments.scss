@@ -1,0 +1,111 @@
+@import "variable.scss";
+	@mixin round-borders($radius) { border-radius: $radius; -moz-border-radius: $radius; -webkit-border-radius: $radius;}
+	@mixin round-border-bottom-left($radius) { border-bottom-left-radius: $radius; -moz-border-bottom-left-radius: $radius; -webkit-border-bottom-left-radius: $radius;}
+	@mixin round-border-bottom-right($radius) { border-bottom-right-radius: $radius; -moz-border-bottom-right-radius: $radius; -webkit-border-bottom-right-radius: $radius;}
+	@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+	  @if $inset {
+		-webkit-box-shadow:inset $top $left $blur $color;
+		-moz-box-shadow:inset $top $left $blur $color;
+		box-shadow:inset $top $left $blur $color;
+	  } @else {
+		-webkit-box-shadow: $top $left $blur $color;
+		-moz-box-shadow: $top $left $blur $color;
+		box-shadow: $top $left $blur $color;
+	  }
+	}
+	@mixin text-shadow($top, $left, $blur, $color, $inset: false) {
+	  @if $inset {
+		-webkit-text-shadow:inset $top $left $blur $color;
+		-moz-text-shadow:inset $top $left $blur $color;
+		text-shadow:inset $top $left $blur $color;
+	  } @else {
+		-webkit-text-shadow: $top $left $blur $color;
+		-moz-text-shadow: $top $left $blur $color;
+		text-shadow: $top $left $blur $color;
+	  }
+	}
+	@mixin gradient($origin, $startColor, $endColor) {
+		background: $startColor;
+		background: -webkit-gradient($origin, from($startColor), to($endColor));
+		background: -webkit-linear-gradient($origin, $startColor, $endColor);
+		background: -moz-linear-gradient($origin, $startColor, $endColor);
+		background: -ms-linear-gradient($origin, $startColor, $endColor);
+		background: -o-linear-gradient($origin, $startColor, $endColor);
+	}
+	@mixin gradient-linear ($origin, $startColor, $midColor, $endColor) {
+		background: $startColor;
+		background: -webkit-gradient($origin, from($startColor), ($midColor), to($endColor));
+		background: -webkit-linear-gradient($origin, $startColor, $midColor, $endColor);
+		background: -moz-linear-gradient($origin, $startColor, $midColor, $endColor);
+		background: -ms-linear-gradient($origin, $startColor, $midColor, $endColor);
+		background: -o-linear-gradient($origin, $startColor, $midColor, $endColor); 
+	}
+	@mixin respond-to($media) {
+	  @if $media == smaller-screen {
+		@media only screen and (max-width: $break-smaller) { @content; }
+	  }
+	  @if $media == extra-small-screen {
+		@media only screen and (max-width: $break-extra-small) { @content; }
+	  }
+	  @else if $media == small-screens {
+		@media only screen and (min-width: $break-ipad-small) { @content; }
+	  }
+	  @else if $media == medium-screens {
+		@media only screen and (min-width: $break-small) { @content; }
+	  }
+	  @else if $media == large-screens {
+		@media only screen and (min-width: $break-medium) { @content; }
+	  }
+	  @else if $media == wide-screens {
+		@media only screen and (min-width: $break-large) { @content; }
+	  }
+	  @else if $media == big-screens {
+		@media only screen and (min-width: $break-wide) { @content; }
+	  }
+	} 
+	@mixin opacity($opacity) {
+	  opacity: $opacity;
+	  $opacity-ie: $opacity * 100;
+	  filter: alpha(opacity=$opacity-ie); //IE8
+	}
+	@mixin transform ($origin) {
+		moz-transform: $origin;
+			 -o-transform: $origin;
+			-ms-transform: $origin;
+		-webkit-transform: $origin;
+			  transform: $origin;
+	}
+	
+/*************** animation *******************/
+	@mixin transition($transition-property, $transition-time, $method, $delay) {
+	-webkit-transition: $transition-property $transition-time $method $delay;
+	-moz-transition: $transition-property $transition-time $method $delay;
+	-ms-transition: $transition-property $transition-time $method $delay;
+	-o-transition: $transition-property $transition-time $method $delay;
+	transition: $transition-property $transition-time $method $delay;
+}
+	@mixin keyframes($animation-name) {
+		@-webkit-keyframes #{$animation-name} {
+			@content;
+		}
+		@-moz-keyframes #{$animation-name} {
+			@content;
+		}  
+		@-ms-keyframes #{$animation-name} {
+			@content;
+		}
+		@-o-keyframes #{$animation-name} {
+			@content;
+		}  
+		@keyframes #{$animation-name} {
+			@content;
+		}
+	}
+	
+	@mixin animation($str) {
+	  -webkit-animation: #{$str};
+	  -moz-animation: #{$str};
+	  -ms-animation: #{$str};
+	  -o-animation: #{$str};
+	  animation: #{$str};      
+	}

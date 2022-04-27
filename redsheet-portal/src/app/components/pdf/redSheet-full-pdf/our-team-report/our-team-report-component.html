@@ -1,0 +1,132 @@
+<div class="page-break p-3" *ngIf="showComponent">
+	<div class="row">
+		<div class="col-12 col-sm-3">
+			<h2>Our team</h2>
+		</div>
+		<div class="col-12 col-sm-9">
+			<div class="mt-auto d-flex flex-wrap align-items-center">
+				<h3 class="mr-3">key</h3>
+				<span class="mx-3"> Sustain this personality trait</span>
+				<span class="mx-3 fa-2x"> = </span>
+				<span class="mx-3"> Reinforce this personality trait
+					<i class="fa fa-arrow-up color-green ml-2"></i>
+				</span>
+				<span class="mx-3">Avoid this personality trait
+					<i class="fa fa-arrow-down color-primary ml-2"></i>
+				</span>
+			</div>
+		</div>
+	</div>
+	<p>The specific behavior shifts each of our team members must work to adopt for this negotiation in response to
+		individual
+		negotiation personality traits .</p>
+	<div class="table-responsive mb-0">
+		<table class="table table-bordered table-striped team-table mb-0">
+			<thead>
+				<tr>
+					<th scope="col">Characterisitic</th>
+					<th scope="col"></th>
+					<th scope="col" width="70" *ngFor="let data of ourTeamReportData"><p class="userName">{{data.userName}}</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td *ngIf="ourTeamReportData != undefined"></td>
+					<td *ngIf="ourTeamReportData != undefined" class="text-right font-lg sub-heading-font"></td>
+					<td class="text-center" *ngFor="let data of ourTeamReportData"> {{data.teamRoleName}}</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Conscientiousness</td>
+					<td>Hardworking, organized and self-disciplined with attention to detail. High scoring individuals are typically very reliable and will persevere to get things right (High, Low or Choice).</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.consciousnessName}}</span><i class="{{data.changeConsciousness}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Outgoing</td>
+					<td>Socially confident and easily met in conversation, comfortable speaking about their ideas and making new
+						social
+						connections quickly.</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.outingName}}</span><i class="{{data.changeOuting}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Will to win</td>
+					<td>Competitive and highly ambitious. The need to achieve goals is more important to the individual than personal
+						relationships.</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.willToWinName}}</span><i class="{{data.changeWIllToWin}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Solution Focused</td>
+					<td>Can assimilate new information accurately and rapidly and identify effective solutions. Collects and analyzes
+						data
+						and makes data based decisions.</td>
+					<td class="text-center align-middle" style="margin-top: 1000px" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.solutionFocusedName}}</span><i class="{{data.changeSolutionFocused}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Open Minded</td>
+					<td>Ability to work well in the absence of structure. Creative, imaginative and often curious. Is comfortable
+						working
+						in vague, fluid or rapidly changing environment.</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.openMindedName}}</span><i class="{{data.changeOpenMindedId}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Agreeable</td>
+					<td>Good natured and helpful. Places the needs of others in front of one’s own needs. Acts selflessly and tries to
+						meet
+						the emotional needs of, and nurture, others.</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.agreeableName}}</span><i class="{{data.changeAgreeable}}"></i>
+					</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">Personal Calm</td>
+					<td>Relaxed, at ease and secure. Controls own emotions and individuals scoring high are often patient and even
+						tempered.</td>
+					<td class="text-center align-middle" *ngFor="let data of ourTeamReportData">
+						<span style="letter-spacing: 8px;">{{data.personalCalmName}}</span><i class="{{data.changePersonalCalm}}"></i>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br />
+	<div class="table-responsive mb-0" style="page-break-inside : avoid;display:block">
+		<table class="table table-bordered table-striped mb-0">
+			<thead>
+				<tr>
+					<th scope="col">Characterisitic</th>
+					<!-- <th scope="col">The overall team-wide Negotionality® behaviour to assume for this negotiation is:</th> -->
+					<th scope="col">The overall team-wide Negotionality<span class="sup"><i class="fa fa-registered "></i></span>
+						behaviour to assume for this negotiation is:</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="sub-heading-font">ASSERTVENESS</td>
+					<td *ngIf="ourTeamReportData == undefined">All our team members should {{assertivenessData.resultAssertiveness}}</td>
+					<td *ngIf="ourTeamReportData != undefined">All our team members should {{ourTeamReportData[0].assertivenessChange}}</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">CONFLICT STYLE</td>
+					<td *ngIf="ourTeamReportData == undefined"> All our team members should {{conflictStyleData.resultConflictStyle}}</td>
+					<td *ngIf="ourTeamReportData != undefined"> All our team members should {{ourTeamReportData[0].conflictStyleChange}}</td>
+				</tr>
+				<tr>
+					<td class="sub-heading-font">EmoitonalCompetence</td>
+					<td *ngIf="ourTeamReportData == undefined"> It is {{emotionalCompetenceData.resultEmotionalCompetence}} that everyone has a good degree of emotional
+							competence.</td>
+					<td *ngIf="ourTeamReportData != undefined"> It is {{ourTeamReportData[0].emotionalCompetenceChange}} that everyone has a good degree of emotional
+						competence.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

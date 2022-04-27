@@ -1,0 +1,61 @@
+<div class="section-box" *ngIf="showComponent">
+  <div class="section-header">
+    <h2 class="section-title d-inline-block">To carry forward to the next negotiation</h2>
+    <button class="btn btn-info pull-right" title="Add" [disabled]="projectCarryForwardId == 0" (click)="addCarryForward(rowIndex)">
+      <i class="fa fa-plus">
+      </i>
+    </button>
+  </div>
+  <div class="section-body">
+    <ul class="custom-list">
+      <li *ngIf="isAdd" class="active">
+        <input class="form-control" type="text" rxFocus="true" [(ngModel)]="addCarryForwardEntity.carryForwardValue" placeholder="Be Specific" 
+        [class.error-message]="validMessageAddCarryForwardEntity.isError"
+        (input)="onSearchChangeAddCarryForwardEntity($event.target.value)" />
+        <small> <i *ngIf="validMessageAddCarryForwardEntity.isError" class="fa fa-exclamation-circle"
+          style="font-size:16px;color:#ef3340"></i>
+        {{validMessageAddCarryForwardEntity.maximumCharacter}}
+        <span [style.color]="validMessageAddCarryForwardEntity.isError ? '#ef3340' : ''">
+          {{validMessageAddCarryForwardEntity.remainedOrExceededCharacters}}</span>
+      </small>
+        <ul class="action-links float-right list-inline">
+          <li class="list-inline-item">
+            <a [class.btn_disabled]="validMessageAddCarryForwardEntity.isError" title="Save" *ngIf="!isLocked">
+              <i class="fa fa-floppy-o" (click)="updateCarryForward(addCarryForwardEntity,rowIndex)"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li *ngFor="let carryForward of projectCarryForwards; let rowIndex=index;" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+        <span *ngIf="!(editRowIndex == rowIndex)">{{carryForward.carryForwardValue}}</span>
+        <input class="form-control" type="text" [(ngModel)]="editCarryForward.carryForwardValue" *ngIf="(editRowIndex == rowIndex)"
+        rxFocus="true" placeholder="Be Specific" [class.error-message]="validMessageCarryForwardEntity.isError"
+        (input)="onSearchChangeCarryForwardEntity($event.target.value)" />
+        <small *ngIf="(editRowIndex == rowIndex)">
+          <i *ngIf="validMessageCarryForwardEntity.isError" class="fa fa-exclamation-circle"
+            style="font-size:16px;color:#ef3340"></i>
+          {{validMessageCarryForwardEntity.maximumCharacter}}
+          <span [style.color]="validMessageCarryForwardEntity.isError ? '#ef3340' : ''">
+            {{validMessageCarryForwardEntity.remainedOrExceededCharacters}}</span>
+        </small>
+        <ul class="action-links float-right list-inline"  *ngIf="!isLocked">
+          <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+            <a title="Edit">
+              <i class="fa fa-pencil-square-o" (click)="showEditRecord(carryForward,rowIndex)"></i>
+            </a>
+          </li>
+          <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))">
+            <a [class.btn_disabled]="validMessageCarryForwardEntity.isError" title="Save">
+              <i class="fa fa-floppy-o" (click)="updateCarryForward(editCarryForward,rowIndex)"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a title="Delete">
+              <i class="fa fa-trash-o" (click)="showCarryForwardDeleteComponent(carryForward,rowIndex)" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

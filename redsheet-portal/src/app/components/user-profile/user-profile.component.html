@@ -1,0 +1,68 @@
+<div class="container-fluid" *ngIf="showComponent">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-12 col-xl-10">
+      <h1 class="page-heading mt-3">Edit Profile</h1>
+      <div class="section-box row" [formGroup]="userProfileFormGroup">
+          <div class="section-header col-12">
+              <h2 class="section-title d-inline-block">Update your details</h2>
+            </div>
+        <div class="section-body col-12 col-lg-6">
+          <div class="row align-items-center form-group">
+            <label for="first-name" class="col-auto col-md-3 col-lg-4 col-form-label">First Name *</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input rxFocus="true"  type="text" class="form-control" name="first-name" formControlName="forename" placeholder="Text here.." />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="middle-name" class="col-auto col-md-3 col-lg-4 col-form-label">Middle Name</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="middle-name" formControlName="middlename" placeholder="Text here.." />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="last-name" class="col-auto col-md-3 col-lg-4 col-form-label">Last Name *</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="last-name" formControlName="surname" placeholder="Text here.." />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="contactAddress" class="col-auto col-md-3 col-lg-4 col-form-label">Contact Address</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="contactAddress" formControlName="contactAddress" placeholder="Text here.." />
+            </div>
+          </div>
+        </div>
+        <div class="section-body col-12 col-lg-6">
+          <div class="row align-items-center form-group">
+            <label for="position" class="col-auto col-md-3 col-lg-4 col-form-label">Position/Job Title</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="position" formControlName="position" placeholder="Text here.." />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="title" class="col-auto col-md-3 col-lg-4 col-form-label">Title</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="title" placeholder="Text here.." formControlName="title" />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="phone" class="col-auto col-md-3 col-lg-4 col-form-label">Phone No.</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control"  name="phone" pattern="^(?:\+\d{1,3}|0\d{1,3}|00\d{1,2})?(?:\s?\(\d+\))?(?:[-\/\s.]|\d)+$"  formControlName="telephone" placeholder="Text here.." />
+            </div>
+          </div>
+          <div class="row align-items-center form-group">
+            <label for="postcode" class="col-auto col-md-3 col-lg-4 col-form-label">Post Code</label>
+            <div class="col-12 col-md-9 col-lg-12">
+              <input type="text" class="form-control" name="postcode" formControlName="postcode" placeholder="Text here.." />
+            </div>
+          </div>
+        </div>
+        <div class="section-footer col-12 text-sm-right pt-2">
+          <button class="btn btn-primary btn-md mr-4" title="Save" [disabled]="!userProfileFormGroup.valid" (click)="updateUserData()">Save</button>
+          <a href="dashboard.html" class="btn btn-primary btn-md" title="Cancel" routerLink="/dashboard">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

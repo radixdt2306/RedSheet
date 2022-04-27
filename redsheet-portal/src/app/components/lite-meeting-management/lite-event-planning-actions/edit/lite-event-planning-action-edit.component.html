@@ -1,0 +1,62 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+    <div class="modal-header border-0">
+      <h2 class="modal-title">Edit Meeting/Event Planning Actions</h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="hideLiteEventPlanningAction()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="section-form" [formGroup]="liteEventPlanningActionFormGroup">
+        <div class="row section-form-row mt-0 mb-0">
+          <div class="form-group col-12">
+            <label for="what" class="">What *</label>
+            <textarea rxFocus="true" class="form-control" name="what" placeholder="Enter the action to complete"
+              formControlName="liteEventPlanningActionDetail"
+              [class.error-message]="validMessageLiteEventPlanningActionDetail.isError || liteEventPlanningActionFormGroup.controls.liteEventPlanningActionDetail.invalid 
+              && (liteEventPlanningActionFormGroup.controls.liteEventPlanningActionDetail.dirty 
+                  || liteEventPlanningActionFormGroup.controls.liteEventPlanningActionDetail.touched)"
+              (input)="onSearchChangeEventPlanningActionDetail($event.target.value)"></textarea>
+            <small> <i *ngIf="validMessageLiteEventPlanningActionDetail.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageLiteEventPlanningActionDetail.maximumCharacter}}
+              <span [style.color]="validMessageLiteEventPlanningActionDetail.isError ? '#ef3340' : ''">
+                {{validMessageLiteEventPlanningActionDetail.remainedOrExceededCharacters}}</span>
+            </small>
+          </div>
+          <div class="form-group col-12">
+            <label for="who" class="">Who *</label>
+            <input type="text" class="form-control" name="who" placeholder="Add Team Member"
+              formControlName="liteEventPlanningActionBy"
+              [class.error-message]="validMessageLiteEventPlanningActionBy.isError
+              || liteEventPlanningActionFormGroup.controls.liteEventPlanningActionBy.invalid 
+              && (liteEventPlanningActionFormGroup.controls.liteEventPlanningActionBy.dirty 
+                  || liteEventPlanningActionFormGroup.controls.liteEventPlanningActionBy.touched)"
+              (input)="onSearchChangeLiteEventPlanningActionBy($event.target.value)" />
+            <small> <i *ngIf="validMessageLiteEventPlanningActionBy.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageLiteEventPlanningActionBy.maximumCharacter}}
+              <span [style.color]="validMessageLiteEventPlanningActionBy.isError ? '#ef3340' : ''">
+                {{validMessageLiteEventPlanningActionBy.remainedOrExceededCharacters}}</span>
+            </small>
+            <!-- <rx-tag placeholder="Select User" mainClass="" [(source)]="ourTeamMembers"
+              [keyValueProps]="['liteOurTeamMemberName','liteOurTeamMemberName']" maxSelection="1"
+              formControlName="liteEventPlanningActionBy" [manualEntered]="manualEntered"></rx-tag> -->
+          </div>
+          <div class="form-group col-12">
+            <label for="when" class="">When *</label>
+            <rx-date placeholder="dd/mm/yyyy" pickerClass="form-control" formControlName="liteEventPlanningActionOn">
+            </rx-date>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="save" class="btn btn-primary btn-md"
+        [disabled]="!liteEventPlanningActionFormGroup.valid" (click)="editLiteEventPlanningAction()">Update</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+        (click)="hideLiteEventPlanningAction()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="page-break p-3" *ngIf="showComponent">
+        <h2>Negotiation power plan</h2>
+        <h3>Game strategy</h3>
+        <div class="row mb-3">
+                <div class="col-12 col-sm-4 d-flex align-items-center">
+                        <h3>Current game being <br />played or <br />previously played
+                        </h3>
+                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.currentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x mx-3"></i>
+
+                </div>
+                <div class="col-12 col-sm-4 d-flex align-items-center">
+                        <h3>Their current game <br />being played or <br />previously played
+                        </h3>
+                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x mx-3"></i>
+                        <i *ngIf="gameStrategyDetail.theirCurrentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x mx-3"></i>
+                </div>
+                <div class="col-12 col-sm-4">
+                        <h3>Rationale for our assumptions</h3>
+                        <p>{{gameStrategyDetail.notes}}</p>
+                </div>
+        </div>
+        <h3>Their anticipated event game</h3>
+        <div class="row mb-2">
+                <div class="col-12 col-sm-3">
+
+                </div>
+                <div class="col-12 col-sm-4">
+                        <p class="sub-heading-font font-lg">How we will play</p>
+                </div>
+                <div class="col-12 col-sm-4 offset-sm-1">
+                        <p class="sub-heading-font font-lg">Trigger to switch the game is</p>
+                </div>
+        </div>
+        <!-- <div class="row mb-3" *ngFor="let gameTableData of gameTableDetails; let rowIndex=index;">
+                <div class="col-12 col-sm-3">
+                        <h3 class="d-inline-block">Game {{rowIndex + 1}}</h3>
+                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x ml-4 align-middle"></span>
+                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x ml-4 align-middle"></span>
+                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x ml-4 align-middle"></span>
+                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x ml-4 align-middle"></span>
+                </div>
+                <div class="col-12 col-sm-4">
+                        {{gameTableData.play}}
+                </div>
+                <div class="col-12 col-sm-4 offset-sm-1">
+                        {{gameTableData.trigger}}
+                </div>
+        </div> -->
+        <div class="row mb-3" *ngFor="let gameTableData of gameTableDetails; let rowIndex=index;">
+                <div class="col-12 col-sm-3">
+                        <div class="row">
+                                <div class="col-12 col-sm-5">
+                                        <h3 class="d-inline-block">Game {{rowIndex + 1}}</h3>
+                                </div>
+                                <div class="col-12 col-sm-7">
+                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x ml-4 align-middle"></span>
+                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x ml-4 align-middle"></span>
+                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x ml-4 align-middle"></span>
+                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x ml-4 align-middle"></span>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                        {{gameTableData.play}}
+                </div>
+                <div class="col-12 col-sm-4 offset-sm-1">
+                        {{gameTableData.trigger}}
+                </div>
+        </div>
+</div>

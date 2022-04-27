@@ -1,0 +1,111 @@
+<div class="card" *ngIf="showComponent">
+    <div class="card-body">
+        <div class="row" *ngIf="contexts.length > 0">
+            <div class="col-sm-3">
+                <ul class="nav nav-pills nav-stacked nav-pills-primary" role="tablist">
+                    <li *ngFor="let tab of contexts;let i=index" [class.active]="tab.generatorContextId == activeContext.generatorContextId"
+                        (click)="tabChanged(tab,i)">
+                        <a href="javascript:void(0);" role="tab" data-toggle="tab" aria-expanded="false">{{tab.applicationModuleName}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div>
+                    <div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="card">
+                                    <header class="card-heading">
+                                        <h2 class="card-title">{{activeContext.applicationModuleName}}</h2>
+                                    </header>
+                                    <div class="card-body p-t-0">
+                                        <div class="card card-transparent m-b-0">
+                                            <div class="card-body p-0">
+                                                <form [formGroup]="generatorControllerFormGroup">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="control-label">Context Views</label>
+                                                            <rx-tag (added)="itemAdded($event)" (removed)="itemRemoved($event)" [(source)]="generatorViews" [keyValueProps]="['generatorModelName','generatorModelId']" formControlName="generatorViews"></rx-tag>
+                                                        </div>
+                                                        <!--<div class="col-md-6">
+                                                            <label class="control-label">Controller Lookups</label>
+                                                            <rx-tag [(source)]="generatorViews" [keyValueProps]="['generatorModelName','generatorModelId']" formControlName="generatorLookups"></rx-tag>
+                                                        </div>-->
+                                                    </div>
+                                                    <hr>
+                                                    <div class="table-responsive" *ngIf="generatorControllerFormGroup.controls['generatorControllers'].controls.length > 0">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Sub Module Name</th>
+                                                                    <th>Table Name</th>
+                                                                    <th>Complexity Type</th>
+                                                                    <th>Is Data Verification</th>
+                                                                    <th>Is Search Controller</th>
+                                                                    <th>Description</th>
+                                                                    <th>Lookups</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let subController of generatorControllerFormGroup.controls['generatorControllers'].controls;let j = index" [formGroup]="subController">
+                                                                    <td>{{subController.controls.moduleMasterName.value}}</td>
+                                                                    <td><select class="form-control" formControlName="generatorModelId"
+                                                                            (change)="updateSubModules(subController.value)">
+                                                                            <option value="null">Select</option>
+                                                                            <option *ngFor="let generatorModel of generatorModels" value="{{generatorModel.generatorModelId}}">{{generatorModel.generatorModelName}}</option>
+                                                                        </select></td>
+                                                                    <td>
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                        <input type="checkbox" formControlName="complexityType" (change)="updateSubModules(subController.value)">
+                                                                        <span class="checkbox-material"><span class="check"></span></span>
+                                                                    </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                        <input type="checkbox" formControlName="isDataVerification" (change)="updateSubModules(subController.value)">
+                                                                        <span class="checkbox-material"><span class="check"></span></span>
+                                                                    </label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                        <input type="checkbox" formControlName="isSearchController" (change)="updateSubModules(subController.value)">
+                                                                        <span class="checkbox-material"><span class="check"></span></span>
+                                                                    </label>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <textarea formControlName="controllerDescription" rows="3" class="form-control" (blur)="updateSubModules(subController.value)"></textarea>
+                                                                    </td>
+                                                                  <td>
+                                                                      <rx-tag (added)="lookupAdded($event,subController)" (removed)="lookupRemoved($event,subController)"  [(source)]="generatorViews" formControlName="lookupId" [keyValueProps]="['generatorModelName','generatorModelId']"></rx-tag>
+                                                                  </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div *ngIf="generatorControllerFormGroup.controls['generatorControllers'].controls.length == 0">
+                                                        No Sub Modules Found
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="contexts.length == 0">
+            No Context Created
+        </div>
+    </div>
+</div>

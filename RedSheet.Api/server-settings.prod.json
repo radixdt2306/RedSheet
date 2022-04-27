@@ -1,0 +1,15 @@
+{
+  "multiTenant": false,
+  "webfarm": false,
+  "dbConnection": {
+    "log": "",
+    "cache": "",
+    "admin": "",
+    "main": "data source=RXDOTNET4\\MSSQLSERVER2016;initial catalog=TestProjectDb;persist security info=True;User Id=rxTestTechnical;Password=Test@2017;MultipleActiveResultSets=True;App=EntityFramework"
+  },
+  "configuration": {
+    "cache": {
+      "days": 0
+    }
+  }
+}

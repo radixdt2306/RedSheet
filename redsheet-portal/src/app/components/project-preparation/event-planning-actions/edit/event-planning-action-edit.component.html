@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+    <div class="modal-header border-0">
+      <h2 class="modal-title">Edit Event Planning Action</h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideEventPlanningAction()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="section-form" [formGroup]="eventPlanningActionFormGroup">
+        <div class="row section-form-row mt-0 mb-0">
+          <div class="form-group col-12">
+            <label for="what" class="">What *</label>
+            <textarea rxFocus="true" class="form-control" name="what" placeholder="What needs to be done"
+              formControlName="eventPlanningActionDetail"[class.error-message]="validMessageEventPlanningActionDetail.isError
+              || eventPlanningActionFormGroup.controls.eventPlanningActionDetail.invalid 
+              && (eventPlanningActionFormGroup.controls.eventPlanningActionDetail.dirty 
+                  || eventPlanningActionFormGroup.controls.eventPlanningActionDetail.touched)"
+              (input)="onSearchChangeEventPlanningActionDetail($event.target.value)"></textarea>
+            <small> <i *ngIf="validMessageEventPlanningActionDetail.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageEventPlanningActionDetail.maximumCharacter}}
+              <span [style.color]="validMessageEventPlanningActionDetail.isError ? '#ef3340' : ''">
+                {{validMessageEventPlanningActionDetail.remainedOrExceededCharacters}}</span>
+            </small>
+          </div>
+          <div class="form-group col-12">
+            <label for="who" class="">Who *</label>
+            <input type="text" class="form-control" name="who" placeholder="Name of person to action"
+              formControlName="eventPlanningActionBy"[class.error-message]="validMessageEventPlanningActionBy.isError
+              || eventPlanningActionFormGroup.controls.eventPlanningActionBy.invalid 
+              && (eventPlanningActionFormGroup.controls.eventPlanningActionBy.dirty 
+                  || eventPlanningActionFormGroup.controls.eventPlanningActionBy.touched)"
+              (input)="onSearchChangeEventPlanningActionBy($event.target.value)" />
+            <small> <i *ngIf="validMessageEventPlanningActionBy.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageEventPlanningActionBy.maximumCharacter}}
+              <span [style.color]="validMessageEventPlanningActionBy.isError ? '#ef3340' : ''">
+                {{validMessageEventPlanningActionBy.remainedOrExceededCharacters}}</span>
+            </small>
+            <!-- <rx-tag placeholder="phUserName" mainClass="" [(source)]="ourTeamMembers"
+              [keyValueProps]="['userName','userName']" maxSelection="1" formControlName="eventPlanningActionBy"
+              [manualEntered]="manualEntered"></rx-tag> -->
+          </div>
+          <div class="form-group col-12">
+            <label for="when" class="">When *</label>
+            <rx-date placeholder="dd/mm/yyyy" pickerClass="form-control" formControlName="eventPlanningActionOn">
+            </rx-date>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="save" class="btn btn-primary btn-md" [disabled]="!eventPlanningActionFormGroup.valid"
+        (click)="editEventPlanningAction()">Update</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+        (click)="hideEventPlanningAction()">Cancel</button>
+    </div>
+  </div>
+</div>

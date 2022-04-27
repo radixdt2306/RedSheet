@@ -1,0 +1,92 @@
+@import "variable.scss";
+@import "arguments.scss";
+//@import "fonts.scss";
+
+button{cursor:pointer;
+	&:focus{outline:0;}
+}
+.btn{color:#fff !important;
+	&:disabled, &.disabled {cursor:default;pointer-event:none;}
+} 
+.btn-primary { background:$brand-primary; border-color:$brand-primary;
+	&:hover { background:$dark-gray !important; border-color:$dark-gray !important;}
+	&:focus {  background:$brand-primary; border-color:$brand-primary; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+	&.active, &:active { background:$dark-gray; border-color:$dark-gray;
+		&:hover { background:$dark-gray; border-color:$dark-gray;}
+		&:focus {  background:$brand-primary; border-color:$brand-primary;}
+	}
+	&:disabled, &.disabled{color:$dark-gray; background:$dark-gray; border-color:$dark-gray; opacity:0.4;}
+}
+fieldset{
+	&[disabled]{
+		.btn-primary{color:$dark-gray; background:$dark-gray; border-color:$dark-gray; opacity:0.4;}
+		.btn-info{color:$gray; background:$gray; border-color:$gray; opacity:0.4;}
+	}
+}
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle { background:$dark-gray; border-color:$dark-gray; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+
+.btn-info { background:$dark-gray; border-color:$dark-gray; padding: 0.15rem 0.75rem;cursor:pointer;
+	&:hover { background:$brand-primary; border-color:$brand-primary;}
+	&:focus { background:$brand-primary; border-color:$brand-primary; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+	&.active, &:active { background:$brand-primary; border-color:$brand-primary;
+		&:hover { background:$brand-primary; border-color:$brand-primary;}
+		&:focus { background:$brand-primary; border-color:$brand-primary;}
+	}
+	&:disabled, &.disabled {color:$gray; background:$gray; border-color:$gray; opacity:0.4;}
+} 
+.btn-info:not([disabled]):not(.disabled).active, .btn-info:not([disabled]):not(.disabled):active, .show > .btn-info.dropdown-toggle { background:$brand-primary; border-color:$brand-primary; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+
+.btn-success { background:$green; border-color:$green; 
+	&:hover { background:$brand-primary; border-color:$brand-primary;}
+	&:focus { background:$brand-primary; border-color:$brand-primary; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+	&.active, &:active { background:$brand-primary; border-color:$brand-primary;
+		&:hover { background:$brand-primary; border-color:$brand-primary;}
+		&:focus { background:$brand-primary; border-color:$brand-primary;}
+	}
+} 
+.btn-success:not([disabled]):not(.disabled).active, .btn-success:not([disabled]):not(.disabled):active, .show > .btn-success.dropdown-toggle { background:$brand-primary; border-color:$brand-primary; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+
+.btn-secondary { background:$disabled; border-color:$disabled;border: 0; color: $gray !important;@include round-borders(0);@include fontSize(24px);
+	&:hover { background:$gray; border-color:$gray; color: #ffffff !important;}
+	&:focus { background:$gray; border-color:$gray; color: #ffffff !important; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+	&.active, &:active { background:$gray; border-color:$gray; color: #ffffff !important;
+		&:hover { background:$gray; border-color:$gray; color: #ffffff !important;}
+		&:focus { background:$gray; border-color:$gray; color: #ffffff !important;}
+	}
+} 
+.btn-secondary:not([disabled]):not(.disabled).active, .btn-secondary:not([disabled]):not(.disabled):active, .show > .btn-secondary.dropdown-toggle { background:$gray; border-color:$gray; color: #ffffff !important; @include box-shadow(0, 0, 0, rgba(24,24,25,0));}
+
+.btn-link { color:$dark-blue; border:1px solid transparent;
+	&:hover { color:$brand-primary; text-decoration:none;}
+	&:focus { color:$brand-primary;}
+	&.active, &:active { color:$brand-primary;
+		&:hover { color:$brand-primary;}
+		&:focus { color:$brand-primary;}
+	}
+	&:disabled, &.disabled {color:$dark-blue; opacity:0.4;}
+}
+
+.btn-group-lg > .btn, .btn-lg { padding:0.2rem 2.5rem; @include fontSize(28px);}
+.btn-group-md > .btn, .btn-md { padding:.44rem 1.33rem;}
+.btn-group-sm > .btn, .btn-sm {@include fontSize(15px); padding:0.2rem 1rem;}
+
+.close {
+    color: $dark-gray;
+    font-weight: 100;
+    @include fontSize(50px);
+    line-height: 0.5;
+    display: inline-block;
+	&:hover {  color:$brand-primary; opacity:1;}
+	&.active{ color:$brand-primary; opacity:1;}
+}
+
+
+/*========= button icon==========*/
+.button-icon{ border:1px solid $disabled; @include round-borders(5px); padding:2.47rem 1rem; background-color:#fff; @include transition(all, 0.3s, ease-in-out, 0s); margin:1em 0; cursor: pointer; position:relative;
+	i{margin-bottom: 20px;  display: inline-block;color:$gray; @include fontSize(120px); @include transition(all, 0.3s, ease-in-out, 0s);  }
+	&:hover, &.active { background:$light-gray;
+		i{color:$brand-primary;}
+	}
+}
+/*========= justify button==========*/
+.justify-btn { display:flex;}

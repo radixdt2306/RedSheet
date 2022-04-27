@@ -1,0 +1,100 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Our team and opponents</h2>
+    <div class="row mb-3">
+        <div class="col-12 col-sm-6">
+            <h3>What do we know about them?</h3>
+            <p>{{theirTeamknownData.knowAboutThem}}</p>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>our team</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">position</th>
+                            <th scope="col">Personality Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="ourTeamTableData == null || ourTeamTableData == ''">
+                            <td colspan="3">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let ourTeamData of ourTeamTableData;">
+                            <td>{{ourTeamData.userName}}</td>
+                            <td>{{ourTeamData.position}}</td>
+                            <td>{{ourTeamData.personalityKey}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" style="page-break-inside : avoid;display:block">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" *ngFor="let theirTeamData of theirTeamTableData;">
+                        {{theirTeamData.personalityKey}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sub-heading-font font-md">Their Team</td>
+                    <td *ngFor="let theirTeamData of theirTeamTableData;">{{theirTeamData.teamMemberName}}</td>
+                </tr>
+                <tr>
+                    <td class="sub-heading-font font-md">Totals</td>
+                    <td *ngFor="let theirTeamData of theirTeamTableData;">{{theirTeamData.countTeamMember}}</td>
+                </tr>
+                <tr>
+                    <td class="sub-heading-font font-md">Approaches to
+                        <br />buiild rapport
+                        <br />with these
+                        <br />individuals
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Smile and make them feel loved</li>
+                            <li>Create moments of fun</li>
+                            <li>Give them the stage</li>
+                            <li>Involve them</li>
+                            <li>Use humour to challenge them or tackle difficult messages</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Let them lead and feel in control</li>
+                            <li>Demonstrate progress</li>
+                            <li>Praise them</li>
+                            <li>Show loyalty towards them</li>
+                            <li>Use humour with praise to challenge them</li>
+                            <li>Avoid taking control</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Show you are listening carefully and show concern</li>
+                            <li>Be visibly organised</li>
+                            <li>Use facts and figures</li>
+                            <li>Give them space for perfection</li>
+                            <li>Be careful not to offend them</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="pl-3">
+                            <li>Be agreeable towards them</li>
+                            <li>Show you appreciate their efforts</li>
+                            <li>Avoid conflict or anything that might make them feel threatened or under pressure</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        Based upon the main personality types you identified for each of your opponents, adopt the following responses
+        with
+        each individual to maximize how you build rapport with them.
+    </div>
+</div>

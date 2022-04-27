@@ -1,0 +1,168 @@
+<div class="container-fluid" *ngIf="showComponent">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-12 col-xl-10">
+      <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+      </app-project-module-edit>
+    </div>
+  </div>
+  <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+    <div class="col-12 col-lg-12 col-xl-10">
+      <form [formGroup]="projectBackgroundFormGroup" class="section-form">
+        <div class="row section-form-row">
+          <div class="col-12 col-lg-4">
+            <div class="form-group">
+              <label class="">Who are we negotiating with? *</label>
+              <textarea rxFocus="true" [class.error-message]="validMessageOpponentName.isError
+              || projectBackgroundFormGroup.controls.opponentName.invalid 
+              && (projectBackgroundFormGroup.controls.opponentName.dirty 
+                  || projectBackgroundFormGroup.controls.opponentName.touched)" class="form-control"
+                formControlName="opponentName" rows="3" name="" placeholder="Company Name or organization"
+                (input)="onSearchChangeOpponentName($event.target.value)"></textarea>
+              <small> <i *ngIf="validMessageOpponentName.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageOpponentName.maximumCharacter}}
+                <span [style.color]="validMessageOpponentName.isError ? '#ef3340' : ''">
+                  {{validMessageOpponentName.remainedOrExceededCharacters}}</span>
+              </small>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="form-group">
+              <label class="">What are we negotiating? *</label>
+              <textarea class="form-control" formControlName="focus" rows="3" name="" placeholder="Service or product"
+                [class.error-message]="validMessageFocus.isError
+                || projectBackgroundFormGroup.controls.focus.invalid 
+                && (projectBackgroundFormGroup.controls.focus.dirty 
+                    || projectBackgroundFormGroup.controls.focus.touched)"
+                (input)="onSearchChangeFocus($event.target.value)"></textarea>
+              <small> <i *ngIf="validMessageFocus.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageFocus.maximumCharacter}}
+                <span [style.color]="validMessageFocus.isError ? '#ef3340' : ''">
+                  {{validMessageFocus.remainedOrExceededCharacters}}</span>
+              </small>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="form-group">
+              <label class="">Why are we negotiating? *</label>
+              <textarea class="form-control" formControlName="reason" rows="3" name=""
+                placeholder="Main reason for the negotiation" [class.error-message]="validMessageReason.isError
+                || projectBackgroundFormGroup.controls.reason.invalid 
+                && (projectBackgroundFormGroup.controls.reason.dirty 
+                    || projectBackgroundFormGroup.controls.reason.touched)"
+                (input)="onSearchChangeReason($event.target.value)"></textarea>
+              <small> <i *ngIf="validMessageReason.isError" class="fa fa-exclamation-circle"
+                  style="font-size:16px;color:#ef3340"></i>
+                {{validMessageReason.maximumCharacter}}
+                <span [style.color]="validMessageReason.isError ? '#ef3340' : ''">
+                  {{validMessageReason.remainedOrExceededCharacters}}</span>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="row section-form-row">
+          <div class="col-12 col-xl-8">
+            <fieldset class="my-2 p-3">
+              <legend class="section-header">
+                <h2 class="section-title d-inline-block mb-0" rxLabel="headingOne"></h2>
+                <h2 class="section-title d-inline-block mb-0">&nbsp;*</h2>
+              </legend>
+              <div class="row">
+                <div class="col-12 col-md-6 my-2"
+                  *ngFor="let negotiationType of projectBackgroundLookupGroup.negotiationTypes;">
+                  <label class="custom-control custom-radio radio-icon"
+                    [class.active]="projectBackgroundFormGroup.controls.negotiationTypeId.value == negotiationType.negotiationTypeId">
+                    <input id="radio1" name="NegotiationType" class="custom-control-input" type="radio"
+                      (click)="projectBackgroundFormGroup.controls.negotiationTypeId.setValue(negotiationType.negotiationTypeId)"
+                      [checked]="projectBackgroundFormGroup.controls.negotiationTypeId.value == negotiationType.negotiationTypeId" />
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">
+                      <i class="{{negotiationType.className}}"></i>
+                      <span class="align-self-center">{{negotiationType.negotiationTypeName}}</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-12 col-xl-4">
+            <fieldset class="my-2 p-3">
+              <legend class="section-header">
+                <h2 class="section-title d-inline-block mb-0">Value objective *</h2>
+              </legend>
+              <div class="row">
+                <div class="col-12 col-md-6 col-xl-12 my-2"
+                  *ngFor="let valueObjective of projectBackgroundLookupGroup.valueObjectives;">
+                  <label class="custom-control custom-radio radio-icon"
+                    [class.active]="projectBackgroundFormGroup.controls.valueObjectiveId.value == valueObjective.valueObjectiveId">
+                    <input id="radio1" name="objective" class="custom-control-input" type="radio"
+                      (click)="projectBackgroundFormGroup.controls.valueObjectiveId.setValue(valueObjective.valueObjectiveId)"
+                      [checked]="projectBackgroundFormGroup.controls.valueObjectiveId.value == valueObjective.valueObjectiveId" />
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">
+                      <i class="align-self-center" *ngIf="valueObjective.valueObjectiveId == 1">
+                        <img src="assets/images/new claim -gray.svg" alt="claim" width="40"
+                          *ngIf="projectBackgroundFormGroup.controls.valueObjectiveId.value != 1">
+                        <img src="assets/images/new claim -blue.svg" alt="claim" width="40"
+                          *ngIf="projectBackgroundFormGroup.controls.valueObjectiveId.value == 1">
+                      </i>
+                      <i class="align-self-center" *ngIf="valueObjective.valueObjectiveId == 2">
+                        <img src="assets/images/create -gray.svg" alt="create" width="40"
+                          *ngIf="projectBackgroundFormGroup.controls.valueObjectiveId.value != 2">
+                        <img src="assets/images/create -blue.svg" alt="create" width="40"
+                          *ngIf="projectBackgroundFormGroup.controls.valueObjectiveId.value == 2">
+                      </i>
+                      <span class="align-self-center">{{valueObjective.valueObjectiveName}}</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-12 col-xl-12">
+            <fieldset class="p-3 mb-4 relation-req">
+              <legend>
+                <h2 class="color-primary bg-white d-inline-block mb-0">Relationship required *</h2>
+              </legend>
+              <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4 col-md-12 my-2"
+                  *ngFor="let relationshipRequire of projectBackgroundLookupGroup.relationshipRequires;">
+                  <label class="custom-control custom-radio radio-icon"
+                    [class.active]="projectBackgroundFormGroup.controls.relationshipRequireId.value == relationshipRequire.relationshipRequireId">
+                    <input id="radio1" name="RelationshipRequire" class="custom-control-input" type="radio"
+                      (click)="projectBackgroundFormGroup.controls.relationshipRequireId.setValue(relationshipRequire.relationshipRequireId)"
+                      [checked]="projectBackgroundFormGroup.controls.relationshipRequireId.value == relationshipRequire.relationshipRequireId" />
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">
+                      <i class="{{relationshipRequire.className}}"></i>
+                      <span class="align-self-center">{{relationshipRequire.relationshipRequireName}}</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-12 text-sm-right mt-3">
+            <button class="btn btn-primary btn-md" (click)="editProjectBackground()"
+              [disabled]="!(projectBackgroundFormGroup.valid)">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-12 col-lg-12 col-xl-10">
+      <!----------- list------------------>
+      <app-long-term-objective-list [projectBackgroundId]="projectBackgroundId" [isLocked]="isLocked">
+      </app-long-term-objective-list>
+    </div>
+    <div class="col-12 col-lg-12 col-xl-10">
+      <!----------- events ------------------>
+      <app-background-event-list [projectBackgroundId]="projectBackgroundId" [isLocked]="isLocked">
+      </app-background-event-list>
+    </div>
+  </fieldset>
+  <div>
+    <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+  </div>
+</div>

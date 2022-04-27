@@ -1,0 +1,29 @@
+<section *ngIf="showComponent" id="content_outer_wrapper">
+   <div id="content_wrapper" class="simple">
+      <div id="header_wrapper" class="header-xs shadow-none">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-xs-12">
+                  <header id="header">
+                     <h1>Code Generator</h1>
+                  </header>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div rxTabs #tabs="tabs">
+      <div class="tabpanel tab-header">
+         <ul class="nav nav-tabs p-l-30">
+           <li role="presentation" *ngFor="let tab of tabModels" [rxTab]="tab"><a>{{tab.title}}</a></li>
+         </ul>
+      </div>
+      <div id="content" class="container-fluid">
+         <div class="content-body">
+            <div id="card_content" class="tab-content">
+               <div rxTabContent class="tab-pane fade"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

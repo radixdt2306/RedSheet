@@ -1,0 +1,130 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Edit Event management and timeline</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="hideEventAgendaTimingEditComponent()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="eventAgendaTimingFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="negotiation-phase" class="">Negotiation Phase *</label>
+                        <div class="select-arrow p-0">
+                            <select rxFocus="true" class="form-control" rows="4" name="" placeholder="Open"
+                                formControlName="negotiationPhaseId">
+                                <option value="-1" disabled>Select negotiation phase</option>
+                                <option *ngFor="let negotiationPhase of negotiation_phase"
+                                    [value]="negotiationPhase.negotiationPhaseId">
+                                    <h5>{{negotiationPhase.negotiationPhaseName}}</h5>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group col-12">
+                        <label for="sort-order" class="">Sort Order</label>
+                        <input type="number" name="sort-order" class="form-control" rxPlaceholder="phSortOrder" formControlName="sortOrder"/>
+                    </div> -->
+                    <div class="form-group col-12">
+                        <label for="topic" class="">Topic *</label>
+                        <input type="text" name="topic" class="form-control" placeholder="Enter the general topic"
+                            formControlName="topic" [class.error-message]="validMessageTopic.isError
+                            || eventAgendaTimingFormGroup.controls.topic.invalid 
+                            && (eventAgendaTimingFormGroup.controls.topic.dirty 
+                                || eventAgendaTimingFormGroup.controls.topic.touched)"
+                            (input)="onSearchChangeTopic($event.target.value)" />
+                        <small> <i *ngIf="validMessageTopic.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageTopic.maximumCharacter}}
+                            <span [style.color]="validMessageTopic.isError ? '#ef3340' : ''">
+                                {{validMessageTopic.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="time" class="">Time *</label>
+                        <rx-time controlClass="form-control" placeholder="phTime" formControlName="time"></rx-time>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="purpose" class="">Purpose *</label>
+                        <input type="text" name="purpose" class="form-control"
+                            placeholder="What is the purpose of each element. Why are you talking about this?"
+                            formControlName="purpose" [class.error-message]="validMessagePurpose.isError
+                            || eventAgendaTimingFormGroup.controls.purpose.invalid 
+                            && (eventAgendaTimingFormGroup.controls.purpose.dirty 
+                                || eventAgendaTimingFormGroup.controls.purpose.touched)"
+                            (input)="onSearchChangePurpose($event.target.value)" />
+                        <small> <i *ngIf="validMessagePurpose.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessagePurpose.maximumCharacter}}
+                            <span [style.color]="validMessagePurpose.isError ? '#ef3340' : ''">
+                                {{validMessagePurpose.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="process" class="">Process *</label>
+                        <input type="text" name="process" class="form-control"
+                            placeholder="How will you talk about this?" formControlName="process" />
+                        <small> <i *ngIf="validMessageProcess.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageProcess.maximumCharacter}}
+                            <span [style.color]="validMessageProcess.isError ? '#ef3340' : ''">
+                                {{validMessageProcess.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="pay-off" class="">Pay-Off *</label>
+                        <input type="text" name="pay-off" class="form-control"
+                            placeholder="What do you expect to gain. What is the benefit of talking about this?"
+                            formControlName="payOff" [class.error-message]="validMessagePayOff.isError
+                            || eventAgendaTimingFormGroup.controls.payOff.invalid 
+                            && (eventAgendaTimingFormGroup.controls.payOff.dirty 
+                                || eventAgendaTimingFormGroup.controls.payOff.touched)"
+                            (input)="onSearchChangePayOff($event.target.value)" />
+                        <small> <i *ngIf="validMessagePayOff.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessagePayOff.maximumCharacter}}
+                            <span [style.color]="validMessagePayOff.isError ? '#ef3340' : ''">
+                                {{validMessagePayOff.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="tactics-used" class="">Tactics to be used *</label>
+                        <div class="select-arrow p-0">
+                            <select class="form-control" rows="4" name="Tactics" rxPlaceholder="phTacticsUsed"
+                                formControlName="tacticsId">
+                                <option value="-1">Choose appropriate tactics (open, explore, bargain, deal) to achieve
+                                    the purpose</option>
+                                <option *ngFor="let tactic of eventAgendaTimingLookupGroup.tactics;"
+                                    [value]="tactic.tacticId">{{tactic.tacticName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="trigger" class="">Trigger *</label>
+                        <input type="text" name="trigger" class="form-control"
+                            placeholder="What will be the trigger to use the tactic?" formControlName="trigger"
+                            [class.error-message]="validMessageTrigger.isError
+                            || eventAgendaTimingFormGroup.controls.trigger.invalid 
+                            && (eventAgendaTimingFormGroup.controls.trigger.dirty 
+                                || eventAgendaTimingFormGroup.controls.trigger.touched)"
+                            (input)="onSearchChangeTrigger($event.target.value)" />
+                        <small> <i *ngIf="validMessageTrigger.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageTrigger.maximumCharacter}}
+                            <span [style.color]="validMessageTrigger.isError ? '#ef3340' : ''">
+                                {{validMessageTrigger.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md" (click)="editEventAgendaTiming()"
+                [disabled]="!eventAgendaTimingFormGroup.valid">Update</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal"
+                (click)="hideEventAgendaTimingEditComponent()">Cancel</button>
+        </div>
+    </div>
+</div>

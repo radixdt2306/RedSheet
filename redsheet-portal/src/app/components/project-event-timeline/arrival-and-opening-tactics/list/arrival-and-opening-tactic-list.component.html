@@ -1,0 +1,55 @@
+
+        <div class="section-box" *ngIf="showComponent">
+            <div class="section-header">
+                <h2 class="section-title d-inline-block">Arrival and Opening Tactics</h2>
+                <button class="btn btn-info pull-right" title="Add" [disabled]="projectEventTimelineId == 0" (click)="addArrivalAndOpeningTactic(rowIndex)">
+                    <i class="fa fa-plus">
+                    </i>
+                  </button>
+            </div>
+            <div class="section-body">
+                <ul class="custom-list">
+                        <li *ngIf="isAdd" class="active">
+                                <input class="form-control" type="text" [(ngModel)]="addArrivalAndOpeningTacticEntity.arrivalAndOpeningTacticValue" rxFocus="true" placeholder="Be specific"
+                                [class.error-message]="validMessageAddAOTE.isError" (input)="onSearchChangeAddAOTE($event.target.value)" />
+                                <small> <i *ngIf="validMessageAddAOTE.isError" class="fa fa-exclamation-circle"
+                                  style="font-size:16px;color:#ef3340"></i>
+                                {{validMessageAddAOTE.maximumCharacter}}
+                                <span [style.color]="validMessageAddAOTE.isError ? '#ef3340' : ''">
+                                  {{validMessageAddAOTE.remainedOrExceededCharacters}}</span>
+                              </small>
+                                <ul class="action-links float-right list-inline">
+                                  <li class="list-inline-item" *ngIf="!isLocked"><a [class.btn_disabled]="validMessageAddAOTE.isError" title="Save">
+                                    <i class="fa fa-floppy-o" (click)="updateArrivalAndOpeningTactic(addArrivalAndOpeningTacticEntity,rowIndex)"></i></a>
+                                  </li>
+                                </ul>
+                              </li>
+                          <li *ngFor="let arrivalAndOpeningTactic of arrivalAndOpeningTactics; let rowIndex=index;" [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+                            <span *ngIf="!(editRowIndex == rowIndex)">{{arrivalAndOpeningTactic.arrivalAndOpeningTacticValue}}</span>
+                            <input class="form-control" type="text" [(ngModel)]="editArrivalAndOpeningTactic.arrivalAndOpeningTacticValue"
+                            rxFocus="true" [class.error-message]="validMessageAOTE.isError"
+                            (input)="onSearchChangeAOTE($event.target.value)"  *ngIf="(editRowIndex == rowIndex)" placeholder="Be specific"/>
+                            <small *ngIf="(editRowIndex == rowIndex)">
+                              <i *ngIf="validMessageAOTE.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                              {{validMessageAOTE.maximumCharacter}}
+                              <span [style.color]="validMessageAOTE.isError ? '#ef3340' : ''">
+                                {{validMessageAOTE.remainedOrExceededCharacters}}</span>
+                            </small>
+                            <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                              <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+                                <a  title="Edit">
+                                  <i class="fa fa-pencil-square-o" (click)="showEditRecord(arrivalAndOpeningTactic,rowIndex)" ></i>
+                                </a>
+                              </li>
+                              <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))" ><a [class.btn_disabled]="validMessageAOTE.isError" title="Save">
+                                <i class="fa fa-floppy-o" (click)="updateArrivalAndOpeningTactic(editArrivalAndOpeningTactic,rowIndex)"></i></a>
+                              </li>
+                              <li class="list-inline-item"><a title="Delete">
+                                <i class="fa fa-trash-o" (click)="showArrivalAndOpeningTacticDeleteComponent(arrivalAndOpeningTactic,rowIndex)" aria-hidden="true"></i></a>
+                              </li>
+                            </ul>
+                          </li>
+                </ul>
+            </div>
+        </div>

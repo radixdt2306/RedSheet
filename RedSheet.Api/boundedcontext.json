@@ -1,0 +1,26 @@
+{
+  "connectionString": "data source=PC0220\\SQLEXPRESS;initial catalog=TestProjectDb;persist security info=True;User Id=ajay;Password=RedSheetweb8;MultipleActiveResultSets=True;App=EntityFramework",
+  "entityNamespaces": [],
+  "contextNamespaces": [],
+  "tableAnnotations": [ "[Serializable]" ],
+  "auditables": [],
+  "softdeleteTables": [],
+  "contexts": [
+    {
+      "name": "Setting",
+      "tables": [
+        "Agencies"
+      ],
+
+      "views": [ "vAgencies" ],
+
+      "controllers": [
+        {
+          "tableName": "Agencies",
+          "complexityLevel": "high"
+        }
+      ]
+    }
+  ],
+  "excludeReferenceProperties": [ "Lookups" ]
+}

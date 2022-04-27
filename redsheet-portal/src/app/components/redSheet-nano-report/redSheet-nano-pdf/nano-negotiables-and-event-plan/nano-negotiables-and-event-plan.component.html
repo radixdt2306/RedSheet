@@ -1,0 +1,97 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Negotiables
+        <i class="sup fa fa-registered"></i> and event plan</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <h3>Our Negotiables
+                <i class="sup fa fa-registered"></i>
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align-middle">
+                                Our negotiables
+                                <i class="sup fa fa-registered"></i>
+                            </th>
+                            <th scope="col" class="align-middle">
+                                Most desirable
+                            </th>
+                            <th scope="col" class="align-middle">
+                                Least desirable
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="negotiablesAndEventPlanReportData.negotiableData == null || negotiablesAndEventPlanReportData.negotiableData == ''">
+                            <td colspan="4">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let data of negotiablesAndEventPlanReportData.negotiableData">
+                            <td>{{data.requirement}}</td>
+                            <td>{{data.mdo}}</td>
+                            <td>{{data.ldo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-6 mb-0">
+                    <h3 class="text-center">Our batna</h3>
+                    <div>
+                        <ul class="pl-3" *ngIf="negotiablesAndEventPlanReportData.ourBatnaData == null || negotiablesAndEventPlanReportData.ourBatnaData == ''">
+                            None.
+                        </ul>
+                        <ul class="pl-3">
+                            <li *ngFor="let data of negotiablesAndEventPlanReportData.ourBatnaData">{{data.nanoOurBatnaValue}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 mb-0">
+                    <h3 class="text-center">Their batna</h3>
+                    <div>
+                        <ul class="pl-3" *ngIf="negotiablesAndEventPlanReportData.theirBatnaData == null || negotiablesAndEventPlanReportData.theirBatnaData == ''">
+                            None.
+                        </ul>
+                        <ul class="pl-3">
+                            <li *ngFor="let data of negotiablesAndEventPlanReportData.theirBatnaData">{{data.nanoTheirBatnaValue}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Meeting Management</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Time
+                            </th>
+                            <th scope="col">
+                                Phase
+                            </th>
+                            <th scope="col">
+                                Negotiation Topic/Process
+                            </th>
+                            <th scope="col">
+                                Tactics
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="negotiablesAndEventPlanReportData.meetingManagementData == null || negotiablesAndEventPlanReportData.meetingManagementData == ''">
+                            <td colspan="4">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let data of negotiablesAndEventPlanReportData.meetingManagementData">
+                            <td>{{data.time}}</td>
+                            <td>{{data.negotiationPhaseName}}</td>
+                            <td>{{data.process}}</td>
+                            <td>{{data.tacticName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

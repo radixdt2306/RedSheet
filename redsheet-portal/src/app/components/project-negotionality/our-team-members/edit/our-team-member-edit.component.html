@@ -1,0 +1,163 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+       <div class="modal-header border-0">
+          <h2 class="modal-title">Edit Team Member</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideOurTeamMember()" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    <div class="modal-body">
+        <form [formGroup]="ourTeamMemberFormGroup" class="section-form">
+          <div class="row section-form-row mt-0 mb-0">
+              <div class="form-group col-12">
+                  <label class="">Select User *</label>
+                  <rx-tag rxFocus="true" placeholder="phUserName" [(source)]="ourTeamMemberLookupGroup.userLookups" [keyValueProps]="['#userName#','userId']" maxSelection="1" formControlName="userId"></rx-tag>
+              </div>
+              <div class="form-group col-12">
+                  <label for="project-name" class="">Role *</label>
+                  <div class="select-arrow p-0">
+                    <select  class="form-control" rows="3" name="TeamRole" rxPlaceholder="phRole" formControlName="teamRoleId">
+                        <option disabled value="-1" >Add the role in the negotiation</option>
+                        <option *ngFor="let teamRole of ourTeamMemberLookupGroup.teamRoles;" [value]="teamRole.teamRoleId"><h5>{{teamRole.teamRoleName}} : <span>{{teamRole.roleDescription}}</span></h5></option>
+                    </select>
+                  </div>
+              </div>
+          </div>
+          <div class="row section-form-row" >
+              <div class="col-12 table-responsive "  [formGroup]="ourteamMemberBehaviourGroup" *ngFor="let ourteamMemberBehaviourGroup of ourTeamMemberFormGroup.controls['ourTeamMemberBehaviours'].controls;let j = index">
+                  <table cellspacing="2" cellpadding="2" class="table outer-bordered table-select-primary">
+                    <tbody>
+                      <tr>
+                        <th rowspan="2" class="first-child">C</th>
+                        <td rowspan="2" class="border-top-0"><h5>Consciencious</h5></td>
+                        <td rowspan="2" class="border-top-0">Hardworking, organized and self-disciplined with attention to detail. High scoring individuals are typically very reliable and will persevere to get things right (High, Low or Choice).</td>
+                        <td class="th-dropdown">Behaviour *</td>
+                      </tr>
+                      <tr>
+                        <td class="td-dropdown">
+                          <select class="custom-select" formControlName="consciousnessId">  
+                              <option value="-1" disabled >Select</option>
+                            <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">O</th>
+                        <td><h5>Outgoing</h5></td>
+                        <td class="font-md">Socially confident and easily met in conversation, comfortable speaking about their ideas and making new social connections quickly.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="outingId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">W</th>
+                        <td><h5>Will to Win</h5></td>
+                        <td class="font-md">Competitive and highly ambitious. The need to achieve goals is more important to the individual than personal relationships.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="wIllToWinId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">S</th>
+                        <td><h5>Solution  Focused</h5></td>
+                        <td class="font-md">Can assimiliate new information accurately, rapidly and can identify effective solutions. Collects and analyses data and makes data-based decisions.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="solutionFocusedId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">O</th>
+                        <td><h5>Open Minded</h5></td>
+                        <td class="font-md">Ability to work well in the absence of structure. Creative, imaginative and often curious. Is comfortable working in vague, fluid or rapidly changing environments.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="openMindedId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                       <tr>
+                        <th class="first-child">A</th>
+                        <td><h5>Agreeable</h5></td>
+                        <td class="font-md">Good natured and helpful with a strong desire to place the needs of others in front of one’s own needs. Acts selflessly, tries to nurture and meet the emotional needs of others.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="agreeableId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">P</th>
+                        <td><h5>Personal Calm</h5></td>
+                        <td class="font-md">Relaxed, at ease and secure. Controls their own emotions; individuals scoring highly here are often patient and even tempered.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="personalCalmId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">A</th>
+                        <td><h5>Assertiveness</h5></td>
+                        <td class="font-md">Comfortable in asserting one’s own ideas, viewts or needs and to remain insistent about these in the face of disagreement, criticism or adversity in order to satisfy one’s own concerns (High, Low or Choice).
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="assertivenessId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let assertivenessBehaviour of assertivenessBehaviours" [value]="assertivenessBehaviour.assertivenessBehaviourId">{{assertivenessBehaviour.assertivenessBehaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <th class="first-child">C</th>
+                        <td><h5>Conflict Style</h5></td>
+                        <td class="font-md">The individual’s behaviour in conflict situations: Accommodate , Compromise , Collaborate, Compete, or Avoid.
+                        </td>
+                         <td class="td-dropdown">
+                          <select class="custom-select" formControlName="conflictStyleId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let conflictStyleBehaviour of conflictStyleBehaviours" [value]="conflictStyleBehaviour.conflictStyleBehviourId">{{conflictStyleBehaviour.conflictStyleBehviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th class="first-child">E</th>
+                        <td><h5>Emotional Competence</h5></td>
+                        <td class="font-md">The ability to identify, evaluate and manage the emotions of oneself, others and of groups.</td>
+                         <td class="td-dropdown border-bottom-0">
+                          <select class="custom-select" formControlName="emotionalCompetenceId">
+                              <option value="-1" disabled >Select</option>
+                              <option *ngFor="let behaviour of behaviours" [value]="behaviour.behaviourId">{{behaviour.behaviourName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="save" class="btn btn-primary btn-md" [disabled]="!ourTeamMemberFormGroup.valid" (click)="editOurTeamMember()">Update</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md" data-dismiss="modal" (click)="hideOurTeamMember()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<a class="btn-menu btn-toggle" (click)="hideSidebar()" id="menu-toggle" title="Toggle"><i class="redsheet redsheet-toggle"></i></a>    
+
+<div class="sidebar-wrapper" >
+    
+  <a id="menu-toggle" (click)="hideSidebar()" class="btn-menu" title="Toggle"><i class="redsheet redsheet-toggle"></i></a>
+  <h2 class="temp-name py-3 pl-4 color-primary ">{{templateName}}</h2>
+
+  <ul class="sidebar-nav flex-column" >      
+      <li  *ngFor="let projectModule of projectModules" class="visited" [ngClass]="projectModule.status == true ? 'lock' : ''" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a  [routerLink]="projectModule.uri">{{projectModule.templateModuleName}}<i [class]="getSymbol(projectModule.templateModuleId)"></i></a></li>      
+  </ul>
+</div>

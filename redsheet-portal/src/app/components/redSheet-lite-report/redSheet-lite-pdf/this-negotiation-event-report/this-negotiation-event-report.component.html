@@ -1,0 +1,115 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>About this negotiation event</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label class="col-auto sub-heading-font mb-0 pr-2">Date</label>
+                        <div type="text" class="form-control-plaintext col-auto">
+                            {{thisNegotiationEventReportData.dateOfNegotiation | date:'dd/MM/yyyy'}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label class="col-auto sub-heading-font mb-0 pr-2">Location</label>
+                        <div type="text" class="form-control-plaintext col">{{thisNegotiationEventReportData.location}}</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row no-gutters align-items-center mb-1">
+                <label class="col-auto sub-heading-font mb-0 pr-2">Why?</label>
+                <div type="text" class="form-control-plaintext col">{{thisNegotiationEventReportData.reason}}</div>
+            </div>
+
+            <div class="form-group row no-gutters mb-1">
+                <label class="col-auto sub-heading-font mb-0 pr-2 pt-1">What are we negotiating?</label>
+                <div type="text" class="form-control-plaintext col pt-1">{{thisNegotiationEventReportData.focus}}</div>
+            </div>
+            <div class="border border-top mb-3"></div>
+            <div class="mt-3">
+                <h3>Known risks or issues?</h3>
+                <p>{{thisNegotiationEventReportData.knownIssues}}</p>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>opponents</h3>
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-auto">
+                    <div class="form-group row no-gutters align-items-center mb-1">
+                        <label class="col-auto sub-heading-font mb-0 pr-2">With</label>
+                        <div type="text" class="form-control-plaintext col-auto">
+                            {{thisNegotiationEventReportData.opponentName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-7 d-flex flex-wrap mb-1 align-items-center">
+                    <label class="sub-heading-font mb-0">Relationship required?</label>
+                    <div class="text-center pl-3">
+                        <i class="{{thisNegotiationEventReportData.liteRelationshipRequireClassName}} fa-3x"></i>
+                        <span class="d-block">{{thisNegotiationEventReportData.liteRelationshipRequireName}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center">
+                <h3 class="my-auto">Relationship required?</h3>
+                <div class="text-center pl-3">
+                    <i class="{{thisNegotiationEventReportData.liteRelationshipRequireClassName}} fa-3x"></i>
+                    <span class="d-block">{{thisNegotiationEventReportData.liteRelationshipRequireName}}</span>
+                </div>
+            </div> -->
+            <div class="d-flex flex-wrap align-items-center pt-2">
+                <h3 class="mb-0">Our value objective</h3>
+                <div class="text-center px-3">
+                    <img class="fa-3x" src="assets/images/new claim2.svg" alt="claim" width="40" *ngIf="thisNegotiationEventReportData.valueObjectiveId == 1">
+                    <img class="fa-3x" src="assets/images/create-report.svg" alt="create" width="40" *ngIf="thisNegotiationEventReportData.valueObjectiveId == 2">
+                    <span class="d-block">{{thisNegotiationEventReportData.valueObjectiveName}}</span>
+                </div>
+            </div>
+            <h3 class="pt-3">Mode of communication</h3>
+            <div class="d-flex flex-wrap my-3">
+                <div class="text-center pr-3" *ngFor="let data of  thisNegotiationEventReportData.modeName; let num=index">
+                    <i class="{{thisNegotiationEventReportData.iconClass[num]}} fa-3x"></i>
+                    <span class="d-block">{{thisNegotiationEventReportData.modeName[num]}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
+    <!-- <div class="row"> -->
+    <h3>Knowledge Actions</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Knowledge or data required
+                    </th>
+                    <th scope="col">
+                        source
+                    </th>
+                    <th scope="col">
+                        who
+                    </th>
+                    <th scope="col">
+                        By when
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="knowledgeGatheringTableData == null || knowledgeGatheringTableData == ''">
+                    <td colspan="4">No Record Found.</td>
+                </tr>
+                <tr *ngFor="let data of knowledgeGatheringTableData">
+                    <td>{{data.knowledgeRequired}}</td>
+                    <td>{{data.source}}</td>
+                    <td>{{data.knowledgeGivenBy}}</td>
+                    <td>{{data.knowledgeGivenOn | date:'dd/MM/yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- </div> -->
+</div>

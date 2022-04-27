@@ -1,0 +1,35 @@
+namespace RedSheet.Infrastructure.ValidationMessages
+{
+    public enum ValidationFailedCode
+    {
+        AlreadyExits = 27,
+        CannotBeDeleted = 157,
+        passwordChanged = 2202,
+        NotCorrectUserName = 2209,
+        NotCorrectSecurityQuestionOrAnswer = 2210,
+        FailedChangePassword = 2211,
+        InvalidUserNamePassword = 2212,
+        RequiredViewPermission = 2213,
+        minimumNoOfCharacterPassword = 2222,
+        forcePasswordAlphaNum = 2223,
+        passwordExpire = 2224,
+        accountLocked = 2225,
+        notMatchedPassword = 2229,
+        enterPassword = 2280,
+        InactiveUser = 2281,
+        userNotFound = 2282,
+        TicketNotAvailable = 6777,
+        StartDateShouldbeLessThanEndDate = 7657,
+        emailSent = 7692,
+        unexpectedErrorContactSupport = 7695,
+        unexpectedError = 7696,
+        accountNotFound = 7697,
+        tokenExpire = 7700,
+        notAllParamsPopulated = 7703,
+        accountNotFoundContactSupport = 7704,
+        tokenExpireMakeRequest = 7705,
+        InvalidEmailFormat = 7739,
+        minimumOneGame = 7750,
+        maximumFourGame = 7751,
+    }
+}

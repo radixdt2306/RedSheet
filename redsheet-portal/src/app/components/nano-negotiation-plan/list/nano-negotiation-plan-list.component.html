@@ -1,0 +1,32 @@
+<div class="container-fluid" *ngIf="showComponent">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-12 col-xl-10">
+                <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId"></app-project-module-edit>
+            </div>
+        </div>
+        <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+            <!-- Our Negotiable -->
+            <div class="col-12 col-lg-12 col-xl-10">
+                    <app-nano-project-negotiable-list [projectModuleId]="projectModuleId" [isLocked]="isLocked" ></app-nano-project-negotiable-list>
+                </div>
+            <!-- Our BATNA(s) -->
+                <div class="col-12 col-lg-12 col-xl-10">
+                    <div class="row">
+                <div class="col-12 col-lg-6">
+                    <app-nano-our-batna-list [projectModuleId]="projectModuleId" [isLocked]="isLocked" ></app-nano-our-batna-list>
+                </div>
+            <!-- Their BATNA(s) -->
+                <div class="col-12 col-lg-6">
+                    <app-nano-their-batna-list [projectModuleId]="projectModuleId" [isLocked]="isLocked" ></app-nano-their-batna-list>
+                </div>
+            </div>
+        </div>
+            <!-- Discussion sequence -->
+                <div class="col-12 col-lg-12 col-xl-10">
+                    <app-nano-discussion-sequence-list [projectModuleId]="projectModuleId" [isLocked]="isLocked" ></app-nano-discussion-sequence-list>
+                </div>
+        </fieldset>
+        <div>
+            <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+        </div>
+    </div>

@@ -1,0 +1,65 @@
+{
+  "emailSettings": {
+    "fromAddress": "academyteam@positivepurchasing.com",
+    "NewModuleAvailableForReview": "NewModuleAvailableForReview",
+    "ModuleInactivityEmail": "ModuleInactivityEmail",
+    "ProjectAssignmentOfUsers": "ProjectAssignmentOfUsers",
+    "LiveProjectEmailReport": "wwwroot/ReportEmailTemplate/LiveProjectEmailReport.html",
+    /*"MailServer": "mail.mailtest.radixweb.net",
+    "UserName": "testdotnet@mailtest.radixweb.net",
+    "PassWord": "deep70",
+    "Port": "25" */
+    "MailServer": "localhost:2525",
+    "UserName": "",
+    "PassWord": ""
+  },
+  "token": {
+    "expireHours": 12
+  },
+  "recordLock": {
+    "expireMinutes": 5
+  },
+  "multiTenant": false,
+  "webfarm": false,
+  "dbConnection": {
+    //"log": "data source= RXDBSERVER\\MSSQLSERVER2017;initial catalog=redsheetdb;persist security info=true;user id=rxRedSheet;password=rxRedSheet;multipleactiveresultsets=true;app=entityframework",
+    //"cache": "data source= RXDBSERVER\\MSSQLSERVER2017;initial catalog=redsheetdb;persist security info=true;user id=rxRedSheet;password=rxRedSheet;multipleactiveresultsets=true;app=entityframework",
+    //"admin": "",
+    //"main": "data source= RXDBSERVER\\MSSQLSERVER2017;initial catalog=redsheetdb;persist security info=true;user id=rxRedSheet;password=rxRedSheet;multipleactiveresultsets=true;app=entityframework",
+    /*"generator": "not needed",
+
+    "log": "data source= 192.168.100.199\\mssqlserver2016;initial catalog=redsheetdb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework",
+    "cache": "data source= 192.168.100.199\\mssqlserver2016;initial catalog=redsheetdb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework",
+    "admin": "",
+    "main": "data source= 192.168.100.199\\mssqlserver2016;initial catalog=redsheetdb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework"*/
+    //"generator": "",
+
+    //"log": "Data Source=us2.positivepurchasing.com;Initial Catalog=RedSheetDb;Integrated Security=False;Persist Security Info=False;User ID=ppdbuser;Password=sWUSamewA@ab;Connect Timeout=60;Encrypt=False;Current Language=English;MultipleActiveResultSets=True;App=EntityFramework;",
+    //"cache": "Data Source=us2.positivepurchasing.com;Initial Catalog=RedSheetDb;Integrated Security=False;Persist Security Info=False;User ID=ppdbuser;Password=sWUSamewA@ab;Connect Timeout=60;Encrypt=False;Current Language=English;MultipleActiveResultSets=True;App=EntityFramework;",
+    //"admin": "",
+    //"main": "Data Source=us2.positivepurchasing.com;Initial Catalog=RedSheetDb;Integrated Security=False;Persist Security Info=False;User ID=ppdbuser;Password=sWUSamewA@ab;Connect Timeout=60;Encrypt=False;Current Language=English;MultipleActiveResultSets=True;App=EntityFramework;"
+
+    "log": "Data Source=RXDBSERVER\\MSSQLSERVER2019;initial catalog=RedSheetDb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework",
+    "cache": "Data Source=RXDBSERVER\\MSSQLSERVER2019;initial catalog=RedSheetDb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework",
+    "admin": "",
+    "main": "Data Source=RXDBSERVER\\MSSQLSERVER2019;initial catalog=RedSheetDb;persist security info=true;user id=rxredsheet;password=rxredsheet;multipleactiveresultsets=true;app=entityframework"
+
+
+
+  },
+  "configuration": {
+    "cache": {
+      "days": 365,
+      "type": "sql"
+    }
+  },
+  "appSettings": {
+    //"applicationId": "AB79A633-1498-40A4-857B-6E9A73E05AFF"
+    "applicationId": "b8950dce-4fa7-4164-a54f-7a3980f24bd5"
+  },
+  "applicationUrl": {
+    //"clientUrl": "http://mynegotiations.redsheetonline.com/#/"
+    //"clientUrl": "https://Redsheet-RW.positivedev.co.uk/#/"
+    "clientUrl": "http://localhost:4200/#/"
+  }
+}

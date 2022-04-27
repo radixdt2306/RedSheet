@@ -1,0 +1,161 @@
+﻿<section id="content_outer_wrapper" *ngIf="showComponent">
+  <div id="content_wrapper">
+    <form class="form-horizontal" [formGroup]="usersEditFormGroup">
+      <div id="header_wrapper" class="header-sm">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <header id="header">
+                <h1 rxLabel="pageTitle">Edit Users</h1>
+                <ul class="card-actions icons right-top m-t-n-20">
+                  <li>
+                    <button type="button" class="btn btn-primary" [disabled]="!usersEditFormGroup.valid" (click)="updateUsers()" rxLabel="saveButton">Update</button>
+                    <button type="button" class="btn btn-default" routerLink="/users" rxLabel="backToListButton">Back to List</button>
+                  </li>
+                </ul>
+              </header>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="container-fluid">
+        <div class="content-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="firstName">First Name</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="firstName" [rxMessage]="validationFailed.firstName" />
+                      </div>
+                    </div>
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="lastName">Last Name</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="lastName" [rxMessage]="validationFailed.lastName" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group is-empty  col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="userName">User Name</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="userName" [rxMessage]="validationFailed.userName" />
+                      </div>
+                    </div>
+                    <div class="form-group is-empty  col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="changePassword">Change Password</label>
+                      <div>
+                        <label class="radio-inline">
+                          <input type="radio" name="isChangePassword" value="true" formControlName="isChangePassword"><span class="circle"></span><span class="check"></span> Yes
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="isChangePassword" value="false" formControlName="isChangePassword"><span class="circle"></span><span class="check"></span> No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="usersEditFormGroup.controls.isChangePassword.value == 'true'">
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="password">Password</label>
+                      <div class="col-md-9">
+                        <input type="password" class="form-control" formControlName="password" [rxMessage]="validationFailed.password" />
+                      </div>
+                    </div>
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="confirmPassword">Confirm Password</label>
+                      <div class="col-md-9">
+                        <input type="password" class="form-control" formControlName="confirmPassword" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!--<div class="form-group is-empty col-lg-6">
+                        <label for="name" class="col-md-3 control-label">Status</label>
+                        <div class="col-md-9">
+                            <select class="form-control" formControlName="statusId">
+                                <option value="">Select</option>
+                                <option *ngFor="let statusDetail of usersLookupGroup.status" value="{{statusDetail.statusId}}">{{statusDetail.statusName}}</option>
+                            </select>
+                        </div>
+                    </div>-->
+                  </div>
+                  <div class="row">
+                    <div class="form-group is-empty  col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="securityQuestionId">Security Questions</label>
+                      <div class="col-md-9">
+                        <select class="form-control" formControlName="securityQuestionId" [rxMessage]="validationFailed.securityQuestionId">
+                          <option value="">Select</option>
+                          <option *ngFor="let securityQuestion of usersLookupGroup.securityQuestions" value="{{securityQuestion.securityQuestionId}}">{{securityQuestion.securityQuestionName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="securityAnswer">Security Answer</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="securityAnswer" [rxMessage]="validationFailed.securityAnswer" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="applicationTimeZoneId">Application Time Zone</label>
+                      <div class="col-md-9">
+                        <select class="form-control" formControlName="applicationTimeZoneId" [rxMessage]="validationFailed.applicationTimeZoneId">
+                          <option value="">Select</option>
+                          <option *ngFor="let timezone of usersLookupGroup.applicationTimeZones" value="{{timezone.applicationTimeZoneId}}">{{timezone.applicationTimeZoneName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group is-empty  col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="languageId">Languages</label>
+                      <div class="col-md-9">
+                        <select class="form-control" formControlName="languageId" [rxMessage]="validationFailed.languageId">
+                          <option value="">Select</option>
+                          <option *ngFor="let language of usersLookupGroup.languages" value="{{language.languageId}}">{{language.languageName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="roleName">Roles</label>
+                      <div class="col-md-9">
+                        <select class="form-control" formControlName="roleId" [rxMessage]="validationFailed.roleId">
+                          <option value="">Select</option>
+                          <option *ngFor="let role of usersLookupGroup.roles" value="{{role.roleId}}">{{role.roleName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="linkdinUrl">Linkedin Url</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="linkdinUrl" [rxMessage]="validationFailed.linkdinUrl" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="facebookUrl">Facebook Url</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="facebookUrl" [rxMessage]="validationFailed.facebookUrl" />
+                      </div>
+                    </div>
+                    <div class="form-group is-empty col-lg-6">
+                      <label for="name" class="col-md-3 control-label" rxLabel="twitterUrl">Twitter Url</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="twitterUrl" [rxMessage]="validationFailed.twitterUrl" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

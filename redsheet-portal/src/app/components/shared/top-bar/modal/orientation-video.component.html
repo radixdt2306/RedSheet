@@ -1,0 +1,24 @@
+<!-- <script
+    src="https://video.silverstream.tv/themes/default/js/responsive.js.php?uid=sstv_5f801f8ce1ce8&height=720&aspect_ratio=1.7778"></script> -->
+
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4" style="width: 1058px;right: 10%;">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Orientation Video</h2>
+            <button type="button" class="close" data-dismiss="modal" (click)="hideOrientationVideo()"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <iframe id="sstv_5f801f8ce1ce8" class="sstv_embed"
+                src="https://video.silverstream.tv/player/yCvqzzwU?hide_share=1"
+                style="border:none;overflow:hidden;width: 1280px;max-width:100%;height: 720px;max-height: 70vh;" frameborder="0" seamless
+                allowfullscreen webkitAllowFullScreen allow="autoplay; fullscreen"></iframe>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="cancel" class="btn btn-primary btn-md" (click)="hideOrientationVideo()"
+                data-dismiss="modal">OK</button>
+        </div>
+    </div>
+</div>

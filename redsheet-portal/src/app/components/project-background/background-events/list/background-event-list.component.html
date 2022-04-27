@@ -1,0 +1,47 @@
+<div class="section-box" *ngIf="showComponent">
+  <div class="section-header">
+    <h2 class="section-title d-inline-block">Events, milestones and desired outcomes</h2>
+    <button class="btn btn-info pull-right" data-toggle="modal" (click)="showBackgroundEventAddComponent({})"
+      [disabled]="projectBackgroundId == 0" title="Add"><i class="fa fa-plus"></i></button>
+  </div>
+  <div class="section-body">
+    <div>
+      <rx-template [dataSource]="backgroundEvents" pageSize="2" masterClass="col-12 col-lg-6">
+        <ng-template rxCellTemplate let-backgroundEvent="dataItem">
+          <div class="media section-media without-icon">
+            <div class="media-body">
+              <div class="media-title">
+                <h4 class="d-inline-block">{{backgroundEvent.title}}</h4>
+                <ul *ngIf="!isLocked" class="action-links float-right list-inline">
+                  <li class="list-inline-item"><a title="Edit"
+                      (click)="showBackgroundEventEditComponent(backgroundEvent)"><i class="fa fa-pencil-square-o"
+                        aria-hidden="true"></i></a></li>
+
+                  <li class="list-inline-item">
+                    <a title="Delete" (click)="showBackgroundEventDeleteComponent(backgroundEvent)">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+              <div class="project-summery font-md">
+                <!-- <p>Milestone : <span class="color-dark-gray">Template Name Here</span></p> -->
+                <p>Description : <span class="color-dark-gray">{{backgroundEvent.description}}</span></p>
+                <p>
+                  <span class="pr-2">
+                    <label class="mb-0" *ngIf="backgroundEvent.isEvent">Start Date : </label>
+                    <label class="mb-0" *ngIf="!backgroundEvent.isEvent">Date : </label>
+                    <span class="color-dark-gray">{{backgroundEvent.startDate | date:'dd/MM/yyyy'}} </span>
+                  </span>
+                  <span class="d-inline-block" *ngIf="backgroundEvent.isEvent">End Date :
+                    <span class="color-dark-gray">{{backgroundEvent.endDate | date:'dd/MM/yyyy'}} </span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </rx-template>
+    </div>
+  </div>
+</div>

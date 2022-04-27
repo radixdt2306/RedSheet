@@ -1,0 +1,246 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Culture</h2>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <h3>Our culture</h3>
+        </div>
+        <div class="col-2 text-center">
+            <h3>their culture</h3>
+        </div>
+        <div class="col-8">
+            <h3>When negotiating with them</h3>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.ourMonochronic == true ? 'redsheet redsheet-monochronic fa-3x' : 'redsheet redsheet-polychronic fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourMonochronic == true">Monochronic</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourMonochronic == false">Polychronic</span>
+        </div>
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.thierMonochronic == true ? 'redsheet redsheet-monochronic fa-3x' : 'redsheet redsheet-polychronic fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.thierMonochronic == true">Monochronic</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.thierMonochronic == false">Polychronic</span>
+        </div>
+        <div class="col-8">
+            {{cultureReportData.cultureDetail.monochronic}}
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.ourIndividualistic == true ? 'redsheet redsheet-individualistic fa-3x' : 'redsheet redsheet-collective fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourIndividualistic == true">Individualisitic</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourIndividualistic == false">Collective</span>
+        </div>
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.theirIndividualistic == true ? 'redsheet redsheet-individualistic fa-3x' : 'redsheet redsheet-collective fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirIndividualistic == true">Individualisitic</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirIndividualistic == false">Collective</span>
+        </div>
+        <div class="col-8">
+            {{cultureReportData.cultureDetail.individualistic}}
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.ourEgalitarian == true ? 'redsheet redsheet-egalitarian fa-3x' : 'redsheet redsheet-authorative fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourEgalitarian == true">Egalitarian</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourEgalitarian == false">Authoritative</span>
+        </div>
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.theirEgalitarian == true ? 'redsheet redsheet-egalitarian fa-3x' : 'redsheet redsheet-authorative fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirEgalitarian == true">Egalitarian</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirEgalitarian == false">Authoritative</span>
+        </div>
+        <div class="col-8">
+            {{cultureReportData.cultureDetail.egalitarian}}
+        </div>
+    </div>
+</div>
+
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Culture</h2>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <h3>Our culture</h3>
+        </div>
+        <div class="col-2 text-center">
+            <h3>their culture</h3>
+        </div>
+        <div class="col-8">
+            <h3>When negotiating with them</h3>
+        </div>
+    </div>
+    <div class="row align-items-center mb-3">
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.ourShortTerm == true ? 'redsheet redsheet-short-term fa-3x' : 'redsheet redsheet-long-term fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourShortTerm == true">Short Term</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.ourShortTerm == false">Long Term</span>
+        </div>
+        <div class="col-2 text-center">
+            <i [ngClass]="cultureReportData.cultureDetail.theirShortTerm == true ? 'redsheet redsheet-short-term fa-3x' : 'redsheet redsheet-long-term fa-3x'"></i>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirShortTerm == true">Short Term</span>
+            <span class="d-block font-md" *ngIf="cultureReportData.cultureDetail.theirShortTerm == false">Long Term</span>
+        </div>
+        <div class="col-8">
+            {{cultureReportData.cultureDetail.shortTerm}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>What to say</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 74 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 74 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>What not to say</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 75 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 75 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>How the meeting must run</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 73 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 73 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>How to act</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 76 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 76 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>Gestures to avoid</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 77 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 77 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+            <table class="text-left mb-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>PLAN TO BUILD RAPPORT</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-top" *ngFor="let data of cultureReportData.culturePlanDetail">
+                        <td *ngIf="data.culturePlanCategoryId == 72 && data.projectCulturePlanValue != null">
+                            <ul class="pl-3">
+                                <li>{{data.projectCulturePlanValue}}</li>
+                            </ul>
+                        </td>
+                        <td *ngIf="data.culturePlanCategoryId == 72 && (data.projectCulturePlanValue == null || data.projectCulturePlanValue == '')">
+                            <ul class="pl-3">
+                                <div>None.</div>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h3>notes</h3>
+    <p *ngIf="cultureReportData.cultureNoteDetail.note == null || cultureReportData.cultureNoteDetail.note == ''">None.</p>
+    {{cultureReportData.cultureNoteDetail.note}}
+</div>

@@ -1,0 +1,15 @@
+<div class="section-box" *ngIf="showComponent" >
+
+    <form [formGroup]="projectModuleReviewFormGroup" class="section-form" >
+    <fieldset class="justify-content-center border-0" [(disabled)] = "!(isOwner || isReviewer) || isProjectCompleted">
+        <div class="form-group">
+            <label class="control-label">Reviewer Feedback</label>
+            <textarea rxFocus="true"  class="form-control"  formControlName="feedback" name="" rows="4" placeholder="Text here.." ></textarea>
+        </div>
+        <div class="text-sm-right pt-2">
+            <button  class="btn btn-primary btn-md" (click)="editProjectModuleReview()" [disabled]="!(projectModuleReviewFormGroup.valid)">Submit</button>
+        </div>
+    </fieldset>
+    </form>
+
+</div>

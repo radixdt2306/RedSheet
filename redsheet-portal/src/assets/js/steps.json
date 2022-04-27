@@ -1,0 +1,32 @@
+[{
+    "intro": "<h3>Welcome to the Academy for Procurement Excellence</h3><p>Welcome to the Academy for Procurement Excellence (APEX). The site to provide guidance, learning toolkits and collaborative processes to support all NHS commercial functions and aligning with our social values commitment.</p>",
+    "tooltipClass": "introjs-tooltip--large"
+}, {
+    "element": ".svg-content",
+    "intro": "<p>The APEX Academy is designed to help you buy more effectively.  Each segment covers a different aspect of the buying process.  Hover over each link to find out more.</p>",
+    "position": "right",
+    "tooltipClass": "introjs-tooltip--large",
+    "onchange": {
+        "body": "hoverWheelItem('#CatMan');"
+    }
+}, {
+    "element": "#modal",
+    "intro": "<p>Read each quick start description and then dive into the content.  Once you have read each overview you can choose to dismiss the guidance and use the tool.</p>",
+    "position": "right",
+    "tooltipClass": "introjs-tooltip--large",
+    "onbeforechange": {
+        "body": "openModal('#Buying a');"
+    }
+}, {
+    "element": "#introVideo",
+    "intro": "<p>We recommend that you take a few moments to watch the introductory video on how APEX will add value to what we do.</p>",
+    "position": "right",
+    "tooltipClass": "introjs-tooltip--large",
+    "onbeforechange": {
+        "body": "$('#modalContainer').modal('hide');"
+    }
+}, {
+    "intro": "<p>If you don't want to see this walkthrough again click <a href=\"#dismissWalkthrough\" onclick=\"dismissIntroJs('ApexLite_onboardingDismissed')\">here</a>. otherwise please click the 'Finish' button.</p>",
+    "position": "right",
+    "tooltipClass": "introjs-tooltip--large"
+}]

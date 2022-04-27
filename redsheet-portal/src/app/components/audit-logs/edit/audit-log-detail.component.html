@@ -1,0 +1,39 @@
+﻿<div *ngIf="showComponent" class="modal fade in" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  style="display: block;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true" (click)="hideAuditLogDetail()">
+          <i class="zmdi zmdi-close"></i>
+          <div class="ripple-container">
+            <div class="ripple ripple-on ripple-out" style="left: 13.5px; top: 18.8594px; background-color: rgb(255, 255, 255); transform: scale(3.75);"></div>
+          </div>
+        </button>
+        <h4 class="modal-title" id="iconModalLabel" rxLabel="subHeading">Audit Detail</h4>
+      </div>
+      <div class="modal-body" style="max-height:750px;overflow:auto">
+        <div class="row">
+          <div class="col-xs-12 col-lg-12 col-sm-12">
+            <div class="card p-b-20">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <div id="productsTable_wrapper" class="dataTables_wrapper form-inline dt-material no-footer">
+                    <div class="dt-table">
+                      <div class="mdl-cell mdl-cell--12-col">
+                        <rx-table #tableEvent="grid" class="table table-striped" [dataSource]="applicationAuditLog">
+                          <rx-column field="columnName" width="212"></rx-column>
+                          <rx-column field="oldValue" width="212"></rx-column>
+                          <rx-column field="newValue"  width="212"></rx-column>
+                        </rx-table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

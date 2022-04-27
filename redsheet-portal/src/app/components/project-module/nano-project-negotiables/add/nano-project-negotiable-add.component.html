@@ -1,0 +1,69 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+    <div class="modal-content p-2 p-sm-4">
+        <div class="modal-header border-0">
+            <h2 class="modal-title">Add Our Negotiable<i class="sup color-primary fa fa-registered"></i> </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="hideNanoProjectNegotiableAddComponent()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="section-form" [formGroup]="nanoProjectNegotiableFormGroup">
+                <div class="row section-form-row mt-0 mb-0">
+                    <div class="form-group col-12">
+                        <label for="requirement" class="">Our Negotiable<i
+                                class="sup color-blue-gray fa fa-registered"></i> or Requirements *</label>
+                        <textarea rxFocus="true" class="form-control" name="requirement" placeholder="Be specific"
+                            formControlName="requirement" [class.error-message]="validMessageRequirement.isError
+                            || nanoProjectNegotiableFormGroup.controls.requirement.invalid 
+                            && (nanoProjectNegotiableFormGroup.controls.requirement.dirty 
+                                || nanoProjectNegotiableFormGroup.controls.requirement.touched)"
+                            (input)="onSearchChangeRequirement($event.target.value)"></textarea>
+                        <small> <i *ngIf="validMessageRequirement.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageRequirement.maximumCharacter}}
+                            <span [style.color]="validMessageRequirement.isError ? '#ef3340' : ''">
+                                {{validMessageRequirement.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="m-d-o" class="">Most Desirable Outcome *</label>
+                        <input type="text" class="form-control" name="m-d-o" placeholder="Be specific"
+                            formControlName="mdo" [class.error-message]="validMessageMdo.isError
+                            || nanoProjectNegotiableFormGroup.controls.mdo.invalid 
+                            && (nanoProjectNegotiableFormGroup.controls.mdo.dirty 
+                                || nanoProjectNegotiableFormGroup.controls.mdo.touched)"
+                            (input)="onSearchChangeMdo($event.target.value)" />
+                        <small> <i *ngIf="validMessageMdo.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageMdo.maximumCharacter}}
+                            <span [style.color]="validMessageMdo.isError ? '#ef3340' : ''">
+                                {{validMessageMdo.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="l-d-o" class="">Least Desirable Outcome *</label>
+                        <input type="text" class="form-control" name="l-d-o" placeholder="Be specific"
+                            formControlName="ldo" [class.error-message]="validMessageLdo.isError
+                            || nanoProjectNegotiableFormGroup.controls.ldo.invalid 
+                            && (nanoProjectNegotiableFormGroup.controls.ldo.dirty 
+                                || nanoProjectNegotiableFormGroup.controls.ldo.touched)"
+                            (input)="onSearchChangeLdo($event.target.value)" />
+                        <small> <i *ngIf="validMessageLdo.isError" class="fa fa-exclamation-circle"
+                                style="font-size:16px;color:#ef3340"></i>
+                            {{validMessageLdo.maximumCharacter}}
+                            <span [style.color]="validMessageLdo.isError ? '#ef3340' : ''">
+                                {{validMessageLdo.remainedOrExceededCharacters}}</span>
+                        </small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer border-0">
+            <button type="button" name="save" class="btn btn-primary btn-md"
+                [disabled]="!nanoProjectNegotiableFormGroup.valid" (click)="addNanoProjectNegotiable()">Save</button>
+            <button type="button" name="cancel" class="btn btn-primary btn-md"
+                (click)="hideNanoProjectNegotiableAddComponent()" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

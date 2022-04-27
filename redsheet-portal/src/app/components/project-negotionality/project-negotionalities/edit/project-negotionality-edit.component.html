@@ -1,0 +1,65 @@
+<div class="container-fluid" *ngIf="showComponent">
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-project-module-edit (lockEvent)="contentDisable($event)" [projectModuleId]="projectModuleId">
+            </app-project-module-edit>
+        </div>
+    </div>
+    <fieldset class="row justify-content-center border-0" [(disabled)]="isLocked">
+        <div class="col-12 col-lg-12 col-xl-10">
+            <form [formGroup]="projectNegotionalityFormGroup" class="section-form">
+                <div class="section-form-row mb-0">
+                    <form class="section-form">
+                        <div class="row justify-content-center mt-5">
+                            <div
+                                class="col-12 col-sm-9 col-md-9 col-lg-7 negotionality-chart d-sm-none d-md-block d-lg-none">
+                                <img src="assets/images/Portfolio2.png" alt="Negotionality Chart" class="img-fluid" />
+                            </div>
+                            <div class="offset-1 col-10 offset-sm-0 col-sm-11 col-lg-8 col-xl-6 top-arrow">
+                                <div class="top-arrow-text">Market difficulty (buyer) Strength in market (seller)</div>
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-6 my-2"
+                                        *ngFor="let negotionalityCategory of negotionalityCategories">
+                                        <label class="custom-control custom-radio radio-icon"
+                                            formControllName="negotionalityCategoryId"
+                                            [class.active]="projectNegotionalityFormGroup.controls.negotionalityCategoryId.value == negotionalityCategory.negotionalityCategoryId">
+                                            <input id="radio1" name="negotionalityCategory" class="custom-control-input"
+                                                type="radio"
+                                                (click)="projectNegotionalityFormGroup.controls.negotionalityCategoryId.setValue(negotionalityCategory.negotionalityCategoryId)"
+                                                [checked]="projectNegotionalityFormGroup.controls.negotionalityCategoryId.value == negotionalityCategory.negotionalityCategoryId" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">
+                                                <i
+                                                    class="{{getClassName(negotionalityCategory.negotionalityCategoryName)}}"></i>
+                                                <span
+                                                    class="align-self-center">{{negotionalityCategory.negotionalityCategoryName}}</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="offset-1 col-10 offset-sm-0 col-sm-10 col-lg-8 col-xl-6 down-arrow">
+                                <div class="down-arrow-text">Spend/potential to impact our or the buyer's profit</div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-sm-right mt-4">
+                                <button class="btn btn-primary btn-md" [disabled]="!projectNegotionalityFormGroup.valid"
+                                    (click)="editProjectNegotionality()">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <app-our-team-member-list *ngIf="showTeamMember" [projectNegotionalityId]="projectNegotionalityId"
+                [isLocked]="isLocked"></app-our-team-member-list>
+        </div>
+
+    </fieldset>
+    <div>
+        <app-project-next-module [projectModuleId]="projectModuleId"></app-project-next-module>
+    </div>
+</div>

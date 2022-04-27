@@ -1,0 +1,54 @@
+<div class="section-box" *ngIf="showComponent">
+  <div class="section-header">
+    <h2 class="section-title d-inline-block">Objectives and ideal outcomes for this negotiation</h2>
+    <button class="btn btn-info pull-right" [disabled]="projectNegotiationId == 0" (click)="addTarget(rowIndex)"
+      title="Add"><i class="fa fa-plus"></i></button>
+  </div>
+  <div class="section-body">
+    <ul class="custom-list">
+      <li *ngIf="isAdd" class="active">
+        <input rxFocus="true" [class.error-message]="validMessageAddTargetDetails.isError" placeholder='Be Specific'
+          class="form-control" type="text" [(ngModel)]="addTargetEntity.targetDetail"
+          (input)="onSearchChangeAddTargetDetails($event.target.value)" />
+        <small> <i *ngIf="validMessageAddTargetDetails.isError" class="fa fa-exclamation-circle"
+            style="font-size:16px;color:#ef3340"></i>
+          {{validMessageAddTargetDetails.maximumCharacter}}
+          <span [style.color]="validMessageAddTargetDetails.isError ? '#ef3340' : ''">
+            {{validMessageAddTargetDetails.remainedOrExceededCharacters}}</span>
+        </small>
+        <ul class="action-links float-right list-inline">
+          <li class="list-inline-item" *ngIf="!isLocked"><a [class.btn_disabled]="validMessageAddTargetDetails.isError" title="Save">
+              <i class="fa fa-floppy-o" (click)="updateTarget(addTargetEntity,rowIndex)"></i></a>
+          </li>
+        </ul>
+      </li>
+      <li *ngFor="let target of targets; let rowIndex=index;"
+        [class]="(showSave && (editRowIndex == rowIndex)) ? 'active' : ''">
+        <span *ngIf="!(editRowIndex == rowIndex)">{{target.targetDetail}}</span>
+        <input rxFocus="true" class="form-control" type="text" [(ngModel)]="editTarget.targetDetail"
+          [class.error-message]="validMessageTargetDetails.isError" placeholder='Be Specific'
+          (input)="onSearchChangeTargetDetails($event.target.value)" *ngIf="(editRowIndex == rowIndex)" />
+        <small *ngIf="(editRowIndex == rowIndex)">
+          <i *ngIf="validMessageTargetDetails.isError" class="fa fa-exclamation-circle"
+            style="font-size:16px;color:#ef3340"></i>
+          {{validMessageTargetDetails.maximumCharacter}}
+          <span [style.color]="validMessageTargetDetails.isError ? '#ef3340' : ''">
+            {{validMessageTargetDetails.remainedOrExceededCharacters}}</span>
+        </small>
+        <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+          <li class="list-inline-item" *ngIf="!(showSave && (editRowIndex == rowIndex))">
+            <a title="Edit">
+              <i class="fa fa-pencil-square-o" (click)="showEditRecord(target,rowIndex)"></i>
+            </a>
+          </li>
+          <li class="list-inline-item" *ngIf="(showSave && (editRowIndex == rowIndex))"><a [class.btn_disabled]="validMessageTargetDetails.isError" title="Save">
+              <i class="fa fa-floppy-o" (click)="updateTarget(editTarget,rowIndex)"></i></a>
+          </li>
+          <li class="list-inline-item"><a title="Delete">
+              <i class="fa fa-trash-o" (click)="showTargetDeleteComponent(target,rowIndex)" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

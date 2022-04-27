@@ -1,0 +1,159 @@
+@import "variable.scss";
+@import "arguments.scss";
+
+.h-auto{height:auto !important;}
+.square-chart{
+	.squares {
+		border-right: 2px solid $dark-blue;
+		border-bottom: 2px solid $dark-blue;
+		.square{
+			background: $light-gray;	
+			text-align: center;
+			padding: 40px 0;
+			font-family: $med-font;
+			@include fontSize(20px);
+			border-left: 2px solid $dark-blue;
+			border-top: 2px solid $dark-blue;
+		
+				&.active {
+				background-color: $dark-gray;
+			}
+		}
+	}
+	.down-arrow-text, .top-arrow-text{@include fontSize(16px);}
+	.top-arrow-text{
+		width: 255px;
+		top: -20%;
+		left: -50px;
+	}
+}
+// print media
+@media print{
+header.fixed-top, footer{display:none;}
+.main-content {
+    padding: 0;
+    min-height: 100%;
+}
+//$body-font:'omnesmedium', sans-serif;
+body{color:$dark-blue; -webkit-print-color-adjust: exact;position:relative;}
+@page{size: landscape;position:relative;z-index:0;margin:25px 20px 25px;padding-bottom:100px;}
+.pageborder{
+	position:fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 20px;
+	  border: 1px solid #ccc;
+	  @include round-borders(30px);
+	  z-index:999;
+	  &:before {
+		content: '\00a9 \00a0 Positive Purchasing Ltd trading as Positive 2018 | All rights reserved';
+		position: absolute;
+		bottom: -21px;
+		left: 10px;
+	   @include fontSize(13px);
+		background: #fff;
+		width: 100%;
+	}
+	&:after { 
+		content: url(../images/redsheet.png);
+		//content: url(../images/FullColourLogo.png);
+		display: block;
+		position: absolute;
+		right: 50px;
+		bottom: -21px;
+		background: #fff;
+		z-index: 9;
+		padding: 0 20px;
+	}
+}
+.page-break{
+	page-break-after:always; 
+	page-break-before:always;
+	min-height:100vh;
+	position:relative;
+}
+.arrow-frame {
+	h2{
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		z-index: 1;
+		 @include transform(translateY(-50%));  
+	}
+}
+form{
+	.form-control{
+		&::-webkit-input-placeholder,
+		&::-moz-placeholder,
+		&:-ms-input-placeholder,
+		&:-moz-placeholder	{ 
+		 color:$dark-blue !important;
+		}
+	}
+}  
+
+.rounded{@include round-borders(20px);}
+.form-control-plaintext{color:$dark-blue;}
+.table{
+	thead{
+		tr{
+			th{ background-color:$light-gray !important;font-family:$sub-heading-font;font-weight: normal;@include fontSize(20px);border-color:$dark-gray !important;padding: .5rem;}
+		}
+	}
+	&.table-striped{
+		tbody{ 
+			tr{ 
+				td{background-color: $light-gray !important; border-color:$dark-gray !important;padding: .5rem;}
+				&:nth-of-type(odd){
+					td{	background-color:$disabled !important;}
+				}
+				&:nth-of-type(even){
+					td{background-color:$light-gray !important;}
+				}
+			}
+		}
+	}
+} 
+.team-table{
+	&.table{
+		th,td{ padding: 0.2rem !important;}
+	} 
+}
+.username{@include fontSize(15px);}
+.backgroundFont {@include fontSize(18.4px);}
+//chart
+.square-chart{
+	.top-arrow-text{
+		width: 255px;
+		top: 30%;
+		left: -160px;
+	}
+}
+// .table tbody tr td{background-color:#cfd1d3 !important;}
+.print-changes{ @include fontSize(9px);
+	h2, .h2{@include fontSize(12px);}
+	h3, .h3{@include fontSize(11px);}
+	.table{
+		thead{
+			tr{
+				th{background-color:#e9e9ea !important;font-family:$sub-heading-font;font-weight: normal;@include fontSize(10px);}
+			}
+		}
+		&.table-striped{
+			tbody{
+				tr{ 
+					td{background-color: #e9e9ea !important; border-color:$dark-gray !important;}
+					&:nth-of-type(odd){
+						td{	background-color:#cfd1d3 !important;}
+					}
+					&:nth-of-type(even){
+						td{background-color:#e9e9ea !important;}
+					}
+				}
+			}
+		}
+	} 
+}
+}

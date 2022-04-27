@@ -1,0 +1,67 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Post event actions and implementations</h2>
+    <div class="row ">
+        <div class="col-12 col-sm-6">
+            <h3>Post-event actions and implementation</h3>
+            <div class="table-responsive mb-0">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">what</th>
+                            <th scope="col">who</th>
+                            <th scope="col">when</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="postEventActionsAndImplementationsData.postEventAction == null || postEventActionsAndImplementationsData.postEventAction == ''">
+                            <td colspan="3">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let data of postEventActionsAndImplementationsData.postEventAction">
+                            <td>{{data.postEventActionDetail}}</td>
+                            <td> {{data.postEventActionBy}}</td>
+                            <td>{{data.postEventActionOn | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Carry forward to next negotation</h3>
+            <div *ngIf="postEventActionsAndImplementationsData.carryForward == null || postEventActionsAndImplementationsData.carryForward == ''">None.</div>
+            <ul class="pl-3" *ngFor="let data of postEventActionsAndImplementationsData.carryForward">
+                <li>{{data.carryForwardValue}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="page-break pl-3 pr-3 pt-3 pb-0">
+    <h3>Implementation plan</h3>
+    <div class="form-group">
+        <section flex flex-full-center>
+            <div id="implementationPlanChart" class="chart"></div>
+        </section>
+    </div>
+    <div class="table-responsive mb-0">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="tableData == null || tableData == ''">
+                    <td colspan="3">No Record Found.</td>
+                </tr>
+                <tr *ngFor="let data of tableData">
+                    <td>{{data.startDate | date:'dd/MM/yyyy'}}
+                        <span *ngIf="data.endDate !=null"> - {{data.endDate | date:'dd/MM/yyyy'}} </span>
+                    </td>
+                    <td>{{data.taskName}}</td>
+                    <td>{{data.activity}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

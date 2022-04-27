@@ -1,0 +1,131 @@
+<div class="page-break p-3" *ngIf="showComponent">
+        <h2>About this negotiation event</h2>
+        <div class="row">
+                <div class="col-12 col-sm-6">
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Negotiation plan for </label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.opponentName}}
+                                </div>
+                        </div>
+                        <div class="form-group row no-gutters mt-0 mb-1">
+                                <label class="col-auto sub-heading-font pr-2 pt-2">What?</label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.focus}}
+                                </div>
+                        </div>
+                        <!-- <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Why?</label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.reason}}
+                                </div>
+                        </div> -->
+                        <div class="form-group row no-gutters  mb-0 mt-0">
+                                <label class="col-auto sub-heading-font pr-2 pt-2">Why?</label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.reason}}
+                                </div>
+                        </div>
+                        <div class="border border-top mb-3"></div>
+                        <h3>Known risks or issues</h3>
+                        <div *ngIf="thisNegotiationEventReportData.knownIssues == null || thisNegotiationEventReportData.knownIssues == ''">None.</div>
+                        <p>{{thisNegotiationEventReportData.knownIssues}}</p>
+
+                </div>
+                <div class="col-12 col-sm-6">
+                        <h3>How will we do this negotation</h3>
+                        <div class="d-flex flex-wrap my-3">
+                                <div class="text-center pr-3" *ngFor="let data of  thisNegotiationEventReportData.modeName; let num=index">
+                                        <i class="{{thisNegotiationEventReportData.iconClass[num]}} fa-3x"></i>
+                                        <span class="d-block">{{thisNegotiationEventReportData.modeName[num]}}</span>
+                                </div>
+                        </div>
+                        <div class="border border-top mb-3"></div>
+
+                        <h3>Event details</h3>
+
+
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Event Date <span class="large">:</span> </label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.eventDate | date:'dd/MM/yyyy'}}
+                                </div>
+                        </div>
+
+
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Location/Venue <span class="large">:</span></label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.location}}
+                                </div>
+                        </div>
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Event timing <span class="large">:</span></label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.startTime}} - {{thisNegotiationEventReportData.endTime}}
+                                </div>
+                        </div>
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Anitcipated duration <span class="large">:</span></label>
+                                <div class="form-control-plaintext col">
+                                        {{thisNegotiationEventReportData.eventDuration}}
+                                </div>
+                        </div>
+
+                        <div class="form-group row no-gutters align-items-center mb-1">
+                                <label class="col-auto sub-heading-font mb-0 pr-2">Is the end time fixed? <span class="large">:</span></label>
+                                <span class="form-control-plaintext col"> {{thisNegotiationEventReportData.isEndTimeFixed}}</span>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-center">
+                                <h3>This negotiation is <span class="large">:</span></h3>
+                                <div class=" text-center pl-3">
+                                        <i class="{{thisNegotiationEventReportData.negotiationTypeClassName}} fa-3x"></i>
+                                        <span class="d-block">{{thisNegotiationEventReportData.negotiationTypeName}}</span>
+                                </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-center mt-1">
+                                <h3>Relationship Required? <span class="large">:</span></h3>
+                                <div class=" text-center pl-3">
+                                        <i class="{{thisNegotiationEventReportData.relationshipRequireClassName}} fa-3x"></i>
+                                        <span class="d-block">{{thisNegotiationEventReportData.relationshipRequireName}}</span>
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+</div>
+<div class="page-break pb-0 pr-3 pl-3 pt-3">
+        <h3>Events milestones and desired outcomes</h3>
+        <div class="form-group">
+                <section flex flex-full-center>
+                        <div id="eventsMilestonesAndDesiredOutcomesChart" class="chart"></div>
+                </section>
+        </div>
+        <div class="table-responsive mb-0">
+                <table class="table table-bordered table-striped mb-0">
+                        <thead>
+                                <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngIf="tableData == null || tableData == ''">
+                                        <td colspan="3">No Record Found.</td>
+                                </tr>
+                                <tr *ngFor="let data of tableData">
+                                        <td>{{data.startDate | date:'dd/MM/yyyy'}}
+                                                <span *ngIf="data.endDate !=null"> - {{data.endDate |
+                                                        date:'dd/MM/yyyy'}} </span>
+                                        </td>
+                                        <td>{{data.taskName}}</td>
+                                        <td>{{data.description}}</td>
+                                </tr>
+
+                        </tbody>
+                </table>
+        </div>
+</div>

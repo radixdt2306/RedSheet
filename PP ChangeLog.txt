@@ -1,0 +1,24 @@
+ChangeLog
+---------------
+
+Date: 15 August 2019
+PORTAL
+1.    redsheet-portal\src\app\database-collections\conflict-style-behviour.ts
+	Line 4: Accomodate changed to Accommodate
+2.    redsheet-portal\src\app\enums\conflict-style-behviour.ts
+	Line 2: Accomodate changed to Accommodate
+3.    redsheet-portal\dist\common.chunk.js
+	Line  2848: Accomodate changed to Accommodate
+
+REST SERVICE
+1.    RedSheet.Domain\ProjectNegotionalityModule\ProjectNegotionalityDomain.cs
+	Line 152: Changed Accomodate to Accommodate
+2.    RedSheet.Domain\ProjectNegotionalityModule\OurTeamMemberDomain.cs
+	Line 136: Changed Accomodate to Accommodate
+3.    RedSheet.DbEntities\Enums\ConflictStyleBehviour.cs
+	Line 7: Changed Accomodate to Accommodate
+
+DATABASE
+1.    ApplicationObjects WHERE ApplicationId = 27
+	Changed ApplicationObjectName from Accomodate to Accommodate
+

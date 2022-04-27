@@ -1,0 +1,127 @@
+<div class="page-break p-3 d-flex flex-column" *ngIf="showComponent">
+    <div class="row">
+        <div class="col-12 col-sm-5">
+            <h2>Our relative power position</h2>
+        </div>
+        <div class="col-12 col-sm-7">
+            <div class="mt-auto d-flex flex-wrap align-items-center justify-content-end">
+                <img src="assets/images/PowerImage/actualPwr.jpg" alt="actual-power" />
+                <span class="sub-heading-font">Actual Power</span>
+                <img class="ml-2 mt-1" src="assets/images/PowerImage/projectedPwr.jpg" alt="projected-power" />
+                <span class="sub-heading-font">Projected Power</span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12 col-sm-3 text-center">
+            <h3 class="mb-0">Dependency</h3>
+            <img src="assets/images/PowerImage/{{dependencyReportData.imageName}}" alt="dependency-meter" class="mb-0"
+                style="width:65%" />
+        </div>
+        <div class="col-12 col-sm-9">
+            <p>{{dependencyReportData.dependencyData}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3 text-sm-center">
+            <span class="sub-heading-font font-lg">rationale</span>
+        </div>
+        <div class="col-12 col-sm-9 pt-1">
+            <p>{{dependencyReportData.rationale}}</p>
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-12 col-sm-3 text-center">
+            <h3 class="mb-0">Market</h3>
+            <img src="assets/images/PowerImage/{{marketReportData.imageName}}" alt="Market-meter" class="mb-0" style="width:65%" />
+        </div>
+        <div class="col-12 col-sm-9">
+            <p>{{marketReportData.marketData}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3 text-sm-center">
+            <span class="sub-heading-font font-lg">rationale</span>
+        </div>
+        <div class="col-12 col-sm-9 pt-1">
+            <p>{{marketReportData.rationale}}</p>
+        </div>
+    </div>
+    <div class="row  my-2">
+        <div class="col-12 col-sm-3 text-center">
+            <h3 class="mb-0">Time</h3>
+            <img src="assets/images/PowerImage/{{timeReportData.imageName}}" alt="time-meter" class="mb-0" style="width:65%" />
+        </div>
+        <div class="col-12 col-sm-9">
+            <p>{{timeReportData.timeData}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3 text-sm-center">
+            <span class="sub-heading-font font-lg">rationale</span>
+        </div>
+        <div class="col-12 col-sm-9 pt-1">
+            <p>{{timeReportData.rationale}}</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="page-break p-3 d-flex flex-column">
+    <div class="row">
+        <div class="col-12 col-sm-5">
+            <h2>Our relative power position</h2>
+        </div>
+        <div class="col-12 col-sm-7">
+            <div class="mt-auto d-flex flex-wrap align-items-center justify-content-end">
+                <img src="assets/images/PowerImage/actualPwr.jpg" alt="actual-power" />
+                <span class="sub-heading-font">Actual Power</span>
+                <img class="ml-2 mt-1" src="assets/images/PowerImage/projectedPwr.jpg" alt="projected-power" />
+                <span class="sub-heading-font">Projected Power</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-12 col-sm-3 text-center">
+            <h3 class="mb-0">Relationships</h3>
+            <img src="assets/images/PowerImage/{{relationshipReportData.imageName}}" alt="relationships-meter" class="mb-0"
+                style="width:65%" />
+        </div>
+        <div class="col-12 col-sm-9">
+            <p>{{relationshipReportData.relationshipData}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3 text-sm-center">
+            <span class="sub-heading-font font-lg">rationale</span>
+        </div>
+        <div class="col-12 col-sm-9 pt-1">
+            <p>{{relationshipReportData.rationale}}</p>
+        </div>
+    </div>
+    <div class="row  my-2">
+        <div class="col-12 col-sm-3 text-center">
+            <h3 class="mb-0">Future Opportunity</h3>
+            <img src="assets/images/PowerImage/{{futureOpportunityReportData.imageName}}" alt="future-opportunity-meter"
+                class="mb-0" style="width:65%" />
+        </div>
+        <div class="col-12 col-sm-9">
+            <p>{{futureOpportunityReportData.futureOpportunityData}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3 text-sm-center">
+            <span class="sub-heading-font font-lg">rationale</span>
+        </div>
+        <div class="col-12 col-sm-9 pt-1">
+            <p>{{futureOpportunityReportData.rationale}}</p>
+        </div>
+    </div>
+    <div class="d-flex align-items-center mt-3">
+        <h3>Power strategy – How we will utilize or improve our power position?</h3>
+    </div>
+    <div class="d-flex align-items-center">
+        <p>{{projectPowerDetails.powerDetail}}</p>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+DECLARE @branch AS nvarchar(max) = 36--'42,36,43,45,49,21'
+
+DECLARE @branchLocal AS nvarchar(max) = @branch
+
+
+DECLARE @TodayDate DATE = (SELECT CAST(GETUTCDATE() AS DATE))
+DECLARE @BeforeTwoWeekDate DATE = (SELECT CAST(DATEADD(ww,-2,GETUTCDATE()) AS DATE))
+
+SELECT  
+	   PL.ApplicantFileAs AS [ApplicantName]
+	  ,MAX(PL.PlacementId) AS [LastPlacementId]
+	  ,MAX(PL.StartDate) AS [StartDate]
+	  ,MAX(PL.EndDate) AS [EndDate]
+	  ,MAX(PL.SectorName) AS [SectorName]
+	  ,MAX(PL.JobId) AS [JobId]
+	  ,MAX(PL.ClientFileAs) AS [ClientName]
+	  ,MAX(PL.ContactFileAs) AS [ContactName] 
+	  ,MAX(PL.CreatedUserName) AS [CreatedUserName]
+	  ,MAX(PL.CreatedOn) AS [CreatedOn]
+	  ,MAX(PL.UpdatedUserName) AS [UpdatedUserName]
+	  ,MAX(PL.UpdatedOn) AS [UpdatedOn]
+	  ,MAX(PL.PlacementConsultant) AS [PlacementConsultant]
+ 	  ,MAX(PL.PositionDescription) AS [PositionDescription]
+	  ,GR.GroupName
+FROM [RdbProNetDev].dbo.VW_PLACEMENT_GRID(nolock) PL
+	 INNER JOIN [RdbProNetDev].dbo.ApplicantConsultants(nolock) AC ON AC.ApplicantId=PL.ApplicantId  AND AC.UserRelationshipId = 11 --primary branch
+	 INNER JOIN [dbo].[fnGetSpecificGroups]() GR ON GR.GroupId = AC.UserGroupId 
+WHERE 
+	 CAST(PL.EndDate AS DATE) BETWEEN @BeforeTwoWeekDate AND @TodayDate
+	 AND GR.GroupId IN (SELECT Item from [RdbProNetDev].dbo.fnStringListToTable(@branchLocal))
+GROUP BY
+	    PL.ApplicantFileAs
+	   ,GR.GroupName
+ORDER BY
+         PL.ApplicantFileAs

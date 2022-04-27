@@ -1,0 +1,43 @@
+<div class="section-box" *ngIf="showComponent">
+    <div class="section-header">
+        <h2 class="section-title d-inline-block">Meeting/Event Planning Actions</h2>
+        <button class="btn btn-info pull-right" data-toggle="modal"
+            (click)="showLiteEventPlanningActionAddComponent({})" [disabled]="liteMeetingManagementId == 0"
+            title="Add"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="section-body">
+        <div>
+            <rx-template [dataSource]="liteEventPlanningActions" pageSize="4"
+                masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+                <ng-template rxCellTemplate let-liteEventPlanningAction="dataItem">
+                    <div class="media section-media without-icon without-title">
+                        <div class="media-body">
+                            <div class="media-title">
+                                <ul class="action-links float-right list-inline" *ngIf="!isLocked">
+                                    <li class="list-inline-item"><a
+                                            (click)="showLiteEventPlanningActionEditComponent(liteEventPlanningAction)"
+                                            title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="list-inline-item"><a
+                                            (click)="showLiteEventPlanningActionDeleteComponent(liteEventPlanningAction)"
+                                            title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="project-summery font-md">
+                                <p>What : <span
+                                        class="color-dark-gray">{{liteEventPlanningAction.liteEventPlanningActionDetail}}</span>
+                                </p>
+                                <p>Who : <span
+                                        class="color-dark-gray">{{liteEventPlanningAction.liteEventPlanningActionBy}}</span>
+                                </p>
+                                <p>When : <span
+                                        class="color-dark-gray">{{liteEventPlanningAction.liteEventPlanningActionOn |
+                                        date:'dd/MM/yyyy'}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </rx-template>
+        </div>
+    </div>
+</div>

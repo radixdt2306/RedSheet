@@ -1,0 +1,53 @@
+﻿<section id="content_outer_wrapper" *ngIf="showComponent">
+  <div id="content_wrapper">
+    <form class="form-horizontal" [formGroup]="rolesAddFormGroup">
+      <div id="header_wrapper" class="header-sm">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <header id="header">
+                <h1 rxLabel="pageTitle">Add Roles</h1>
+                <ul class="card-actions icons right-top m-t-n-20">
+                  <li>
+                    <button type="button" class="btn btn-info" (click)="saveRoles()" rxLabel="saveButton" [disabled]="!rolesAddFormGroup.valid">Save<div class="ripple-container"></div></button>
+                    <button type="button" class="btn btn-default" routerLink="/roles" rxLabel="backToListButton">Back to List<div class="ripple-container"></div></button>
+                  </li>
+                </ul>
+              </header>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="container-fluid">
+        <div class="content-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <label hidden>Role Name</label>
+                    <div class="form-group is-empty col-lg-12">
+                      <label for="name" class="col-md-3 control-label" rxLabel="roleName">Role Name</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" formControlName="roleName" [rxMessage]="validationFailed.roleName" />
+                      </div>
+                    </div>
+                    <!--<div class="form-group is-empty col-lg-6">
+                        <label for="name" class="col-md-3 control-label">Status</label>
+                        <div class="col-md-9">
+                            <select class="form-control" formControlName="status">
+                                <option value="">Select</option>
+                                <option *ngFor="let statusDetail of rolesLookupGroup.status" value="{{statusDetail.statusId}}">{{statusDetail.statusName}}</option>
+                            </select>
+                        </div>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

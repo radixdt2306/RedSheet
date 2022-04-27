@@ -1,0 +1,80 @@
+<div class="page-break p-3" *ngIf="showComponent">
+    <h2>Negotiation event plan</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <h3>Opening statement</h3>
+            <p>{{meetingManagementDetails.openingStatement}}</p>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Objectives and target outcomes</h3>
+            <ul class="pl-3" *ngIf="liteTargetData == null || liteTargetData == ''">
+                None.
+            </ul>
+            <ul class="pl-3">
+                <li *ngFor="let liteTarget of liteTargetData;">{{liteTarget.liteTargetDetail}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <!-- <h3>Event agenda and sequence of discussions/tactics</h3> -->
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th style="background-color: white !important; border: 0px solid" colspan="4">
+                            <!-- <th class="negotiationEvent" colspan="4"> -->
+                            <h3 style="margin-left:-8px;">Event agenda and sequence of discussions/tactics</h3>
+                            </th>
+                        </tr>
+                        <tr class="table-bordered">
+                            <th scope="col">Time</th>
+                            <th scope="col">Phase</th>
+                            <th scope="col">Negotiation topic and process</th>
+                            <th scope="col">Tactics to be used</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-bordered">
+                        <tr *ngIf="eventAgendaTable == null || eventAgendaTable == ''">
+                            <td colspan="4">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let data of eventAgendaTable">
+                            <td>{{data.time}}</td>
+                            <td>{{data.negotiationPhaseName}}</td>
+                            <td>{{data.process}}</td>
+                            <td>{{data.tacticName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <h3>Intangible power plan - Plan For Our Style and Demeanour To Project Power And Build Trust</h3>
+            <p>{{meetingManagementDetails.intangiblePowerPlan}}</p>
+            <h3>Pre-meeting conditioning</h3>
+            <p>{{meetingManagementDetails.preMeetingConditioning}}</p>
+            <h3 class="mt-3">Meeting/event planning actions</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">what</th>
+                            <th scope="col">who</th>
+                            <th scope="col">when</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="eventPlanningActionTable == null || eventPlanningActionTable == ''">
+                            <td colspan="4">No Record Found.</td>
+                        </tr>
+                        <tr *ngFor="let data of eventPlanningActionTable">
+                            <td>{{data.liteEventPlanningActionDetail}}</td>
+                            <td>{{data.liteEventPlanningActionBy}}</td>
+                            <td>{{data.liteEventPlanningActionOn | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

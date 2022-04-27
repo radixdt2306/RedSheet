@@ -1,0 +1,108 @@
+﻿<div *ngIf="showComponent" class="modal fade in" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     style="display: block;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn close" data-dismiss="modal" aria-hidden="true" (click)="hideRequestLogDetail()">
+          <i class="zmdi zmdi-close"></i>
+          <div class="ripple-container">
+            <div class="ripple ripple-on ripple-out" style="left: 13.5px; top: 18.8594px; background-color: rgb(255, 255, 255); transform: scale(3.75);"></div>
+          </div>
+        </button>
+        <h4 class="modal-title" id="iconModalLabel" rxLabel="subHeading">Request Log Detail</h4>
+      </div>
+      <div class="modal-body" style="max-height:750px;overflow:auto">
+        <div class="row">
+          <div class="col-xs-12 col-lg-12 col-sm-12">
+            <div class="card p-b-20">
+              <div class="card-body">
+                <table class="table table-hover">
+                  <tr *ngIf="requestLog.fullName">
+                    <td style="width:30%" rxLabel="fullName">
+                      Full Name
+                    </td>
+                    <td style="width:70%" >
+                      {{requestLog.fullName}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.moduleMastername">
+                    <td style="width:30%" rxLabel="applicationModule">
+                      Application Module
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.moduleMastername}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.logType" >
+                    <td style="width:30%" rxLabel="logType">
+                      Log Type
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.logType}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.serviceUri">
+                    <td style="width:30%" rxLabel="serviceUri">
+                      Url
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.serviceUri}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.browserName">
+                    <td style="width:30%" rxLabel="browserName">
+                      Browser Name
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.browserName}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.clientIPAddress">
+                    <td style="width:30%" rxLabel="clientIPAddress">
+                      Client Ip Address
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.clientIPAddress}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.requestTime">
+                    <td style="width:30%" rxLabel="requestTime">
+                      Request Time
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.requestTime}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.totalDuration">
+                    <td style="width:30%" rxLabel="totalDuration">
+                      Total Duration
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.totalDuration}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.parameters">
+                    <td style="width:30%" rxLabel="parameters">
+                      Parameters
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.parameters}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="requestLog.requestMethod">
+                    <td style="width:30%" rxLabel="requestMethod">
+                      Request Method
+                    </td>
+                    <td style="width:70%">
+                      {{requestLog.requestMethod}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+@font-face {
+  font-family: 'redsheet-icon';
+  src:  url('../fonts/redsheet-icon.eot?iaovhe');
+  src:  url('../fonts/redsheet-icon.eot?iaovhe#iefix') format('embedded-opentype'),
+    url('../fonts/redsheet-icon.ttf?iaovhe') format('truetype'),
+    url('../fonts/redsheet-icon.woff?iaovhe') format('woff'),
+    url('../fonts/redsheet-icon.svg?iaovhe#redsheet-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+   
+.redsheet {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'redsheet-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.redsheet-limited-scope:before {
+  content: "\e931";
+}
+.redsheet-close-long-term:before {
+  content: "\e934";
+}
+.redsheet-meeting-management:before {
+  content: "\e935";
+}
+.redsheet-none:before {
+  content: "\e936";
+}
+.redsheet-scope-negotiate-objective:before {
+  content: "\e937";
+}
+.redsheet-some-med-term:before {
+  content: "\e938";
+}
+.redsheet-no-scope-negotiation:before {
+  content: "\e932";
+}
+.redsheet-not-appropriate-negotiate:before {
+  content: "\e933";
+}
+.redsheet-CSAL-L:before {
+  content: "\e92f";
+}
+.redsheet-CSAL-S:before {
+  content: "\e930";
+}
+.redsheet-CSAL-C:before {
+  content: "\e92e";
+}
+.redsheet-CSAL-A:before {
+  content: "\e94e";
+}
+.redsheet-claim:before {
+  content: "\e910";
+}
+.redsheet-create:before {
+  content: "\e913";
+}
+.redsheet-square:before {
+  content: "\e92d";
+}
+.redsheet-calendar:before {
+  content: "\e92c";
+}
+.redsheet-toggle:before {
+  content: "\e92b";
+}
+.redsheet-lock:before {
+  content: "\e929";
+}
+.redsheet-user:before {
+  content: "\e92a";
+}
+.redsheet-background:before {
+  content: "\e900";
+}
+.redsheet-culture:before {
+  content: "\e901";
+}
+.redsheet-culture-plan:before {
+  content: "\e902";
+}
+.redsheet-event-timeline:before {
+  content: "\e903";
+}
+.redsheet-game:before {
+  content: "\e904";
+}
+.redsheet-negotionality:before {
+  content: "\e905";
+}
+.redsheet-outcomes-and-learning:before {
+  content: "\e906";
+}
+.redsheet-post-event-action:before {
+  content: "\e907";
+}
+.redsheet-power:before {
+  content: "\e908";
+}
+.redsheet-preparation:before {
+  content: "\e909";
+}
+.redsheet-requirement:before {
+  content: "\e90a";
+}
+.redsheet-their-requirement:before {
+  content: "\e90b";
+}
+.redsheet-this-negotiation:before {
+  content: "\e90c";
+}
+.redsheet-accountable:before {
+  content: "\e90d";
+}
+.redsheet-authorative:before {
+  content: "\e90e";
+}
+.redsheet-chicken:before {
+  content: "\e90f";
+}
+.redsheet-collective:before {
+  content: "\e911";
+}
+.redsheet-consulted:before {
+  content: "\e912";
+}
+.redsheet-egalitarian:before {
+  content: "\e914";
+}
+.redsheet-face-to-face:before {
+  content: "\e915";
+}
+.redsheet-first-engagement:before {
+  content: "\e916";
+}
+.redsheet-help-raise-a-ticket:before {
+  content: "\e917";
+}
+.redsheet-individualistic:before {
+  content: "\e918";
+}
+.redsheet-informed:before {
+  content: "\e919";
+}
+.redsheet-long-term:before {
+  content: "\e91a";
+}
+.redsheet-monochronic:before {
+  content: "\e91b";
+}
+.redsheet-one-off:before {
+  content: "\e91c";
+}
+.redsheet-our-knowledge:before {
+  content: "\e91d";
+}
+.redsheet-part-of-a-journey:before {
+  content: "\e91e";
+}
+.redsheet-polychronic:before {
+  content: "\e91f";
+}
+.redsheet-prisoner:before {
+  content: "\e920";
+}
+.redsheet-repeat:before {
+  content: "\e921";
+}
+.redsheet-responsible:before {
+  content: "\e922";
+}
+.redsheet-short-term:before {
+  content: "\e923";
+}
+.redsheet-stag:before {
+  content: "\e924";
+}
+.redsheet-start-and-end-time:before {
+  content: "\e925";
+}
+.redsheet-their-knowledge:before {
+  content: "\e926";
+}
+.redsheet-trust:before {
+  content: "\e927";
+}
+.redsheet-webinar:before {
+  content: "\e928";
+}

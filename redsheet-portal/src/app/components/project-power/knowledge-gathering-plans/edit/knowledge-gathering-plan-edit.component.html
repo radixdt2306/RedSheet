@@ -1,0 +1,73 @@
+<div class="modal-dialog modal-lg" role="document" *ngIf="showComponent">
+  <div class="modal-content p-2 p-sm-4">
+    <div class="modal-header border-0">
+      <h2 class="modal-title">Edit Knowledge Actions</h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="hideKnowledgeGatheringEditComponent()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="knowledgeGatheringPlanFormGroup" class="section-form">
+        <h4>Actions to improve our power knowledge</h4>
+        <div class="row section-form-row mt-0 mb-0">
+          <div class="form-group col-12">
+            <label class="">Knowledge or data required *</label>
+            <textarea rxFocus="true" class="form-control" name="" placeholder="Add relevant details."
+              formControlName="knowledgeRequired" [class.error-message]="validMessageKnowledgeRequired.isError
+              || knowledgeGatheringPlanFormGroup.controls.knowledgeRequired.invalid 
+              && (knowledgeGatheringPlanFormGroup.controls.knowledgeRequired.dirty 
+                  || knowledgeGatheringPlanFormGroup.controls.knowledgeRequired.touched)"
+              (input)="onSearchChangeKnowledgeRequired($event.target.value)"></textarea>
+            <small> <i *ngIf="validMessageKnowledgeRequired.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageKnowledgeRequired.maximumCharacter}}
+              <span [style.color]="validMessageKnowledgeRequired.isError ? '#ef3340' : ''">
+                {{validMessageKnowledgeRequired.remainedOrExceededCharacters}}</span>
+            </small>
+          </div>
+          <div class="form-group col-12">
+            <label class="">Source *</label>
+            <input type="text" class="form-control" placeholder="Add relevant details." formControlName="source"
+              [class.error-message]="validMessageSource.isError
+              || knowledgeGatheringPlanFormGroup.controls.source.invalid 
+              && (knowledgeGatheringPlanFormGroup.controls.source.dirty 
+                  || knowledgeGatheringPlanFormGroup.controls.source.touched)" (input)="onSearchChangeSource($event.target.value)">
+            <small> <i *ngIf="validMessageSource.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageSource.maximumCharacter}}
+              <span [style.color]="validMessageSource.isError ? '#ef3340' : ''">
+                {{validMessageSource.remainedOrExceededCharacters}}</span>
+            </small>
+          
+          </div>
+          <div class="form-group col-12">
+            <label class="">Who *</label>
+            <input type="text" class="form-control" mainClass="form-control" placeholder="Add User"
+              formControlName="knowledgeGivenBy" [class.error-message]="validMessageKnowledgeGivenBy.isError"
+              (input)="onSearchChangeKnowledgeGivenBy($event.target.value)">
+            <small> <i *ngIf="validMessageKnowledgeGivenBy.isError" class="fa fa-exclamation-circle"
+                style="font-size:16px;color:#ef3340"></i>
+              {{validMessageKnowledgeGivenBy.maximumCharacter}}
+              <span [style.color]="validMessageKnowledgeGivenBy.isError ? '#ef3340' : ''">
+                {{validMessageKnowledgeGivenBy.remainedOrExceededCharacters}}</span>
+            </small>
+            <!-- <rx-tag placeholder='phUserName' mainClass="" [(source)]="ourTeamMembers"
+              [keyValueProps]="['userName','userName']" maxSelection="1" formControlName="knowledgeGivenBy"
+              [manualEntered]="manualEntered"></rx-tag> -->
+          </div>
+          <div class="form-group col-12">
+            <label class="">By When *</label>
+            <rx-date pickerClass="form-control" formControlName="knowledgeGivenOn"></rx-date>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button type="button" name="save" class="btn btn-primary btn-md"
+        [disabled]="!knowledgeGatheringPlanFormGroup.valid" (click)="editKnowledgeGatheringPlan()">Update</button>
+      <button type="button" name="cancel" class="btn btn-primary btn-md"
+        (click)="hideKnowledgeGatheringEditComponent()">Cancel</button>
+    </div>
+  </div>
+</div>
