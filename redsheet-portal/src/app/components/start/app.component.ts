@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
     loginSubscription: Subscription;
     isShowSideBarButton: boolean;
     isSideBarActiveClass: boolean;
+
+    //variables for idle sessiontime
+    timer:number=0;
     constructor(
         private router: Router,
         private storage: RxStorage,
