@@ -1,77 +1,106 @@
 <!-- <div *ngIf="showComponent"> -->
 <div class="container-fluid">
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
-                           
-SdsdDDD
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6 col-xl-5 d-flex">
-
-            <div class="section-box">
-                <div class="section-header">
-                    <h2 class="section-title" rxLabel="headingOne"></h2>
-                </div>
-                <div class="section-body pt-3" *ngIf="isBindActivity">
-                    <ul class="custom-list dashboard-list">
-                        <li *ngFor="let recentActivity of recentActivities" [appHtml]="recentActivity.RecentActivityName"></li>
-                    </ul>
-                    <!-- <ul class="custom-list" *ngFor="let recentActivity of recentActivities">
-            <li><h6>{{recentActivity.RecentActivityName}}</h6></li>
-          </ul> -->
-                </div>
-                <div class="section-footer text-right" *ngIf="recentActivityCnt>0">
-                    <a class="btn btn-info" (click)="navigateTo('recent-activity-and-notifications')" title="Read More"><i
-              class="fa fa-angle-double-right fa-lg"></i></a>
-                </div>
+  
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-12 col-xl-10">
+        <div class="section-box">
+            <div class="section-header">
+                <h2 class="section-title d-inline-block" >My Progress</h2>
+                <a class="btn btn-info pull-right" data-toggle="collapse" data-target="#demo"
+                    ><i class="fa fa-angle-down"></i></a>
             </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-5 d-flex">
-            <div class="section-box">
-                <div class="section-header">
-                    <h2 class="section-title" rxLabel="headingTwo"></h2>
-                </div>
-                <!-- <div class="section-body pt-3 pb-4"> -->
-                <div class="section-body">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-7 text-center" id="piechart">
-                            <!-- <img src="assets/images/chart.png" class="img-fluid" alt="chart" title="Redsheet"> -->
-                            <!-- <div id="piechart"></div> -->
+            <div class="section-body">
+                <div class="row justify-content-center collapse hide" id="demo">
+                    <div class="col-12 col-lg-6 align-items-stretch">
+            
+                        <div class="section-box">
+                            <div class="section-header">
+                                <h2 class="section-title" rxLabel="headingOne"></h2>
+                            </div>
+                            <div class="section-body pt-3" *ngIf="isBindActivity">
+                                <ul class="custom-list dashboard-list">
+                                    <li *ngFor="let recentActivity of recentActivities"
+                                        [appHtml]="recentActivity.RecentActivityName"></li>
+                                </ul>
+                                <!-- <ul class="custom-list" *ngFor="let recentActivity of recentActivities">
+                        <li><h6>{{recentActivity.RecentActivityName}}</h6></li>
+                      </ul> -->
+                            </div>
+                            <div class="section-footer text-right" *ngIf="recentActivityCnt>0">
+                                <a class="btn btn-info" (click)="navigateTo('email-transaction')"
+                                    title="Read More"><i class="fa fa-angle-double-right fa-lg"></i></a>
+                            </div>
                         </div>
-                        <div class="col-12 col-md-5 mt-xs-3 align-self-center">
-                            <ul class="list-unstyled chart-dis">
-                                <li><span class="chart-value color-dark-blue">{{statistics.totalNegotiation}}</span><span class="chart-content" rxLabel="total"> <span class="d-block" rxLabel="headingTwo"></span></span>
-                                </li>
-                                <li><span class="chart-value color-primary">{{statistics.completed}}</span><span class="chart-content" rxLabel="completed">Completed <span class="d-block" rxLabel="headingTwo"></span></span>
-                                </li>
-                                <li><span class="chart-value color-dark-blue">{{statistics.inProgress}}</span><span class="chart-content" rxLabel="inProgress">In progress <span class="d-block"
-                      rxLabel="headingTwo"></span></span>
-                                </li>
-                                <li><span class="chart-value color-gray">{{statistics.notStarted}}</span><span class="chart-content" rxLabel="notStarted">Not started <span class="d-block" rxLabel="headingTwo"></span></span>
-                                </li>
-                            </ul>
+                    </div>
+                    <div class="col-12 col-lg-6 d-flex">
+                        <div class="section-box">
+                            <div class="section-header">
+                                <h2 class="section-title" rxLabel="headingTwo"></h2>
+                            </div>
+                            <!-- <div class="section-body pt-3 pb-4"> -->
+                            <div class="section-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-7 text-center" id="piechart">
+                                        <!-- <img src="assets/images/chart.png" class="img-fluid" alt="chart" title="Redsheet"> -->
+                                        <!-- <div id="piechart"></div> -->
+                                    </div>
+                                    <div class="col-12 col-md-5 mt-xs-3 align-self-center">
+                                        <ul class="list-unstyled chart-dis">
+                                            <li><span
+                                                    class="chart-value color-dark-blue">{{statistics.totalNegotiation}}</span><span
+                                                    class="chart-content" rxLabel="total"> <span class="d-block"
+                                                        rxLabel="headingTwo"></span></span>
+                                            </li>
+                                            <li><span class="chart-value color-primary">{{statistics.completed}}</span><span
+                                                    class="chart-content" rxLabel="completed">Completed <span class="d-block"
+                                                        rxLabel="headingTwo"></span></span>
+                                            </li>
+                                            <li><span class="chart-value color-dark-blue">{{statistics.inProgress}}</span><span
+                                                    class="chart-content" rxLabel="inProgress">In progress <span class="d-block"
+                                                        rxLabel="headingTwo"></span></span>
+                                            </li>
+                                            <li><span class="chart-value color-gray">{{statistics.notStarted}}</span><span
+                                                    class="chart-content" rxLabel="notStarted">Not started <span class="d-block"
+                                                        rxLabel="headingTwo"></span></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+               
+                
             </div>
+            
         </div>
     </div>
+</div>
+   
     <div class="row justify-content-center">
         <div class="col-12 col-lg-12 col-xl-10">
             <div class="section-box">
                 <div class="section-header">
                     <h2 class="section-title d-inline-block" rxLabel="headingThree"></h2>
-                    <a class="btn btn-info pull-right" (click)="navigateTo('project/projects/add')" title="Create Project"><i
-              class="fa fa-plus"></i></a>
+                    <a class="btn btn-info pull-right" (click)="navigateTo('project/projects/add')"
+                        title="Create Project"><i class="fa fa-plus"></i></a>
                 </div>
                 <div class="section-body">
-                    <rx-template [dataSource]="projects" pageSize="4" masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
+                    <rx-template [dataSource]="projects" pageSize="4"
+                        masterClass="col-12 col-lg-6 d-lg-flex align-items-stretch">
                         <ng-template rxCellTemplate let-dataItem="dataItem" let-rowIndex="rowIndex">
-                            <div class="media section-media list-box-dashboard align-items-center" (click)="removeMenu()">
+                            <div class="media section-media list-box-dashboard align-items-center"
+                                (click)="removeMenu()">
                                 <div class="align-self-center section-media-icon text-center">
-                                    <h4 class="pb-md-4 mb-3 color-primary" [ngClass]="rowIndex > 0 ? 'd-none d-lg-block' : ''" *ngIf="rowIndex == 0 || rowIndex == 1" rxLabel="stageReached"></h4>
+                                    <h4 class="pb-md-4 mb-3 color-primary"
+                                        [ngClass]="rowIndex > 0 ? 'd-none d-lg-block' : ''"
+                                        *ngIf="rowIndex == 0 || rowIndex == 1" rxLabel="stageReached"></h4>
                                     <a [routerLink]="dataItem.uri" class="icontitle" title="Enter project">
                                         <i class="{{getIconClass(dataItem.templateModuleId)}}"></i>
-                                        <h4>{{dataItem.templateModuleName}}<i [class]="getSymbol(dataItem.templateModuleId)"></i></h4>
+                                        <h4>{{dataItem.templateModuleName}}<i
+                                                [class]="getSymbol(dataItem.templateModuleId)"></i></h4>
                                     </a>
                                     <a class="mt-2 btn btn-primary btn-sm" [routerLink]="dataItem.uri">Continue</a>
                                 </div>
@@ -101,32 +130,45 @@ SdsdDDD
                         <a (click)="onCreateCopy(dataItem)" title="Create Copy" class="action-links-dashboard">Create
                           Copy</a>
                       </li> -->
-                                            <li class="list-inline-item"><a *ngIf="!dataItem.projectStatus && (( (dataItem.templateModuleId == 50)||(dataItem.templateModuleId == 51)  )    || (dataItem.moduleStatus && ((dataItem.templateModuleId == 53)||(dataItem.templateModuleId == 55) )   )) && dataItem.myRole == 'Owner'"
-                                                    (click)="exportHtmlToPdf(dataItem)" title="Download Report" class="action-links-dashboard btn-Dash-Download">Download</a></li>
-                                            <li *ngIf="dataItem.myRole == 'Owner'" class="list-inline-item dashboard-dropdown-icon">
+                                            <li class="list-inline-item"><a
+                                                    *ngIf="!dataItem.projectStatus && (( (dataItem.templateModuleId == 50)||(dataItem.templateModuleId == 51)  )    || (dataItem.moduleStatus && ((dataItem.templateModuleId == 53)||(dataItem.templateModuleId == 55) )   )) && dataItem.myRole == 'Owner'"
+                                                    (click)="exportHtmlToPdf(dataItem)" title="Download Report"
+                                                    class="action-links-dashboard btn-Dash-Download">Download</a></li>
+                                            <li *ngIf="dataItem.myRole == 'Owner'"
+                                                class="list-inline-item dashboard-dropdown-icon">
                                                 <i class="fa fa-ellipsis-h"></i>
                                                 <ul class="dropdown-items-dashboard">
                                                     <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
-                                                        <a [routerLink]="['/project/projects',dataItem.projectId]" title="Edit" class="">Project
-                              Setup</a>
+                                                        <a [routerLink]="['/project/projects',dataItem.projectId]"
+                                                            title="Edit" class="">Project
+                                                            Setup</a>
                                                     </li>
-                                                    <li *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner'">
-                                                        <a (click)="closeProject(dataItem)" title="Close" class="">Close</a>
+                                                    <li
+                                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner'">
+                                                        <a (click)="closeProject(dataItem)" title="Close"
+                                                            class="">Close</a>
                                                     </li>
                                                     <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
-                                                        <a (click)="liveProject(dataItem)" title="Share Project" class="">Share</a>
+                                                        <a (click)="liveProject(dataItem)" title="Share Project"
+                                                            class="">Share</a>
                                                     </li>
-                                                    <li *ngIf="(dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner'">
-                                                        <a (click)="activeProject(dataItem)" title="Close" class="">Activate</a>
+                                                    <li
+                                                        *ngIf="(dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner'">
+                                                        <a (click)="activeProject(dataItem)" title="Close"
+                                                            class="">Activate</a>
                                                     </li>
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'"><a (click)="deleteProject(dataItem)" title="Delete Project" class="">Delete</a>
+                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'"><a
+                                                            (click)="deleteProject(dataItem)" title="Delete Project"
+                                                            class="">Delete</a>
                                                     </li>
                                                     <li *ngIf="dataItem.myRole == 'Owner'">
-                                                        <a (click)="onCreateCopy(dataItem)" title="Create Copy" class="">Create
-                              Copy</a>
+                                                        <a (click)="onCreateCopy(dataItem)" title="Create Copy"
+                                                            class="">Create
+                                                            Copy</a>
                                                     </li>
                                                     <li *ngIf="dataItem.myRole == 'Owner'">
-                                                        <a (click)="showDropDown(dataItem)" title="Create Copy" class="">Change Owner</a>
+                                                        <a (click)="showDropDown(dataItem)" title="Create Copy"
+                                                            class="">Change Owner</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -135,38 +177,51 @@ SdsdDDD
                                     </div>
                                     <div class="project-summery">
                                         <!-- My Role : -->
-                                        <p><span rxLabel="myRole"></span> : <span class="color-dark-gray">{{dataItem.myRole}}</span></p>
-                                        <p class="relative"><span rxLabel="ownerName"></span> : <span class="color-dark-gray data-value-ownername">{{dataItem.ownerName}}
-                        <a *ngIf="dataItem.myRole == 'Owner'" (click)="showDropDown(dataItem)"
-                          title="Transfer Ownership"><i class="fa fa-user" aria-hidden="true"></i></a>
-                        <!-- <select class="form-control Dashboard-Card-Dropdown" rows="3" *ngIf="dataItem.hideDropDown" name="TransferOwnerShip"
+                                        <p><span rxLabel="myRole"></span> : <span
+                                                class="color-dark-gray">{{dataItem.myRole}}</span></p>
+                                        <p class="relative"><span rxLabel="ownerName"></span> : <span
+                                                class="color-dark-gray data-value-ownername">{{dataItem.ownerName}}
+                                                <a *ngIf="dataItem.myRole == 'Owner'" (click)="showDropDown(dataItem)"
+                                                    title="Transfer Ownership"><i class="fa fa-user"
+                                                        aria-hidden="true"></i></a>
+                                                <!-- <select class="form-control Dashboard-Card-Dropdown" rows="3" *ngIf="dataItem.hideDropDown" name="TransferOwnerShip"
                           placeholder="TransferOwnerShip" (change)="changeOwnership(dataItem,$event.target.value)">
                           <option *ngFor="let user of users;" [value]="user.userId"
                             [selected]="user.userId == dataItem.userId">{{user.userName}}</option>
                         </select> -->
-                        <div *ngIf="dataItem.myRole == 'Owner'" class="custom-select-items-wrapper" [class.d-block]="dataItem.hideDropDown && selectedMenue">
-                          <ul class="custom-select-items-dashboard">
-                            <li *ngFor="let user of users;">
-                              <a title="Change Owner" class=""
-                                (click)="changeOwnership(dataItem,user.userId)">{{user.userName}}</a>
-                            </li>
-                          </ul>
-                        </div>
+                                                <div *ngIf="dataItem.myRole == 'Owner'"
+                                                    class="custom-select-items-wrapper"
+                                                    [class.d-block]="dataItem.hideDropDown && selectedMenue">
+                                                    <ul class="custom-select-items-dashboard">
+                                                        <li *ngFor="let user of users;">
+                                                            <a title="Change Owner" class=""
+                                                                (click)="changeOwnership(dataItem,user.userId)">{{user.userName}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
 
-                      </span></p>
-                                        <p><span rxLabel="projectSponsor"></span> : <span class="color-dark-gray">{{dataItem.reporteeName}}</span></p>
-                                        <p><span rxLabel="createdDate "></span> : <span class="color-dark-gray">{{dataItem.createdOn |
-                        date:'dd/MM/yyyy'}}</span></p>
+                                            </span></p>
+                                        <p><span rxLabel="projectSponsor"></span> : <span
+                                                class="color-dark-gray">{{dataItem.reporteeName}}</span></p>
+                                        <p><span rxLabel="createdDate "></span> : <span
+                                                class="color-dark-gray">{{dataItem.createdOn |
+                                                date:'dd/MM/yyyy'}}</span></p>
                                         <!-- <p><span rxLabel="approvalDate"></span> : <span class="color-dark-gray">{{dataItem.publishDate | date:'dd/MM/yyyy'}}</span></p> -->
-                                        <p><span rxLabel="modulesCompleted"></span> : <span class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
+                                        <p><span rxLabel="modulesCompleted"></span> : <span
+                                                class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
                                     </div>
-                                    <span class="alert-recent mr-1 activebtn" *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && myRole != 'Shared project'">
+                                    <span class="alert-recent mr-1 activebtn"
+                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && myRole != 'Shared project'">
                                         Active</span>
-                                    <span class="alert-recent mr-1 closebtn" *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
+                                    <span class="alert-recent mr-1 closebtn"
+                                        *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
                                         Closed </span>
-                                    <span class="alert-recent mr-1 sharedbtn" *ngIf="dataItem.myRole == 'Shared project' || (dataItem.projectStatus && dataItem.myRole == 'Owner')"> Shared</span>
+                                    <span class="alert-recent mr-1 sharedbtn"
+                                        *ngIf="dataItem.myRole == 'Shared project' || (dataItem.projectStatus && dataItem.myRole == 'Owner')">
+                                        Shared</span>
 
-                                    <span class="alert-recent" *ngIf="dataItem.recentUpdated" rxLabel="recentUpdated"> </span>
+                                    <span class="alert-recent" *ngIf="dataItem.recentUpdated" rxLabel="recentUpdated">
+                                    </span>
                                 </div>
                             </div>
                         </ng-template>
@@ -174,7 +229,7 @@ SdsdDDD
                 </div>
                 <div class="section-footer text-right">
                     <a class="btn btn-info" (click)="navigateTo('project/projects')" title="Read More"><i
-              class="fa fa-angle-double-right fa-lg"></i></a>
+                            class="fa fa-angle-double-right fa-lg"></i></a>
                 </div>
             </div>
         </div>

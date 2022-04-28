@@ -38,7 +38,7 @@ import { OrientationVideoComponent } from './components/shared/top-bar/modal/ori
 
 @NgModule({
     declarations: [
-        AppComponent, SideBarComponent, TopBarComponent, UnAuthorizedComponent, NotFoundComponent, FooterBarComponent, TopBarComponent, OrientationVideoComponent
+        AppComponent, SideBarComponent, TopBarComponent, UnAuthorizedComponent, NotFoundComponent, FooterBarComponent, TopBarComponent, OrientationVideoComponent, 
     ],
     imports: [
         BrowserModule,

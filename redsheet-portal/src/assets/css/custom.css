@@ -42,7 +42,7 @@ h5, .h5 {
 
 .font-lg {
   font-size: 20px !important;
-  font-size: 20px !important/16pxrem; }
+  font-size: 20px !important; }
 
 .font-md {
   font-size: 17px;

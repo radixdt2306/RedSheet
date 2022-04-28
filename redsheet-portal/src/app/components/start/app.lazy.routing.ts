@@ -195,6 +195,11 @@ const APP_LAZY_ROUTES: Routes = [
         loadChildren: './components/recent-activity-and-notification/recent-activity-and-notifications/recent-activity-and-notifications.module#RecentActivityAndNotificationsModule',
         canActivate: [PageAccess], data: { applicationModuleId: 6149, accessItem: 'F' }
     },
+    {
+        path: 'email-transaction',
+        loadChildren: 'app/components/email-transaction/email-transaction.module#EmailTransactionModule',
+        canActivate: [PageAccess], data: { applicationModuleId: 6149, accessItem: 'F' }
+    },
     // {
     //     path: 'pdf',
     //     component: PdfComponent, data: { anonymous: true }, 

@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using System.Linq;
-using Rx.Core.Data;
-using Rx.Core.Security;
-using RedSheet.BoundedContext.SqlContext;
-using RedSheet.ViewModels.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Data.SqlClient;
+    using System.Threading.Tasks;
+    using System.Linq;
+    using Rx.Core.Data;
+    using Rx.Core.Security;
+    using RedSheet.BoundedContext.SqlContext;
+    using RedSheet.ViewModels.Models;
 namespace RedSheet.Api.Controllers
 {
     [Route("api/recentactivityandnotifications/search")]
