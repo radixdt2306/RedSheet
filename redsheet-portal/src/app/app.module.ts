@@ -35,7 +35,6 @@ import { AppDirectiveModule } from 'app/components/shared/directives/app.directi
 import { OrientationVideoComponent } from './components/shared/top-bar/modal/orientation-video.component';
 
 
-
 @NgModule({
     declarations: [
         AppComponent, SideBarComponent, TopBarComponent, UnAuthorizedComponent, NotFoundComponent, FooterBarComponent, TopBarComponent, OrientationVideoComponent
