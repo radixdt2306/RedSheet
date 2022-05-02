@@ -17,3 +17,21 @@
     <app-footer-bar *ngIf="showElement"></app-footer-bar>
   </div>
 </div>
+
+<div id="SessionModal" class="modal container-fluid">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-2">
+        <h2 class="modal-title">Session</h2>
+      </div>
+      <div class="modal-body p-2">
+        <p>It's a gentle reminder your session about to expire</p>
+        <h3>remaining time {{SessionTime}}s</h3>
+      </div>
+      <div class="modal-footer p-2 justify-content-end">
+        <button class="btn btn-success" (click)="ExpandSession()" >Expand</button>
+        <button class="btn btn-danger" (click)="logOut()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</div>

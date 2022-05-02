@@ -186,39 +186,29 @@
                           <option *ngFor="let user of users;" [value]="user.userId"
                             [selected]="user.userId == dataItem.userId">{{user.userName}}</option>
                         </select> -->
-                                                <div *ngIf="dataItem.myRole == 'Owner'"
-                                                    class="custom-select-items-wrapper"
-                                                    [class.d-block]="dataItem.hideDropDown && selectedMenue">
-                                                    <ul class="custom-select-items-dashboard">
-                                                        <li *ngFor="let user of users;">
-                                                            <a title="Change Owner" class=""
-                                                                (click)="changeOwnership(dataItem,user.userId)">{{user.userName}}</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                        <div *ngIf="dataItem.myRole == 'Owner'" class="custom-select-items-wrapper" [class.d-block]="dataItem.hideDropDown && selectedMenue">
+                          <ul class="custom-select-items-dashboard">
+                            <li *ngFor="let user of users;">
+                              <a title="Change Owner" class=""
+                                (click)="changeOwnership(dataItem,user.userId)">{{user.userName}}</a>
+                            </li>
+                          </ul>
+                        </div>
 
-                                            </span></p>
-                                        <p><span rxLabel="projectSponsor"></span> : <span
-                                                class="color-dark-gray">{{dataItem.reporteeName}}</span></p>
-                                        <p><span rxLabel="createdDate "></span> : <span
-                                                class="color-dark-gray">{{dataItem.createdOn |
-                                                date:'dd/MM/yyyy'}}</span></p>
+                      </span></p>
+                                        <p><span rxLabel="projectSponsor"></span> : <span class="color-dark-gray">{{dataItem.reporteeName}}</span></p>
+                                        <p><span rxLabel="createdDate "></span> : <span class="color-dark-gray">{{dataItem.createdOn |
+                        date:'dd/MM/yyyy'}}</span></p>
                                         <!-- <p><span rxLabel="approvalDate"></span> : <span class="color-dark-gray">{{dataItem.publishDate | date:'dd/MM/yyyy'}}</span></p> -->
-                                        <p><span rxLabel="modulesCompleted"></span> : <span
-                                                class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
+                                        <p><span rxLabel="modulesCompleted"></span> : <span class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
                                     </div>
-                                    <span class="alert-recent mr-1 activebtn"
-                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && myRole != 'Shared project'">
+                                    <span class="alert-recent mr-1 activebtn" *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && dataItem.myRole != 'Shared project'">
                                         Active</span>
-                                    <span class="alert-recent mr-1 closebtn"
-                                        *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
+                                    <span class="alert-recent mr-1 closebtn" *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
                                         Closed </span>
-                                    <span class="alert-recent mr-1 sharedbtn"
-                                        *ngIf="dataItem.myRole == 'Shared project' || (dataItem.projectStatus && dataItem.myRole == 'Owner')">
-                                        Shared</span>
+                                    <span class="alert-recent mr-1 sharedbtn" *ngIf="dataItem.myRole == 'Shared project' || (dataItem.projectStatus && dataItem.myRole == 'Owner')"> Shared</span>
 
-                                    <span class="alert-recent" *ngIf="dataItem.recentUpdated" rxLabel="recentUpdated">
-                                    </span>
+                                    <span class="alert-recent" *ngIf="dataItem.recentUpdated" rxLabel="recentUpdated"> </span>
                                 </div>
                             </div>
                         </ng-template>
