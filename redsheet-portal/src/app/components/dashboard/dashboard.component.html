@@ -3,7 +3,6 @@
   
 <div class="row justify-content-center">
     <div class="col-12 col-lg-12 col-xl-10">
-        <div class="section-box">
         <div class="section-box" style="background-color: #f1e9e933;">
             <div class="section-header">
                 <h2 class="section-title d-inline-block" >My Progress</h2>
@@ -15,10 +14,8 @@
                     <hr>
                     <div class="row">
                         <div class="col-12 col-lg-6">
-                            <div class="section-box" style="height: 450px; overflow-y: scroll;">
                             <div class="section-box" style="background-color: white; height:450px; overflow-y: scroll;">
                                 <div class="section-header">
-                                    <h2 class="section-title" rxLabel="headingOne"></h2>
                                     <h2 class="section-title" Uppercase>Messages</h2> <!-- rxLabel="headingOne" -->
                                 </div>
                                 <div class="section-body" *ngIf="emailTransactions" >
@@ -232,12 +229,12 @@
                                         <!-- <p><span rxLabel="approvalDate"></span> : <span class="color-dark-gray">{{dataItem.publishDate | date:'dd/MM/yyyy'}}</span></p> -->
                                         <p><span rxLabel="modulesCompleted"></span> : <span class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
                                     </div>
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
                                     <span class="alert-recent mr-1 activebtn" *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && dataItem.myRole != 'Shared project'">
-=======
+======= -->
                                     <span class="alert-recent mr-1 activebtn"
                                         *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && dataItem.myRole != 'Shared project'"> <!-- (myRole != 'Shared project') TO (dataItem.myRole != 'Shared project') -->
->>>>>>> 223257-replace-recent-activity-with-key-communication-dashboard-Uttam
+<!-- >>>>>>> 223257-replace-recent-activity-with-key-communication-dashboard-Uttam -->
                                         Active</span>
                                     <span class="alert-recent mr-1 closebtn" *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
                                         Closed </span>
