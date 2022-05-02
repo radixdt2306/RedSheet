@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, Query } from "@angular/core";
 import { ApplicationBroadcaster } from "@rx/core";
 import { HIDE_SIDE_BAR } from "app/const";
 import { ProjectsService } from "app/components/project/projects/projects.service";
@@ -14,6 +14,8 @@ import { LogSearchModel } from "app/models";
 import { API_HOST_URI } from "@rx";
 import { PdfService } from "app/components/pdf/pdf.service";
 import { RxSpinner } from "@rx/view";
+import { EmailTransactionService } from "../email-transaction/email-transaction.service";
+import { EmailTransaction } from "app/database-models/email-transaction";
 
 // declare var d3pie: any;
 declare var d3: any;
@@ -36,11 +38,14 @@ export class DashboardComponent implements OnInit {
     recentActivityCnt: number;
     selectedMenue: boolean = false;
     flagmenu = false;
+    emailTransactions:EmailTransaction[]=[];
+
     // notifications:any;
     constructor(@Inject(RxSpinner) private spinner: RxSpinner,
         applicationBroadcaster: ApplicationBroadcaster,
         private projectService: ProjectsService,
         private dashboardService: DashboardService,
+        private emailTransactionService: EmailTransactionService,
         private pdfService: PdfService,
         private auditLogService: AuditLogService,
         private dialog: RxDialog,
@@ -58,14 +63,17 @@ export class DashboardComponent implements OnInit {
         this.dashboardService.search({ Query: [] }).subscribe(s => {
             if (s.result) {
                 this.statistics = s.result[0].ChartInfo[0];
-                if (s.result[0].RecentActivities == undefined) {
-                    this.recentActivities = s.result[0].RecentActivities;
-                    this.recentActivityCnt = 0;
-                }
-                else {
-                    this.recentActivities = s.result[0].RecentActivities;
-                    this.recentActivityCnt = s.result[0].RecentActivities.length;
-                }
+               /*
+                 to set recentActivities 
+                // if (s.result[0].RecentActivities == undefined) {
+                //     this.recentActivities = s.result[0].RecentActivities;
+                //     this.recentActivityCnt = 0;
+                // }
+                // else {
+                //     this.recentActivities = s.result[0].RecentActivities;
+                //     this.recentActivityCnt = s.result[0].RecentActivities.length;
+                // }
+                */
                 this.isBindActivity = true;
             }
             var contents = [];
@@ -153,6 +161,16 @@ export class DashboardComponent implements OnInit {
         }, error => {
 
         });
+
+        this.emailTransactionService.search({Query:[]}).subscribe(
+            (emailtransaction)=>{
+                console.log(emailtransaction.result);
+                    this.emailTransactions = emailtransaction.result;
+            },
+            (error)=>{
+
+            }
+        )
 
         this.projectService.search({ isMyProject: true }).subscribe(t => {
             this.projectService.lookup([ProjectNegotionalityLookups.userLookups]).then((response: ProjectLookupGroup) => {
