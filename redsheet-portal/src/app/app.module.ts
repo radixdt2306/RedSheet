@@ -33,6 +33,7 @@ import { ProjectModulesService } from 'app/components/project-module/project-mod
 import { RecentActivityAndNotificationsService } from 'app/components/recent-activity-and-notification/recent-activity-and-notifications/recent-activity-and-notifications.service';
 import { AppDirectiveModule } from 'app/components/shared/directives/app.directive.module';
 import { OrientationVideoComponent } from './components/shared/top-bar/modal/orientation-video.component';
+import { EmailTransactionModule } from './components/email-transaction/email-transaction.module';
 
 
 
@@ -44,7 +45,7 @@ import { OrientationVideoComponent } from './components/shared/top-bar/modal/ori
         BrowserModule,
         FormsModule, ReactiveFormsModule, RxTableModule,
         HttpModule, RxSecurityModule, CommonModule,
-        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule
+        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , EmailTransactionModule
     ],
     providers: [PermissionService, RxValidation, LoginService, ApplicationBroadcaster,
         {
