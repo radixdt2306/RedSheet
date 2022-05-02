@@ -22,7 +22,7 @@ namespace RedSheet.Api.Controllers
         {
             var spParameters = new object[1];
             spParameters[0] = new SqlParameter() { ParameterName = "UserId", Value = UserClaim.UserId };
-            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spEmailTransaction @UserId", spParameters);
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spEmailTransactions @UserId", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
             return Ok(storeProcSearchResult.SingleOrDefault()?.Result);
         }
 

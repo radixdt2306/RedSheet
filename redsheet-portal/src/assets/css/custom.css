@@ -593,6 +593,12 @@ header {
   .section-box .section-body {
     clear: both; }
 
+  /* to hide scroll-bar */
+  .section-box::-webkit-scrollbar {
+      display: none;
+  }
+  /* */
+
 /*========= custom list ==========*/
 .custom-list {
   padding: 0;

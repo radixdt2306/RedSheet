@@ -10,71 +10,68 @@
                     ><i class="fa fa-angle-down"></i></a>
             </div>
             <div class="section-body">
-                <div class="row justify-content-center collapse hide" id="demo">
-                    <div class="col-12 col-lg-6 align-items-stretch">
-            
-                        <div class="section-box">
-                            <div class="section-header">
-                                <h2 class="section-title" rxLabel="headingOne"></h2>
-                            </div>
-                            <div class="section-body pt-3" *ngIf="isBindActivity">
-                                <ul class="custom-list dashboard-list">
-                                    <li *ngFor="let recentActivity of recentActivities"
-                                        [appHtml]="recentActivity.RecentActivityName"></li>
-                                </ul>
-                                <!-- <ul class="custom-list" *ngFor="let recentActivity of recentActivities">
-                        <li><h6>{{recentActivity.RecentActivityName}}</h6></li>
-                      </ul> -->
-                            </div>
-                            <div class="section-footer text-right" *ngIf="recentActivityCnt>0">
-                                <a class="btn btn-info" (click)="navigateTo('email-transaction')"
-                                    title="Read More"><i class="fa fa-angle-double-right fa-lg"></i></a>
+                <div class="collapse hide" id="demo">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="section-box" style="height: 450px; overflow-y: scroll;">
+                                <div class="section-header">
+                                    <h2 class="section-title" rxLabel="headingOne"></h2>
+                                </div>
+                                <div class="section-body" *ngIf="isBindActivity">
+                                    <ul class="custom-list dashboard-list">
+                                        <li *ngFor="let recentActivity of recentActivities"
+                                            [appHtml]="recentActivity.RecentActivityName"></li>
+                                    </ul>
+                                            <!-- <ul class="custom-list" *ngFor="let recentActivity of recentActivities">
+                                    <li><h6>{{recentActivity.RecentActivityName}}</h6></li>
+                                </ul> -->
+                                </div>
+                                <div class="section-footer text-right" *ngIf="recentActivityCnt>0">
+                                    <a class="btn btn-info" (click)="navigateTo('email-transaction')"
+                                        title="Read More"><i class="fa fa-angle-double-right fa-lg"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-lg-6 d-flex">
-                        <div class="section-box">
-                            <div class="section-header">
-                                <h2 class="section-title" rxLabel="headingTwo"></h2>
-                            </div>
-                            <!-- <div class="section-body pt-3 pb-4"> -->
-                            <div class="section-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-12 col-md-7 text-center" id="piechart">
-                                        <!-- <img src="assets/images/chart.png" class="img-fluid" alt="chart" title="Redsheet"> -->
-                                        <!-- <div id="piechart"></div> -->
-                                    </div>
-                                    <div class="col-12 col-md-5 mt-xs-3 align-self-center">
-                                        <ul class="list-unstyled chart-dis">
-                                            <li><span
-                                                    class="chart-value color-dark-blue">{{statistics.totalNegotiation}}</span><span
-                                                    class="chart-content" rxLabel="total"> <span class="d-block"
-                                                        rxLabel="headingTwo"></span></span>
-                                            </li>
-                                            <li><span class="chart-value color-primary">{{statistics.completed}}</span><span
-                                                    class="chart-content" rxLabel="completed">Completed <span class="d-block"
-                                                        rxLabel="headingTwo"></span></span>
-                                            </li>
-                                            <li><span class="chart-value color-dark-blue">{{statistics.inProgress}}</span><span
-                                                    class="chart-content" rxLabel="inProgress">In progress <span class="d-block"
-                                                        rxLabel="headingTwo"></span></span>
-                                            </li>
-                                            <li><span class="chart-value color-gray">{{statistics.notStarted}}</span><span
-                                                    class="chart-content" rxLabel="notStarted">Not started <span class="d-block"
-                                                        rxLabel="headingTwo"></span></span>
-                                            </li>
-                                        </ul>
+                        <div class="col-12 col-lg-6">
+                            <div class="section-box" style="height: 450px; overflow-y: scroll;">
+                                <div class="section-header">
+                                    <h2 class="section-title" rxLabel="headingTwo"></h2>
+                                </div>
+                                <!-- <div class="section-body pt-3 pb-4"> -->
+                                <div class="section-body">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12 col-md-7 text-center" id="piechart">
+                                            <!-- <img src="assets/images/chart.png" class="img-fluid" alt="chart" title="Redsheet"> -->
+                                            <!-- <div id="piechart"></div> -->
+                                        </div>
+                                        <div class="col-12 col-md-5 mt-xs-3 align-self-center">
+                                            <ul class="list-unstyled chart-dis">
+                                                <li><span
+                                                        class="chart-value color-dark-blue">{{statistics.totalNegotiation}}</span><span
+                                                        class="chart-content" rxLabel="total"> <span class="d-block"
+                                                            rxLabel="headingTwo"></span></span>
+                                                </li>
+                                                <li><span class="chart-value color-primary">{{statistics.completed}}</span><span
+                                                        class="chart-content" rxLabel="completed">Completed <span class="d-block"
+                                                            rxLabel="headingTwo"></span></span>
+                                                </li>
+                                                <li><span class="chart-value color-dark-blue">{{statistics.inProgress}}</span><span
+                                                        class="chart-content" rxLabel="inProgress">In progress <span class="d-block"
+                                                            rxLabel="headingTwo"></span></span>
+                                                </li>
+                                                <li><span class="chart-value color-gray">{{statistics.notStarted}}</span><span
+                                                        class="chart-content" rxLabel="notStarted">Not started <span class="d-block"
+                                                            rxLabel="headingTwo"></span></span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
-
-               
-                
             </div>
-            
         </div>
     </div>
 </div>
