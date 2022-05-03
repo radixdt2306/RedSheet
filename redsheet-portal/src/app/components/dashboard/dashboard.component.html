@@ -229,12 +229,7 @@
                                         <!-- <p><span rxLabel="approvalDate"></span> : <span class="color-dark-gray">{{dataItem.publishDate | date:'dd/MM/yyyy'}}</span></p> -->
                                         <p><span rxLabel="modulesCompleted"></span> : <span class="color-dark-gray">{{dataItem.moduleOrder}}</span></p>
                                     </div>
-<!-- <<<<<<< HEAD
-                                    <span class="alert-recent mr-1 activebtn" *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && dataItem.myRole != 'Shared project'">
-======= -->
-                                    <span class="alert-recent mr-1 activebtn"
-                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && dataItem.myRole != 'Shared project'"> <!-- (myRole != 'Shared project') TO (dataItem.myRole != 'Shared project') -->
-<!-- >>>>>>> 223257-replace-recent-activity-with-key-communication-dashboard-Uttam -->
+                                    <span class="alert-recent mr-1 activebtn" *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner' && myRole != 'Shared project'">
                                         Active</span>
                                     <span class="alert-recent mr-1 closebtn" *ngIf="dataItem.isClosed && dataItem.myRole == 'Owner'">
                                         Closed </span>
