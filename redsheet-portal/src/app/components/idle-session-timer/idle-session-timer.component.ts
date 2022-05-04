@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IdleSessionTimerService } from './idle-session-timer.service';
 import { RxPopup } from "@rx/view";
 
@@ -11,11 +11,12 @@ export class IdleSessionTimerComponent implements OnInit {
 
   constructor(private idleSessionTimer:IdleSessionTimerService , private popup:RxPopup) { }
   
-  @Input() remainingTime:number 
+  remainingTime:number 
 
   showComponent:boolean=false;
   ngOnInit(): void {
     this.showComponent=true;
+    setInterval(()=>{this.remainingTime = this.remainingTime-1},1000)
   }
 
   Extend()

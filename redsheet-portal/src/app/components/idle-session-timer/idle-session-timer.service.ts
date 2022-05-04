@@ -40,10 +40,7 @@ export class IdleSessionTimerService {
           if(res == this.SessionExpireAfter)
           {
             this.CheckForIdle = false;
-            if(!this.CheckForIdle)
-            {
               this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionTime});
-            }
           }
           if(this.SessionTime == 0)
           {
