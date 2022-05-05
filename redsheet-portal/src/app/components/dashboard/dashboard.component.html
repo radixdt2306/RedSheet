@@ -3,14 +3,14 @@
   
 <div class="row justify-content-center">
     <div class="col-12 col-lg-12 col-xl-10">
-        <div class="section-box" style="background-color: #f1e9e933;">
+        <div class="section-box " style="background-color: #f1e9e933;">
             <div class="section-header">
                 <h2 class="section-title d-inline-block" >My Progress</h2>
-                <a class="btn btn-info pull-right" data-toggle="collapse" data-target="#demo"
-                    ><i class="fa fa-angle-down"></i></a>
+                <button class="btn btn-info pull-right" (click)="expandMyprogress=!expandMyprogress"
+                    ><i class="fa" [ngClass]="{'fa-angle-up':expandMyprogress,'fa-angle-down':!expandMyprogress}"></i></button>
             </div>
             <div class="section-body">
-                <div class="collapse hide" id="demo">
+                <div id="demo" class="collapse" [ngClass]="{'show':expandMyprogress,'hide':expandMyprogress}">
                     <hr>
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -22,32 +22,7 @@
                                     <ul class="m-0 p-0">  <!-- class="custom-list dashboard-list" -->
                                         <li  class="my-1" *ngFor="let emailTransaction of emailTransactions" type="none">
                                              <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>  <!-- [appHtml]="emailTransaction.emailSubject" -->
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                        <li class="my-1"  *ngFor="let emailTransaction of emailTransactions" type="none">
-                                            <span><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold"></span>{{emailTransaction.EmailSubject | uppercase}}<span class="ml-1 mr-2">|</span><span class="truncate text-muted"><p>{{emailTransaction.EmailMessage}}</p></span></span></span>
-                                        </li>
-                                              
+                                        </li>  <!-- [appHtml]="emailTransaction.emailSubject" --> -->
                                     </ul>
                                             <!-- <ul class="custom-list" *ngFor="let recentActivity of recentActivities">
                                     <li><h6>{{recentActivity.RecentActivityName}}</h6></li>

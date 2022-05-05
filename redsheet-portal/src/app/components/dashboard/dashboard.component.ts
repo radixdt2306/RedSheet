@@ -40,6 +40,8 @@ export class DashboardComponent implements OnInit {
     flagmenu = false;
     emailTransactions:EmailTransaction[]=[];
 
+    expandMyprogress:boolean=false; // for myprogress collapse
+
     // notifications:any;
     constructor(@Inject(RxSpinner) private spinner: RxSpinner,
         applicationBroadcaster: ApplicationBroadcaster,
