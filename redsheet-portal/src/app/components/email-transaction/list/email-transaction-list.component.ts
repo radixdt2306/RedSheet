@@ -17,6 +17,9 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
    emailTransaction: EmailTransaction[];
     listSubscription: Subscription;
 
+    filterOption:any[]=["SENT","RECEIVED"];
+    dateOrder:string = "ASCENDING";
+
     constructor(
       private emailTransactionService: EmailTransactionService,    
       private dialog: RxDialog,
@@ -31,6 +34,19 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
         this.showComponent = true;
     });
   }
+  // date order toggle 
+  DateOrder()
+  {
+    if(this.dateOrder == "ASCENDING")
+    {
+      this.dateOrder = "DESCENDING";
+    }
+    else
+    {
+      this.dateOrder = "ASCENDING";
+    }
+  }
+
  ngOnDestroy(): void {
       if (this.listSubscription)
           this.listSubscription.unsubscribe();
