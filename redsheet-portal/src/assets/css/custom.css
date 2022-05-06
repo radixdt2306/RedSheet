@@ -597,6 +597,13 @@ header {
   .section-box::-webkit-scrollbar {
       display: none;
   }
+  .truncated {
+    display: block;
+    white-space: nowrap; /* forces text to single line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
   /* */
 
 /*========= custom list ==========*/
