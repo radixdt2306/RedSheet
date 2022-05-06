@@ -14,16 +14,17 @@ import { EmailTransactionDomain } from 'app/components/email-transaction/domain/
   })
 export class EmailTransactionListComponent extends EmailTransactionDomain implements OnInit, OnDestroy {
   showComponent: boolean = false;
-   emailTransaction: EmailTransaction[];
-    listSubscription: Subscription;
+  emailTransaction: EmailTransaction[];
+  listSubscription: Subscription; 
 
-    filterOption:any[]=["SENT","RECEIVED"];
-    dateOrder:string = "ASCENDING";
+  filterOption:any[]=["SENT","RECEIVED"];
+  dateOrder:string = "ASCENDING";
+  liReapet:any[]=[1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
-    constructor(
-      private emailTransactionService: EmailTransactionService,    
-      private dialog: RxDialog,
-  private router: Router,
+  constructor(
+    private emailTransactionService: EmailTransactionService,    
+    private dialog: RxDialog,
+    private router: Router,
   ) { super();}
 
   ngOnInit(): void {

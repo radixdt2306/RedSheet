@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="section-body"  > <!-- *ngIf="emailTransactions" -->
                                     <ul class="m-0 p-0">  <!-- class="custom-list dashboard-list" -->
-                                        <li  class="my-1" > <!-- *ngFor="let emailTransaction of emailTransactions" type="none" -->
+                                        <li  class="my-1" type="none"> <!-- *ngFor="let emailTransaction of emailTransactions" type="none" -->
                                              <span class="truncated"><span class="mr-2"><img src="../../../assets/images/create-report.svg" width="25px;" height="50px;" alt="email"></span><span><span class="font-weight-bold">{{"emailTransactionEmailSubject" | uppercase}}</span><span class="ml-1 mr-2">|</span><span class="text-muted">{{"emailTransaction.EmailMessage"}}{{"emailTransaction.EmailMessage"}}{{"emailTransaction.EmailMessage"}}{{"emailTransaction.EmailMessage"}}</span></span></span>
                                         </li>  <!-- [appHtml]="emailTransaction.emailSubject" --> 
                                     </ul>
