@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit {
 
         });
 
-        this.emailTransactionService.search({Query:[]}).subscribe(
+        this.emailTransactionService.search({Query:[{ searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
             (emailtransaction)=>{
                 console.log(emailtransaction.result);
                     this.emailTransactions = emailtransaction.result;

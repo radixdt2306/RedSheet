@@ -23,6 +23,8 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   dateOrder: string = "DESCENDING";
   searchFilter = { searchValue: this.searchValue, dateOrder: this.dateOrder, emailCategory: this.emailCategoryValue }
 
+  isSearchEnable: boolean;
+
   constructor(
     private emailTransactionService: EmailTransactionService,
     private dialog: RxDialog,
@@ -30,6 +32,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   ) { super(); }
 
   ngOnInit(): void {
+    this.isSearchEnable = true;
     this.EmailTransactions();
   }
   // date order toggle 
@@ -56,18 +59,20 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
       this.emailTransaction = null;
       this.emailTransaction = (!emailTransaction.result) ? [] : emailTransaction.result;
       console.log("added", this.emailTransaction);
-
+      this.isSearchEnable = true;
       this.showComponent = true;
     });
   }
 
   SearchEmailTransaction() {
-    this.searchFilter.searchValue = this.searchValue;
-    this.EmailTransactions();
+    if (this.isSearchEnable) {
+      this.isSearchEnable = false;
+      this.searchFilter.searchValue = this.searchValue;
+      this.EmailTransactions();
+    }
   }
 
-  CategoryEmailTransaction()
-  {
+  CategoryEmailTransaction() {
     this.searchFilter.emailCategory = this.emailCategoryValue;
     this.EmailTransactions();
   }
