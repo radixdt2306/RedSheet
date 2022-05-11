@@ -28,12 +28,13 @@ namespace RedSheet.Api.Controllers
 
             var query = JObject.Parse(searchFilter.Query);
 
-            var spParameters = new object[4];
-            spParameters[0] = new SqlParameter() { ParameterName = "UserId", Value = UserClaim.UserId };
-            spParameters[1] = new SqlParameter() { ParameterName = "SearchBy", Value = query["Query"][0]["searchValue"].ToString() };
-            spParameters[2] = new SqlParameter() { ParameterName = "OrderByDate", Value = query["Query"][0]["dateOrder"].ToString() };
-            spParameters[3] = new SqlParameter() { ParameterName = "CategoryBy", Value = query["Query"][0]["emailCategory"].ToString() };
-            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spEmailTransactions @UserId , @SearchBy , @OrderByDate , @CategoryBy", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+            var spParameters = new object[5];
+            spParameters[0] = new SqlParameter() { ParameterName = "userId", Value = query["Query"][0]["userId"].ToString() };
+            spParameters[1] = new SqlParameter() { ParameterName = "userEmail", Value = query["Query"][0]["userEmail"].ToString() };
+            spParameters[2] = new SqlParameter() { ParameterName = "SearchBy", Value = query["Query"][0]["searchValue"].ToString() };
+            spParameters[3] = new SqlParameter() { ParameterName = "OrderByDate", Value = query["Query"][0]["dateOrder"].ToString() };
+            spParameters[4] = new SqlParameter() { ParameterName = "CategoryBy", Value = query["Query"][0]["emailCategory"].ToString() };
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spEmailTransactions @UserId , @userEmail , @SearchBy , @OrderByDate , @CategoryBy", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
             return Ok(storeProcSearchResult.SingleOrDefault()?.Result);
         }
 

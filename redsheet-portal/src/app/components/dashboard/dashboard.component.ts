@@ -14,6 +14,7 @@ import { LogSearchModel } from "app/models";
 import { API_HOST_URI } from "@rx";
 import { PdfService } from "app/components/pdf/pdf.service";
 import { RxSpinner } from "@rx/view";
+import { RxStorage } from '@rx/storage';
 import { EmailTransactionService } from "../email-transaction/email-transaction.service";
 import { EmailTransaction } from "app/database-models/email-transaction";
 
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
     selectedMenue: boolean = false;
     flagmenu = false;
     emailTransactions:EmailTransaction[]=[];
-
+    localData:any;
     expandMyprogress:boolean=false; // for myprogress collapse
 
     // notifications:any;
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
         private auditLogService: AuditLogService,
         private dialog: RxDialog,
         private router: Router,
+        private storage : RxStorage,
         @Inject(API_HOST_URI) private hostUri: string,
     ) {
         this.data = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
@@ -60,6 +62,9 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit(): void {
         
+        // getting localstorage data
+        this.localData = this.storage.local.get('data');
+
         ProjectModuleStatic.CurrentProjectModuleId = undefined;
         this.statistics = [{ totalNegotiation: 0 }, { completed: 0 }, { inProgress: 0 }, { notStarted: 0 }];
         this.dashboardService.search({ Query: [] }).subscribe(s => {
@@ -164,7 +169,7 @@ export class DashboardComponent implements OnInit {
 
         });
 
-        this.emailTransactionService.search({Query:[{ searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
+        this.emailTransactionService.search({Query:[{ userId:this.localData.userId , userEmail:this.localData.userName , searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
             (emailtransaction)=>{
                 console.log(emailtransaction.result);
                     this.emailTransactions = emailtransaction.result;
