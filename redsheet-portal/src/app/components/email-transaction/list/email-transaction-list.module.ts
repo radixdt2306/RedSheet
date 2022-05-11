@@ -11,14 +11,15 @@ import { EmailTransactionListComponent } from './email-transaction-list.componen
 import { EMAIL_TRANSACTION_LIST_ROUTING } from './email-transaction-list.routing'
 import {EmailTransactionService } from "app/components/email-transaction/email-transaction.service";
 import { AppDirectiveModule } from 'app/components/shared/directives/app.directive.module';
+import { EmailReplyModule } from '../email-reply/email-reply/email-reply.module';
 
 @NgModule({
     imports: [
         EMAIL_TRANSACTION_LIST_ROUTING ,
-        CommonModule, RxViewModule, RxTableModule, RxFormsModule, FormsModule, ReactiveFormsModule,AppDirectiveModule
+        CommonModule, RxViewModule, RxTableModule, RxFormsModule, FormsModule, ReactiveFormsModule,AppDirectiveModule,EmailReplyModule
 		    ],
-    declarations: [EmailTransactionListComponent ],
+    declarations: [EmailTransactionListComponent],
     exports: [RouterModule],
-    providers: [EmailTransactionService]
+    providers: [EmailTransactionService],
 })
 export class EmailTransactionListModule { }

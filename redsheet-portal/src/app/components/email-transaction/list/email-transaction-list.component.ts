@@ -1,16 +1,18 @@
 import { Component, OnInit, OnDestroy, Input, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { RxToast, RxDialog, DialogClick } from '@rx/view';
 import { RxStorage } from '@rx/storage';
+import { RxToast, RxPopup, RxDialog, DialogClick } from '@rx/view';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailTransactionService } from 'app/components/email-transaction/email-transaction.service';
 import { EmailTransactionDomain } from 'app/components/email-transaction/domain/email-transaction.domain';
+import { EmailReplyComponent } from '../email-reply/email-reply/email-reply.component';
 
 
 
 @Component({
   templateUrl: './email-transaction-list.component.html',
+  entryComponents:[EmailReplyComponent]
 })
 export class EmailTransactionListComponent extends EmailTransactionDomain implements OnInit, OnDestroy {
   showComponent: boolean = false;
@@ -29,6 +31,8 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     private emailTransactionService: EmailTransactionService,
     private dialog: RxDialog,
     private storage: RxStorage,
+    private router: Router,
+    private popup: RxPopup
   ) { super(); }
 
   ngOnInit(): void {
@@ -40,6 +44,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.searchFilter.userEmail = this.data.userName;
     this.EmailTransactions();
   }
+
   // date order toggle 
   DateOrderEmailTransaction() {
     if (this.dateOrder == "ASCENDING") {
@@ -91,6 +96,12 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.searchFilter.emailCategory = "";
 
     this.EmailTransactions();
+  }
+
+  ReplyToEmail(data:any)
+  {
+    this.popup.show(EmailReplyComponent , {emailTransactionInput:data});
+    console.log("dsgrdg");
   }
 
   ngOnDestroy(): void {
