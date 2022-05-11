@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, ComponentFactoryResolver } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { RxToast, RxDialog, DialogClick } from '@rx/view';
-
+import { RxStorage } from '@rx/storage';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailTransactionService } from 'app/components/email-transaction/email-transaction.service';
 import { EmailTransactionDomain } from 'app/components/email-transaction/domain/email-transaction.domain';
@@ -16,23 +16,28 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   showComponent: boolean = false;
   emailTransaction: EmailTransaction[];
   listSubscription: Subscription;
-
   searchValue: string = "";
   emailCategory: any[] = ["SENT", "RECIEVED"];
   emailCategoryValue: string = "";
   dateOrder: string = "DESCENDING";
-  searchFilter = { searchValue: this.searchValue, dateOrder: this.dateOrder, emailCategory: this.emailCategoryValue }
+  data:any;
+  searchFilter = { userId:0 , userEmail:"", searchValue: this.searchValue, dateOrder: this.dateOrder, emailCategory: this.emailCategoryValue }
 
   isSearchEnable: boolean;
 
   constructor(
     private emailTransactionService: EmailTransactionService,
     private dialog: RxDialog,
-    private router: Router,
+    private storage: RxStorage,
   ) { super(); }
 
   ngOnInit(): void {
     this.isSearchEnable = true;
+    this.data = this.storage.local.get('data');
+    console.log(this.data.userId);
+    console.log(this.data.userName);
+    this.searchFilter.userId = this.data.userId;
+    this.searchFilter.userEmail = this.data.userName;
     this.EmailTransactions();
   }
   // date order toggle 
@@ -58,7 +63,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.listSubscription = this.emailTransactionService.search({ Query: [this.searchFilter] }).subscribe(emailTransaction => {
       this.emailTransaction = null;
       this.emailTransaction = (!emailTransaction.result) ? [] : emailTransaction.result;
-      console.log("added", this.emailTransaction);
+      console.log("added", emailTransaction.result);
       this.isSearchEnable = true;
       this.showComponent = true;
     });
