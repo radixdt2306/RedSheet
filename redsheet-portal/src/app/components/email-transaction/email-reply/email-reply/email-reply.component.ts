@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RxPopup } from '@rx/view';
+import { EmailTransaction } from 'app/database-models/email-transaction';
+import { EmailReplyService } from '../email-reply.service';
 
 @Component({
   // selector: 'app-email-reply',
@@ -8,11 +10,17 @@ import { RxPopup } from '@rx/view';
 })
 export class EmailReplyComponent implements OnInit {
 
-  constructor(private popup : RxPopup) { }
+  constructor(
+    private emailReplyService:EmailReplyService,
+    private popup : RxPopup
+  ) 
+  { }
 
-  @Input() emailTransactionInput:any;
+  @Input() emailTransactionInput:EmailTransaction;
 
   emailTransaction:any;
+  emailTo:string;
+  emailFrom:string;
   isCheck:boolean=false;
   message:string = "";
   ngOnInit() {
@@ -23,7 +31,22 @@ export class EmailReplyComponent implements OnInit {
   SendMessage()
   {
     this.emailTransaction.EmailMessage = this.message;
+    this.emailTransaction.EmailStatus = 'SENT';
     console.log(this.emailTransaction);
+    this.emailReplyService.ReplyEmailMessage(this.emailTransaction).subscribe(
+      (res)=>
+      {
+        // if(res.Result == "TRUE")
+        // {
+          console.log("response of email reply");
+          // this.Cancle();
+        // }
+        // else
+        // {
+        //   console.log("error of email reply");  
+        // }
+      }
+    );
   }
 
   Cancle()

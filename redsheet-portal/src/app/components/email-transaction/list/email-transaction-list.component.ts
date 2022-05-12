@@ -96,6 +96,11 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.EmailTransactions();
   }
 
+  ReplyToEmail(data:any)
+  {
+    this.popup.show(EmailReplyComponent , {emailTransactionInput:data});
+  }
+
   ngOnDestroy(): void {
     if (this.listSubscription)
       this.listSubscription.unsubscribe();

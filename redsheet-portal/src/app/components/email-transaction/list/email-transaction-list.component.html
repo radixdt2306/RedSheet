@@ -49,7 +49,7 @@
                                                         <span class="ml-2 mr-2 text-muted">|</span>
                                                         <span *ngIf="dataItem.EmailStatus=='RECEIVED'"><span class="text-muted">RECEIVED</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-received.svg" width="20px" height="20px" alt=""></span></span>
                                                         <span *ngIf="dataItem.EmailStatus=='SENT'"><span class="text-muted">SENT</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-sent.svg" width="20px" height="20px" alt=""></span></span>
-                                                        <span type="button" *ngIf="dataItem.EmailStatus=='RECEIVED' && !dataItem.IsSystemGenerated" class="ml-2 mb-2 py-0 btn btn-info btn-sm">Reply</span>
+                                                        <span type="button" *ngIf="dataItem.EmailStatus=='RECEIVED' && !dataItem.IsSystemGenerated" class="ml-2 mb-2 py-0 btn btn-info btn-sm" (click)="ReplyToEmail(dataItem)">Reply</span>
                                                     </span>
                                                 </div>
                                                 <div class="d-flex flex-wrap"> <!--m-0 p-0 col-lg-6 col-xsm-12 justify-content-start -->

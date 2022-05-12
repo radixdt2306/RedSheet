@@ -520,6 +520,7 @@
     <Compile Include="Models\EmailConfiguration.cs" />
     <Compile Include="Models\EmailTemplate.cs" />
     <Compile Include="Models\EmailTemplateDetail.cs" />
+    <Compile Include="Models\EmailTransactions.cs" />
     <Compile Include="Models\EventAgendaTiming.cs" />
     <Compile Include="Models\EventPlanningAction.cs" />
     <Compile Include="Models\ExportReportPDF.cs" />
