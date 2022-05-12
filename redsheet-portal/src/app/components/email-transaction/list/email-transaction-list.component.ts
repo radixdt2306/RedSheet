@@ -10,6 +10,7 @@ import { EmailReplyComponent } from '../email-reply/email-reply/email-reply.comp
 
 
 
+
 @Component({
   templateUrl: './email-transaction-list.component.html',
   entryComponents:[EmailReplyComponent]
@@ -19,7 +20,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   emailTransaction: EmailTransaction[];
   listSubscription: Subscription;
   searchValue: string = "";
-  emailCategory: any[] = ["SENT", "RECIEVED"];
+  emailCategory: any[] = ["SENT", "RECEIVED"];
   emailCategoryValue: string = "";
   dateOrder: string = "DESCENDING";
   data:any;
@@ -38,8 +39,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   ngOnInit(): void {
     this.isSearchEnable = true;
     this.data = this.storage.local.get('data');
-    console.log(this.data.userId);
-    console.log(this.data.userName);
+
     this.searchFilter.userId = this.data.userId;
     this.searchFilter.userEmail = this.data.userName;
     this.EmailTransactions();
@@ -59,7 +59,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   }
 
   EmailTransactions() {
-    console.log(this.emailTransaction);
 
     if (this.listSubscription) {
       this.listSubscription.unsubscribe();
@@ -68,7 +67,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.listSubscription = this.emailTransactionService.search({ Query: [this.searchFilter] }).subscribe(emailTransaction => {
       this.emailTransaction = null;
       this.emailTransaction = (!emailTransaction.result) ? [] : emailTransaction.result;
-      console.log("added", emailTransaction.result);
       this.isSearchEnable = true;
       this.showComponent = true;
     });
@@ -96,12 +94,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.searchFilter.emailCategory = "";
 
     this.EmailTransactions();
-  }
-
-  ReplyToEmail(data:any)
-  {
-    this.popup.show(EmailReplyComponent , {emailTransactionInput:data});
-    console.log("dsgrdg");
   }
 
   ngOnDestroy(): void {
