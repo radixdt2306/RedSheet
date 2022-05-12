@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, Input, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { RxToast, RxDialog, DialogClick } from '@rx/view';
 import { RxStorage } from '@rx/storage';
+import { RxToast, RxPopup, RxDialog, DialogClick } from '@rx/view';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailTransactionService } from 'app/components/email-transaction/email-transaction.service';
 import { EmailTransactionDomain } from 'app/components/email-transaction/domain/email-transaction.domain';
+
 
 
 
@@ -17,7 +18,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   emailTransaction: EmailTransaction[];
   listSubscription: Subscription;
   searchValue: string = "";
-  emailCategory: any[] = ["SENT", "RECIEVED"];
+  emailCategory: any[] = ["SENT", "RECEIVED"];
   emailCategoryValue: string = "";
   dateOrder: string = "DESCENDING";
   data:any;
@@ -29,17 +30,19 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     private emailTransactionService: EmailTransactionService,
     private dialog: RxDialog,
     private storage: RxStorage,
+    private router: Router,
+    private popup: RxPopup
   ) { super(); }
 
   ngOnInit(): void {
     this.isSearchEnable = true;
     this.data = this.storage.local.get('data');
-    console.log(this.data.userId);
-    console.log(this.data.userName);
+
     this.searchFilter.userId = this.data.userId;
     this.searchFilter.userEmail = this.data.userName;
     this.EmailTransactions();
   }
+
   // date order toggle 
   DateOrderEmailTransaction() {
     if (this.dateOrder == "ASCENDING") {
@@ -54,7 +57,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
   }
 
   EmailTransactions() {
-    console.log(this.emailTransaction);
 
     if (this.listSubscription) {
       this.listSubscription.unsubscribe();
@@ -63,7 +65,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.listSubscription = this.emailTransactionService.search({ Query: [this.searchFilter] }).subscribe(emailTransaction => {
       this.emailTransaction = null;
       this.emailTransaction = (!emailTransaction.result) ? [] : emailTransaction.result;
-      console.log("added", emailTransaction.result);
       this.isSearchEnable = true;
       this.showComponent = true;
     });
@@ -92,6 +93,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
 
     this.EmailTransactions();
   }
+
 
   ngOnDestroy(): void {
     if (this.listSubscription)

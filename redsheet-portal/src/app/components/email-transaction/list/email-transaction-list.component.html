@@ -35,7 +35,7 @@
         
         <div class="section-box">
             <div class="section-body">
-                    <rx-template #templateEvent="rxtemplate" [(dataSource)]="emailTransaction" pageSize="5"
+                    <rx-template #templateEvent="rxtemplate" [(dataSource)]="emailTransaction" pageSize="10"
                         masterClass="col-12 col-lg-12 col-xl-12">
                         <ng-template rxCellTemplate let-dataItem="dataItem" let-rowIndex="rowIndex">
                             <ul> <!-- custom-list dashboard-list -->
@@ -47,16 +47,16 @@
                                                     <span class="h5">
                                                         <span><span class="text-muted">{{dataItem.UpdatedOn}}</span></span>
                                                         <span class="ml-2 mr-2 text-muted">|</span>
-                                                        <span *ngIf="dataItem.EmailStatus=='RECEIVED' || (dataItem.EmailStatus=='SENT' && dataItem.EmailTo==data.userName)"><span class="text-muted">RECEIVED</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-received.svg" width="20px" height="20px" alt=""></span></span>
-                                                        <span *ngIf="dataItem.EmailStatus=='SENT' && dataItem.EmailTo!=data.userName"><span class="text-muted">SENT</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-sent.svg" width="20px" height="20px" alt=""></span></span>
-                                                        <span type="button" *ngIf="(dataItem.EmailStatus=='RECEIVED' || (dataItem.EmailStatus=='SENT' && dataItem.EmailTo==data.userName)) && !dataItem.IsSystemGenerated" class="ml-2 mb-2 py-0 btn btn-info btn-sm">Reply</span>
+                                                        <span *ngIf="dataItem.EmailStatus=='RECEIVED'"><span class="text-muted">RECEIVED</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-received.svg" width="20px" height="20px" alt=""></span></span>
+                                                        <span *ngIf="dataItem.EmailStatus=='SENT'"><span class="text-muted">SENT</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-sent.svg" width="20px" height="20px" alt=""></span></span>
+                                                        <span type="button" *ngIf="dataItem.EmailStatus=='RECEIVED' && !dataItem.IsSystemGenerated" class="ml-2 mb-2 py-0 btn btn-info btn-sm">Reply</span>
                                                     </span>
                                                 </div>
                                                 <div class="d-flex flex-wrap"> <!--m-0 p-0 col-lg-6 col-xsm-12 justify-content-start -->
                                                     <span class="h3"><span>SUBJECT: </span><span class="text-muted">{{dataItem.EmailSubject}}</span></span>
                                                     <span class="ml-2 mr-2 h3 text-muted">|</span>
-                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='SENT' && dataItem.EmailTo!=data.userName"><span>TO: </span><span class=" text-muted">{{dataItem.EmailTo}}</span></span>
-                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='RECEIVED' || (dataItem.EmailStatus=='SENT' && dataItem.EmailTo==data.userName)"><span>FROM: </span><span class=" text-muted">{{dataItem.EmailFrom}}</span></span>
+                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='SENT'"><span>TO: </span><span class=" text-muted">{{dataItem.EmailTo}}</span></span>
+                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='RECEIVED'"><span>FROM: </span><span class=" text-muted">{{dataItem.EmailFrom}}</span></span>
                                                     <!-- <span class="h3"><span class="font-weight-bold ">TO: </span><span class=" text-muted">{{dataItem.EmailTo}}</span></span> -->
                                                 </div>
     
