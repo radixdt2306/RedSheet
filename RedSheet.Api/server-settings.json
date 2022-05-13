@@ -5,13 +5,14 @@
     "ModuleInactivityEmail": "ModuleInactivityEmail",
     "ProjectAssignmentOfUsers": "ProjectAssignmentOfUsers",
     "LiveProjectEmailReport": "wwwroot/ReportEmailTemplate/LiveProjectEmailReport.html",
-    /*"MailServer": "mail.mailtest.radixweb.net",
+    "MailServer": "mail.mailtest.radixweb.net",
     "UserName": "testdotnet@mailtest.radixweb.net",
     "PassWord": "deep70",
-    "Port": "25" */
-    "MailServer": "localhost:2525",
+    "Port": "587"
+    /* "MailServer": "localhost:2525",
     "UserName": "",
     "PassWord": ""
+    "Port": "25" */
   },
   "token": {
     "expireHours": 12

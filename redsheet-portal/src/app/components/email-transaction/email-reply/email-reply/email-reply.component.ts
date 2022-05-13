@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RxPopup } from '@rx/view';
+import { RxPopup,RxToast } from '@rx/view';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailReplyService } from '../email-reply.service';
 
@@ -12,7 +12,8 @@ export class EmailReplyComponent implements OnInit {
 
   constructor(
     private emailReplyService:EmailReplyService,
-    private popup : RxPopup
+    private popup : RxPopup,
+    private toast : RxToast
   ) 
   { }
 
@@ -36,15 +37,21 @@ export class EmailReplyComponent implements OnInit {
     this.emailReplyService.ReplyEmailMessage(this.emailTransaction).subscribe(
       (res)=>
       {
-        // if(res.Result == "TRUE")
-        // {
-          console.log("response of email reply");
-          // this.Cancle();
-        // }
-        // else
-        // {
-        //   console.log("error of email reply");  
-        // }
+        if(res==true)
+        {
+          console.log("send success",res);
+          this.toast.show("Email Sent");
+        }
+        else
+        {
+          console.log("failed to sent");
+          this.toast.show("Sent not success",{status:'error'});  
+        }
+      },
+      (error)=>
+      {
+        console.log("failed to sent");
+        this.toast.show("Sent not success",{status:'error'});
       }
     );
   }

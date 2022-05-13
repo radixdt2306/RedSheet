@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RedSheet.DbEntities.Models;
-
+using RedSheet.ViewModels.Models;
 using RedSheet.BoundedContext.SqlContext;
 using Rx.Core.Data;
-using RedSheet.ViewModels.Models;
 using Rx.Core.Settings;
 using System.IO;
+
 using System.Net.Mail;
+
 
 namespace RedSheet.Api.Controllers.Api.EmailTransaction
 {
@@ -22,9 +23,10 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
     {
         private ServerSetting ServerSetting { get; set; }
         private IDbContextManager<MainSqlDbContext> DbContextManager { get; set; }
-        public EmailTransactionController(IDbContextManager<MainSqlDbContext> dbContextManager)
+        public EmailTransactionController(IDbContextManager<MainSqlDbContext> dbContextManager , ServerSetting serverSetting)
         {
             DbContextManager = dbContextManager;
+            ServerSetting = serverSetting;
         }
 
         [HttpPost]
@@ -33,15 +35,15 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
             bool isSent = false;
             try
             {
-/*                MailMessage mail = new MailMessage();
+                MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient(ServerSetting.Get<string>("emailSettings.MailServer"));
 
                 mail.From = new MailAddress("uttam.patel@radixweb.com");
                 mail.To.Add("manan.shah@radixweb.com");
-                mail.Subject = emailTransactions.EmailSubject;
+                mail.Subject = emailTransactions.EmailSubject.ToString();
                 //mail.IsBodyHtml = true;
                 mail.Body = emailTransactions.EmailMessage;
-
+ 
                 SmtpServer.Port = Convert.ToInt32(ServerSetting.Get<string>("emailSettings.Port"));
                 var credential = new System.Net.NetworkCredential();
                 credential.UserName = ServerSetting.Get<string>("emailSettings.UserName");
@@ -49,7 +51,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 SmtpServer.Credentials = credential;
                 SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);*/
+                await SmtpServer.SendMailAsync(mail);
 
                 var spParameters = new object[11];
                 spParameters[0] = new SqlParameter() { ParameterName = "emailId", Value = emailTransactions.EmailTransactionId };
@@ -64,7 +66,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = emailTransactions.UserId };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = emailTransactions.UpdatedBy };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.EmailMessageReply @emailId , @projectId , @projectModuleId , @from , @to , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.EmailMessageReply @emailId , @projectId , @projectModuleId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
                 
                 if ( response == "TRUE")
@@ -74,11 +76,10 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
 
                 /*return Ok(storeProcSearchResult.SingleOrDefault()?.Result);*/
             }
-            catch
+            catch(Exception ex)
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/EmailLogs/ErrorLogs.txt");
-
-                //File.AppendAllText(path, ex.Message + Environment.NewLine);
+                System.IO.File.AppendAllText(path, ex.Message + Environment.NewLine);
             }
 
             if(isSent==true)
