@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace RedSheet.DbEntities.Models
+namespace RedSheet.Models.Models
 {
-    public class EmailTransactions
-    {
+    public class EmailTransactionsReply
+	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Key]
 		public int EmailTransactionId { get; set; }
@@ -24,6 +24,7 @@ namespace RedSheet.DbEntities.Models
 		public int UserId { get; set; }
 		public string UpdatedOn { get; set; }
 		public int UpdatedBy { get; set; }
+		public bool IsSend { get; set; }
 
 }
 }

@@ -7,23 +7,23 @@
         <div class="container-fluid">         
             <div class="section-body">
                 <div class="row justify-content-between align-items-center">                        
-                        <div class="my-1 row col-sm-12 col-md-12 col-lg-4 justify-content-start align-items-center">                                
-                            <label for="project-name" class="my-1 col-sm-auto col-md-2 col-lg-auto h2">Search</label>
-                            <input type="text" class="my-1 form-control bg-white rounded col-sm-7 col-md-8 col-lg-7 text-dark h4" placeholder="Text here.." [(ngModel)]="searchValue" (keyup)="SearchEmailTransaction()">    
+                        <div class="my-1 row col-sm-12 col-md-12 col-lg-4 justify-content-center align-items-center">                                
+                            <label class="my-1 mx-2 col-sm-12 col-md-2 col-lg-auto h2">Search</label>
+                            <input type="text" class="my-1 form-control bg-white rounded col-sm-12 col-md-8 col-lg-7 text-dark h4" placeholder="Text here.." [(ngModel)]="searchValue" (keyup)="SearchEmailTransaction()">    
                         </div>
                         <div class="my-1 row col-sm-12 col-md-12 col-lg-8 justify-content-center align-items-center">   
-                            <label for="project-name" class="my-1 col-sm-auto col-md-auto col-lg-auto h2">Filter</label>
-                            <div class="col-sm-10 col-md-10 col-lg-10 row justify-content-around">
+                            <label class="my-1 mx-2 col-sm-12 col-md-2 col-lg-auto h2">Filter</label>
+                            <div class="col-sm-12 col-md-8 col-lg-10 row px-0 justify-content-around">
                                 <div class="col-12 row justify-content-around d-flex flex-wrap float-right">
-                                    <select class="my-1 form-control form-control-lg rounded col-sm-3 col-md-3 col-lg-3 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
+                                    <select class="my-1 mx-auto form-control form-control-lg rounded col-sm-3 col-md-3 col-lg-3 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
                                         <option value=""></option>
                                         <option class="h4" *ngFor="let filter of emailCategory" value="{{filter}}">{{filter}}</option>
                                     </select>
-                                    <button type="button" name="last-modified" class="my-1 p-0 bg-secondary rounded col-sm-4 col-md-4 col-lg-4 " (click)="DateOrderEmailTransaction()">
+                                    <button type="button" class="my-1 mx-auto p-0 btn-secondary bg-secondary rounded col-sm-4 col-md-4 col-lg-4 " (click)="DateOrderEmailTransaction()">
                                         <p class="m-0 p-0 row d-flex justify-content-center align-items-center text-light h4">{{dateOrder}} <span class="ml-4 m-0 p-0 d-flex flex-column"><i class="m-0 p-0 fa fa-caret-up"></i><i class="m-0 p-0 fa fa-caret-down"></i></span></p>
                                     </button>
-                                    <button type="button" name="last-modified" class="my-1 bg-secondary rounded col-sm-4 col-md-4 col-lg-4 text-light h4" (click)="ResetEmailTransactionFilter()">
-                                        Reset Filter
+                                    <button type="button" class="my-1 mx-auto btn-secondary bg-secondary rounded col-sm-4 col-md-4 col-lg-4 " (click)="ResetEmailTransactionFilter()">
+                                        <p class="m-0 p-0 text-light h4">Reset Filter</p>
                                     <!-- <i [class]="sortClass" aria-hidden="true"></i> -->
                                 </button>
                                 </div>
@@ -55,8 +55,8 @@
                                                 <div class="d-flex flex-wrap"> <!--m-0 p-0 col-lg-6 col-xsm-12 justify-content-start -->
                                                     <span class="h3"><span>SUBJECT: </span><span class="text-muted">{{dataItem.EmailSubject}}</span></span>
                                                     <span class="ml-2 mr-2 h3 text-muted">|</span>
-                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='SENT'"><span>TO: </span><span class=" text-muted">{{dataItem.EmailTo}}</span></span>
-                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='RECEIVED'"><span>FROM: </span><span class=" text-muted">{{dataItem.EmailFrom}}</span></span>
+                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='SENT'"><span>TO: </span><span class=" text-muted">{{dataItem.EmailToUser}}</span></span>
+                                                    <span class="h3" *ngIf="dataItem.EmailStatus=='RECEIVED'"><span>FROM: </span><span class=" text-muted">{{dataItem.EmailFromUser}}</span></span>
                                                     <!-- <span class="h3"><span class="font-weight-bold ">TO: </span><span class=" text-muted">{{dataItem.EmailTo}}</span></span> -->
                                                 </div>
     

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RedSheet.DbEntities.Models;
+using RedSheet.Models.Models;
 using RedSheet.ViewModels.Models;
 using RedSheet.BoundedContext.SqlContext;
 using Rx.Core.Data;
@@ -30,28 +30,12 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
         }
 
         [HttpPost]
-        public async Task<IActionResult> post([FromBody] EmailTransactions emailTransactions)
+        public async Task<IActionResult> post([FromBody] EmailTransactionsReply emailTransactions)
         {
             bool isSent = false;
+            bool ismail = false;
             try
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient(ServerSetting.Get<string>("emailSettings.MailServer"));
-
-                mail.From = new MailAddress("uttam.patel@radixweb.com");
-                mail.To.Add("manan.shah@radixweb.com");
-                mail.Subject = emailTransactions.EmailSubject.ToString();
-                //mail.IsBodyHtml = true;
-                mail.Body = emailTransactions.EmailMessage;
- 
-                SmtpServer.Port = Convert.ToInt32(ServerSetting.Get<string>("emailSettings.Port"));
-                var credential = new System.Net.NetworkCredential();
-                credential.UserName = ServerSetting.Get<string>("emailSettings.UserName");
-                credential.Password = ServerSetting.Get<string>("emailSettings.PassWord");
-                SmtpServer.Credentials = credential;
-                SmtpServer.EnableSsl = true;
-
-                await SmtpServer.SendMailAsync(mail);
 
                 var spParameters = new object[11];
                 spParameters[0] = new SqlParameter() { ParameterName = "emailId", Value = emailTransactions.EmailTransactionId };
@@ -74,7 +58,27 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                     isSent = true;
                 }
 
-                /*return Ok(storeProcSearchResult.SingleOrDefault()?.Result);*/
+                if (emailTransactions.IsSend == true && response=="TRUE")
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient(ServerSetting.Get<string>("emailSettings.MailServer"));
+
+                    mail.From = new MailAddress("uttam.patel@radixweb.com");
+                    mail.To.Add("manan.shah@radixweb.com");
+                    mail.Subject = emailTransactions.EmailSubject.ToString();
+                    //mail.IsBodyHtml = true;
+                    mail.Body = emailTransactions.EmailMessage;
+
+                    SmtpServer.Port = Convert.ToInt32(ServerSetting.Get<string>("emailSettings.Port"));
+                    var credential = new System.Net.NetworkCredential();
+                    credential.UserName = ServerSetting.Get<string>("emailSettings.UserName");
+                    credential.Password = ServerSetting.Get<string>("emailSettings.PassWord");
+                    SmtpServer.Credentials = credential;
+                    SmtpServer.EnableSsl = true;
+
+                    await SmtpServer.SendMailAsync(mail);
+                    ismail = true;
+                }
             }
             catch(Exception ex)
             {
@@ -84,11 +88,11 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
 
             if(isSent==true)
             {
-                return Ok(isSent);
+                return Ok(new { store = isSent , sent = ismail });
             }
             else
             {
-                return BadRequest(isSent);
+                return BadRequest(new { store = isSent, sent = ismail });
             }
 
         }

@@ -182,6 +182,7 @@
   <ItemGroup>
     <Compile Include="Models\AccessItemModel.cs" />
     <Compile Include="Models\EmailTokenReplaceSearchModel.cs" />
+    <Compile Include="Models\EmailTransactionsReply.cs" />
     <Compile Include="ViewModels\ApplicationModuleViewModel.cs" />
     <Compile Include="Models\AuditLogSearchModel.cs" />
     <Compile Include="ViewModels\AuditLogViewModel.cs" />
