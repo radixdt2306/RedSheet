@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
     emailTransactions:EmailTransaction[]=[];
     localData:any;
     expandMyprogress:boolean=false; // for myprogress collapse
+    expandDashboard:boolean=false; // for Dashboard collapse
 
     // notifications:any;
     constructor(@Inject(RxSpinner) private spinner: RxSpinner,
