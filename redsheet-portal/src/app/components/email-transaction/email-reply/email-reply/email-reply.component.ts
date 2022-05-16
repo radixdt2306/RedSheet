@@ -18,7 +18,7 @@ export class EmailReplyComponent implements OnInit {
   ) 
   { }
 
-  @Input() emailTransactionInput:EmailTransaction;
+  @Input() emailTransactionInput:any;
 
   emailTransaction:any;
   emailTo:string;
@@ -48,9 +48,7 @@ export class EmailReplyComponent implements OnInit {
         if(res.sent==true && res.store==true)
         {
           console.log("send success",res);
-          this.toast.show("Message Store");
           this.toast.show("Email Sent Successfully");
-          this.emailTransactionInput = this.emailTransactionInput;
           this.Cancle();
         }
         else if(res.store==true && res.sent==false && this.isCheck==true)
@@ -68,7 +66,7 @@ export class EmailReplyComponent implements OnInit {
         }
         else if(res.store==false && res.sent==false)
         {
-          console.log("Message store" , "email not sent");
+          console.log("Message not store" , "email not sent");
           this.toast.show("Message not Store" , {status:'error'});
           this.toast.show("Email Sent Failed",{status:'error'});
           this.Cancle()
@@ -76,7 +74,7 @@ export class EmailReplyComponent implements OnInit {
       },
       (error)=>
       {
-        console.log("Message store" , "email not sent");
+        console.log("Message not store" , "email not sent");
         this.toast.show("Message not Store" , {status:'error'});
         this.toast.show("Email Sent Failed",{status:'error'});
         this.Cancle()

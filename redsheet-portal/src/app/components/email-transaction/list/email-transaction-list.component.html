@@ -8,11 +8,11 @@
             <div class="section-body">
                 <div class="row justify-content-between align-items-center">                        
                         <div class="my-1 row col-sm-12 col-md-12 col-lg-4 justify-content-center align-items-center">                                
-                            <label class="my-1 mx-2 col-sm-12 col-md-2 col-lg-auto h2">Search</label>
+                            <label class="my-1 col-sm-12 col-md-2 col-lg-auto h2">Search</label>
                             <input type="text" class="my-1 form-control bg-white rounded col-sm-12 col-md-8 col-lg-7 text-dark h4" placeholder="Text here.." [(ngModel)]="searchValue" (keyup)="SearchEmailTransaction()">    
                         </div>
                         <div class="my-1 row col-sm-12 col-md-12 col-lg-8 justify-content-center align-items-center">   
-                            <label class="my-1 mx-2 col-sm-12 col-md-2 col-lg-auto h2">Filter</label>
+                            <label class="my-1 col-sm-12 col-md-2 col-lg-auto h2">Filter</label>
                             <div class="col-sm-12 col-md-8 col-lg-10 row px-0 justify-content-around">
                                 <div class="col-12 row justify-content-around d-flex flex-wrap float-right">
                                     <select class="my-1 mx-auto form-control form-control-lg rounded col-sm-3 col-md-3 col-lg-3 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
@@ -47,8 +47,8 @@
                                                     <span class="h5">
                                                         <span><span class="text-muted">{{dataItem.UpdatedOn}}</span></span>
                                                         <span class="ml-2 mr-2 text-muted">|</span>
-                                                        <span *ngIf="dataItem.EmailStatus=='RECEIVED'"><span class="text-muted">RECEIVED</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-received.svg" width="20px" height="20px" alt=""></span></span>
-                                                        <span *ngIf="dataItem.EmailStatus=='SENT'"><span class="text-muted">SENT</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-sent.svg" width="20px" height="20px" alt=""></span></span>
+                                                        <span *ngIf="dataItem.EmailStatus=='RECEIVED'"><span class="text-muted">RECEIVED</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-received.svg" width="20px" height="20px" alt="RECEIVED"></span></span>
+                                                        <span *ngIf="dataItem.EmailStatus=='SENT'"><span class="text-muted">SENT</span><span class="ml-2"><img class="mb-2 m-0" src="../../../../assets/images/message-sent.svg" width="20px" height="20px" alt="SENT"></span></span>
                                                         <span type="button" *ngIf="dataItem.EmailStatus=='RECEIVED' && !dataItem.IsSystemGenerated" class="ml-2 mb-2 py-0 btn btn-info btn-sm" (click)="ReplyToEmail(dataItem)">Reply</span>
                                                     </span>
                                                 </div>
