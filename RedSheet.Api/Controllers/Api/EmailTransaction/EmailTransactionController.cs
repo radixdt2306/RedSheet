@@ -71,8 +71,8 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
 
                     SmtpServer.Port = Convert.ToInt32(ServerSetting.Get<string>("emailSettings.Port"));
                     var credential = new System.Net.NetworkCredential();
-                    credential.UserName = ServerSetting.Get<string>("emailSettings.UserName");
-                    credential.Password = ServerSetting.Get<string>("emailSettings.PassWord");
+                    credential.UserName = ServerSetting.Get<string>(""); //emailSettings.UserName
+                    credential.Password = ServerSetting.Get<string>(""); //emailSettings.PassWord
                     SmtpServer.Credentials = credential;
                     SmtpServer.EnableSsl = true;
 
