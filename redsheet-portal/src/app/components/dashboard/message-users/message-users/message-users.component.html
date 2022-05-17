@@ -10,7 +10,7 @@
         <div class="modal-body">
           <li class="my-1" *ngFor="let user of users; index as i" type="none">
             <label class="custom-control custom-checkbox">
-              <input class="custom-control-input checkbox-icon" type="checkbox" >
+              <input class="custom-control-input checkbox-icon" type="checkbox" (change)="AddRemoveRecipents($event,user.email)">
               <span class="custom-control-indicator"></span>
               <span>{{user.userName}} - {{user.email}}</span>
           </label>

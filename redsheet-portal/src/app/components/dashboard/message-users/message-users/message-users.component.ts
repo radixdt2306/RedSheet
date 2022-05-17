@@ -14,13 +14,20 @@ export class MessageUsersComponent implements OnInit {
   ngOnInit() {
   }
 
-  AddRemoveRecipents( recipent:any)
-  {
 
-      // this.MessageObject.EmailTo.push(recipent);
-      console.log("messageModule push"  , this.isCheckToAdd);
-      // this.MessageObject.EmailTo.remove(recipent);
-      console.log("messageModule remove"  , this.isCheckToAdd);
+  AddRemoveRecipents(event:any , recipent:any)
+  {
+      var value = (event.target as HTMLInputElement).value;
+      if(value)
+      {
+        this.MessageObject.EmailTo.push(recipent);
+        console.log("messageModule push"  , this.isCheckToAdd , value);
+      }
+      else
+      {
+        this.MessageObject.EmailTo.remove(recipent);
+        console.log("messageModule remove"  , this.isCheckToAdd, value);
+      }
   }
 
 }
