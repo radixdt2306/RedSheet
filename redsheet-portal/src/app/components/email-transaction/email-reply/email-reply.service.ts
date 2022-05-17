@@ -10,12 +10,13 @@ export class EmailReplyService {
 
   private get api(): AuthorizeApi{
     var authorizeApi : AuthorizeApi = {
-        api: `api/EmailTransaction`,
+        api: `api/EmailTransaction/Reply`,
         applicationModuleId: 35,
         keyName: 'emailTransactionId'
       }
       return authorizeApi;
-    }
+  }
+
   ReplyEmailMessage(email:any)
   {
     return this.http.post(this.api,email,false);

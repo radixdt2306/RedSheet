@@ -459,8 +459,8 @@ export class DashboardComponent implements OnInit {
 
 
     // Message to user
-    SendMessage(users)
+    SendMessage(users,project)
     {
-        this.popup.show(MessageUsersComponent,{users:users});
+        this.popup.show(MessageUsersComponent,{users:users , project:project});
     }
 }
