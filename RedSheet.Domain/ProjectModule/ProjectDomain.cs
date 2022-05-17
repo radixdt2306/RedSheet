@@ -302,6 +302,21 @@ namespace RedSheet.Domain.ProjectModule
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
+                var spParameters = new object[11];
+
+                spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = project.ProjectId };
+                spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = 0 };
+                spParameters[3] = new SqlParameter() { ParameterName = "to", Value = user.Email };
+                spParameters[4] = new SqlParameter() { ParameterName = "from", Value = mail.From };
+                spParameters[5] = new SqlParameter() { ParameterName = "subject", Value = mail.Subject };
+                spParameters[6] = new SqlParameter() { ParameterName = "message", Value = mail.Body };
+                spParameters[7] = new SqlParameter() { ParameterName = "status", Value = "SENT" };
+                spParameters[8] = new SqlParameter() { ParameterName = "isSystem", Value = true };
+                spParameters[9] = new SqlParameter() { ParameterName = "user", Value = 0 };
+                spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = 0 };
+
+                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @projectModuleId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                
             }
             catch (Exception ex)
             {

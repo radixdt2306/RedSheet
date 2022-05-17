@@ -18,7 +18,8 @@ export class IdleSessionTimerService {
   count:number=0
   private timer:Observable<number>;
   SessionTime:number = 30;
-  SessionExpireAfter:number = 15;
+  SessionExpireAlert:number = 15;
+  SessionExpireAfter:number = this.SessionTime-this.SessionExpireAlert;
   private timerSubscription: Subscription = new Subscription;
   sessionmodalelement:any;
   modal:any;
@@ -37,10 +38,10 @@ export class IdleSessionTimerService {
           $(document).keydown(()=>{if(this.CheckForIdle == true){this.ExpandSession();}})
 
           this.SessionTime = this.SessionTime-1;
-          if(res == this.SessionExpireAfter)
+          if(res == this.SessionExpireAlert)
           {
             this.CheckForIdle = false;
-              this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionTime});
+              this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionExpireAfter});
           }
           if(this.SessionTime == 0)
           {
@@ -61,6 +62,7 @@ export class IdleSessionTimerService {
   ExpandSession()
   {
     this.SessionTime = 30;
+    this.SessionExpireAfter = this.SessionTime-this.SessionExpireAlert;
     this.StartTimer();
     
   }

@@ -98,7 +98,19 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
 
   ReplyToEmail(data:any)
   {
-    this.popup.show(EmailReplyComponent , {emailTransactionInput:data});
+    var data_= new EmailTransaction();
+    data_.EmailTransactionId = data.EmailTransactionId;
+    data_.ProjectId = data.ProjectId;
+    data_.ProjectModuleId = data.ProjectModuleId;
+    data_.EmailFrom=data.EmailTo;
+    data_.EmailTo=data.EmailFrom;
+    data_.EmailSubject=data.EmailSubject;
+    data_.EmailMessage=data.EmailMessage;
+    data_.EmailStatus=data.EmailStatus;
+    data_.IsSystemGenerated=data.IsSystemGenerated;
+    data_.UserId=data.UserId;
+    data_.UpdatedBy=data.UpdatedBy;
+    this.popup.show(EmailReplyComponent , {emailTransactionInput:data_});
   }
 
   ngOnDestroy(): void {

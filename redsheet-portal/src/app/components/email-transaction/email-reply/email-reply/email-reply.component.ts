@@ -18,7 +18,7 @@ export class EmailReplyComponent implements OnInit {
   ) 
   { }
 
-  @Input() emailTransactionInput:EmailTransaction;
+  @Input() emailTransactionInput:any;
 
   emailTransaction:any;
   emailTo:string;
@@ -34,6 +34,7 @@ export class EmailReplyComponent implements OnInit {
     this.data = this.storage.local.get('data');
 
     this.emailTransaction.UserId = this.data.userId;
+    this.emailTransaction.UpdatedBy = this.data.userId;
   }
 
   SendMessage()
@@ -47,39 +48,28 @@ export class EmailReplyComponent implements OnInit {
       {
         if(res.sent==true && res.store==true)
         {
-          console.log("send success",res);
-          this.toast.show("Message Store");
           this.toast.show("Email Sent Successfully");
-          this.emailTransactionInput = this.emailTransactionInput;
           this.Cancle();
         }
-        else if(res.store==true && res.sent==false && this.isCheck==true)
+        else if(res.store==true && this.isCheck==false)
         {
-          console.log("Message store" , "email not sent");
-          this.toast.show("Message Store");
-          this.toast.show("Email Sent Failed",{status:'error'});
+          this.toast.show("Message Sent Successfully");
           this.Cancle();
         }
-        else if(res.store==true && res.sent==false)
+        else if(res.store==false && this.isCheck==false)
         {
-          console.log("Message store");
-          this.toast.show("Message Store");
-          this.Cancle();
+          this.toast.show("Message Sent Failed" , {status:'error'});
+          this.Cancle()
         }
-        else if(res.store==false && res.sent==false)
+        else if(res.sent==false && this.isCheck==true)
         {
-          console.log("Message store" , "email not sent");
-          this.toast.show("Message not Store" , {status:'error'});
-          this.toast.show("Email Sent Failed",{status:'error'});
+          this.toast.show("Email Sent Failed" , {status:'error'});
           this.Cancle()
         }
       },
       (error)=>
       {
-        console.log("Message store" , "email not sent");
-        this.toast.show("Message not Store" , {status:'error'});
-        this.toast.show("Email Sent Failed",{status:'error'});
-        this.Cancle()
+        this.Cancle();
       }
     );
   }

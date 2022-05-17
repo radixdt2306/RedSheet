@@ -36,6 +36,7 @@ import { OrientationVideoComponent } from './components/shared/top-bar/modal/ori
 import { EmailTransactionModule } from './components/email-transaction/email-transaction.module';
 import { IdleSessionTimerModule } from './components/idle-session-timer/idle-session-timer/idle-session-timer.module';
 import { EmailTransactionListModule } from './components/email-transaction/list/email-transaction-list.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 
 
@@ -47,7 +48,7 @@ import { EmailTransactionListModule } from './components/email-transaction/list/
         BrowserModule,
         FormsModule, ReactiveFormsModule, RxTableModule,
         HttpModule, RxSecurityModule, CommonModule,
-        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , EmailTransactionModule , EmailTransactionListModule , IdleSessionTimerModule
+        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , DashboardModule ,EmailTransactionModule , EmailTransactionListModule , IdleSessionTimerModule
     ],
     providers: [PermissionService, RxValidation, LoginService, ApplicationBroadcaster,
         {

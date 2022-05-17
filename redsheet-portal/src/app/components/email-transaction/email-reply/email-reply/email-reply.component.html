@@ -1,11 +1,13 @@
 <div class="align-items-center">
   <div class="modal-dialog" role="document">
     <div class="modal-content p-2 p-sm-4">
-        <div class="modal-header border-0">
-          <h2 class="modal-title border-0">{{"Mesagging"}} - {{emailTransaction!= null ? emailTransaction.EmailFrom : ""}}</h2>
+        <div class="modal-header mb-0 border-0">
+          <h2 class="modal-title border-0">{{"Mesagging"}} - {{emailTransaction!= null ? emailTransaction.EmailFromUser : ""}}</h2>
+        </div>
+        <div class="modal-header mt-0 pt-0 border-0">
+          <p class="text-muted">Message:</p>
         </div>
         <div class="modal-body">
-          <p class="text-muted">Message:</p>
           <textarea [(ngModel)]="message" class="form-control bg" placeholder="Type message here.."></textarea>
           <div class="m-0 py-3 p-0">
             <label class="custom-control custom-checkbox">
