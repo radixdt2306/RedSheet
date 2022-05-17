@@ -41,8 +41,8 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[0] = new SqlParameter() { ParameterName = "emailId", Value = emailTransactions.EmailTransactionId };
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = emailTransactions.ProjectId };
                 spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = emailTransactions.ProjectModuleId };
-                spParameters[3] = new SqlParameter() { ParameterName = "to", Value = emailTransactions.EmailFrom };
-                spParameters[4] = new SqlParameter() { ParameterName = "from", Value = emailTransactions.EmailTo };
+                spParameters[3] = new SqlParameter() { ParameterName = "to", Value = emailTransactions.EmailTo };
+                spParameters[4] = new SqlParameter() { ParameterName = "from", Value = emailTransactions.EmailFrom };
                 spParameters[5] = new SqlParameter() { ParameterName = "subject", Value = emailTransactions.EmailSubject };
                 spParameters[6] = new SqlParameter() { ParameterName = "message", Value = emailTransactions.EmailMessage };
                 spParameters[7] = new SqlParameter() { ParameterName = "status", Value = emailTransactions.EmailStatus };

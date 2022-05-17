@@ -18,7 +18,7 @@ export class EmailReplyComponent implements OnInit {
   ) 
   { }
 
-  @Input() emailTransactionInput:any;
+  @Input() emailTransactionInput:EmailTransaction;
 
   emailTransaction:any;
   emailTo:string;
