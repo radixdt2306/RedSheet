@@ -13,16 +13,17 @@ import { AuditLogService } from "app/components/audit-logs/audit-log.service";
 import { LogSearchModel } from "app/models";
 import { API_HOST_URI } from "@rx";
 import { PdfService } from "app/components/pdf/pdf.service";
-import { RxSpinner } from "@rx/view";
+import { RxSpinner , RxPopup } from "@rx/view";
 import { RxStorage } from '@rx/storage';
 import { EmailTransactionService } from "../email-transaction/email-transaction.service";
 import { EmailTransaction } from "app/database-models/email-transaction";
-
+import { MessageUsersComponent } from "./message-users/message-users/message-users.component";
 // declare var d3pie: any;
 declare var d3: any;
 declare var initOnboarding: any;
 @Component({
     templateUrl: './dashboard.component.html',
+    entryComponents :[MessageUsersComponent]
 })
 
 
@@ -41,8 +42,9 @@ export class DashboardComponent implements OnInit {
     flagmenu = false;
     emailTransactions:EmailTransaction[]=[];
     localData:any;
-    expandMyprogress:boolean=false; // for myprogress collapse
 
+    expandMyprogress:boolean=false; // for myprogress collapse
+    
     // notifications:any;
     constructor(@Inject(RxSpinner) private spinner: RxSpinner,
         applicationBroadcaster: ApplicationBroadcaster,
@@ -53,6 +55,7 @@ export class DashboardComponent implements OnInit {
         private auditLogService: AuditLogService,
         private dialog: RxDialog,
         private router: Router,
+        private popup: RxPopup,
         private storage : RxStorage,
         @Inject(API_HOST_URI) private hostUri: string,
     ) {
@@ -61,7 +64,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
+        console.log("users :", this.users)
+
         // getting localstorage data
         this.localData = this.storage.local.get('data');
 
@@ -171,8 +175,7 @@ export class DashboardComponent implements OnInit {
 
         this.emailTransactionService.search({Query:[{ userId:this.localData.userId , userEmail:this.localData.userName , searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
             (emailtransaction)=>{
-                console.log(emailtransaction.result);
-                    this.emailTransactions = emailtransaction.result;
+                this.emailTransactions = emailtransaction.result;
             },
             (error)=>{
 
@@ -182,6 +185,7 @@ export class DashboardComponent implements OnInit {
         this.projectService.search({ isMyProject: true }).subscribe(t => {
             this.projectService.lookup([ProjectNegotionalityLookups.userLookups]).then((response: ProjectLookupGroup) => {
                 this.users = response.userLookups;
+                console.log("users :", this.users);
             });
             var count = 0;
             if (t.projects) {
@@ -190,7 +194,7 @@ export class DashboardComponent implements OnInit {
                     count++;
                 });
                 this.projects = t.projects;
-
+                console.log("projects :", this.projects);
                 for (var j: number = 0; j < this.projects.length; j++) {
                     this.projects[j]["hideDropDown"] = false;
                     this.projects[j]["userId"] = this.projects[j].ownerId;
@@ -451,5 +455,12 @@ export class DashboardComponent implements OnInit {
                 });
             }
         });
+    }
+
+
+    // Message to user
+    SendMessage(users,project)
+    {
+        this.popup.show(MessageUsersComponent,{users:users , project:project});
     }
 }

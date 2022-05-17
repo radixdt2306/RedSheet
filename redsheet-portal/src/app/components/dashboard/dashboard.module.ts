@@ -11,9 +11,11 @@ import { DashboardService } from "app/components/dashboard/dashboard.service";
 import { AuditLogService } from "app/components/audit-logs/audit-log.service";
 import { PdfService } from 'app/components/pdf/pdf.service';
 import { AppDirectiveModule } from 'app/components/shared/directives/app.directive.module';
+import { MessageUsersModule } from './message-users/message-users/message-users.module';
+
 
 @NgModule({
-    imports: [DASHBOARD_ROUTING, CommonModule, RxTableModule, RxViewModule,AppDirectiveModule,],
+    imports: [DASHBOARD_ROUTING, CommonModule, RxTableModule, RxViewModule,AppDirectiveModule,MessageUsersModule],
     declarations: [DashboardComponent],
     providers: [ProjectsService,DashboardService,AuditLogService,PdfService],
     exports: [RouterModule],
