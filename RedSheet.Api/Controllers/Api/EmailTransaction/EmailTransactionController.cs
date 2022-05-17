@@ -71,8 +71,8 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
 
                     SmtpServer.Port = Convert.ToInt32(ServerSetting.Get<string>("emailSettings.Port"));
                     var credential = new System.Net.NetworkCredential();
-                    credential.UserName = ServerSetting.Get<string>("emailSettings.UserName");
-                    credential.Password = ServerSetting.Get<string>("emailSettings.PassWord");
+                    credential.UserName = ServerSetting.Get<string>(""); //emailSettings.UserName
+                    credential.Password = ServerSetting.Get<string>(""); //emailSettings.PassWord
                     SmtpServer.Credentials = credential;
                     SmtpServer.EnableSsl = true;
 
@@ -84,6 +84,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
             {
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/EmailLogs/ErrorLogs.txt");
                 System.IO.File.AppendAllText(path, ex.Message + Environment.NewLine);
+                
             }
 
             if(isSent==true)
