@@ -14,7 +14,6 @@ namespace RedSheet.Models.Models
 		[Key]
 		public int EmailTransactionId { get; set; }
 		public int ProjectId { get; set; }
-		public int ProjectModuleId { get; set; }
 		public string EmailTo { get; set; }
 		public string EmailFrom { get; set; }
 		public string EmailSubject { get; set; }

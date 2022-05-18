@@ -3,7 +3,7 @@ import { Project, ProjectModule, User,  } from './'
 
 export class EmailTransaction {
     constructor(public emailTransaction?: EmailTransaction )  {
-        let properties = [ "EmailTransactionId", "ProjectId", "ProjectModuleId","EmailTo", "EmailFrom", "EmailSubject", "EmailMessage","EmailStatus","IsSystemGenerated","UserId","UpdateOn","UpdateBy"];
+        let properties = [ "EmailTransactionId", "ProjectId","EmailTo", "EmailFrom", "EmailSubject", "EmailMessage","EmailStatus","IsSystemGenerated","UserId","UpdateOn","UpdateBy"];
         for (let property of properties)
             if (emailTransaction && emailTransaction[property])
                 this[property] = emailTransaction[property];
@@ -34,10 +34,6 @@ export class EmailTransaction {
     @range(0,2147483647)
 	ProjectId : number =   undefined;
 	project : Project  ;
- 
-    @range(0,2147483647)
-	ProjectModuleId : number =   undefined;
-	projectModule : ProjectModule  ;
  
     @range(0,2147483647)
 	UserId : number =   undefined;

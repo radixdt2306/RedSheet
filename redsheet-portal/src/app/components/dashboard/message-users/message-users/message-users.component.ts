@@ -15,7 +15,7 @@ export class MessageUsersComponent implements OnInit {
   message:string="";
   isSent:boolean=false;
   isCheckToAdd:boolean;
-  MessageObject={ProjectId:new Number,ProjectModuleId:new Number,EmailTo:new Array<string>(),EmailFrom:'',EmailSubject:'',EmailMessage:'',EmailStatus:'SENT',IsSystemGenerated:false,UserId:new Number,UpdatedOn:"",UpdatedBy:new Number,IsSend:false};
+  MessageObject={ProjectId:new Number,EmailTo:new Array<string>(),EmailFrom:'',EmailSubject:'',EmailMessage:'',EmailStatus:'SENT',IsSystemGenerated:false,UserId:new Number,UpdatedOn:"",UpdatedBy:new Number,IsSend:false};
   
   constructor(
     private storage:RxStorage,
@@ -27,8 +27,7 @@ export class MessageUsersComponent implements OnInit {
   ngOnInit() {
     this.data = this.storage.local.get('data');
 
-    this.MessageObject.ProjectId=this.project.projectId
-    // this.MessageObject.ProjectModuleId = null;
+    this.MessageObject.ProjectId=this.project.projectId;
     this.MessageObject.EmailSubject = this.project.projectName;
     this.MessageObject.UserId = this.data.userId;
     this.MessageObject.UpdatedBy = this.data.userId;
