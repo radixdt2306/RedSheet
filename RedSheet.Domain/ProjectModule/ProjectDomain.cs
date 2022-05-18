@@ -305,7 +305,7 @@ namespace RedSheet.Domain.ProjectModule
                 var spParameters = new object[11];
 
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = project.ProjectId };
-                spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = 0 };
+                //spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = 0 };
                 spParameters[3] = new SqlParameter() { ParameterName = "to", Value = user.Email };
                 spParameters[4] = new SqlParameter() { ParameterName = "from", Value = mail.From };
                 spParameters[5] = new SqlParameter() { ParameterName = "subject", Value = mail.Subject };
@@ -315,7 +315,7 @@ namespace RedSheet.Domain.ProjectModule
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = 0 };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = 0 };
 
-                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @projectModuleId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 
             }
             catch (Exception ex)

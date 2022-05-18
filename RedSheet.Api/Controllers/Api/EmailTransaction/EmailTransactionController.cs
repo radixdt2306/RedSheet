@@ -68,7 +68,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 var spParameters = new object[11];
 
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = transactionNewMessage.ProjectId };
-                spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = transactionNewMessage.ProjectModuleId };
+                //spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = transactionNewMessage.ProjectModuleId };
                 spParameters[3] = new SqlParameter() { ParameterName = "to", Value = emailsTo };
                 spParameters[4] = new SqlParameter() { ParameterName = "from", Value = transactionNewMessage.EmailFrom };
                 spParameters[5] = new SqlParameter() { ParameterName = "subject", Value = transactionNewMessage.EmailSubject };
@@ -78,7 +78,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = transactionNewMessage.UserId };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = transactionNewMessage.UpdatedBy };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @projectModuleId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
 
                 if (response == "TRUE")
@@ -138,7 +138,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 var spParameters = new object[11];
                 spParameters[0] = new SqlParameter() { ParameterName = "emailId", Value = emailTransactions.EmailTransactionId };
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = emailTransactions.ProjectId };
-                spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = emailTransactions.ProjectModuleId };
+                //spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = emailTransactions.ProjectModuleId };
                 spParameters[3] = new SqlParameter() { ParameterName = "to", Value = emailTransactions.EmailTo };
                 spParameters[4] = new SqlParameter() { ParameterName = "from", Value = emailTransactions.EmailFrom };
                 spParameters[5] = new SqlParameter() { ParameterName = "subject", Value = emailTransactions.EmailSubject };
@@ -148,7 +148,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = emailTransactions.UserId };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = emailTransactions.UpdatedBy };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.EmailMessageReply @emailId , @projectId , @projectModuleId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.EmailMessageReply @emailId , @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
                 
                 if ( response == "TRUE")

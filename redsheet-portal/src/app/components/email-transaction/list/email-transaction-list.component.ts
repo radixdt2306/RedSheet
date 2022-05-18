@@ -101,7 +101,6 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     var data_= new EmailTransaction();
     data_.EmailTransactionId = data.EmailTransactionId;
     data_.ProjectId = data.ProjectId;
-    data_.ProjectModuleId = data.ProjectModuleId;
     data_.EmailFrom=data.EmailTo;
     data_.EmailTo=data.EmailFrom;
     data_.EmailSubject=data.EmailSubject;
