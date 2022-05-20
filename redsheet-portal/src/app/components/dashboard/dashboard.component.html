@@ -43,20 +43,22 @@
                     <div class="section-box">
                         <!-- col-12 col-lg-6 d-lg-flex align-items-stretch -->
                         <div class="section-body ">
-                            <rx-table #tableEvent="grid" controlClass="table table-dark" [dataSource]="projectsDashBoard" pageSize="10">
+                            <rx-table #tableEvent="grid" rowClass="border-0" [dataSource]="projectsDashBoard" pageSize="10">
                                <rx-column field="ProjectName" title="PROJECT" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.ProjectName}}</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.ownerName}}</p>
+                                        <a [routerLink]="projectsDashBoard.uri">
+                                            <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{projectsDashBoard.ProjectName}}</p>
+                                            <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.ownerName | uppercase}}</p>
+                                        </a>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column field="projectStage" title="PROJECT STAGE" sortable="true">
+                                <rx-column  field="projectStage" title="PROJECT STAGE" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"STAGE REACHED"}}</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.projectStage}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"STAGE REACHED"}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.projectStage | uppercase}}</p>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column field="progress" title="PROJECT PROGRESS" sortable="true">
+                                <rx-column  field="progress" title="PROJECT PROGRESS" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
                                         <div class="m-0 p-1 text-center container-fluid rounded bg-secondary d-flex align-items-center">
                                             <div class="container-fluid m-0 p-0">
@@ -70,17 +72,17 @@
                                         </div>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column field="status" title="PROJECT STATUS" sortable="true">
+                                <rx-column  field="status" title="PROJECT STATUS" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
-                                        <!-- <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"PROJECT STATUS"}}</p> -->
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-info" *ngIf="projectsDashBoard.Status && !projectsDashBoard.IsClosed">SHARED</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-success" *ngIf="!projectsDashBoard.Status && !projectsDashBoard.IsClosed">ACTIVE</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-secondary" *ngIf="projectsDashBoard.IsClosed">CLOSED</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"PROJECT STATUS"}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-info" *ngIf="projectsDashBoard.Status && !projectsDashBoard.IsClosed">{{"SHARED" | uppercase}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-success" *ngIf="!projectsDashBoard.Status && !projectsDashBoard.IsClosed">{{"ACTIVE" | uppercase}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-secondary" *ngIf="projectsDashBoard.IsClosed">{{"CLOSED" | uppercase}}</p>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column field="CreatedOn" title="SORT DATE" sortable="true">
+                                <rx-column   field="CreatedOn" title="SORT DATE" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"CREATED DATE"}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"CREATED DATE"}}</p>
                                         <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.CreatedOn | date:'yyyy-MM-dd'}}</p>
                                     </ng-template>
                                 </rx-column>                                
