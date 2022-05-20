@@ -2630,10 +2630,21 @@ display: inline-table !important;
 
 .projectdashboard-text-overlay-child-div{
   width: 0px;
+  
 }
 .projectdashboard-text-overlay
 {
   position: relative;
-  width: 10px;
-  left:-50%;
+  text-align: center;
+  width: 0px;
+  left:-54%;
+}
+@media only screen and (max-width:767px){
+  .projectdashboard-text-overlay
+  {
+    position: relative;
+    text-align: center;
+    width: 0px;
+    left:-65%;
+  }   
 }
