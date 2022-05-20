@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
         if (auth) {
             this.isShowDashboard = true;
             this.showElement = true;
-            this.idleSessionTimer.StartTimer();
+            // this.idleSessionTimer.StartTimer();
         }
     }
 

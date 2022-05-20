@@ -42,10 +42,15 @@ export class DashboardComponent implements OnInit {
     flagmenu = false;
     emailTransactions:EmailTransaction[]=[];
     localData:any;
-
+    projectsDashBoard:any;
     expandMyprogress:boolean=false; // for myprogress collapse
-    expandDashboard:boolean=false; // for Dashboard collapse
 
+    expandDashboard:boolean=false; // for Dashboard collapse
+    projectDashBoardisSearchEnable:boolean=false;
+    projectDashBoardQuery = {search:"",filter:""};
+    projectDashBoardSearchValue:string="";
+    projectDashBoardFilterValueOption = ["ACTIVE","SHARED","CLOSED"];
+    projectDashBoardFilterValue:string="";
     
     // notifications:any;
     constructor(@Inject(RxSpinner) private spinner: RxSpinner,
@@ -73,6 +78,11 @@ export class DashboardComponent implements OnInit {
 
         ProjectModuleStatic.CurrentProjectModuleId = undefined;
         this.statistics = [{ totalNegotiation: 0 }, { completed: 0 }, { inProgress: 0 }, { notStarted: 0 }];
+
+        // fetching all projects for superuser dashboard 
+        this.GetProjectDashBoard();
+        //
+
         this.dashboardService.search({ Query: [] }).subscribe(s => {
             if (s.result) {
                 this.statistics = s.result[0].ChartInfo[0];
@@ -464,5 +474,84 @@ export class DashboardComponent implements OnInit {
     SendMessage(users,project)
     {
         this.popup.show(MessageUsersComponent,{users:users , project:project});
+    }
+
+    sort()
+    {
+        console.log("method call");
+    }
+
+    // dashboard projects , search and filter
+
+    GetProjectDashBoard()
+    {
+        this.projectService.getProjectsForSuperUser(this.projectDashBoardQuery).subscribe
+        (
+            (response)=>{
+                if(response)
+                {
+                    this.projectsDashBoard = response.result;
+                    this.projectDashBoardisSearchEnable = true;
+                    
+                }
+                else
+                {
+                    this.projectsDashBoard = [];
+                    this.projectDashBoardisSearchEnable = true;
+                    console.log("sdivfuui")
+                }
+            },
+            (error)=>{
+
+            }
+        )
+    }
+
+    SearchProjectDashBoard()
+    {
+        if(this.projectDashBoardisSearchEnable)
+        {
+            this.projectDashBoardisSearchEnable=false;
+            this.projectDashBoardQuery.search = this.projectDashBoardSearchValue;
+            console.log(this.projectDashBoardQuery);
+            this.GetProjectDashBoard();
+        }
+
+
+    }
+
+    private sortColumn(column: boolean) {
+        debugger;
+        // if (!column.actionable) {
+        //     if (this.pastSortableColumnComponent == undefined)
+        //         this.pastSortableColumnComponent = column;
+        //     else if (this.pastSortableColumnComponent.field != column.field)
+        //         this.pastSortableColumnComponent.sortable = undefined;
+        //     this.pastSortableColumnComponent = column;
+        //     if (column.sortable) {
+        //         column.sortable = super.sort(column.field, false), column.sortClass = this.tableConfiguration.masterClass.desc;
+        //     }
+        //     else if (column.sortable == undefined || column.sortable == false) {
+        //         column.sortable = super.sort(column.field, true), column.sortClass = this.tableConfiguration.masterClass.asc;
+        //     }
+
+        // }
+
+    }
+
+    FilterProjectDashBoard()
+    {
+        this.projectDashBoardQuery.filter = this.projectDashBoardFilterValue;
+        console.log(this.projectDashBoardQuery);
+        this.GetProjectDashBoard();
+    }
+
+    ResetProjectDashBoard()
+    {
+        this.projectDashBoardSearchValue="";
+        this.projectDashBoardFilterValue="";
+        this.projectDashBoardQuery.search="";
+        this.projectDashBoardQuery.filter="";
+        this.GetProjectDashBoard();
     }
 }

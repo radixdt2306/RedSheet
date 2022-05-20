@@ -16,6 +16,7 @@ using RedSheet.BoundedContext.SqlContext;
 using RedSheet.DbEntities.Constants;
 using RedSheet.Models.ViewModels;
 using RedSheet.DbEntities.ViewModels;
+using Newtonsoft.Json.Linq;
 
 namespace RedSheet.Api.Controllers
 {
@@ -35,6 +36,21 @@ namespace RedSheet.Api.Controllers
 
         //[HttpGet("{id}")]
         //public IActionResult Get(int id) => Ok(Uow.Project.Repository<vProjectRecord>().SingleOrDefault(t => t.ProjectId == id));
+
+        [HttpPost]
+        [Route("SuperUser/search")]
+        public async Task<IActionResult> ProjectsFilter([FromBody] StoreProcSearchModel storeProcSearch)
+        {
+            var query = JObject.Parse(storeProcSearch.Query);
+
+            var spParameters = new object[2];
+            spParameters[0] = new SqlParameter() { ParameterName = "search", Value = query["search"].ToString() };
+            spParameters[0] = new SqlParameter() { ParameterName = "filter", Value = query["filter"].ToString() };
+
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("exec spProjectsSuperUser @search , @filter", spParameters);
+
+            return Ok(storeProcSearchResult.SingleOrDefault()?.Result);
+        }
 
         [HttpGet("{id}")]
 

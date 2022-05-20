@@ -9,7 +9,7 @@
             <div class="section-header">
                 <h2 class="section-title d-inline-block" >DashBoard</h2>
                 <button class="btn btn-info pull-right" (click)="expandDashboard=!expandDashboard"
-                    ><i class="fa" [ngClass]="{'fa-angle-up':expandDashboard,'fa-angle-down':!expandDashboard}"></i></button>
+                    ><i class=" fa" [ngClass]="{'fa-angle-up':expandDashboard,'fa-angle-down':!expandDashboard}"></i></button>
             </div>
             <div class="section-body">
                 <div id="demo" class="collapse" [ngClass]="{'show':expandDashboard,'hide':expandDashboard}">
@@ -19,17 +19,17 @@
                             <div class="row justify-content-center align-items-center">                        
                                     <div class="my-1 mx-0 px-0 row col-sm-12 col-md-12 col-lg-5 justify-content-around align-items-center">                                
                                         <label class="my-1 col-sm-12 col-md-2 col-lg-auto h2">Search</label>
-                                        <input type="text" class="my-1 form-control bg-white rounded col-sm-12 col-md-10 col-lg-8 text-dark h4" placeholder="Text here.." [(ngModel)]="searchValue" (keyup)="SearchEmailTransaction()">    
+                                        <input type="text" class="my-1 form-control bg-white rounded col-sm-12 col-md-10 col-lg-8 text-dark h4" placeholder="Text here.." [(ngModel)]="projectDashBoardSearchValue" (keyup)="SearchProjectDashBoard()"> <!-- [(ngModel)]="searchValue" (keyup)="SearchEmailTransaction()" -->    
                                     </div>
                                     <div class="my-1 mx-0 px-0 row col-sm-12 col-md-12 col-lg-7 justify-content-around align-items-center">   
                                         <label class="my-1 col-sm-12 col-md-2 col-lg-auto h2">Filter</label>
                                         <div class="col-sm-12 col-md-10 col-lg-9 row px-0 justify-content-start">
                                             <div class="m-0 p-0 col-12 row justify-content-around">
-                                                <select class="my-1 mx-auto form-control form-control-lg rounded col-sm-5 col-md-5 col-lg-5 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
+                                                <select class="my-1 mx-auto form-control form-control-lg rounded col-sm-5 col-md-5 col-lg-5 text-secondary h4" [(ngModel)]="projectDashBoardFilterValue" (change)="FilterProjectDashBoard()"> <!-- [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()" -->
                                                     <option value=""></option>
-                                                    <option class="h4" *ngFor="let filter of emailCategory" value="{{filter}}">{{filter}}</option>
+                                                    <option class="h4" *ngFor="let filter of projectDashBoardFilterValueOption" value="{{filter}}">{{filter}}</option>
                                                 </select>   
-                                                <button type="button" class="my-1 mx-auto btn-secondary bg-secondary rounded col-sm-6 col-md-6 col-lg-6 ">
+                                                <button type="button" class="my-1 mx-auto btn-secondary bg-secondary rounded col-sm-6 col-md-6 col-lg-6 " (click)="ResetProjectDashBoard()">
                                                     <p class="m-0 p-0 text-light h4">Reset Filter</p>
                                                 <!-- <i [class]="sortClass" aria-hidden="true"></i> -->
                                             </button>
@@ -41,24 +41,52 @@
                     </div>
 
                     <div class="section-box">
-                        <div class="section-body">
-                            <rx-template #templateEvent="rxtemplate" [(dataSource)]="projects" pageSize="2"
-                                masterClass="col-12 col-lg-12 col-xl-12">
-                                <ul> <!-- custom-list dashboard-list -->
-                                    <li class="my-1" type="none">
-                                        <rx-table #tableEvent="grid" class="table" [dataSource]="projects">
-                                            <rx-column field="projectId" title="Table / View Name" width="212"></rx-column>
-                                            <rx-column [actionable]="true" title="Is Data Auditable" width="139">
-                                                <ng-template rxCellTemplate let-project="project">
-                                                    <div>
-                                                        
-                                                    </div>
-                                                </ng-template>
-                                            </rx-column>
-                                        </rx-table>
-                                    </li>
-                                </ul>     
-                            </rx-template>
+                        <!-- col-12 col-lg-6 d-lg-flex align-items-stretch -->
+                        <div class="section-body ">
+                            <rx-table #tableEvent="grid" controlClass="table table-dark" [dataSource]="projectsDashBoard" pageSize="10">
+                               <rx-column field="ProjectName" title="PROJECT" sortable="true">
+                                    <ng-template rxCellTemplate let-projectsDashBoard>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.ProjectName}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.ownerName}}</p>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column field="projectStage" title="PROJECT STAGE" sortable="true">
+                                    <ng-template rxCellTemplate let-projectsDashBoard>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"STAGE REACHED"}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.projectStage}}</p>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column field="progress" title="PROJECT PROGRESS" sortable="true">
+                                    <ng-template rxCellTemplate let-projectsDashBoard>
+                                        <div class="m-0 p-1 text-center container-fluid rounded bg-secondary d-flex align-items-center">
+                                            <div class="container-fluid m-0 p-0">
+                                                <div class="projectdashboard-text-overlay-child-div m-0 px-0 py-3 rounded bg-dark " [ngClass]="{'w-25':( projectsDashBoard.progress<50 && projectsDashBoard.progress>0),'w-50':(projectsDashBoard.progress<75 && projectsDashBoard.progress>=50),'w-75':(projectsDashBoard.progress>=75 && projectsDashBoard.progress<100),'w-100':(projectsDashBoard.progress==100)}">
+                                                
+                                                </div>
+                                            </div>
+                                            <div class="m-0 p-0 projectdashboard-text-overlay">
+                                                <p class="p-0 m-0 text-light font-weight-bold">{{projectsDashBoard.progress}}%</p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column field="status" title="PROJECT STATUS" sortable="true">
+                                    <ng-template rxCellTemplate let-projectsDashBoard>
+                                        <!-- <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"PROJECT STATUS"}}</p> -->
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-info" *ngIf="projectsDashBoard.Status && !projectsDashBoard.IsClosed">SHARED</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-success" *ngIf="!projectsDashBoard.Status && !projectsDashBoard.IsClosed">ACTIVE</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-secondary" *ngIf="projectsDashBoard.IsClosed">CLOSED</p>
+                                    </ng-template>
+                                </rx-column>
+                                <rx-column field="CreatedOn" title="SORT DATE" sortable="true">
+                                    <ng-template rxCellTemplate let-projectsDashBoard>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{"CREATED DATE"}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.CreatedOn | date:'yyyy-MM-dd'}}</p>
+                                    </ng-template>
+                                </rx-column>                                
+                                
+                                </rx-table>
+
                         </div>
                     </div>
                 </div>

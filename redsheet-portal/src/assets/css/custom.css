@@ -996,6 +996,15 @@ footer {
 .pagination .page-item.disabled .page-link {
   color: #89949e; }
 
+  /* .pagination .paginate_button {
+    color: #425563; }
+  .pagination .paginate_button.active  {
+    background-color: #ef3340;
+    border-color: #ef3340;
+    color: #fff; }
+  .pagination .paginate_button.disabled {
+    color: #89949e; } */
+
 .disable {
   opacity: 0.5;
   pointer-events: none;
@@ -2613,4 +2622,18 @@ header .custom-list.header-info-dropdown{
   color: rgb(58, 93, 174);
   background: rgba(58, 93, 174, .1);
   border: 1px solid rgb(58, 93, 174);
+}
+
+.table-responsive{
+display: inline-table !important;
+}
+
+.projectdashboard-text-overlay-child-div{
+  width: 0px;
+}
+.projectdashboard-text-overlay
+{
+  position: relative;
+  width: 10px;
+  left:-50%;
 }

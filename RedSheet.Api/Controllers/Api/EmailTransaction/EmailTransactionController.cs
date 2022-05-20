@@ -58,7 +58,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                     SmtpServer.Credentials = credential;
                     SmtpServer.EnableSsl = true;
 
-                    //await SmtpServer.SendMailAsync(mail);
+                    await SmtpServer.SendMailAsync(mail);
                     ismail = true;
                 }
 
@@ -131,7 +131,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                     SmtpServer.Credentials = credential;
                     SmtpServer.EnableSsl = true;
 
-                    //await SmtpServer.SendMailAsync(mail);
+                    await SmtpServer.SendMailAsync(mail);
                     ismail = true;
                 }
 
