@@ -45,7 +45,7 @@ namespace RedSheet.Api.Controllers
 
             var spParameters = new object[2];
             spParameters[0] = new SqlParameter() { ParameterName = "search", Value = query["search"].ToString() };
-            spParameters[0] = new SqlParameter() { ParameterName = "filter", Value = query["filter"].ToString() };
+            spParameters[1] = new SqlParameter() { ParameterName = "filter", Value = query["filter"].ToString() };
 
             var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("exec spProjectsSuperUser @search , @filter", spParameters);
 
