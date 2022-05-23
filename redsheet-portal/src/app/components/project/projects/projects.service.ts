@@ -45,7 +45,7 @@ export class ProjectsService {
     getProjectsForSuperUser(search:any): Observable<any> {
         let customeAuthorizeApi: AuthorizeApi = this.api;
         customeAuthorizeApi.api= `api/Projects/SuperUser`;
-        return this.http.search<Project[]>(customeAuthorizeApi,search);
+        return this.http.search<Project[]>(customeAuthorizeApi,search,false);
     }
 
     getBy(params?: any[] | {

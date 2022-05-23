@@ -74,9 +74,6 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
     }
 
     redirectlink(next,current) {
-        debugger;
-        console.log(this.LockStatus);
-        current.status=this.LockStatus;
         if (next.projectModuleId > 0)
         {
             if(this.isVisibleReadOnlyText)
@@ -87,7 +84,6 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
             {
                 this.popup.show(LockModuleForReviewComponent,{next:next , current:current}).then(
                     (res:ProjectModule)=>{
-                        debugger;
                         this.projectModuleService.put(res).subscribe(
                             t => {
                             this.currentProjectmoduleRecord.status = t.status;
