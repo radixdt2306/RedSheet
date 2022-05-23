@@ -26,6 +26,7 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
     nextProjectModule: any
     showNextBtnComponent: boolean = false
     @Input() projectModuleId: number
+    @Input() LockStatus:boolean = false;
     @Output('lockEvent') addLockEvent = new EventEmitter<boolean>();
     
     constructor(
@@ -73,7 +74,9 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
     }
 
     redirectlink(next,current) {
-        
+        debugger;
+        console.log(this.LockStatus);
+        current.status=this.LockStatus;
         if (next.projectModuleId > 0)
         {
             if(this.isVisibleReadOnlyText)

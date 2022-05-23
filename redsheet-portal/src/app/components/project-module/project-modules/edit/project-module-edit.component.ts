@@ -213,7 +213,6 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
 
 
     editProjectModule(isLock: boolean): void {
-        debugger;
         var projectModule = new ProjectModule(this.projectModuleRecord);
         projectModule.status = isLock;
         projectModule.hTMLHelp = this.projectModuleRecord.htmlHelp;
@@ -223,6 +222,7 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
 
         this.editSubscription = this.projectModulesService.put(projectModule).subscribe(t => {
             this.projectModuleRecord.status = t.status;
+            debugger;
             this.addLockEvent.emit(isLock);
             this.applicationBroadcaster.allTypeBroadCast({ action: IS_MODULE_LOCK.action, value: this.projectModuleId });
         },
