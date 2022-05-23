@@ -8,19 +8,34 @@ import { ProjectModulesService } from '../project-modules.service';
 import { Project, ProjectModule } from 'app/database-models';
 import { ProjectsService } from 'app/components/project/projects/projects.service';
 import { ProjectLookupGroup } from 'app/components/project/projects/domain/project.models';
-
+import { RxPopup,RxToast } from '@rx/view';
+import { RxStorage } from '@rx/storage';
+import { ApplicationBroadcaster } from '@rx/core';
+import { IS_MODULE_LOCK } from 'app/const';
+import { LockModuleForReviewComponent } from '../lock-module-for-review/lock-module-for-review.component';
 
 @Component({
     selector: 'app-project-next-module',
     templateUrl: './project-next-module.component.html',
+    entryComponents:[LockModuleForReviewComponent]
 })
 export class ProjectNextModuleEditComponent extends ProjectModuleDomain implements OnInit, OnDestroy {
     projectModules: any;
+    currentProjectmoduleRecord:any;
+    isVisibleReadOnlyText:boolean;
     nextProjectModule: any
     showNextBtnComponent: boolean = false
     @Input() projectModuleId: number
-
-    constructor(private projectService: ProjectsService, private projectModuleService: ProjectModulesService, private router: Router) {
+    @Output('lockEvent') addLockEvent = new EventEmitter<boolean>();
+    
+    constructor(
+        private projectService: ProjectsService, 
+        private projectModuleService: ProjectModulesService, 
+        private router: Router, 
+        private popup:RxPopup,
+        private toast:RxToast,
+        private storage:RxStorage,
+        private applicationBroadcaster: ApplicationBroadcaster) {
         super();
 
     }
@@ -31,6 +46,7 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
             
             this.projectModules = t["projectModules"];
             let currentProjectModule = this.projectModules.find(p => p.projectModuleId == this.projectModuleId);
+            // this.currentProjectmodule=currentProjectModule;
             this.nextProjectModule = this.projectModules.find(p => p.moduleOrder == (currentProjectModule.moduleOrder + 1));
             if (!this.nextProjectModule) {
                 this.nextProjectModule = new ProjectModule();
@@ -39,13 +55,62 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
             }
             this.showNextBtnComponent = true;
         })
+        var localData = this.storage.local.get('data');
+        
+        this.projectModuleService.search(false,[{ "userId": localData.userId, "projectModuleId": this.projectModuleId }]).subscribe(
+            (res)=>{
+                if (res["projectModules"] && res["projectModules"].length > 0) {
+                    this.currentProjectmoduleRecord = res["projectModules"][0];
+                    if (this.currentProjectmoduleRecord.isClosed || this.currentProjectmoduleRecord.projectStatus) {
+                        this.isVisibleReadOnlyText = true;
+                    }
+                }  
+            },
+            (error)=>{
+
+            }
+        )
     }
 
-    redirectlink(projectModule) {
+    redirectlink(next,current) {
         
-        if (projectModule.projectModuleId > 0)
-            this.router.navigate([projectModule.uri]);
-        else {
+        if (next.projectModuleId > 0)
+        {
+            if(this.isVisibleReadOnlyText)
+            {
+                this.router.navigate([next.uri]);
+            }
+            else
+            {
+                this.popup.show(LockModuleForReviewComponent,{next:next , current:current}).then(
+                    (res:ProjectModule)=>{
+                        debugger;
+                        this.projectModuleService.put(res).subscribe(
+                            t => {
+                            this.currentProjectmoduleRecord.status = t.status;
+                            this.addLockEvent.emit(res.status);
+                            this.applicationBroadcaster.allTypeBroadCast({ action: IS_MODULE_LOCK.action, value: this.projectModuleId });
+                            console.log("lock status updated");
+                            },
+                            error => {
+                                this.toast.show(error.message, { status: 'error' });
+                            }
+                        )
+                        this.router.navigate([next.uri]);
+                    },
+                    (error)=>{
+                        console.log("error from then block",error);
+                    }
+                ).catch(
+                    (res)=>{
+                        console.log("response/error from catch block",res);
+                    }
+                );
+                this.router.navigate([next.uri]);
+            }
+        }
+        else 
+        {
             this.router.navigate(['/dashboard']);
         }
     }

@@ -213,7 +213,7 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
 
 
     editProjectModule(isLock: boolean): void {
-        
+        debugger;
         var projectModule = new ProjectModule(this.projectModuleRecord);
         projectModule.status = isLock;
         projectModule.hTMLHelp = this.projectModuleRecord.htmlHelp;

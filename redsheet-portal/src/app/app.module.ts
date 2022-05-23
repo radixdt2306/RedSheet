@@ -37,6 +37,7 @@ import { EmailTransactionModule } from './components/email-transaction/email-tra
 import { IdleSessionTimerModule } from './components/idle-session-timer/idle-session-timer/idle-session-timer.module';
 import { EmailTransactionListModule } from './components/email-transaction/list/email-transaction-list.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { LockModuleForReviewModule } from './components/project-module/project-modules/lock-module-for-review/lock-module-for-review/lock-module-for-review.module';
 
 
 
@@ -48,7 +49,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
         BrowserModule,
         FormsModule, ReactiveFormsModule, RxTableModule,
         HttpModule, RxSecurityModule, CommonModule,
-        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , DashboardModule ,EmailTransactionModule , EmailTransactionListModule , IdleSessionTimerModule
+        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , DashboardModule ,EmailTransactionModule , EmailTransactionListModule , IdleSessionTimerModule, LockModuleForReviewModule
     ],
     providers: [PermissionService, RxValidation, LoginService, ApplicationBroadcaster,
         {

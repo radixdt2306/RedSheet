@@ -16,12 +16,14 @@ import { ProjectModuleReviewsSharedComponentModule } from 'app/components/projec
 import { ProjectsService } from 'app/components/project/projects/projects.service';
 import { ProjectDetailComponent } from "./project-detail/project-detail.component";
 import { ProjectNextModuleEditComponent } from './project-next-module/project-next-module.component';
+import { LockModuleForReviewComponent } from './lock-module-for-review/lock-module-for-review.component';
+import { LockModuleForReviewModule } from './lock-module-for-review/lock-module-for-review/lock-module-for-review.module';
 
 
 @NgModule({
     imports: [
         RxViewModule, RxFormsModule,
-        CommonModule, FormsModule, ReactiveFormsModule, RxTableModule, ProjectModuleReviewsSharedComponentModule
+        CommonModule, FormsModule, ReactiveFormsModule, RxTableModule, ProjectModuleReviewsSharedComponentModule,LockModuleForReviewModule
     ],
     declarations: [ ProjectModuleEditComponent,ProjectModuleHelpDetailComponent, ProjectDetailComponent, ProjectNextModuleEditComponent],
     providers: [ProjectModulesService,ProjectsService ],
