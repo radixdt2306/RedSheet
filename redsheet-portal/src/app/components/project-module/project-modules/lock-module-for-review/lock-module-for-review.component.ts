@@ -22,6 +22,7 @@ export class LockModuleForReviewComponent implements OnInit {
     console.log("next",this.next);
     console.log("current",this.current);
     this.initialFlag = this.current.status;
+    this.current.status=false;
   }
 
   isLock(event)
@@ -48,6 +49,6 @@ export class LockModuleForReviewComponent implements OnInit {
   Cancle()
   {
     this.current.status = this.initialFlag;
-    this.popup.hide(LockModuleForReviewComponent,this.current);
+    this.popup.hide(LockModuleForReviewComponent);
   }
 }
