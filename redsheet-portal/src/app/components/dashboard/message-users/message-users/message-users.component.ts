@@ -16,7 +16,7 @@ export class MessageUsersComponent implements OnInit {
   message:string="";
   isSent:boolean=false;
   isCheckToAdd:boolean;
-  MessageObject={ProjectId:new Number,EmailTo:new Array<string>(),EmailFrom:'',EmailSubject:'',EmailMessage:'',EmailStatus:'SENT',IsSystemGenerated:false,UserId:new Number,UpdatedOn:"",UpdatedBy:new Number,IsSend:false};
+  MessageObject={ProjectId:new Number,EmailTo:new Array<string>(),EmailFrom:'',EmailSubject:'',EmailMessage:'',EmailStatus:'SENT',IsSystemGenerated:false,UserId:new Number,UpdatedOn:"",UpdatedBy:new Number,GetReply:false,IsSend:false};
   
   constructor(
     private storage:RxStorage,

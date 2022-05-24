@@ -44,6 +44,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     this.searchFilter.userId = this.data.userId;
     this.searchFilter.userEmail = this.data.userName;
     this.EmailTransactions();
+    
   }
 
   // date order toggle 
@@ -102,8 +103,8 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
     var data_= new EmailTransaction();
     data_.EmailTransactionId = data.EmailTransactionId;
     data_.ProjectId = data.ProjectId;
-    data_.EmailFrom=data.EmailTo;
-    data_.EmailTo=data.EmailFrom;
+    data_.EmailFrom=data.EmailTo; //changing emailfrom -> emailto
+    data_.EmailTo=data.EmailFrom; //changing emailto -> emailfrom
     data_.EmailSubject=data.EmailSubject;
     data_.EmailMessage=data.EmailMessage;
     data_.EmailStatus=data.EmailStatus;

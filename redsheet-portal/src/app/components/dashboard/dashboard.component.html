@@ -116,8 +116,8 @@
                                     <ul class="m-0 p-0">  <!-- class="custom-list dashboard-list" -->
                                         <li  class="my-1 p-0" *ngFor="let emailTransaction of emailTransactions index as i" type="none">
                                              <span class="truncated" *ngIf="i<=10">
-                                                 <span class="mr-2" *ngIf="emailTransaction.EmailStatus=='SENT'"><img src="../../../assets/images/message-sent.svg" width="25px;" height="50px;" alt="email"></span>
-                                                 <span class="mr-2" *ngIf="emailTransaction.EmailStatus=='RECEIVED'"><img src="../../../assets/images/message-received.svg" width="25px;" height="50px;" alt="email"></span>
+                                                 <span class="mr-2" *ngIf="emailTransaction.EmailFrom==localData.userName"><img src="../../../assets/images/message-sent.svg" width="25px;" height="50px;" alt="email"></span>
+                                                 <span class="mr-2" *ngIf="emailTransaction.EmailTo==localData.userName"><img src="../../../assets/images/message-received.svg" width="25px;" height="50px;" alt="email"></span>
                                                 <span>
                                                     <span class="font-weight-bold">{{emailTransaction.EmailSubject | uppercase}}</span><span class="ml-1 mr-2">|</span>
                                                     <span class="text-muted">{{emailTransaction.EmailMessage}}</span>

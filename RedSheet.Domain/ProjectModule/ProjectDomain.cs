@@ -302,7 +302,7 @@ namespace RedSheet.Domain.ProjectModule
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                var spParameters = new object[11];
+                var spParameters = new object[12];
 
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = project.ProjectId };
                 //spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = 0 };
@@ -314,8 +314,9 @@ namespace RedSheet.Domain.ProjectModule
                 spParameters[8] = new SqlParameter() { ParameterName = "isSystem", Value = true };
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = 0 };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = 0 };
+                spParameters[11] = new SqlParameter() { ParameterName = "noReply", Value = true };
 
-                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 
             }
             catch (Exception ex)

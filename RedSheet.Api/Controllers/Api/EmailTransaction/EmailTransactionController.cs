@@ -65,7 +65,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 string emailsTo = "";
                 emailsTo = String.Join(",",transactionNewMessage.EmailTo);
 
-                var spParameters = new object[11];
+                var spParameters = new object[12];
 
                 spParameters[1] = new SqlParameter() { ParameterName = "projectId", Value = transactionNewMessage.ProjectId };
                 //spParameters[2] = new SqlParameter() { ParameterName = "projectModuleId", Value = transactionNewMessage.ProjectModuleId };
@@ -77,8 +77,9 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[8] = new SqlParameter() { ParameterName = "isSystem", Value = transactionNewMessage.IsSystemGenerated };
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = transactionNewMessage.UserId };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = transactionNewMessage.UpdatedBy };
+                spParameters[11] = new SqlParameter() { ParameterName = "noReply", Value = transactionNewMessage.GetReply };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
 
                 if (response == "TRUE")

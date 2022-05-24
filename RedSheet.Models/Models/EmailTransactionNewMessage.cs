@@ -23,6 +23,7 @@ namespace RedSheet.Models.Models
 		public int UserId { get; set; }
 		public string UpdatedOn { get; set; }
 		public int UpdatedBy { get; set; }
+		public bool GetReply { get; set; }
 		public bool IsSend { get; set; }
 
 	}

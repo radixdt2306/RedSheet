@@ -3,7 +3,7 @@ import { Project, ProjectModule, User,  } from './'
 
 export class EmailTransaction {
     constructor(public emailTransaction?: EmailTransaction )  {
-        let properties = [ "EmailTransactionId", "ProjectId","EmailTo", "EmailFrom", "EmailSubject", "EmailMessage","EmailStatus","IsSystemGenerated","UserId","UpdateOn","UpdateBy"];
+        let properties = [ "EmailTransactionId", "ProjectId","EmailTo", "EmailFrom", "EmailSubject", "EmailMessage","EmailStatus","IsSystemGenerated","UserId","UpdateOn","UpdateBy","GetReply"];
         for (let property of properties)
             if (emailTransaction && emailTransaction[property])
                 this[property] = emailTransaction[property];
@@ -40,5 +40,7 @@ export class EmailTransaction {
 	user : User  ;
 
     IsSystemGenerated:boolean=  undefined;
+
+    GetReply:boolean=  undefined;
     
 }
