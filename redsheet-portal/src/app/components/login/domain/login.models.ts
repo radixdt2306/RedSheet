@@ -10,6 +10,7 @@ export class UserAuthenticationViewModel {
     token: string;
     modules: any;
     roleId: number;
+    userTypeId: string;
     fullName: string;
     userName: string;
     failedCount: number;

@@ -131,11 +131,14 @@ namespace RedSheet.Api.Controllers
                 //var user = this.LoginUow.Repository<User>().SingleOrDefault(t => t.Email == userCredential.UserName && t.StatusId == DbEntities.Enums.Status.Active);
                 var guid = new Guid(loginResult.UserUniqueId);
                 var user = this.LoginUow.Repository<User>().SingleOrDefault(t => t.RequestorId == new Guid(loginResult.UserUniqueId) && t.StatusId == DbEntities.Enums.Status.Active);
+                
                 if (user == null)
                 {
                     //GetCompanyUsers 
                     UserProfileModel userProfileModel = new UserProfileModel();
                     userProfileModel = this.ClientServiceContext.GetUserProfile(userCredential.UserName);
+
+                    userProfileModel.UserTypeId = this.ClientServiceContext.GetUserProfileFromUniqueId(userProfileModel.UniqueIdentity).UserTypeId;
 
                     user = newUser(userProfileModel, true);
                     if (user != null)
@@ -163,10 +166,15 @@ namespace RedSheet.Api.Controllers
                         userAuthentication.FailedLogin = false;
                         userAuthentication.FailedCount = userCredential.FailedCount;
                         userAuthentication.UserId = user.UserId;
+                        userAuthentication.UserTypeId = userProfileModel.UserTypeId;
                     }
                 }
                 else
                 {
+                    UserProfileModel userProfileModelForUserTypeId = new UserProfileModel();
+                    userProfileModelForUserTypeId = this.ClientServiceContext.GetUserProfile(userCredential.UserName);
+                    userProfileModelForUserTypeId.UserTypeId = this.ClientServiceContext.GetUserProfileFromUniqueId(userProfileModelForUserTypeId.UniqueIdentity).UserTypeId;
+
                     var claims = new[]
                             {
                             new Claim(ClaimTypes.NameIdentifier, (user.UserId).ToString()),
@@ -191,6 +199,7 @@ namespace RedSheet.Api.Controllers
                     userAuthentication.FailedLogin = false;
                     userAuthentication.FailedCount = userCredential.FailedCount;
                     userAuthentication.UserId = user.UserId;
+                    userAuthentication.UserTypeId = userProfileModelForUserTypeId.UserTypeId;
                 }
                 if (loginResult.UserDataSynchronizationRequired)
                 {

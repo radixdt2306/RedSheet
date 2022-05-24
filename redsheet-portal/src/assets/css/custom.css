@@ -46,7 +46,14 @@ h5, .h5 {
 
 .font-md {
   font-size: 17px;
-  font-size: 1.0625rem; }
+  font-size: 1.0625rem; 
+}
+
+.font-md-game-strategy-icon-label {
+  font-size: 17px;
+  font-size: 1.0625rem;
+  font-family: "Omnes" !important;
+}
 
 .body-font {
   font-family: "Omnes", sans-serif !important; }
@@ -2647,4 +2654,10 @@ display: inline-table !important;
     width: 0px;
     left:-65%;
   }   
+}
+
+.modal-center{
+  height: 100%;
+  width: 100%;
+  align-items: center;
 }

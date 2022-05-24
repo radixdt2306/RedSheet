@@ -91,7 +91,6 @@ export class ProjectBackgroundEditComponent extends ProjectBackgroundDomain impl
     }
 
     contentDisable(res) {
-        debugger;
         this.isLocked = res;
     }
 

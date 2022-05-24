@@ -16,6 +16,7 @@ namespace RedSheet.ViewModels.Models
         public string UserName { get; set; }
 
         public int RoleId { get; set; }
+        public string UserTypeId { get; set; }
         public Dictionary<string,object> Modules { get; set; }
         public int FailedCount { get; set; }
 

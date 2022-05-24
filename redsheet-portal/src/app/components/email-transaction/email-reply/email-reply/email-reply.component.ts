@@ -3,6 +3,7 @@ import { RxPopup,RxToast } from '@rx/view';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailReplyService } from '../email-reply.service';
 import { RxStorage } from '@rx/storage';
+import { user } from '@rx/security';
 @Component({
   // selector: 'app-email-reply',
   templateUrl: './email-reply.component.html',
@@ -31,7 +32,7 @@ export class EmailReplyComponent implements OnInit {
     this.emailTransaction = this.emailTransactionInput;
     console.log(this.emailTransaction);
 
-    this.data = this.storage.local.get('data');
+    this.data = user.data;
 
     this.emailTransaction.UserId = this.data.userId;
     this.emailTransaction.UpdatedBy = this.data.userId;

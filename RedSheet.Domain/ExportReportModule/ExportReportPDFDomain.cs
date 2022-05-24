@@ -91,7 +91,7 @@ namespace RedSheet.Domain.ExportReportModule
 
             using (Doc doc = new Doc())
             {
-                doc.SetInfo(0, "License", "X/VKS0cMn5FgsCJaa6yCbY7/L7ZOQ4MYlq3wxL3FA0ojxkiVPH3rYMVWQ0lkwg8KCtU54j5PuSEdr6MhQbB4xFcjfGSdAnk6tGZLYdf9U03h1h3G5o9adrPFLGKub2slRr1yVsBU/kd9BSZ2piGZKQR9ey2dSHivx84+6lFwfuTUwaYkpDGt1GPWoLtEmj9WZntw331Em1a4fn0RALYRllhw4HDNY8wDAL3GN2/TEIjRciE4t7P3");
+                //doc.SetInfo(0, "License", "X/VKS0cMn5FgsCJaa6yCbY7/L7ZOQ4MYlq3wxL3FA0ojxkiVPH3rYMVWQ0lkwg8KCtU54j5PuSEdr6MhQbB4xFcjfGSdAnk6tGZLYdf9U03h1h3G5o9adrPFLGKub2slRr1yVsBU/kd9BSZ2piGZKQR9ey2dSHivx84+6lFwfuTUwaYkpDGt1GPWoLtEmj9WZntw331Em1a4fn0RALYRllhw4HDNY8wDAL3GN2/TEIjRciE4t7P3");
                 doc.HtmlOptions.Engine = EngineType.Chrome;
                 doc.MediaBox.String = "A4";
                 doc.Page = doc.AddPage();
@@ -130,7 +130,7 @@ namespace RedSheet.Domain.ExportReportModule
 
                 XImage theImg = new XImage();
 
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/logo-pdf-small.png");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/logo-pdf.png");
                 theImg.SetFile(path);
 
                 XColor borderColr = new XColor();

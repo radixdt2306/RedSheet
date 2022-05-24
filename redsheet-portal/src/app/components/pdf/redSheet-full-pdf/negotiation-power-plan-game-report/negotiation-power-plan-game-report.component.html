@@ -5,19 +5,42 @@
                 <div class="col-12 col-sm-4 d-flex align-items-center">
                         <h3>Current game being <br />played or <br />previously played
                         </h3>
-                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.currentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x mx-3"></i>
-
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Chicken" class="font-md-game-strategy-icon-label">Chicken</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Trust" class="font-md-game-strategy-icon-label">Trust</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.currentGameId == gameTypeEnum.Prisoner" class="font-md-game-strategy-icon-label">Prisoners dilemma</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.currentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.currentGameId ==  gameTypeEnum.Stag" class="font-md-game-strategy-icon-label">Stag Hunt</label>
+                        </p>
                 </div>
                 <div class="col-12 col-sm-4 d-flex align-items-center">
                         <h3>Their current game <br />being played or <br />previously played
                         </h3>
-                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x mx-3"></i>
-                        <i *ngIf="gameStrategyDetail.theirCurrentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x mx-3"></i>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Chicken" class="font-md-game-strategy-icon-label">Chicken</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Trust" class="font-md-game-strategy-icon-label">Trust</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.theirCurrentGameId == gameTypeEnum.Prisoner" class="font-md-game-strategy-icon-label">Prisoners dilemma</label>
+                        </p>
+                        <p class="d-flex flex-column text-center">
+                                <i *ngIf="gameStrategyDetail.theirCurrentGameId ==  gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x "></i>
+                                <label *ngIf="gameStrategyDetail.theirCurrentGameId ==  gameTypeEnum.Stag" class="font-md-game-strategy-icon-label">Stag Hunt</label>
+                        </p>
                 </div>
                 <div class="col-12 col-sm-4">
                         <h3>Rationale for our assumptions</h3>
@@ -57,11 +80,23 @@
                                 <div class="col-12 col-sm-5">
                                         <h3 class="d-inline-block">Game {{rowIndex + 1}}</h3>
                                 </div>
-                                <div class="col-12 col-sm-7">
-                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x ml-4 align-middle"></span>
-                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x ml-4 align-middle"></span>
-                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x ml-4 align-middle"></span>
-                                        <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x ml-4 align-middle"></span>
+                                <div class="col-12 col-sm-7 ">
+                                        <p class="d-flex flex-column text-center my-0 py-0 ">
+                                                <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Chicken" class="redsheet redsheet-chicken fa-3x"></span>
+                                                <label *ngIf="gameTableData.gameTypeId==gameTypeEnum.Chicken" class="font-md-game-strategy-icon-label">Chicken</label>
+                                        </p>
+                                        <p class="d-flex flex-column text-center my-0 py-0 ">
+                                                <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Trust" class="redsheet redsheet-trust fa-3x"></span>
+                                                <label *ngIf="gameTableData.gameTypeId==gameTypeEnum.Trust" class="font-md-game-strategy-icon-label">Trust</label>
+                                        </p>
+                                        <p class="d-flex flex-column text-center my-0 py-0 ">
+                                                <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Prisoner" class="redsheet redsheet-prisoner fa-3x"></span>
+                                                <label *ngIf="gameTableData.gameTypeId==gameTypeEnum.Prisoner" class="font-md-game-strategy-icon-label">Prisoners dilemma</label>
+                                        </p>
+                                        <p class="d-flex flex-column text-center my-0 py-0 ">
+                                                <span *ngIf="gameTableData.gameTypeId==gameTypeEnum.Stag" class="redsheet redsheet-stag fa-3x"></span>
+                                                <label *ngIf="gameTableData.gameTypeId==gameTypeEnum.Stag" class="font-md-game-strategy-icon-label">Stag Hunt</label>
+                                        </p>
                                 </div>
                         </div>
                 </div>

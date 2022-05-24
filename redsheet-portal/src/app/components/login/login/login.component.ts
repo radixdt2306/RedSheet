@@ -91,7 +91,7 @@ export class LoginComponent implements OnDestroy, OnInit {
             }
             else {
                 this.storage.local.save('auth', t.token);
-                user.data = { 'fullName': t.fullName, 'roleId': t.roleId, 'userName': t.userName, 'userId': t.userId, }
+                user.data = { 'fullName': t.fullName, 'roleId': t.roleId, 'userName': t.userName, 'userId': t.userId,'UserTypeId':t.userTypeId }
                 user.authorizationPermissionItem = t.modules;
                 for (var rootModuleId in t.modules) {
                     let userPermissionCache = new UserPermissionCache({ rootModuleId: parseInt(rootModuleId), permission: t.modules[rootModuleId], requestedDate: this.getDate() });

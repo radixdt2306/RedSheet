@@ -24,9 +24,8 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
     currentProjectmoduleRecord:any;
     isVisibleReadOnlyText:boolean;
     nextProjectModule: any
-    showNextBtnComponent: boolean = false
-    @Input() projectModuleId: number
-    @Input() LockStatus:boolean = false;
+    showNextBtnComponent: boolean = false;
+    @Input() projectModuleId: number;
     @Output('lockEvent') addLockEvent = new EventEmitter<boolean>();
     
     constructor(
@@ -89,13 +88,13 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
                             this.currentProjectmoduleRecord.status = t.status;
                             this.addLockEvent.emit(res.status);
                             this.applicationBroadcaster.allTypeBroadCast({ action: IS_MODULE_LOCK.action, value: this.projectModuleId });
-                            console.log("lock status updated");
+                            this.router.navigate([next.uri]);
                             },
                             error => {
-                                this.toast.show(error.message, { status: 'error' });
+                                this.toast.show(error, { status: 'error' });
                             }
                         )
-                        this.router.navigate([next.uri]);
+                        
                     },
                     (error)=>{
                         console.log("error from then block",error);
@@ -105,7 +104,6 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
                         console.log("response/error from catch block",res);
                     }
                 );
-                this.router.navigate([next.uri]);
             }
         }
         else 

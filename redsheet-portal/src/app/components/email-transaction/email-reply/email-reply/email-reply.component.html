@@ -1,26 +1,30 @@
-<div class="align-items-center">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-2 p-sm-4">
-        <div class="modal-header mb-0 border-0">
-          <h2 class="modal-title border-0">{{"Mesagging"}} - {{emailTransaction!= null ? emailTransaction.EmailFromUser : ""}}</h2>
-        </div>
-        <div class="modal-header mt-0 pt-0 border-0">
-          <p class="text-muted">Message:</p>
-        </div>
-        <div class="modal-body">
-          <textarea [(ngModel)]="message" class="form-control bg" placeholder="Type message here.."></textarea>
-          <div class="m-0 py-3 p-0">
-            <label class="custom-control custom-checkbox">
-              <input class="custom-control-input checkbox-icon" type="checkbox" name="isCheck" [(ngModel)]="isCheck">
-              <span class="custom-control-indicator"></span>
-              <span>Send email copy to recipient(s)</span>
-          </label>
+<div class="row modal-center">
+  <div class="col-12">
+    <div class="align-items-center">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content p-2 p-sm-4">
+            <div class="modal-header mb-0 border-0">
+              <h2 class="modal-title border-0">{{"Mesagging"}} - {{emailTransaction!= null ? emailTransaction.EmailFromUser : ""}}</h2>
+            </div>
+            <div class="modal-header mt-0 pt-0 border-0">
+              <p class="text-muted">Message:</p>
+            </div>
+            <div class="modal-body">
+              <textarea [(ngModel)]="message" class="form-control bg" placeholder="Type message here.."></textarea>
+              <div class="m-0 py-3 p-0">
+                <label class="custom-control custom-checkbox">
+                  <input class="custom-control-input checkbox-icon" type="checkbox" name="isCheck" [(ngModel)]="isCheck">
+                  <span class="custom-control-indicator"></span>
+                  <span>Send email copy to recipient(s)</span>
+              </label>
+              </div>
+            </div>
+          <div class="modal-footer border-0 row justify-content-around align-items-center">
+              <button type="button" class="m-0 px-5 py-0 btn btn-info btn-md" (click)="Cancle()"><p class="mx-2 my-0 p-2 ">Cancle</p></button>
+              <button class="m-0 px-5 py-0 btn btn-primary btn-md " (click)="SendMessage()" [disabled]="message.length<=0"><p class="mx-2 my-0 p-2">Send Message</p></button>
           </div>
         </div>
-      <div class="modal-footer border-0 row justify-content-around align-items-center">
-          <button type="button" class="m-0 px-5 py-0 btn btn-info btn-md" (click)="Cancle()"><p class="mx-2 my-0 p-2 ">Cancle</p></button>
-          <button class="m-0 px-5 py-0 btn btn-primary btn-md " (click)="SendMessage()" [disabled]="message.length<=0"><p class="mx-2 my-0 p-2">Send Message</p></button>
-      </div>
+      </div>  
     </div>
-  </div>  
+  </div>
 </div>

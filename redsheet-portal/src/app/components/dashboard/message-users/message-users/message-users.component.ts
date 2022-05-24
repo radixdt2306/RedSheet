@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RxStorage } from '@rx/storage';
+import { user } from '@rx/security';
 import { RxPopup,RxToast } from '@rx/view';
 import { MessageUsersService } from '../message-users.service';
 
@@ -25,7 +26,7 @@ export class MessageUsersComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.data = this.storage.local.get('data');
+    this.data = user.data;
 
     this.MessageObject.ProjectId=this.project.projectId;
     this.MessageObject.EmailSubject = this.project.projectName;

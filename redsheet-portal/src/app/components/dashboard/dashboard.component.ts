@@ -15,6 +15,7 @@ import { API_HOST_URI } from "@rx";
 import { PdfService } from "app/components/pdf/pdf.service";
 import { RxSpinner , RxPopup } from "@rx/view";
 import { RxStorage } from '@rx/storage';
+import { user } from '@rx/security';
 import { EmailTransactionService } from "../email-transaction/email-transaction.service";
 import { EmailTransaction } from "app/database-models/email-transaction";
 import { MessageUsersComponent } from "./message-users/message-users/message-users.component";
@@ -43,9 +44,13 @@ export class DashboardComponent implements OnInit {
     emailTransactions:EmailTransaction[]=[];
     localData:any;
     projectsDashBoard:any;
-    expandMyprogress:boolean=false; // for myprogress collapse
 
-    expandDashboard:boolean=false; // for Dashboard collapse
+    // for myprogress collapse
+    expandMyprogress:boolean=false; 
+
+    // for Dashboard collapse
+    isSuperUser:boolean=false;
+    expandDashboard:boolean=false; 
     projectDashBoardisSearchEnable:boolean=false;
     projectDashBoardQuery = {search:"",filter:""};
     projectDashBoardSearchValue:string="";
@@ -71,16 +76,20 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("users :", this.users)
 
         // getting localstorage data
-        this.localData = this.storage.local.get('data');
+        this.localData = user.data;
 
         ProjectModuleStatic.CurrentProjectModuleId = undefined;
         this.statistics = [{ totalNegotiation: 0 }, { completed: 0 }, { inProgress: 0 }, { notStarted: 0 }];
 
-        // fetching all projects for superuser dashboard 
-        this.GetProjectDashBoard();
+        // fetching all projects for superuser dashboard
+        
+        if(user.data.userTypeId=="3")
+        {
+            this.isSuperUser=true;
+            this.GetProjectDashBoard();
+        }
         //
 
         this.dashboardService.search({ Query: [] }).subscribe(s => {
@@ -330,6 +339,11 @@ export class DashboardComponent implements OnInit {
                 });
             }
         });
+    }
+
+    ProjectStatusSorting()
+    {
+        console.log("uttam");
     }
 
     getIconClass(TemplateModuleId): string {

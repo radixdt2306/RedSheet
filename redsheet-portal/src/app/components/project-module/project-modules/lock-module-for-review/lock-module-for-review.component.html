@@ -1,19 +1,24 @@
-<div class="modal-dialog" role="document" *ngIf="showComponent">
-  <div class="modal-content p-2 p-sm-4">
-       <div class="modal-header border-0">
-          <h2 class="modal-title">{{"NEXT : "}}{{next.templateModuleName}}</h2>
+<div class="row modal-center">
+  <div class="col-12">
+    <div class="modal-dialog modal-md" role="document" *ngIf="showComponent">
+      <div class="modal-content p-2 p-sm-4">
+           <div class="modal-header border-0">
+              <h2 class="modal-title">{{"NEXT : "}}{{next.templateModuleName}}</h2>
+            </div>
+        <div class="modal-body">
+          <label class="custom-control custom-checkbox">
+            <input class="custom-control-input checkbox-icon" type="checkbox" (change)="isLock($event)">
+            <span class="custom-control-indicator"></span>
+            <span><p>Mark as ready for review</p></span>
+        </label>
+          <p class="text-muted">This will lock this stage of the project for reviewers to provide feedback.</p>
         </div>
-    <div class="modal-body">
-      <label class="custom-control custom-checkbox">
-        <input class="custom-control-input checkbox-icon" type="checkbox" [(ngModel)]="current.status" (change)="isLock($event)">
-        <span class="custom-control-indicator"></span>
-        <span><p>Mark as ready for review</p></span>
-    </label>
-      <p class="text-muted">This will lock this stage ofthe projectforreviewers to provide feedback.</p>
+        <div class="modal-footer border-0 row justify-content-around align-items-center">
+          <button class="m-0 px-5 py-1 btn btn-info btn-md" (click)="Cancle()"  >{{"Cancle" | uppercase}}</button>
+          <button class="m-0 py-1 btn btn-info btn-md" (click)="NextModule()">{{"Continue to " | uppercase}}{{next.templateModuleName | uppercase}} </button>
+      </div>
+      </div>
     </div>
-    <div class="modal-footer border-0 row justify-content-around align-items-center">
-      <button class="m-0 px-5 py-1 btn btn-info btn-md" (click)="Cancle()"  >{{"Cancle" | uppercase}}</button>
-      <button class="m-0 py-1 btn btn-info btn-md" (click)="NextModule()">{{"Continue to " | uppercase}}{{next.templateModuleName | uppercase}} </button>
-  </div>
+    
   </div>
 </div>

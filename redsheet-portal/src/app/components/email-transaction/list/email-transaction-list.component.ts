@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Input, ComponentFactoryResolver } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { RxStorage } from '@rx/storage';
+import { user } from '@rx/security';
 import { RxToast, RxPopup, RxDialog, DialogClick } from '@rx/view';
 import { EmailTransaction } from 'app/database-models/email-transaction';
 import { EmailTransactionService } from 'app/components/email-transaction/email-transaction.service';
@@ -38,7 +39,7 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
 
   ngOnInit(): void {
     this.isSearchEnable = true;
-    this.data = this.storage.local.get('data');
+    this.data = user.data;
 
     this.searchFilter.userId = this.data.userId;
     this.searchFilter.userEmail = this.data.userName;
