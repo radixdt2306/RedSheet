@@ -3,7 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8726/",
+      //"applicationUrl": "https://redsheetapi.qa.live1.dev.radixweb.net/",
+      "applicationUrl": "https://redsheetapi.qa.live1.dev.radixweb.net/",
       "sslPort": 0
     }
   },

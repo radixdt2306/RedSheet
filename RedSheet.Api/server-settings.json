@@ -61,6 +61,7 @@
   "applicationUrl": {
     //"clientUrl": "http://mynegotiations.redsheetonline.com/#/"
     //"clientUrl": "https://Redsheet-RW.positivedev.co.uk/#/"
-    "clientUrl": "http://localhost:4200/#/"
+    //"clientUrl": "https://redsheet-portal.live1.dev.radixweb.net/#/"
+    "clientUrl": "http://redsheet-cr5.live1.dev.radixweb.net/#/"
   }
 }
