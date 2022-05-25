@@ -43,7 +43,7 @@
                     <div class="section-box">
                         <!-- col-12 col-lg-6 d-lg-flex align-items-stretch -->
                         <div class="section-body ">
-                            <rx-table #tableEvent="grid" rowClass="border-0" [dataSource]="projectsDashBoard" pageSize="10">
+                            <rx-table #tableEvent="grid" [dataSource]="projectsDashBoard" pageSize="10">
                                <rx-column field="ProjectName" title="PROJECT" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
                                         <a [routerLink]="projectsDashBoard.uri">
@@ -85,9 +85,8 @@
                                         <!-- <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"CREATED DATE"}}</p> -->
                                         <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.CreatedOn | date:'yyyy-MM-dd'}}</p>
                                     </ng-template>
-                                </rx-column>                                
-                                
-                                </rx-table>
+                                </rx-column>
+                            </rx-table>
 
                         </div>
                     </div>
