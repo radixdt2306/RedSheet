@@ -61,7 +61,9 @@ import { LockModuleForReviewModule } from './components/project-module/project-m
 
                 // 'http://localhost:8726/' : 'http://localhost:8726/'
 
-                'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/'
+                // 'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/'
+
+                'http://redsheet-cr5-api.live1.dev.radixweb.net/' : 'http://redsheet-cr5-api.live1.dev.radixweb.net/'
 
                 // 'http://redsheet-2021-api.live1.dev.radixweb.net/' :
                 // 'http://redsheet-2021-api.live1.dev.radixweb.net/'
