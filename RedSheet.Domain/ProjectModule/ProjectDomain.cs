@@ -316,7 +316,7 @@ namespace RedSheet.Domain.ProjectModule
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = 0 };
                 spParameters[11] = new SqlParameter() { ParameterName = "noReply", Value = true };
 
-                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spNewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 
             }
             catch (Exception ex)
