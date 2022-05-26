@@ -65,32 +65,32 @@ export class MessageUsersComponent implements OnInit {
         if(res.sent==true && res.store==true)
         {
           this.toast.show("Email Sent Successfully");
-          this.Cancle();
+          this.Cancel();
         }
         else if(res.store==true && this.isSent==false)
         {
           this.toast.show("Message Sent Successfully");
-          this.Cancle();
+          this.Cancel();
         }
         else if(res.store==false && this.isSent==false)
         {
           this.toast.show("Message Sent Failed" , {status:'error'});
-          this.Cancle()
+          this.Cancel()
         }
         else if(res.sent==false && this.isSent==true)
         {
           this.toast.show("Email Sent Failed" , {status:'error'});
-          this.Cancle()
+          this.Cancel()
         }
       },
       (error)=>
       {
-        this.Cancle();
+        this.Cancel();
       }
     )
   }
 
-  Cancle()
+  Cancel()
   {
     this.message="";
     this.isSent=false;

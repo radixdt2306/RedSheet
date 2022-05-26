@@ -46,7 +46,7 @@ export class LockModuleForReviewComponent implements OnInit {
     this.popup.hide(LockModuleForReviewComponent,this.current);
   }
 
-  Cancle()
+  Cancel()
   {
     this.current.status = this.initialFlag;
     this.popup.hide(LockModuleForReviewComponent);

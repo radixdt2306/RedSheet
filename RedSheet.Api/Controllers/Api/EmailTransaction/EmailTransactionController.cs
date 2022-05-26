@@ -79,7 +79,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = transactionNewMessage.UpdatedBy };
                 spParameters[11] = new SqlParameter() { ParameterName = "noReply", Value = transactionNewMessage.GetReply };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.NewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spNewEmailMessage @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy , @noReply ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
 
                 if (response == "TRUE")
@@ -149,7 +149,7 @@ namespace RedSheet.Api.Controllers.Api.EmailTransaction
                 spParameters[9] = new SqlParameter() { ParameterName = "user", Value = emailTransactions.UserId };
                 spParameters[10] = new SqlParameter() { ParameterName = "updateBy", Value = emailTransactions.UpdatedBy };
 
-                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.EmailMessageReply @emailId , @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
+                var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spEmailMessageReply @emailId , @projectId , @to , @from , @subject , @message , @status , @isSystem , @user , @updateBy ", spParameters); // change ' dbo.spEmailTransaction ' to ' dbo.spEmailTransactions '
                 var response = storeProcSearchResult.SingleOrDefault()?.Result;
                 
                 if ( response == "TRUE")
