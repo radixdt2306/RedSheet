@@ -229,10 +229,13 @@
                         <a (click)="onCreateCopy(dataItem)" title="Create Copy" class="action-links-dashboard">Create
                           Copy</a>
                       </li> -->
-                                            <li class="list-inline-item"><a
+                                            <li class="list-inline-item">
+                                                <a
                                                     *ngIf="!dataItem.projectStatus && (( (dataItem.templateModuleId == 50)||(dataItem.templateModuleId == 51)  )    || (dataItem.moduleStatus && ((dataItem.templateModuleId == 53)||(dataItem.templateModuleId == 55) )   )) && dataItem.myRole == 'Owner'"
                                                     (click)="exportHtmlToPdf(dataItem)" title="Download Report"
-                                                    class="action-links-dashboard btn-Dash-Download">Download</a></li>
+                                                    class="action-links-dashboard btn-Dash-Download">Download
+                                                </a>
+                                            </li>
                                             <li *ngIf="dataItem.myRole == 'Owner'"
                                                 class="list-inline-item dashboard-dropdown-icon">
                                                 <i class="fa fa-ellipsis-h"></i>
@@ -275,6 +278,12 @@
                                                     </li>
                                                 </ul>
                                             </li>
+
+                                            <!-- message icon for project member except owner -->
+                                            <a *ngIf="dataItem.myRole != 'Owner'" (click)="SendMessage(users,dataItem)">
+                                                <img src="../../../assets/images/email_logo.png" class="bg-light" alt="Message Users" width="25px" height="25px">
+                                            </a>
+
                                         </ul>
                                         <h4 class="d-inline-block">{{dataItem.projectName}}</h4>
                                     </div>
