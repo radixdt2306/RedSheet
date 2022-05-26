@@ -17,8 +17,8 @@ export class IdleSessionTimerService {
   CheckForIdle:boolean=false;
   count:number=0
   private timer:Observable<number>;
-  SessionTime:number = 30;
-  SessionExpireAlert:number = 15;
+  SessionTime:number = 90;
+  SessionExpireAlert:number = 60;
   SessionExpireAfter:number = this.SessionTime-this.SessionExpireAlert;
   private timerSubscription: Subscription = new Subscription;
   sessionmodalelement:any;
@@ -61,7 +61,7 @@ export class IdleSessionTimerService {
 
   ExpandSession()
   {
-    this.SessionTime = 30;
+    this.SessionTime = 90;
     this.SessionExpireAfter = this.SessionTime-this.SessionExpireAlert;
     this.StartTimer();
     

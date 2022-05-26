@@ -100,18 +100,42 @@ export class EmailTransactionListComponent extends EmailTransactionDomain implem
 
   ReplyToEmail(data:any)
   {
-    var data_= new EmailTransaction();
-    data_.EmailTransactionId = data.EmailTransactionId;
-    data_.ProjectId = data.ProjectId;
-    data_.EmailFrom=data.EmailTo; //changing emailfrom -> emailto
-    data_.EmailTo=data.EmailFrom; //changing emailto -> emailfrom
-    data_.EmailSubject=data.EmailSubject;
-    data_.EmailMessage=data.EmailMessage;
-    data_.EmailStatus=data.EmailStatus;
-    data_.IsSystemGenerated=data.IsSystemGenerated;
-    data_.UserId=data.UserId;
-    data_.UpdatedBy=data.UpdatedBy;
-    this.popup.show(EmailReplyComponent , {emailTransactionInput:data_});
+    // var data_= new EmailTransaction();
+    // data_.EmailTransactionId = data.EmailTransactionId;
+    // data_.ProjectId = data.ProjectId;
+    // data_.EmailFrom=data.EmailTo; //changing emailfrom -> emailto
+    // data_.EmailTo=data.EmailFrom; //changing emailto -> emailfrom
+    // data_.EmailSubject=data.EmailSubject;
+    // data_.EmailMessage=data.EmailMessage;
+    // data_.EmailStatus=data.EmailStatus;
+    // data_.IsSystemGenerated=data.IsSystemGenerated;
+    // data_.UserId=data.UserId;
+    // data_.UpdatedBy=data.UpdatedBy;
+    var data_:object= {    
+      EmailTransactionId:data.EmailTransactionId,
+      ProjectId:data.ProjectId,
+      EmailFrom:data.EmailTo,
+      EmailTo:data.EmailFrom,
+      EmailSubject:data.EmailSubject,
+      EmailMessage:data.EmailMessage,
+      EmailStatus:data.EmailStatus,
+      IsSystemGenerated:data.IsSystemGenerated,
+      UserId:data.UserId,
+      UpdatedBy:data.UpdatedBy,
+      EmailToUser:data.EmailToUser,
+      EmailFromUser:data.EmailFromUser
+  };
+
+
+
+    this.popup.show(EmailReplyComponent , {emailTransactionInput:data_}).then(
+      (res)=>{
+        if(res.close="close")
+        {
+          this.EmailTransactions();
+        }
+      }
+    );
   }
 
   ngOnDestroy(): void {

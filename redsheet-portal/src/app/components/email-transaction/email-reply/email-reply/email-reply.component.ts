@@ -79,7 +79,7 @@ export class EmailReplyComponent implements OnInit {
   {
     this.emailTransaction = null;
     this.isCheck=false;
-    this.popup.hide(EmailReplyComponent);
+    this.popup.hide(EmailReplyComponent,{close:"close"});
   }
 
 }
