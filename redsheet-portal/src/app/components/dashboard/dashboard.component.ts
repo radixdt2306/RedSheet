@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
 
         // fetching all projects for superuser dashboard
         
-        if(user.data.userTypeId=="3")
+        if(user.data.userTypeId=="4")
         {
             this.isSuperUser=true;
             this.GetProjectDashBoard();
