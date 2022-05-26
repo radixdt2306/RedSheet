@@ -19,8 +19,6 @@ export class LockModuleForReviewComponent implements OnInit {
   initialFlag:boolean;
   
   ngOnInit() {
-    console.log("next",this.next);
-    console.log("current",this.current);
     this.initialFlag = this.current.status;
     this.current.status=false;
   }
@@ -31,18 +29,18 @@ export class LockModuleForReviewComponent implements OnInit {
     if(value)
     {
       this.current.status=true;
-      console.log("true");
+      
     }
     else
     {
       this.current.status=false;
-      console.log("false");
+     
     }
   }
 
   NextModule()
   {
-    console.log("current",this.current);
+
     this.popup.hide(LockModuleForReviewComponent,this.current);
   }
 

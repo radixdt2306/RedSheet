@@ -206,7 +206,7 @@ export class DashboardComponent implements OnInit {
         this.projectService.search({ isMyProject: true }).subscribe(t => {
             this.projectService.lookup([ProjectNegotionalityLookups.userLookups]).then((response: ProjectLookupGroup) => {
                 this.users = response.userLookups;
-                console.log("users :", this.users);
+                
             });
             var count = 0;
             if (t.projects) {
@@ -215,7 +215,7 @@ export class DashboardComponent implements OnInit {
                     count++;
                 });
                 this.projects = t.projects;
-                console.log("projects :", this.projects);
+
                 for (var j: number = 0; j < this.projects.length; j++) {
                     this.projects[j]["hideDropDown"] = false;
                     this.projects[j]["userId"] = this.projects[j].ownerId;
@@ -343,7 +343,6 @@ export class DashboardComponent implements OnInit {
 
     ProjectStatusSorting()
     {
-        console.log("uttam");
     }
 
     getIconClass(TemplateModuleId): string {
@@ -490,10 +489,7 @@ export class DashboardComponent implements OnInit {
         this.popup.show(MessageUsersComponent,{users:users , project:project});
     }
 
-    sort()
-    {
-        console.log("method call");
-    }
+
 
     // dashboard projects , search and filter
 
@@ -512,7 +508,6 @@ export class DashboardComponent implements OnInit {
                 {
                     this.projectsDashBoard = [];
                     this.projectDashBoardisSearchEnable = true;
-                    console.log("sdivfuui")
                 }
             },
             (error)=>{
@@ -527,7 +522,6 @@ export class DashboardComponent implements OnInit {
         {
             this.projectDashBoardisSearchEnable=false;
             this.projectDashBoardQuery.search = this.projectDashBoardSearchValue;
-            console.log(this.projectDashBoardQuery);
             this.GetProjectDashBoard();
         }
 
@@ -556,7 +550,6 @@ export class DashboardComponent implements OnInit {
     FilterProjectDashBoard()
     {
         this.projectDashBoardQuery.filter = this.projectDashBoardFilterValue;
-        console.log(this.projectDashBoardQuery);
         this.GetProjectDashBoard();
     }
 

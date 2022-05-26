@@ -30,7 +30,7 @@ export class EmailReplyComponent implements OnInit {
 
   ngOnInit() {
     this.emailTransaction = this.emailTransactionInput;
-    console.log(this.emailTransaction);
+    
 
     this.data = user.data;
 
@@ -43,7 +43,7 @@ export class EmailReplyComponent implements OnInit {
     this.emailTransaction.EmailMessage = this.message;
     this.emailTransaction.EmailStatus = 'SENT';
     this.emailTransaction.IsSend = this.isCheck;
-    console.log(this.emailTransaction);
+    
     this.emailReplyService.ReplyEmailMessage(this.emailTransaction).subscribe(
       (res:any)=>
       {

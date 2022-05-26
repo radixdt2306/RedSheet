@@ -34,7 +34,7 @@ export class MessageUsersComponent implements OnInit {
     this.MessageObject.UpdatedBy = this.data.userId;
     this.users.filter(x=>{if(x.userId==this.data.userId){this.MessageObject.EmailFrom=x.email;};});
 
-    console.log("oninit",this.MessageObject);
+
   }
 
 
@@ -44,12 +44,12 @@ export class MessageUsersComponent implements OnInit {
       if(value)
       {
         this.MessageObject.EmailTo.push(recipent);
-        console.log("messageModule push"  ,this.MessageObject, value);
+
       }
       else
       {
         this.MessageObject.EmailTo.remove(recipent);
-        console.log("messageModule remove"  ,this.MessageObject, value);
+
       }
   }
 
@@ -57,7 +57,7 @@ export class MessageUsersComponent implements OnInit {
   {
     this.MessageObject.EmailMessage=this.message;
     this.MessageObject.IsSend=this.isSent;
-    console.log(this.MessageObject);
+    
     this.messageUsersService.SendMessageToUsers(this.MessageObject).subscribe
     (
       (res:any)=>
@@ -95,7 +95,7 @@ export class MessageUsersComponent implements OnInit {
     this.message="";
     this.isSent=false;
     this.MessageObject=null;
-    console.log(this.MessageObject);
+    
     this.popup.hide(MessageUsersComponent);
   }
 

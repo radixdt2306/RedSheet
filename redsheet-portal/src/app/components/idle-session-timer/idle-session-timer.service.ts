@@ -70,7 +70,6 @@ export class IdleSessionTimerService {
   CloseTimer()
   {
     this.StopTimer();
-    console.log("logout");
   }
   
   logOut(): void {
@@ -84,7 +83,6 @@ export class IdleSessionTimerService {
         document.cookie = "academyUrl=; samesite=Lax;";
         window.location.href = '/login';
     })
-    console.log("DELETE COOKIE");
     this.CloseTimer();
     // ldle timer close
   }

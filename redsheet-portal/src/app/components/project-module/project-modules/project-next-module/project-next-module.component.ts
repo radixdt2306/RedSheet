@@ -97,11 +97,11 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
                         
                     },
                     (error)=>{
-                        console.log("error from then block",error);
+
                     }
                 ).catch(
                     (res)=>{
-                        console.log("response/error from catch block",res);
+
                     }
                 );
             }
