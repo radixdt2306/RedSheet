@@ -86,7 +86,7 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
                         this.projectModuleService.put(res).subscribe(
                             t => {
                             this.currentProjectmoduleRecord.status = t.status;
-                            this.addLockEvent.emit(res.status);
+                            this.addLockEvent.emit(t.status);
                             this.applicationBroadcaster.allTypeBroadCast({ action: IS_MODULE_LOCK.action, value: this.projectModuleId });
                             this.router.navigate([next.uri]);
                             },
