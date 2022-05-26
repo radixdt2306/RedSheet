@@ -341,9 +341,6 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    ProjectStatusSorting()
-    {
-    }
 
     getIconClass(TemplateModuleId): string {
         let iconClass: string;
