@@ -2,23 +2,25 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { timer } from 'rxjs/observable/timer';
 import { IdleSessionTimerComponent } from './idle-session-timer.component';
-
+import { Router } from '@angular/router';
 import { UserAuthorizationService } from '../../../app/domain/authorization/user-authorization.service';
 import { RxStorage } from "@rx/storage"
 import { RxPopup } from "@rx/view"
-
+import { user } from '@rx/security';
 import * as $ from '../../../assets/js/jquery.min.js';
 
 @Injectable()
 export class IdleSessionTimerService {
 
-  constructor(private userAuthorizationService:UserAuthorizationService , private storage: RxStorage, private popup:RxPopup) { }
+  constructor(private userAuthorizationService:UserAuthorizationService , private route:Router , private storage: RxStorage, private popup:RxPopup) 
+  { }
 
   CheckForIdle:boolean=false;
   count:number=0
   private timer:Observable<number>;
-  SessionTime:number = 90;
-  SessionExpireAlert:number = 60;
+  _SessionTime:number=20;
+  SessionTime:number = this._SessionTime;
+  SessionExpireAlert:number = 10;
   SessionExpireAfter:number = this.SessionTime-this.SessionExpireAlert;
   private timerSubscription: Subscription = new Subscription;
   sessionmodalelement:any;
@@ -41,7 +43,12 @@ export class IdleSessionTimerService {
           if(res == this.SessionExpireAlert)
           {
             this.CheckForIdle = false;
-              this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionExpireAfter});
+              this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionExpireAfter}).then(
+                ()=>{
+                  
+                  this.redirectTo(this.route.url);
+                }
+              );
           }
           if(this.SessionTime == 0)
           {
@@ -61,8 +68,9 @@ export class IdleSessionTimerService {
 
   ExpandSession()
   {
-    this.SessionTime = 90;
+    this.SessionTime = this._SessionTime;
     this.SessionExpireAfter = this.SessionTime-this.SessionExpireAlert;
+    
     this.StartTimer();
     
   }
@@ -86,5 +94,13 @@ export class IdleSessionTimerService {
     this.CloseTimer();
     // ldle timer close
   }
+
+  redirectTo(url){ 
+    console.log(url);
+    window.location.reload();
+    // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+    // this.route.onSameUrlNavigation = 'reload';
+    // this.route.navigate([url]);
+ }
 
 }

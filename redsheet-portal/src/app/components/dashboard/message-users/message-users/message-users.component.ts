@@ -49,7 +49,6 @@ export class MessageUsersComponent implements OnInit {
       else
       {
         this.MessageObject.EmailTo.remove(recipent);
-
       }
   }
 
@@ -92,10 +91,6 @@ export class MessageUsersComponent implements OnInit {
 
   Cancel()
   {
-    this.message="";
-    this.isSent=false;
-    this.MessageObject=null;
-    
     this.popup.hide(MessageUsersComponent);
   }
 

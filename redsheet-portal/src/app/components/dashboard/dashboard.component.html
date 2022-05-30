@@ -42,8 +42,8 @@
 
                     <div class="section-box">
                         <!-- col-12 col-lg-6 d-lg-flex align-items-stretch -->
-                        <div class="section-body ">
-                            <rx-table #tableEvent="grid" [dataSource]="projectsDashBoard" pageSize="10">
+                        <div class="section-body table-responsive">
+                            <rx-table #tableEvent="grid" [dataSource]="projectsDashBoard" pageSize="10" [ngClass]="{'table':isSuperUser,'table-borderless':isSuperUser}">
                                <rx-column field="ProjectName" title="PROJECT" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
                                         <a [routerLink]="projectsDashBoard.uri">
@@ -52,7 +52,7 @@
                                         </a>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column field="projectStage" title="PROJECT STAGE" sortable="true">
+                                <rx-column title="PROJECT STAGE" actionable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
                                         <!-- <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"STAGE REACHED"}}</p> -->
                                         <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0">{{projectsDashBoard.projectStage | uppercase}}</p>
@@ -60,24 +60,23 @@
                                 </rx-column>
                                 <rx-column  field="progress" title="PROJECT PROGRESS" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
-                                        <div class="m-0 p-1 text-center container-fluid rounded bg-secondary d-flex align-items-center">
+                                        <div class="m-0 p-1 text-center container-fluid rounded bg-secondary align-items-center">
                                             <div class="container-fluid m-0 p-0">
                                                 <div class="projectdashboard-text-overlay-child-div m-0 px-0 py-3 rounded bg-dark " [ngClass]="{'w-25':( projectsDashBoard.progress<50 && projectsDashBoard.progress>0),'w-50':(projectsDashBoard.progress<75 && projectsDashBoard.progress>=50),'w-75':(projectsDashBoard.progress>=75 && projectsDashBoard.progress<100),'w-100':(projectsDashBoard.progress==100)}">
                                                 
                                                 </div>
+                                                <p class="p-0 m-0 text-light projectdashboard-text-overlay font-weight-bold">{{projectsDashBoard.progress}}%</p>
                                             </div>
-                                            <div class="m-0 p-0 projectdashboard-text-overlay">
-                                                <p class="p-0 m-0 text-light font-weight-bold">{{projectsDashBoard.progress}}%</p>
-                                            </div>
+                                            
                                         </div>
                                     </ng-template>
                                 </rx-column>
-                                <rx-column  field="status" title="PROJECT STATUS" sortable="true">
+                                <rx-column  field="statusOrder" title="PROJECT STATUS" sortable="true">
                                     <ng-template rxCellTemplate let-projectsDashBoard>
                                         <!-- <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 h5">{{"PROJECT STATUS"}}</p> -->
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-info" *ngIf="projectsDashBoard.Status && !projectsDashBoard.IsClosed">{{"SHARED" | uppercase}}</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-success" *ngIf="!projectsDashBoard.Status && !projectsDashBoard.IsClosed">{{"ACTIVE" | uppercase}}</p>
-                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-secondary" *ngIf="projectsDashBoard.IsClosed">{{"CLOSED" | uppercase}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-info" *ngIf="projectsDashBoard.statusOrder==2">{{"SHARED" | uppercase}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-success" *ngIf="projectsDashBoard.statusOrder==1">{{"ACTIVE" | uppercase}}</p>
+                                        <p class="m-0 border border-top-0 border-bottom-0 border-left-0 border-right-0 text-secondary" *ngIf="projectsDashBoard.statusOrder==3">{{"CLOSED" | uppercase}}</p>
                                     </ng-template>
                                 </rx-column>
                                 <rx-column   field="CreatedOn" title="SORT DATE" sortable="true">
@@ -107,12 +106,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-12 col-lg-6">
-                            <div class="section-box" style="background-color: white; height:480px; overflow-y: scroll;">
+                            <div class="section-box dashboard-progress">
                                 <div class="section-header">
                                     <h2 class="section-title" Uppercase>Messages</h2> <!-- rxLabel="headingOne" -->
                                 </div>
                                 <div class="section-body"  > <!-- *ngIf="emailTransactions" -->
-                                    <ul class="m-0 p-0">  <!-- class="custom-list dashboard-list" -->
+                                    <ul class="m-0 p-0" type="none">  <!-- class="custom-list dashboard-list" -->
                                         <li  class="my-1 p-0" *ngFor="let emailTransaction of emailTransactions index as i" type="none">
                                              <span class="truncated" *ngIf="i<=10">
                                                  <span class="mr-2" *ngIf="emailTransaction.EmailFrom==localData.userName"><img src="../../../assets/images/message-sent.svg" width="25px;" height="50px;" alt="email"></span>
@@ -135,7 +134,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <div class="section-box" style="background-color: white; height:480px; overflow-y: scroll;">
+                            <div class="section-box dashboard-progress">
                                 <div class="section-header">
                                     <h2 class="section-title" rxLabel="headingTwo"></h2>
                                 </div>

@@ -16,15 +16,15 @@
                         <label class="my-1 col-sm-12 col-md-2 col-lg-auto h2">Filter</label>
                         <div class="col-sm-12 col-md-8 col-lg-10 row px-0 justify-content-around">
                             <div class="col-12 row justify-content-around d-flex flex-wrap float-right">
-                                <select class="my-1 mx-auto form-control form-control-lg rounded col-sm-3 col-md-3 col-lg-3 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
-                                    <option value=""></option>
-                                    <option class="h4" *ngFor="let filter of emailCategory" value="{{filter}}">{{filter}}</option>
+                                <select class="my-1 mx-auto form-control rounded col-sm-3 col-md-3 col-lg-3 text-secondary h4" [(ngModel)]="emailCategoryValue" (change)="CategoryEmailTransaction()">
+                                    <option class="container" value=""></option>
+                                    <option class="container h4" *ngFor="let filter of emailCategory" value="{{filter}}">{{filter}}</option>
                                 </select>
                                 <button type="button" class="my-1 mx-auto btn-secondary bg-secondary rounded col-sm-4 col-md-4 col-lg-4 " (click)="DateOrderEmailTransaction()">
-                                    <p class="m-0 p-0 d-flex justify-content-center align-items-center text-light h4">{{dateOrder}} <i class="px-2 fa fa-sort" aria-hidden="true"></i></p>
+                                    <p class="m-0 p-0 d-flex justify-content-center align-items-center text-center text-light h4">{{dateOrder}} <i class="px-2 fa fa-sort" aria-hidden="true"></i></p>
                                 </button>
                                 <button type="button" class="my-1 mx-auto btn-secondary bg-secondary rounded col-sm-4 col-md-4 col-lg-4 " (click)="ResetEmailTransactionFilter()">
-                                    <p class="m-0 p-0 text-light h4">Reset Filter</p>
+                                    <p class="m-0 p-0 text-light text-center h4">Reset Filter</p>
                                 <!-- <i [class]="sortClass" aria-hidden="true"></i> -->
                             </button>
                             </div>
@@ -42,7 +42,7 @@
                     <rx-template #templateEvent="rxtemplate" [(dataSource)]="emailTransaction" pageSize="10"
                         masterClass="col-12 col-lg-12 col-xl-12">
                         <ng-template rxCellTemplate let-dataItem="dataItem" let-rowIndex="rowIndex">
-                            <ul> <!-- custom-list dashboard-list -->
+                            <ul type="none"> <!-- custom-list dashboard-list -->
                                 <li class="my-1" type="none">
                                     <div class="section-body p-1">
                                         <div class="page-heading">
@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class="section-body m-0 p-0">
-                                            <p class="m-0 p-0">{{dataItem.EmailMessage}}</p>
+                                            <p class="m-0 p-0 text-overflow-adjust">{{dataItem.EmailMessage}}</p>
                                         </div>
                                     </div>
                                 </li>

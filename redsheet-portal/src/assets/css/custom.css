@@ -600,16 +600,7 @@ header {
   .section-box .section-body {
     clear: both; }
 
-  /* to hide scroll-bar */
-  .section-box::-webkit-scrollbar {
-      display: none;
-  }
-  .truncated {
-    display: block;
-    white-space: nowrap; /* forces text to single line */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
   /* */
 
@@ -2631,9 +2622,33 @@ header .custom-list.header-info-dropdown{
   border: 1px solid rgb(58, 93, 174);
 }
 
-.table-responsive{
-display: inline-table !important;
+/* cr-5 */
+
+  /* to hide scroll-bar */
+
+  
+.dashboard-progress{
+  background-color: white;
+  height:480px; 
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
 }
+.dashboard-progress::-webkit-scrollbar {
+    display: none;
+}
+.truncated {
+  display: block;
+  white-space: nowrap; /* forces text to single line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .table-responsive{
+  display: inline-table !important;
+  flex-wrap: wrap !important;
+} */
 
 .projectdashboard-text-overlay-child-div{
   width: 0px;
@@ -2641,23 +2656,38 @@ display: inline-table !important;
 }
 .projectdashboard-text-overlay
 {
-  position: relative;
-  text-align: center;
-  width: 0px;
-  left:-54%;
+  position:relative;
+  text-align:center;
+  width: 100%;
+  height: 0px;
+  top: -27px;
+  
 }
 @media only screen and (max-width:767px){
   .projectdashboard-text-overlay
   {
     position: relative;
     text-align: center;
-    width: 0px;
-    left:-65%;
+    width: 100%;
+    height: 0px;
+    top: -27px;
   }   
+}
+
+.text-overflow-adjust{
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 
 .modal-center{
   height: 100%;
   width: 100%;
-  align-items: center;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge  */
+  scrollbar-width: none; 
+}
+
+.modal-center::-webkit-scrollbar {
+  display: none;
 }

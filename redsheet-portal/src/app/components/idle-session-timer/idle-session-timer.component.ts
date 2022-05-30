@@ -22,8 +22,8 @@ export class IdleSessionTimerComponent implements OnInit {
 
   Extend()
   {
-    this.popup.hide(IdleSessionTimerComponent);
     this.idleSessionTimer.ExpandSession();
+    this.popup.hide(IdleSessionTimerComponent);
   }
 
   SignOut()

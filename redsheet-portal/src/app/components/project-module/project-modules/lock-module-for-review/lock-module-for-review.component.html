@@ -1,5 +1,4 @@
-<div class="row modal-center">
-  <div class="col-12">
+<div class="modal-center">
     <div class="modal-dialog modal-md" role="document" *ngIf="showComponent">
       <div class="modal-content p-2 p-sm-4">
            <div class="modal-header border-0">
@@ -14,11 +13,9 @@
           <p class="text-muted">This will lock this stage of the project for reviewers to provide feedback.</p>
         </div>
         <div class="modal-footer border-0 row justify-content-around align-items-center">
-          <button class="m-0 px-5 py-1 btn btn-info btn-md" (click)="Cancel()"  >{{"Cancel" | uppercase}}</button>
-          <button class="m-0 py-1 btn btn-info btn-md" (click)="NextModule()">{{"Continue to " | uppercase}}{{next.templateModuleName | uppercase}} </button>
+          <button class="container-fluid col-5 btn btn-info btn-md text-center" (click)="Cancel()"  >{{"Cancel" | uppercase}}</button>
+          <button class="container-fluid col-5 btn btn-primary btn-md text-center" (click)="NextModule()"><p class="m-0 p-0 text-overflow-adjust">{{"Continue to " | uppercase}} {{next.templateModuleName | uppercase}}</p></button>
       </div>
       </div>
     </div>
-    
-  </div>
 </div>
