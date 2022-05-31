@@ -43,11 +43,15 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
     @Input() projectModuleId: number;
     @Output('lockEvent') addLockEvent = new EventEmitter<boolean>();
     //@Output('roleRights') roleRights = new EventEmitter<boolean>();
+
+    isProjectFromSuperUserCompany:boolean=false;
+
     constructor(
         private validation: RxValidation,
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private toast: RxToast,
+        private projectService:ProjectsService,
         private projectModulesService: ProjectModulesService,
         private dialog: RxDialog,
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -89,8 +93,32 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
 
                     this.projectModuleRecord = response["projectModules"][0];
                     
-
                     this.projectId = this.projectModuleRecord.projectId;
+                    if(user.data.userTypeId=="4")
+                    {
+                        this.projectsService.getProjectsFromSuperUserCompany(user.data.userId).subscribe(
+                            (res)=>{
+                                if(res)
+                                {
+                                    for(var r of res.result)
+                                    {
+                                        if(this.projectId==r.ProjectId)
+                                        {
+                                            this.isProjectFromSuperUserCompany=true;
+                                            console.log(this.isProjectFromSuperUserCompany);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    console.log("null");
+                                }
+                            },
+                            (error)=>{
+                
+                            }
+                        )
+                    }
                     this.isAssignee = this.projectModuleRecord.isAssignee;
                     this.isReviewer = this.projectModuleRecord.isReviewer;
                     this.isOwner = this.projectModuleRecord.isOwner;
@@ -139,7 +167,12 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
                     }
                     this.showComponent = true;
                 }
-            })
+        });
+
+
+
+
+
     }
 
     showProjectModuleHelpDetailComponent(): void {

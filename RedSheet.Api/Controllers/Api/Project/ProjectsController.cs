@@ -37,6 +37,15 @@ namespace RedSheet.Api.Controllers
         //[HttpGet("{id}")]
         //public IActionResult Get(int id) => Ok(Uow.Project.Repository<vProjectRecord>().SingleOrDefault(t => t.ProjectId == id));
 
+        [HttpGet("ProjectsFromSuperUserCompany/{id}")]
+        public async Task<IActionResult> ProjectFromSuperUserCompany(int id)
+        {
+            var sqlParams = new object[1];
+            sqlParams[0] = new SqlParameter() { ParameterName = "userId", Value = id };
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spProjectsFromSuperUserCompany @userId", sqlParams);
+            return Ok(storeProcSearchResult.SingleOrDefault()?.Result);
+        }
+
         [HttpPost]
         [Route("SuperUser/search")]
         public async Task<IActionResult> ProjectsFilter([FromBody] StoreProcSearchModel storeProcSearch)

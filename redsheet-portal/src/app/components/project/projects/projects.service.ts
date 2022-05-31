@@ -48,6 +48,13 @@ export class ProjectsService {
         return this.http.search<Project[]>(customeAuthorizeApi,search,false);
     }
 
+    getProjectsFromSuperUserCompany(id:any): Observable<any> {
+        let customeAuthorizeApi: AuthorizeApi = this.api;
+        customeAuthorizeApi.api= `api/Projects/ProjectsFromSuperUserCompany/${id}`;
+        return this.http.get<Project[]>(customeAuthorizeApi);
+    }
+
+
     getBy(params?: any[] | {
         [key: string]: any;
     } | RequestQueryParams): Observable<vProjectRecord> {

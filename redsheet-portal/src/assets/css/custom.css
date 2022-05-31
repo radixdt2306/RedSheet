@@ -2645,10 +2645,13 @@ header .custom-list.header-info-dropdown{
   text-overflow: ellipsis;
 }
 
-/* .table-responsive{
-  display: inline-table !important;
-  flex-wrap: wrap !important;
-} */
+@media only screen and (min-width:999px){
+  .table-responsive{
+    display: inline-table !important;
+    flex-wrap: wrap;
+  }
+}
+
 
 .projectdashboard-text-overlay-child-div{
   width: 0px;

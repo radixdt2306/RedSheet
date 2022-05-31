@@ -10,6 +10,7 @@ import { ProjectsService } from 'app/components/project/projects/projects.servic
 import { ProjectLookupGroup } from 'app/components/project/projects/domain/project.models';
 import { RxPopup,RxToast } from '@rx/view';
 import { RxStorage } from '@rx/storage';
+import { user } from '@rx/security';
 import { ApplicationBroadcaster } from '@rx/core';
 import { IS_MODULE_LOCK } from 'app/const';
 import { LockModuleForReviewComponent } from '../lock-module-for-review/lock-module-for-review.component';
@@ -28,6 +29,8 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
     @Input() projectModuleId: number;
     @Output('lockEvent') addLockEvent = new EventEmitter<boolean>();
     
+    isProjectFromSuperUserCompany:boolean=false;
+
     constructor(
         private projectService: ProjectsService, 
         private projectModuleService: ProjectModulesService, 
@@ -35,6 +38,7 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
         private popup:RxPopup,
         private toast:RxToast,
         private storage:RxStorage,
+        private projectsService:ProjectsService,
         private applicationBroadcaster: ApplicationBroadcaster) {
         super();
 
@@ -61,6 +65,31 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
             (res)=>{
                 if (res["projectModules"] && res["projectModules"].length > 0) {
                     this.currentProjectmoduleRecord = res["projectModules"][0];
+                    if(user.data.userTypeId=="4")
+                    {
+                        this.projectsService.getProjectsFromSuperUserCompany(user.data.userId).subscribe(
+                            (res)=>{
+                                if(res)
+                                {
+                                    for(var r of res.result)
+                                    {
+                                        if(this.currentProjectmoduleRecord.projectId==r.ProjectId)
+                                        {
+                                            this.isProjectFromSuperUserCompany=true;
+                                            console.log(this.isProjectFromSuperUserCompany);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    console.log("null");
+                                }
+                            },
+                            (error)=>{
+                
+                            }
+                        )
+                    }
                     if (this.currentProjectmoduleRecord.isClosed || this.currentProjectmoduleRecord.projectStatus) {
                         this.isVisibleReadOnlyText = true;
                     }
@@ -76,6 +105,10 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
         if (next.projectModuleId > 0)
         {
             if(this.isVisibleReadOnlyText)
+            {
+                this.router.navigate([next.uri]);
+            }
+            else if(this.currentProjectmoduleRecord.ownerId!=user.data.userId && !this.isProjectFromSuperUserCompany)
             {
                 this.router.navigate([next.uri]);
             }

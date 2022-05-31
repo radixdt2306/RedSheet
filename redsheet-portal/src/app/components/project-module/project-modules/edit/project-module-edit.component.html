@@ -8,25 +8,25 @@
             <div class="action-links">
 
                 <!-- (click)="editProjectModule(!projectModuleRecord.status)" [disabled]="projectModuleRecord.status" -->
-                <button *ngIf="projectModuleRecord.ownerId==userId" class="btn btn-primary btn-sm" title="Lock"
+                <button *ngIf="projectModuleRecord.ownerId==userId || isProjectFromSuperUserCompany" class="btn btn-primary btn-sm" title="Lock"
                     (click)="editProjectModule(!projectModuleRecord.status)"
                     [(disabled)]="projectModuleRecord.status || projectModuleRecord.isClosed"><i class="fa fa-lock"></i> LOCK FOR REVIEW</button>
-                <button *ngIf="projectModuleRecord.ownerId==userId" class="btn btn-primary btn-sm" title="Unlock"
+                <button *ngIf="projectModuleRecord.ownerId==userId || isProjectFromSuperUserCompany" class="btn btn-primary btn-sm" title="Unlock"
                     (click)="editProjectModule(!projectModuleRecord.status)"
                     [(disabled)]="!projectModuleRecord.status || projectModuleRecord.isClosed"><i class="fa fa-unlock-alt"></i> UNLOCK TO EDIT</button>
                 <!-- <span class="status badge badge-light"><i class="fa fa-unlock-alt"></i> UNLOCK</span> -->
                 <!-- <a  data-toggle="modal" data-target="projectModuleRecord.htmlHelp" title="{{projectModuleRecord.htmlHelp}}"><i class="fa fa-info-circle fa-2x"></i></a> -->
-                <a *ngIf="projectModuleRecord.ownerId==userId" data-toggle="modal" data-target="Help" title="Help"
+                <a *ngIf="projectModuleRecord.ownerId==userId || isProjectFromSuperUserCompany" data-toggle="modal" data-target="Help" title="Help"
                     (click)="showProjectModuleHelpDetailComponent()"><i class="fa fa-info-circle fa-2x"></i></a>
             </div>
             <div class="action-links">
                 <span class="status badge badge-light"
-                    *ngIf="projectModuleRecord.status && projectModuleRecord.ownerId!=userId"><i
+                    *ngIf="projectModuleRecord.status && projectModuleRecord.ownerId!=userId && !isProjectFromSuperUserCompany"><i
                         class="fa fa-lock-alt"></i> LOCK FOR REVIEW</span>
                 <span class="status badge badge-light"
-                    *ngIf="!projectModuleRecord.status && projectModuleRecord.ownerId!=userId"><i
+                    *ngIf="!projectModuleRecord.status && projectModuleRecord.ownerId!=userId && !isProjectFromSuperUserCompany"><i
                         class="fa fa-unlock-alt"></i> UNLOCK TO EDIT</span>
-                <a *ngIf="projectModuleRecord.ownerId!=userId" data-toggle="modal" data-target="Help" title="Help"
+                <a *ngIf="projectModuleRecord.ownerId!=userId && !isProjectFromSuperUserCompany" data-toggle="modal" data-target="Help" title="Help"
                     (click)="showProjectModuleHelpDetailComponent()"><i class="fa fa-info-circle fa-2x"></i></a>
             </div>
             <h2>Negotiation title : <span class="text-muted">{{projectModuleRecord.projectName}}</span> </h2>
