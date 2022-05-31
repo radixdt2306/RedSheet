@@ -13,7 +13,9 @@
                 <label *ngIf="user.userId!=data.userId" class="custom-control custom-checkbox">
                   <input class="custom-control-input checkbox-icon" type="checkbox" (change)="AddRemoveRecipents($event,user.email)">
                   <span class="custom-control-indicator"></span>
-                  <span>{{user.userName}} - {{user.email}}</span>
+                  <span>
+                    <p class="text-overflow-adjust">{{user.userName}} - {{user.email}}</p>
+                  </span>
               </label>
               </li>
             </ul>

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://redsheetapi.qa.live1.dev.radixweb.net/",
+      "applicationUrl": "http://redsheet-cr5-api.live1.dev.radixweb.net/",
       "sslPort": 0
     }
   },
