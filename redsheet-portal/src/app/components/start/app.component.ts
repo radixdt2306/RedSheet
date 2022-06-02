@@ -171,7 +171,7 @@ export class AppComponent implements OnInit {
     //   this.modal.hide();
     $("#session").hide();
     this.isSessionEnable=false;
-
+    this.CheckForIdle = false;        
     }
     
     logOut(): void {
