@@ -42,9 +42,9 @@ export class AppComponent implements OnInit {
     CheckForIdle:boolean=false;
     count:number=0
     private timer:Observable<number>;
-    _SessionTime:number=15;
+    _SessionTime:number=90;
     SessionTime:number = this._SessionTime;
-    SessionExpireAlert:number = 5;
+    SessionExpireAlert:number = 60;
     SessionExpireAfter:number = this.SessionTime-this.SessionExpireAlert;
     private timerSubscription: Subscription = new Subscription;
     sessionmodalelement:any;
