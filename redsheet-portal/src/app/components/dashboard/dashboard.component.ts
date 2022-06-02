@@ -483,7 +483,18 @@ export class DashboardComponent implements OnInit {
     // Message to user
     SendMessage(users,project)
     {
-        this.popup.show(MessageUsersComponent,{users:users , project:project});
+        this.popup.show(MessageUsersComponent,{users:users , project:project}).then(
+            ()=>{
+                this.emailTransactionService.search({Query:[{ userId:this.localData.userId , userEmail:this.localData.userName , searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
+                    (emailtransaction)=>{
+                        this.emailTransactions = emailtransaction.result;
+                    },
+                    (error)=>{
+        
+                    }
+                )
+            }
+        );
     }
 
 
