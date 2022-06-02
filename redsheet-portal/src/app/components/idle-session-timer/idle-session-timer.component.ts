@@ -10,7 +10,7 @@ import { Subscriber, Subscription } from 'rxjs';
 })
 export class IdleSessionTimerComponent implements OnInit {
 
-  constructor(private idleSessionTimer:IdleSessionTimerService , private popup:RxPopup) { }
+  constructor(private popup:RxPopup) { }
   
   remainingTime:number 
   intervalSubscriber:any;
@@ -22,13 +22,11 @@ export class IdleSessionTimerComponent implements OnInit {
 
   Extend()
   {
-    this.idleSessionTimer.ExpandSession();
     this.popup.hide(IdleSessionTimerComponent);
   }
 
   SignOut()
   {
-    this.idleSessionTimer.logOut();
     this.popup.hide(IdleSessionTimerComponent);
   }
 

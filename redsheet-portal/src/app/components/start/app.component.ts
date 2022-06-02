@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -14,11 +14,17 @@ import { OrientationVideoComponent } from '../shared/top-bar/modal/orientation-v
 import { IdleSessionTimerComponent } from '../idle-session-timer/idle-session-timer.component'
 import { IdleSessionTimerService } from '../idle-session-timer/idle-session-timer.service';
 
+import * as $ from '../../../assets/js/jquery.min.js';
+
+
+import { timer } from 'rxjs/observable/timer';
+import { UserAuthorizationService } from 'app/domain/authorization';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    entryComponents: [ValidationFailedComponent, UnAuthorizedAccessComponent, OrientationVideoComponent , IdleSessionTimerComponent ]
+    entryComponents: [ValidationFailedComponent, UnAuthorizedAccessComponent, OrientationVideoComponent]
 })
 export class AppComponent implements OnInit {
     isShowDashboard: boolean = false;
@@ -31,11 +37,33 @@ export class AppComponent implements OnInit {
     isShowSideBarButton: boolean;
     isSideBarActiveClass: boolean;
 
+    // IDLE SESSION
+
+    CheckForIdle:boolean=false;
+    count:number=0
+    private timer:Observable<number>;
+    _SessionTime:number=15;
+    SessionTime:number = this._SessionTime;
+    SessionExpireAlert:number = 5;
+    SessionExpireAfter:number = this.SessionTime-this.SessionExpireAlert;
+    private timerSubscription: Subscription = new Subscription;
+    sessionmodalelement:any;
+    isSessionEnable:boolean=false;
+    modal:any;
+    //
+
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll($event) {
+        if(this.CheckForIdle == true)
+        {
+            this.ExpandSession();
+        }
+    }
     constructor(
         private router: Router,
         private storage: RxStorage,
         private popup:RxPopup,
-        private idleSessionTimer : IdleSessionTimerService,
+        private userAuthorizationService:UserAuthorizationService,
         applicationBroadCaster: ApplicationBroadcaster
     ) {
         applicationBroadCaster.loginSubscriber.subscribe(t => {
@@ -65,7 +93,7 @@ export class AppComponent implements OnInit {
         if (auth) {
             this.isShowDashboard = true;
             this.showElement = true;
-            this.idleSessionTimer.StartTimer();
+            this.StartTimer();
         }
     }
 
@@ -84,6 +112,81 @@ export class AppComponent implements OnInit {
                 location.href = "/dashboard";
             }
         }, 50)
+    }
+    
+    StartTimer()
+    {
+      this.CheckForIdle = true;
+      this.StopTimer();
+      this.timer = timer(0,1000);
+      this.timerSubscription = this.timer.subscribe(
+        res => {
+          if(res as number)
+          {
+            $(document).dblclick(()=>{if(this.CheckForIdle == true){this.ExpandSession();}})
+            $(document).click(()=>{if(this.CheckForIdle == true){this.ExpandSession(); }})
+            $(document).contextmenu(()=>{if(this.CheckForIdle == true){this.ExpandSession(); }})
+            $(document).mouseover(()=>{if(this.CheckForIdle == true){this.ExpandSession(); }})
+            $(document).keydown(()=>{if(this.CheckForIdle == true){this.ExpandSession();}})
+  
+            this.SessionTime = this.SessionTime-1;
+            if(res == this.SessionExpireAlert)
+            {
+              this.CheckForIdle = false;
+              this.isSessionEnable=true;
+                // this.modal.show();
+                $("#session").show();
+
+            }
+            if(this.SessionTime == 0)
+            {
+              this.logOut();
+
+            }
+          }
+        }
+      );
+    }
+  
+    StopTimer()
+    {
+        this.timerSubscription.unsubscribe();
+        this.timer = new Observable<number>();
+    }
+  
+    ExpandSession()
+    {
+        $("#session").hide();
+        this.isSessionEnable=false;
+      this.SessionTime = this._SessionTime;
+      this.SessionExpireAfter = this.SessionTime-this.SessionExpireAlert;
+      
+      this.StartTimer();
+      
+    }
+  
+    CloseTimer()
+    {
+      this.StopTimer();
+    //   this.modal.hide();
+    $("#session").hide();
+    this.isSessionEnable=false;
+
+    }
+    
+    logOut(): void {
+      // this.isOpenUserProfile = !this.isOpenUserProfile
+      this.userAuthorizationService.postLogOut().subscribe(t => {
+          this.storage.local.clearAll();
+          document.cookie = "academyUrl=; samesite=Lax;";
+          window.location.href = '/login';
+      }, error => {
+          this.storage.local.clearAll();
+          document.cookie = "academyUrl=; samesite=Lax;";
+          window.location.href = '/login';
+      })
+      this.CloseTimer();
+      // ldle timer close
     }
 
 }

@@ -46,7 +46,7 @@ export class IdleSessionTimerService {
               this.popup.show(IdleSessionTimerComponent,{remainingTime : this.SessionExpireAfter}).then(
                 ()=>{
                   
-                  this.redirectTo(this.route.url);
+                  // this.redirectTo(this.route.url);
                 }
               );
           }

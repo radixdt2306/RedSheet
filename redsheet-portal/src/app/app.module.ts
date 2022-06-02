@@ -49,7 +49,7 @@ import { LockModuleForReviewModule } from './components/project-module/project-m
         BrowserModule,
         FormsModule, ReactiveFormsModule, RxTableModule,
         HttpModule, RxSecurityModule, CommonModule,
-        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , DashboardModule ,EmailTransactionModule , EmailTransactionListModule , IdleSessionTimerModule, LockModuleForReviewModule
+        RxFormsModule, RxViewModule, RxStorageModule, RxViewServiceModule, APP_LAZY_ROUTING, LoginModule, AppDirectiveModule , DashboardModule ,EmailTransactionModule , EmailTransactionListModule , LockModuleForReviewModule
     ],
     providers: [PermissionService, RxValidation, LoginService, ApplicationBroadcaster,
         {
@@ -59,7 +59,7 @@ import { LockModuleForReviewModule } from './components/project-module/project-m
                 //  'https://mynegotiations-rest.redsheetonline.com/' :
                 //  'https://mynegotiations-rest.redsheetonline.com/'
 
-                // 'http://localhost:8726/' : 'http://localhost:8726/'
+                // 'http://localhost:8728/' : 'http://localhost:8728/'
 
                 // 'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/'
 
