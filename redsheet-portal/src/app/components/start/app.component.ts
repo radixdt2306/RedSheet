@@ -128,7 +128,14 @@ export class AppComponent implements OnInit {
             $(document).contextmenu(()=>{if(this.CheckForIdle == true){this.ExpandSession(); }})
             $(document).mouseover(()=>{if(this.CheckForIdle == true){this.ExpandSession(); }})
             $(document).keydown(()=>{if(this.CheckForIdle == true){this.ExpandSession();}})
-  
+            $('body').on(
+                "touchmove", ()=>{
+                    if(this.CheckForIdle == true)
+                    {
+                        this.ExpandSession();
+                    }
+                }
+            );
             this.SessionTime = this.SessionTime-1;
             if(res == this.SessionExpireAlert)
             {
