@@ -56,12 +56,12 @@
   },
   "appSettings": {
     //"applicationId": "AB79A633-1498-40A4-857B-6E9A73E05AFF"
-    "applicationId": "b8950dce-4fa7-4164-a54f-7a3980f24bd5"
+    "applicationId": "310d5790-1715-450b-bda5-b6a26896f35d"
   },
   "applicationUrl": {
     //"clientUrl": "http://mynegotiations.redsheetonline.com/#/"
     //"clientUrl": "https://Redsheet-RW.positivedev.co.uk/#/"
-    //"clientUrl": "https://redsheet-portal.live1.dev.radixweb.net/#/"
-    "clientUrl": "http://redsheet-cr5.live1.dev.radixweb.net/#/"
+    "clientUrl": "https://redsheet-portal.live1.dev.radixweb.net/#/"
+    //"clientUrl": "http://localhost:4200/#/"
   }
 }

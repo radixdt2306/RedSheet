@@ -235,43 +235,43 @@
                                                     class="action-links-dashboard btn-Dash-Download">Download
                                                 </a>
                                             </li>
-                                            <li *ngIf="dataItem.myRole == 'Owner'"
+                                            <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))"
                                                 class="list-inline-item dashboard-dropdown-icon">
                                                 <i class="fa fa-ellipsis-h"></i>
                                                 <ul class="dropdown-items-dashboard">
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
+                                                    <li *ngIf="(!dataItem.projectStatus && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a [routerLink]="['/project/projects',dataItem.projectId]"
                                                             title="Edit" class="">Project
                                                             Setup</a>
                                                     </li>
                                                     <li
-                                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner'">
+                                                        *ngIf="(!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && !dataItem.isClosed && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="closeProject(dataItem)" title="Close"
                                                             class="">Close</a>
                                                     </li>
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
+                                                    <li *ngIf="(!dataItem.projectStatus && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="liveProject(dataItem)" title="Share Project"
                                                             class="">Share</a>
                                                     </li>
                                                     <li
-                                                        *ngIf="(dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner'">
+                                                        *ngIf="((dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner') || ((dataItem.projectStatus || dataItem.isClosed) && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="activeProject(dataItem)" title="Close"
                                                             class="">Activate</a>
                                                     </li>
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'"><a
+                                                    <li *ngIf="(!dataItem.projectStatus && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))"><a
                                                             (click)="deleteProject(dataItem)" title="Delete Project"
                                                             class="">Delete</a>
                                                     </li>
-                                                    <li *ngIf="dataItem.myRole == 'Owner'">
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="onCreateCopy(dataItem)" title="Create Copy"
                                                             class="">Create
                                                             Copy</a>
                                                     </li>
-                                                    <li *ngIf="dataItem.myRole == 'Owner'">
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="showDropDown(dataItem)" title="Create Copy"
                                                             class="">Change Owner</a>
                                                     </li>
-                                                    <li *ngIf="dataItem.myRole == 'Owner'">
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="SendMessage(users,dataItem)" title="Message Users"
                                                             class="">Message Users</a>
                                                     </li>
@@ -279,7 +279,7 @@
                                             </li>
 
                                             <!-- message icon for project member except owner -->
-                                            <a *ngIf="dataItem.myRole != 'Owner'" (click)="SendMessage(users,dataItem)">
+                                            <a *ngIf="dataItem.myRole != 'Owner' && (!isSuperUser ||(isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId)==false))" (click)="SendMessage(users,dataItem)">
                                                 <img src="../../../assets/images/email_logo.png" class="bg-light" alt="Message Users" width="25px" height="25px">
                                             </a>
 
@@ -300,7 +300,7 @@
                           <option *ngFor="let user of users;" [value]="user.userId"
                             [selected]="user.userId == dataItem.userId">{{user.userName}}</option>
                         </select> -->
-                        <div *ngIf="dataItem.myRole == 'Owner'" class="custom-select-items-wrapper" [class.d-block]="dataItem.hideDropDown && selectedMenue">
+                        <div *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))" class="custom-select-items-wrapper" [class.d-block]="dataItem.hideDropDown && selectedMenue">
                           <ul class="custom-select-items-dashboard">
                             <li *ngFor="let user of users;">
                               <a title="Change Owner" class=""

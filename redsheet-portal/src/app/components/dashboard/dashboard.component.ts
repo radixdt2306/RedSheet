@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
     emailTransactions:EmailTransaction[]=[];
     localData:any;
     projectsDashBoard:any;
+    listOfProjectIdFromSuperUserCompany:number[]=[];
 
     // for myprogress collapse
     expandMyprogress:boolean=false; 
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit {
     isSuperUser:boolean=false;
     expandDashboard:boolean=false; 
     projectDashBoardisSearchEnable:boolean=false;
-    projectDashBoardQuery = {search:"",filter:""};
+    projectDashBoardQuery = {userId:new Number,search:"",filter:""};
     projectDashBoardSearchValue:string="";
     projectDashBoardFilterValueOption = ["ACTIVE","SHARED","CLOSED"];
     projectDashBoardFilterValue:string="";
@@ -79,7 +80,7 @@ export class DashboardComponent implements OnInit {
 
         // getting localstorage data
         this.localData = user.data;
-
+        this.listOfProjectIdFromSuperUserCompany=[];
         ProjectModuleStatic.CurrentProjectModuleId = undefined;
         this.statistics = [{ totalNegotiation: 0 }, { completed: 0 }, { inProgress: 0 }, { notStarted: 0 }];
 
@@ -88,6 +89,7 @@ export class DashboardComponent implements OnInit {
         if(user.data.userTypeId=="4")
         {
             this.isSuperUser=true;
+            this.projectDashBoardQuery.userId = user.data.userId;
             this.GetProjectDashBoard();
         }
         //
@@ -215,6 +217,24 @@ export class DashboardComponent implements OnInit {
                     count++;
                 });
                 this.projects = t.projects;
+                console.log(this.projects);
+
+                if(this.isSuperUser)
+                {
+                    for(var p of this.projects)
+                    {
+                        this.projectsDashBoard.filter(e=>{
+                            if(e.ProjectId == p.projectId)
+                            {
+                                if(!this.listOfProjectIdFromSuperUserCompany.includes(p.projectId))
+                                {
+                                    this.listOfProjectIdFromSuperUserCompany.push(p.projectId);
+                                }
+                                console.log("project" , this.listOfProjectIdFromSuperUserCompany);
+                            }
+                        })
+                    }
+                }
 
                 for (var j: number = 0; j < this.projects.length; j++) {
                     this.projects[j]["hideDropDown"] = false;
@@ -509,6 +529,7 @@ export class DashboardComponent implements OnInit {
                 if(response)
                 {
                     this.projectsDashBoard = response.result;
+                    console.log(this.projectsDashBoard);
                     this.projectDashBoardisSearchEnable = true;
                     
                 }

@@ -52,11 +52,12 @@ namespace RedSheet.Api.Controllers
         {
             var query = JObject.Parse(storeProcSearch.Query);
 
-            var spParameters = new object[2];
-            spParameters[0] = new SqlParameter() { ParameterName = "search", Value = query["search"].ToString() };
-            spParameters[1] = new SqlParameter() { ParameterName = "filter", Value = query["filter"].ToString() };
+            var spParameters = new object[3];
+            spParameters[0] = new SqlParameter() { ParameterName = "userId", Value = Convert.ToInt64(query["userId"]) };
+            spParameters[1] = new SqlParameter() { ParameterName = "search", Value = query["search"].ToString() };
+            spParameters[2] = new SqlParameter() { ParameterName = "filter", Value = query["filter"].ToString() };
 
-            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("exec spProjectsSuperUser @search , @filter", spParameters);
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("exec spProjectsSuperUser @userId , @search , @filter", spParameters);
 
             return Ok(storeProcSearchResult.SingleOrDefault()?.Result);
         }
