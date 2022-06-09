@@ -58,7 +58,6 @@ export class LoginComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit() {
-        // debugger;
         if (this.uid != undefined && this.trg != undefined && this.ssoKey != undefined) {
             this.login();
         }
@@ -81,14 +80,11 @@ export class LoginComponent implements OnDestroy, OnInit {
         //this.popup.show(ForgotPasswordComponent).then(t => this.ngOnInit());
     }
     login(): void {
-        // debugger;
         this.isApplied = false;
         if (this.loginSubscription)
             this.loginSubscription.unsubscribe();
-        this.userCredentialViewModel.failedCount = this.storage.local.get('failedCount') == undefined ? 0 : this.storage.local.get('failedCount');
-        var AuthToken = this.storage.local.get('auth') == undefined ? null : this.storage.local.get('auth');
-       
-        this.loginSubscription = this.loginService.post(this.userCredentialViewModel, this.uid,this.trg,this.ssoKey,AuthToken).subscribe(t => {
+        this.userCredentialViewModel.failedCount = this.storage.local.get('failedCount') == undefined ? 0 : this.storage.local.get('failedCount');       
+        this.loginSubscription = this.loginService.post(this.userCredentialViewModel, this.uid,this.trg,this.ssoKey).subscribe(t => {
             if (t.failedLogin) {
                 this.toast.show(t.validationMessage, { status: 'error' });
             }

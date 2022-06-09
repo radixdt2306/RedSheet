@@ -75,7 +75,7 @@ namespace RedSheet.Api.Controllers
         [HttpPost]
         [Route("api/[controller]/login")]
 
-        public IActionResult PostLogin([FromBody] UserCredentialViewModel userCredential, string uid, string trg, string ssoKey,string authToken)
+        public IActionResult PostLogin([FromBody] UserCredentialViewModel userCredential, string uid, string trg, string ssoKey)
         {
             bool isSSOLogin = false;
             LoginResult loginResult = new LoginResult();

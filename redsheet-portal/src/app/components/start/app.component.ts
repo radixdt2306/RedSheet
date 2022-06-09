@@ -11,9 +11,6 @@ import { SHOW_SIDE_BAR_BUTTON, SHOW_SIDE_BAR } from 'app/const';
 import { Notification } from './../../domain/notification-broadcaster'
 import { OrientationVideoComponent } from '../shared/top-bar/modal/orientation-video.component';
 
-import { IdleSessionTimerComponent } from '../idle-session-timer/idle-session-timer.component'
-import { IdleSessionTimerService } from '../idle-session-timer/idle-session-timer.service';
-
 import * as $ from '../../../assets/js/jquery.min.js';
 
 

@@ -76,13 +76,11 @@ export class ProjectNextModuleEditComponent extends ProjectModuleDomain implemen
                                         if(this.currentProjectmoduleRecord.projectId==r.ProjectId)
                                         {
                                             this.isProjectFromSuperUserCompany=true;
-                                            // console.log(this.isProjectFromSuperUserCompany);
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    console.log("null");
                                 }
                             },
                             (error)=>{

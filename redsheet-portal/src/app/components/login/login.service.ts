@@ -14,10 +14,10 @@ export class LoginService {
         private http: RxHttp
     ) { }
 
-    post(userCredentialViewModel: UserCredentialModel, uid: string, trg: string, ssoKey:string,AuthToken:string): Observable<UserAuthenticationViewModel> {
+    post(userCredentialViewModel: UserCredentialModel, uid: string, trg: string, ssoKey:string): Observable<UserAuthenticationViewModel> {
         let api = this.api;
         if (uid != undefined && trg != undefined && ssoKey != undefined) {
-            api = this.api + "?uid=" + uid + "&trg=" + trg + "&ssoKey=" + ssoKey +"&authToken=" + AuthToken;
+            api = this.api + "?uid=" + uid + "&trg=" + trg + "&ssoKey=" + ssoKey;
         }
         return this.http.post<UserAuthenticationViewModel>(api, userCredentialViewModel, false);
     }

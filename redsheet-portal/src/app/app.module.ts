@@ -34,7 +34,6 @@ import { RecentActivityAndNotificationsService } from 'app/components/recent-act
 import { AppDirectiveModule } from 'app/components/shared/directives/app.directive.module';
 import { OrientationVideoComponent } from './components/shared/top-bar/modal/orientation-video.component';
 import { EmailTransactionModule } from './components/email-transaction/email-transaction.module';
-import { IdleSessionTimerModule } from './components/idle-session-timer/idle-session-timer/idle-session-timer.module';
 import { EmailTransactionListModule } from './components/email-transaction/list/email-transaction-list.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { LockModuleForReviewModule } from './components/project-module/project-modules/lock-module-for-review/lock-module-for-review/lock-module-for-review.module';
@@ -60,10 +59,11 @@ import { LockModuleForReviewModule } from './components/project-module/project-m
                 //  'https://mynegotiations-rest.redsheetonline.com/'
 
                 // 'http://localhost:8728/' : 'http://localhost:8728/'
+                'http://localhost:5555/' : 'http://localhost:5555/'
 
                 // 'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/'
 
-                'http://redsheet-cr5-api.live1.dev.radixweb.net/' : 'http://redsheet-cr5-api.live1.dev.radixweb.net/' //live
+                // 'http://redsheet-cr5-api.live1.dev.radixweb.net/' : 'http://redsheet-cr5-api.live1.dev.radixweb.net/' //live
 
                 //'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/' 
 

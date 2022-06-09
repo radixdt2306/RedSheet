@@ -217,7 +217,6 @@ export class DashboardComponent implements OnInit {
                     count++;
                 });
                 this.projects = t.projects;
-                console.log(this.projects);
 
                 if(this.isSuperUser)
                 {
@@ -230,7 +229,6 @@ export class DashboardComponent implements OnInit {
                                 {
                                     this.listOfProjectIdFromSuperUserCompany.push(p.projectId);
                                 }
-                                console.log("project" , this.listOfProjectIdFromSuperUserCompany);
                             }
                         })
                     }
@@ -529,7 +527,6 @@ export class DashboardComponent implements OnInit {
                 if(response)
                 {
                     this.projectsDashBoard = response.result;
-                    console.log(this.projectsDashBoard);
                     this.projectDashBoardisSearchEnable = true;
                     
                 }

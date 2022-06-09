@@ -105,13 +105,11 @@ export class ProjectModuleEditComponent extends ProjectModuleDomain implements O
                                         if(this.projectId==r.ProjectId)
                                         {
                                             this.isProjectFromSuperUserCompany=true;
-                                            // console.log(this.isProjectFromSuperUserCompany);
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    console.log("null");
                                 }
                             },
                             (error)=>{
