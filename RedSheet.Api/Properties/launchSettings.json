@@ -4,6 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://redsheet-cr5-api.live1.dev.radixweb.net/",
+      //"applicationUrl": "http://localhost:5555/",
       "sslPort": 0
     }
   },

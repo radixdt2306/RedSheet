@@ -58,12 +58,11 @@ import { LockModuleForReviewModule } from './components/project-module/project-m
                 //  'https://mynegotiations-rest.redsheetonline.com/' :
                 //  'https://mynegotiations-rest.redsheetonline.com/'
 
-                // 'http://localhost:8728/' : 'http://localhost:8728/'
-                'http://localhost:5555/' : 'http://localhost:5555/'
+                // 'http://localhost:5555/' : 'http://localhost:5555/'
 
                 // 'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/'
 
-                // 'http://redsheet-cr5-api.live1.dev.radixweb.net/' : 'http://redsheet-cr5-api.live1.dev.radixweb.net/' //live
+                'http://redsheet-cr5-api.live1.dev.radixweb.net/' : 'http://redsheet-cr5-api.live1.dev.radixweb.net/' //live
 
                 //'https://redsheetapi.qa.live1.dev.radixweb.net/' : 'https://redsheetapi.qa.live1.dev.radixweb.net/' 
 
