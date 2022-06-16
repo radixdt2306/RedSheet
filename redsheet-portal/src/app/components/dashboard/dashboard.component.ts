@@ -222,15 +222,18 @@ export class DashboardComponent implements OnInit {
                 {
                     for(var p of this.projects)
                     {
-                        this.projectsDashBoard.filter(e=>{
-                            if(e.ProjectId == p.projectId)
-                            {
-                                if(!this.listOfProjectIdFromSuperUserCompany.includes(p.projectId))
+                        if(this.projectsDashBoard!=undefined || this.projectsDashBoard != null)
+                        {
+                            this.projectsDashBoard.filter(e=>{
+                                if(e.ProjectId == p.projectId)
                                 {
-                                    this.listOfProjectIdFromSuperUserCompany.push(p.projectId);
+                                    if(!this.listOfProjectIdFromSuperUserCompany.includes(p.projectId))
+                                    {
+                                        this.listOfProjectIdFromSuperUserCompany.push(p.projectId);
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
                     }
                 }
 
