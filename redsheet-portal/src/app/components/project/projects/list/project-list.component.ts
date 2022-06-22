@@ -12,9 +12,10 @@ import { ApplicationBroadcaster } from '@rx/core';
 import { HIDE_SIDE_BAR } from 'app/const';
 import { ProjectNegotionalityLookups } from 'app/lookups';
 import { ProjectLookupGroup } from '../domain/project.models';
-import { RxSpinner } from "@rx/view";
+import { RxSpinner,RxPopup } from "@rx/view";
 import { API_HOST_URI } from "@rx";
-
+import { user } from '@rx/security';
+import { MessageUsersComponent } from 'app/components/dashboard/message-users/message-users/message-users.component';
 @Component({
     templateUrl: './project-list.component.html',
 })
@@ -31,6 +32,15 @@ export class ProjectListComponent extends ProjectDomain implements OnInit, OnDes
     selectedMenue : boolean = false;
     flagmenu = false;
 
+    // 22-06-22
+
+    isSuperUser:boolean=false;
+    localData:any;
+    projectsDashBoard:any;
+    listOfProjectIdFromSuperUserCompany:number[]=[];
+    projectDashBoardQuery = {userId:new Number,search:"",filter:""};
+
+    //22-06-22
     constructor(
         @Inject(RxSpinner) private spinner: RxSpinner,
         applicationBroadcaster: ApplicationBroadcaster,
@@ -38,13 +48,25 @@ export class ProjectListComponent extends ProjectDomain implements OnInit, OnDes
         private dialog: RxDialog,
         private router: Router,
         @Inject(API_HOST_URI) private hostUri: string,
-        private projectService: ProjectsService
+        private projectService: ProjectsService,
+        private popup: RxPopup //22-06-22
     ) {
         super();
         applicationBroadcaster.allTypeBroadCast(HIDE_SIDE_BAR);
     }
 
     ngOnInit(): void {
+
+        // 22-06-22
+        this.localData = user.data;
+        if(user.data.userTypeId=="4")
+        {
+            this.isSuperUser=true;
+            this.projectDashBoardQuery.userId=this.localData.userId;
+            this.GetProjectDashBoard();
+        }
+
+        // 22-06-22
 
         this.project = new Project();
         this.sortClass = "fa fa fa-long-arrow-down pl-2";
@@ -62,6 +84,30 @@ export class ProjectListComponent extends ProjectDomain implements OnInit, OnDes
                     count++;
                 });
                 this.projects = result.projects;
+                
+                // 22-06
+
+                if(this.isSuperUser)
+                {
+                    for(var p of this.projects)
+                    {
+                        if(this.projectsDashBoard!=undefined || this.projectsDashBoard != null)
+                        {
+                            this.projectsDashBoard.filter(e=>{
+                                if(e.ProjectId == p.projectId)
+                                {
+                                    if(!this.listOfProjectIdFromSuperUserCompany.includes(p.projectId))
+                                    {
+                                        this.listOfProjectIdFromSuperUserCompany.push(p.projectId);
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
+
+                // 22-06
+
                 if (this.projects) {
                     for (var j: number = 0; j < this.projects.length; j++) {
                         this.projects[j]["hideDropDown"] = false;
@@ -370,4 +416,34 @@ export class ProjectListComponent extends ProjectDomain implements OnInit, OnDes
             }
         });
     }
+
+    // 22-06-22
+
+    GetProjectDashBoard()
+    {
+        this.projectService.getProjectsForSuperUser(this.projectDashBoardQuery).subscribe
+        (
+            (response)=>{
+                if(response)
+                {
+                    this.projectsDashBoard = response.result;                    
+                }
+                else
+                {
+                    this.projectsDashBoard = [];
+                }
+            },
+            (error)=>{
+
+            }
+        )
+    }
+
+        // Message to user
+        SendMessage(project)
+        {
+            this.popup.show(MessageUsersComponent,{project:project});
+        }
+
+    // 22-06-22
 }

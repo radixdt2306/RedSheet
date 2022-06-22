@@ -52,4 +52,11 @@ export class UsersService {
         return this.http.get<User[]>(this.apiUsers);
     }
 
+    GetProjectUsers(projectId:any)
+    {
+        var apiProjectUsres = this.apiUsers;
+        apiProjectUsres.api = `api/users/GetProjectUsers/${projectId}`
+        return this.http.get<any>(apiProjectUsres);
+    } 
+  
 }

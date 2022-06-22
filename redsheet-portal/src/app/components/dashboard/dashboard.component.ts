@@ -502,9 +502,9 @@ export class DashboardComponent implements OnInit {
 
 
     // Message to user
-    SendMessage(users,project)
+    SendMessage(project)
     {
-        this.popup.show(MessageUsersComponent,{users:users , project:project}).then(
+        this.popup.show(MessageUsersComponent,{project:project}).then(
             ()=>{
                 this.emailTransactionService.search({Query:[{ userId:this.localData.userId , userEmail:this.localData.userName , searchValue: "", dateOrder:"DESCENDING", emailCategory: ""}]}).subscribe(
                     (emailtransaction)=>{
@@ -558,7 +558,7 @@ export class DashboardComponent implements OnInit {
     }
 
     private sortColumn(column: boolean) {
-        debugger;
+       
         // if (!column.actionable) {
         //     if (this.pastSortableColumnComponent == undefined)
         //         this.pastSortableColumnComponent = column;

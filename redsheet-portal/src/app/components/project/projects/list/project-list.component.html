@@ -136,43 +136,51 @@
                                                     *ngIf="!dataItem.projectStatus && (( (dataItem.templateModuleId == 50)||(dataItem.templateModuleId == 51)  )    || (dataItem.moduleStatus && ((dataItem.templateModuleId == 53)||(dataItem.templateModuleId == 55) )   )) && dataItem.myRole == 'Owner'"
                                                     (click)="exportHtmlToPdf(dataItem)" title="Download Report"
                                                     class="action-links-dashboard btn-Dash-Download">Download</a></li>
-                                            <li *ngIf="dataItem.myRole == 'Owner'"
-                                                class="list-inline-item dashboard-dropdown-icon">
+                                            <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))"
+                                                class="list-inline-item dashboard-dropdown-icon"> <!-- 22-06-22 -->
                                                 <i class="fa fa-ellipsis-h"></i>
                                                 <ul class="dropdown-items-dashboard">
                                                     <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
                                                         <a [routerLink]="['/project/projects',dataItem.projectId]"
                                                             title="Edit" class="">Project Setup</a>
-                                                    </li>
+                                                    </li> <!-- 22-06-22 -->
                                                     <li
-                                                        *ngIf="!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner'">
+                                                    *ngIf="(!dataItem.projectStatus && !dataItem.isClosed && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && !dataItem.isClosed && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="closeProject(dataItem)" title="Close"
                                                             class="">Close</a>
-                                                    </li>
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'">
+                                                    </li> <!-- 22-06-22 -->
+                                                    <li *ngIf="(!dataItem.projectStatus && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="liveProject(dataItem)" title="Share Project"
                                                             class="">Share</a>
-                                                    </li>
+                                                    </li> <!-- 22-06-22 -->
                                                     <li
-                                                        *ngIf="(dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner'">
+                                                    *ngIf="((dataItem.projectStatus || dataItem.isClosed) && dataItem.myRole == 'Owner') || ((dataItem.projectStatus || dataItem.isClosed) && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="activeProject(dataItem)" title="Close"
                                                             class="">Activate</a>
-                                                    </li>
-                                                    <li *ngIf="!dataItem.projectStatus && dataItem.myRole == 'Owner'"><a
+                                                    </li> <!-- 22-06-22 -->
+                                                    <li *ngIf="(!dataItem.projectStatus && dataItem.myRole == 'Owner') || (!dataItem.projectStatus && isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))"><a
                                                             (click)="deleteProject(dataItem)" title="Delete Project"
                                                             class="">Delete</a>
-                                                    </li>
-                                                    <li *ngIf="dataItem.myRole == 'Owner'">
+                                                    </li> <!-- 22-06-22 -->
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="onCreateCopy(dataItem)" title="Create Copy"
                                                             class="">Create
                                                             Copy</a>
-                                                    </li>
-                                                    <li *ngIf="dataItem.myRole == 'Owner'">
+                                                    </li> <!-- 22-06-22 -->
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
                                                         <a (click)="showDropDown(dataItem)" title="Create Copy"
                                                             class="">Change Owner</a>
-                                                    </li>
+                                                    </li> <!-- 22-06-22 -->
+                                                    <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
+                                                        <a (click)="SendMessage(dataItem)" title="Message Users"
+                                                            class="">Message Users</a>
+                                                    </li> <!-- 22-06-22 -->
                                                 </ul>
                                             </li>
+                                            <!-- message icon for project member except owner -->
+                                            <a *ngIf="dataItem.myRole != 'Owner' && (!isSuperUser ||(isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId)==false))" (click)="SendMessage(dataItem)">
+                                                <img src="../../../assets/images/email_logo.png" class="bg-light" alt="Message Users" width="25px" height="25px">
+                                            </a> <!-- 22-06-22 -->
                                         </ul>
                                         <h4 class="d-inline-block">{{dataItem.projectName}}</h4>
                                     </div>
@@ -191,7 +199,7 @@
                                                         [selected]="user.userId == dataItem.userId">{{user.userName}}
                                                     </option>
                                                 </select> -->
-                                                <div *ngIf="dataItem.myRole == 'Owner'"
+                                                <div *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))"
                                                     class="custom-select-items-wrapper"
                                                     [class.d-block]="dataItem.hideDropDown && selectedMenue">
                                                     <ul class="custom-select-items-dashboard">
@@ -200,7 +208,7 @@
                                                                 (click)="changeOwnership(dataItem,user.userId)">{{user.userName}}</a>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                </div> <!-- 22-06-22 -->
                                             </span></p>
                                         <p><span rxLabel="projectSponsor"></span> : <span
                                                 class="color-dark-gray">{{dataItem.reporteeName}}</span></p>

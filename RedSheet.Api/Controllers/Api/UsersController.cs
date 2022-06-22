@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using RedSheet.Domain.MemberShipService;
 using Rx.Core.Security;
 using RedSheet.Domain.ClientServiceModule;
+using System.Data.SqlClient;
+using Rx.Core.Data;
+using RedSheet.ViewModels.Models;
+using RedSheet.BoundedContext.SqlContext;
 
 namespace RedSheet.Api.Controllers
 {
@@ -27,11 +31,14 @@ namespace RedSheet.Api.Controllers
 
         public ClientServiceContext ClientServiceContext { get; }
 
-        public UsersController(IUserUow userUow,IUserDomain userDomain, ClientServiceContext clientServiceContext)
+        private IDbContextManager<MainSqlDbContext> DbContextManager { get; set; }
+
+        public UsersController(IUserUow userUow,IUserDomain userDomain, ClientServiceContext clientServiceContext, IDbContextManager<MainSqlDbContext> dbContextManager)
         {
             UserUow = userUow;
             UserDomain = userDomain;
             this.ClientServiceContext = clientServiceContext;
+            DbContextManager = dbContextManager;
         }
 
         [HttpGet]
@@ -44,6 +51,27 @@ namespace RedSheet.Api.Controllers
         public IActionResult Get(int id)
         {
             return Ok(UserUow.Repository<vUserRecord>().Single(a=>a.UserId == id));
+        }
+        [HttpGet]
+        [Route("GetProjectUsers/{projectId}")]
+        public async Task<IActionResult> ProjectUsers(int projectId)
+        {
+            var spParameters = new object[1];
+
+            spParameters[0] = new SqlParameter() { ParameterName = "projectId", Value = projectId };
+
+            var storeProcSearchResult = await DbContextManager.SqlQueryAsync<StoreProcSearchViewModel>("EXEC dbo.spProjectUsers @projectId", spParameters);
+            var response = storeProcSearchResult.SingleOrDefault()?.Result;
+
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return Ok("false");
+            }
+
         }
         [HttpPost]
         public IActionResult Post([FromBody]User user)

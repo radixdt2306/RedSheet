@@ -272,14 +272,14 @@
                                                             class="">Change Owner</a>
                                                     </li>
                                                     <li *ngIf="dataItem.myRole == 'Owner' || (isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId))">
-                                                        <a (click)="SendMessage(users,dataItem)" title="Message Users"
+                                                        <a (click)="SendMessage(dataItem)" title="Message Users"
                                                             class="">Message Users</a>
                                                     </li>
                                                 </ul>
                                             </li>
 
                                             <!-- message icon for project member except owner -->
-                                            <a *ngIf="dataItem.myRole != 'Owner' && (!isSuperUser ||(isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId)==false))" (click)="SendMessage(users,dataItem)">
+                                            <a *ngIf="dataItem.myRole != 'Owner' && (!isSuperUser ||(isSuperUser && listOfProjectIdFromSuperUserCompany.includes(dataItem.projectId)==false))" (click)="SendMessage(dataItem)">
                                                 <img src="../../../assets/images/email_logo.png" class="bg-light" alt="Message Users" width="25px" height="25px">
                                             </a>
 
